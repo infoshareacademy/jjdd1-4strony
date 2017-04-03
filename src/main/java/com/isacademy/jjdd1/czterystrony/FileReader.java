@@ -11,7 +11,7 @@ public class FileReader {
 
     private final String SEPARATOR = ",";
 
-    private final String DIRECTORY = "/home/jakubdobosz/Downloads/omegafun";
+    private final String DIRECTORY = "./data/omegafun";
 
     private Path filePath;
 
