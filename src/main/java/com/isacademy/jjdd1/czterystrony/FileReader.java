@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.io.IOException;;
 
-public class RatingsReader {
+public class FileReader {
 
     private final String SEPARATOR = ",";
 
@@ -15,7 +15,7 @@ public class RatingsReader {
 
     private Path filePath;
 
-    public RatingsReader(String investFundID) {
+    public FileReader(String investFundID) {
         this.filePath = Paths.get(DIRECTORY, investFundID);
     }
 

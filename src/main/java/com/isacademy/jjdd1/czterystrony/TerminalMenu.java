@@ -6,7 +6,7 @@ import java.util.List;
 public class TerminalMenu {
 
     public static void main(String[] args) {
-        RatingsReader newTestFileReader = new RatingsReader("AGI001.txt");
+        FileReader newTestFileReader = new FileReader("AGI001.txt");
 
         try {
             List<String> content = newTestFileReader.getContentList();
