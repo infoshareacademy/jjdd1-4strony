@@ -9,7 +9,7 @@ import java.io.IOException;;
 
 public class RatingsReader {
 
-    private static final String SEPARATOR = ",";
+    private final String SEPARATOR = ",";
 
     private final String DIRECTORY = "/home/jakubdobosz/Downloads/omegafun";
 
