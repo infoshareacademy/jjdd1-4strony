@@ -9,6 +9,8 @@ public class Rating {
     private Double close;
     private Double volume;
 
+    public Rating() {}
+
     public Date getDate() {
         return date;
     }
