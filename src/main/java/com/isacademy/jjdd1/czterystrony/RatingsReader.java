@@ -20,6 +20,8 @@ public class RatingsReader {
     }
 
     public List<String> getContentList() throws IOException {
-        return Files.readAllLines(filePath, StandardCharsets.UTF_8);
+        List<String> content = Files.readAllLines(filePath, StandardCharsets.UTF_8);
+        content.remove(0);
+        return content;
     }
 }
