@@ -4,12 +4,17 @@ import java.util.Date;
 
 public class Rating {
     private Date date;
+    private Double closeValue;
+    /*
+    private Double volume;
     private Double high;
     private Double low;
-    private Double close;
-    private Double volume;
+    */
 
-    public Rating() {}
+    public Rating(Date date, Double closeValue) {
+        this.date = date;
+        this.closeValue = closeValue;
+    }
 
     public Date getDate() {
         return date;
@@ -19,6 +24,15 @@ public class Rating {
         this.date = date;
     }
 
+    public Double getCloseValue() {
+        return closeValue;
+    }
+
+    public void setCloseValue(Double closeValue) {
+        this.closeValue = closeValue;
+    }
+
+    /*
     public Double getHigh() {
         return high;
     }
@@ -35,14 +49,6 @@ public class Rating {
         this.low = low;
     }
 
-    public Double getClose() {
-        return close;
-    }
-
-    public void setClose(Double close) {
-        this.close = close;
-    }
-
     public Double getVolume() {
         return volume;
     }
@@ -50,4 +56,5 @@ public class Rating {
     public void setVolume(Double volume) {
         this.volume = volume;
     }
+    */
 }
