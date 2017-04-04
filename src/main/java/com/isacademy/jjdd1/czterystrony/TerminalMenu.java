@@ -24,8 +24,8 @@ public class TerminalMenu {
             e.printStackTrace();
         }
 
-        for (LocalDate localDate : investFund.getRatings().keySet()) {
-            System.out.println(investFund.getRatings().get(localDate));
+        for (Rating rating : investFund.getRatings()) {
+            System.out.println(rating);
         }
     }
 }

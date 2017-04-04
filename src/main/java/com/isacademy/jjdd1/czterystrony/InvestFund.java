@@ -1,23 +1,23 @@
 package com.isacademy.jjdd1.czterystrony;
 
 import java.time.LocalDate;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class InvestFund {
     private String name;
-    private Map<LocalDate, Rating> ratings = new HashMap<>();
+    private List<Rating> ratings = new ArrayList<>();
 
     public InvestFund(String name) {
         this.name = name;
     }
 
     public void addRating(Rating rating) {
-        ratings.put(rating.getDate(), rating);
+        ratings.add(rating);
     }
 
-    public Map<LocalDate, Rating> getRatings() {
+    public List<Rating> getRatings() {
         return ratings;
     }
 }
