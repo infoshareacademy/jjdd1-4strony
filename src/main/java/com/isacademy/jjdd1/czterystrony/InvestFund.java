@@ -6,8 +6,11 @@ public class InvestFund {
     private String name;
     private List<Rating> ratings;
 
-    public InvestFund(String name, List<Rating> ratings) {
+    public InvestFund(String name) {
         this.name = name;
-        this.ratings = ratings;
+    }
+
+    public void addRating(Rating rating) {
+        ratings.add(rating);
     }
 }

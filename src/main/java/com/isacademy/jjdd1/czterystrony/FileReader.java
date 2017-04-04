@@ -10,9 +10,7 @@ import java.io.IOException;;
 public class FileReader {
 
     private final String SEPARATOR = ",";
-
     private final String DIRECTORY = "./data/omegafun";
-
     private Path filePath;
 
     public FileReader(String investFundID) {
