@@ -17,7 +17,9 @@ public class TerminalMenu {
             for (String row : content) {
                 String[] items = row.split(",");
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
-                Rating rating = new Rating(LocalDate.parse(items[1], format), Double.parseDouble(items[5]));
+                LocalDate date = LocalDate.parse(items[1], format);
+                Double closeValue = Double.parseDouble(items[5]);
+                Rating rating = new Rating(date, closeValue);
                 investFund.addRating(rating);
             }
         } catch (IOException e) {
