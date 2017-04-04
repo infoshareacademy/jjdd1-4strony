@@ -58,4 +58,9 @@ public class Rating {
         this.volume = volume;
     }
     */
+
+    @Override
+    public String toString() {
+        return "Data: " + date + " | Close value: " + closeValue;
+    }
 }

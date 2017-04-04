@@ -16,4 +16,8 @@ public class InvestFund {
     public void addRating(Rating rating) {
         ratings.put(rating.getDate(), rating);
     }
+
+    public Map<LocalDate, Rating> getRatings() {
+        return ratings;
+    }
 }
