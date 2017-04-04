@@ -1,9 +1,10 @@
 package com.isacademy.jjdd1.czterystrony;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Rating {
-    private Date date;
+    private LocalDate date;
     private Double closeValue;
     /*
     private Double volume;
@@ -11,16 +12,16 @@ public class Rating {
     private Double low;
     */
 
-    public Rating(Date date, Double closeValue) {
+    public Rating(LocalDate date, Double closeValue) {
         this.date = date;
         this.closeValue = closeValue;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

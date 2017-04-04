@@ -12,9 +12,8 @@ public class TerminalMenu {
             List<String> content = newTestFileReader.getContentList();
 
             for (String row : content) {
-                System.out.println(row);
-            }
 
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
