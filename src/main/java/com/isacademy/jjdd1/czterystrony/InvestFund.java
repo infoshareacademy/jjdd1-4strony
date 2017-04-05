@@ -1,13 +1,11 @@
 package com.isacademy.jjdd1.czterystrony;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class InvestFund {
     private String name;
-    private List<Rating> ratings = new ArrayList<>();
+    private List<Rating> ratings = new LinkedList<>();
 
     public InvestFund(String name) {
         this.name = name;

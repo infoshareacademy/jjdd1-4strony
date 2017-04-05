@@ -7,14 +7,11 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.io.IOException;;
 
-public class FileReader {
-
-    private final String SEPARATOR = ",";
-    private final String DIRECTORY = "./src/main/resources/data/omegafun";
+public class TxtFileReader {
     private Path filePath;
 
-    public FileReader(String investFundID) {
-        this.filePath = Paths.get(DIRECTORY, investFundID);
+    public TxtFileReader(String directory, String dataFileName) {
+        this.filePath = Paths.get(directory, dataFileName + ".txt");
     }
 
     public List<String> getContentList() throws IOException {
