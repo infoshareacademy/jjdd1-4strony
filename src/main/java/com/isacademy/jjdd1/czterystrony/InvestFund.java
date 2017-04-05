@@ -15,7 +15,7 @@ public class InvestFund {
         ratings.add(rating);
     }
 
-    public List<Rating> getRatings() {
+    public List<Rating> getAllRatings() {
         return ratings;
     }
 }
