@@ -1,12 +1,13 @@
 package com.isacademy.jjdd1.czterystrony;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Rating {
     private Date date;
-    private Double closeValue;
+    private BigDecimal closeValue;
 
-    public Rating(Date date, Double closeValue) {
+    public Rating(Date date, BigDecimal closeValue) {
         this.date = date;
         this.closeValue = closeValue;
     }
@@ -15,7 +16,7 @@ public class Rating {
         return date;
     }
 
-    public Double getCloseValue() {
+    public BigDecimal getCloseValue() {
         return closeValue;
     }
 
