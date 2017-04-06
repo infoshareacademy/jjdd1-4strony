@@ -16,7 +16,6 @@ public abstract class ExtremaFinder {
         this.findExtrema();
     }
 
-
     private void findExtrema() {
         List<Rating> ratings = investFund.getAllRatings();
 
@@ -30,13 +29,21 @@ public abstract class ExtremaFinder {
 
         int i=1;
 
-        while(i < ratings.size()-1){
+        while(i < ratings.size() - 1){
             BigDecimal currDifference = BigDecimal.ZERO;
             int zeroDifferenceCount = 0;
-            while(currDifference.equals(BigDecimal.ZERO) && i < ratings.size()-1){
+
+            while(currDifference.equals(BigDecimal.ZERO) && i < ratings.size() - 1){
                 zeroDifferenceCount++;
                 i++;
-                prevRating = ratings.get(i-1);
+
+                int previousIndex = i - extremaFinderConfigurator.getBackwardDaysSensitivity();
+
+                if (previousIndex < 0) {
+                    previousIndex = 0;
+                }
+
+                prevRating = ratings.get(previousIndex);
                 currRating = ratings.get(i);
 
                 prevCloseValue = prevRating.getCloseValue();
@@ -45,11 +52,8 @@ public abstract class ExtremaFinder {
                 currDifference = prevCloseValue.subtract(currCloseValue);
             }
 
-            int signCurrDifference = 0;
-            int signPrevDifference = 0;
-
-            signCurrDifference = currDifference.compareTo(BigDecimal.ZERO);
-            signPrevDifference = prevDifference.compareTo(BigDecimal.ZERO);
+            int signCurrDifference = currDifference.compareTo(extremaFinderConfigurator.getUpperCloseValueSensitivity());
+            int signPrevDifference = prevDifference.compareTo(extremaFinderConfigurator.getLowerCloseValueSensitivity());
 
             if( signPrevDifference != signCurrDifference && signCurrDifference != 0){
                 int index = i - 1- (zeroDifferenceCount)/2;
@@ -61,6 +65,23 @@ public abstract class ExtremaFinder {
             }
             prevDifference = currDifference;
         }
+    }
+
+    private Rating getRatingForGivenDaysBefore(int currentTimeIndex, int businessDaysBeforeCurrentTimeIndex) {
+        int beforeTimeIndex = currentTimeIndex - businessDaysBeforeCurrentTimeIndex;
+        if (beforeTimeIndex < 0) {
+            beforeTimeIndex = 0;
+        }
+        return investFund.getAllRatings().get(beforeTimeIndex);
+    }
+
+    private Rating getRatingForGivenDaysAfter(int currentTimeIndex, int businessDaysAfterCurrentTimeIndex) {
+        int afterTimeIndex = currentTimeIndex - businessDaysAfterCurrentTimeIndex;
+        int investFundRatingsCount = investFund.getAllRatings().size();
+        if (afterTimeIndex > investFundRatingsCount) {
+            afterTimeIndex = investFundRatingsCount;
+        }
+        return investFund.getAllRatings().get(afterTimeIndex);
     }
 
 //    private void findExtrema() {

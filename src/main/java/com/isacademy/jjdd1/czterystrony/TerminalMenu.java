@@ -1,8 +1,5 @@
 package com.isacademy.jjdd1.czterystrony;
 
-import java.util.Map;
-import java.util.Set;
-
 public class TerminalMenu {
 
     public static void main(String[] args) {
