@@ -16,89 +16,106 @@ public abstract class ExtremaFinder {
         this.findExtrema();
     }
 
+
     private void findExtrema() {
         List<Rating> ratings = investFund.getAllRatings();
-        ListIterator ratingsIterator = ratings.listIterator();
 
-        while (ratingsIterator.hasNext()) {
-            Rating currentRating = (Rating) ratingsIterator.next();
+        Rating prevRating = ratings.get(0);
+        Rating currRating = ratings.get(1);
 
-            int begin = ratingsIterator.previousIndex() - extremaFinderConfigurator.getBackwardDaysSensitivity();
-            int end = ratingsIterator.nextIndex() + extremaFinderConfigurator.getForwardDaysSensitivity();
+        BigDecimal prevCloseValue = prevRating.getCloseValue();
+        BigDecimal currCloseValue = currRating.getCloseValue();
 
-            if (begin < 0) {
-                begin = 0;
+        BigDecimal prevDifference = prevCloseValue.subtract(currCloseValue);
+
+        int i=1;
+
+        while(i < ratings.size()-1){
+            BigDecimal currDifference = BigDecimal.ZERO;
+            int zeroDifferenceCount = 0;
+            while(currDifference.equals(BigDecimal.ZERO) && i < ratings.size()-1){
+                zeroDifferenceCount++;
+                i++;
+                prevRating = ratings.get(i-1);
+                currRating = ratings.get(i);
+
+                prevCloseValue = prevRating.getCloseValue();
+                currCloseValue = currRating.getCloseValue();
+
+                currDifference = prevCloseValue.subtract(currCloseValue);
             }
 
-            if (end > ratings.size()) {
-                end = ratings.size();
-            }
+            int signCurrDifference = 0;
+            int signPrevDifference = 0;
 
-            findExtremaInRange(ratings.subList(begin, end), currentRating);
+            signCurrDifference = currDifference.compareTo(BigDecimal.ZERO);
+            signPrevDifference = prevDifference.compareTo(BigDecimal.ZERO);
+
+            if( signPrevDifference != signCurrDifference && signCurrDifference != 0){
+                int index = i - 1- (zeroDifferenceCount)/2;
+                if(signPrevDifference == 1){
+                    minimumExtrema.add(ratings.get(index));
+                }else{
+                    maximumExtrema.add(ratings.get(index));
+                }
+            }
+            prevDifference = currDifference;
         }
     }
 
-    private void findExtremaInRange(List<Rating> ratingsRange, Rating currentRating) {
-        BigDecimal minCloseValue = null;
-        BigDecimal maxCloseValue = null;
-        Rating minRating = null;
-        Rating maxRating = null;
-
-        for (Rating rating : ratingsRange) {
-//                System.out.println(i);
-            BigDecimal currentCloseValue = rating.getCloseValue();
-
-            if (minCloseValue == null || maxCloseValue == null) {
-                minCloseValue = currentCloseValue;
-                maxCloseValue = currentCloseValue;
-                minRating = currentRating;
-                maxRating = currentRating;
-            }
-
-            if (currentCloseValue.compareTo(maxCloseValue) > 0) {
-                maxCloseValue = currentCloseValue;
-                maxRating = currentRating;
-            }
-
-            if (currentCloseValue.compareTo(minCloseValue) < 0) {
-                minCloseValue = currentCloseValue;
-                minRating = currentRating;
-            }
-        }
-
-        minimumExtrema.add(minRating);
-        maximumExtrema.add(maxRating);
-    }
-//        int prevDiff = array[0] - array[1];
-//        int i=1;
+//    private void findExtrema() {
+//        List<Rating> ratings = investFund.getAllRatings();
+//        ListIterator ratingsIterator = ratings.listIterator();
 //
-//        while(i<array.length-1){
-//            int currDiff = 0;
-//            int zeroCount = 0;
-//            while(currDiff == 0 && i<array.length-1){
-//                zeroCount++;
-//                i++;
-//                currDiff = array[i-1] - array[i];
+//        while (ratingsIterator.hasNext()) {
+//            Rating currentRating = (Rating) ratingsIterator.next();
+//
+//            int begin = ratingsIterator.previousIndex() - extremaFinderConfigurator.getBackwardDaysSensitivity();
+//            int end = ratingsIterator.nextIndex() + extremaFinderConfigurator.getForwardDaysSensitivity();
+//
+//            if (begin < 0) {
+//                begin = 0;
 //            }
 //
-//            int signCurrDiff = Integer.signum(currDiff);
-//            int signPrevDiff = Integer.signum(prevDiff);
-//            if( signPrevDiff != signCurrDiff && signCurrDiff != 0){ //signSubDiff==0, the case when prev while ended bcoz of last elem
-//                int index = i-1-(zeroCount)/2;
-//                if(signPrevDiff == 1){
-//                    minimumExtrema.add(index);
-//                }else{
-//                    maximumExtrema.add(index);
-//                }
+//            if (end > ratings.size()) {
+//                end = ratings.size();
 //            }
-//            prevDiff = currDiff;
+//
+//            findExtremaInRange(ratings.subList(begin, end));
+//        }
+//    }
+//
+//    private void findExtremaInRange(List<Rating> ratingsRange) {
+//        BigDecimal minCloseValue = null;
+//        BigDecimal maxCloseValue = null;
+//        Rating minRating = null;
+//        Rating maxRating = null;
+//
+//        for (Rating rating : ratingsRange) {
+////                System.out.println(i);
+//            BigDecimal currentCloseValue = rating.getCloseValue();
+//
+//            if (minCloseValue == null || maxCloseValue == null) {
+//                minCloseValue = currentCloseValue;
+//                maxCloseValue = currentCloseValue;
+//                minRating = rating;
+//                maxRating = rating;
+//            }
+//
+//            if (currentCloseValue.compareTo(maxCloseValue) > 0) {
+//                maxCloseValue = currentCloseValue;
+//                maxRating = rating;
+//            }
+//
+//            if (currentCloseValue.compareTo(minCloseValue) < 0) {
+//                minCloseValue = currentCloseValue;
+//                minRating = rating;
+//            }
 //        }
 //
-//        for (Rating rating : investFund.getRatings()) {
-//            List<Rating> ratings = investFund.getRatings();
-//            ratings.
-//
-//        }
+//        minimumExtrema.add(minRating);
+//        maximumExtrema.add(maxRating);
+//    }
 
     public Set<Rating> getMinimumExtrema() {
         return minimumExtrema;
