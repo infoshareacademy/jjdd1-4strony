@@ -1,15 +1,14 @@
 package com.isacademy.jjdd1.czterystrony;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public abstract class ExtremaFinder {
     private InvestFund investFund;
     private ExtremaFinderConfigurator extremaFinderConfigurator;
-    private List<Rating> minimumExtrema = new ArrayList<>();
-    private List<Rating> maximumExtrema = new ArrayList<>();
+
+    private Set<Rating> minimumExtrema = new LinkedHashSet<>();
+    private Set<Rating> maximumExtrema = new LinkedHashSet<>();
 
     public ExtremaFinder(InvestFund investFund, ExtremaFinderConfigurator extremaFinderConfigurator){
         this.investFund = investFund;
@@ -17,16 +16,12 @@ public abstract class ExtremaFinder {
         this.findExtrema();
     }
 
-    private void findExtrema () {
+    private void findExtrema() {
         List<Rating> ratings = investFund.getAllRatings();
         ListIterator ratingsIterator = ratings.listIterator();
-        BigDecimal minCloseValue = null;
-        BigDecimal maxCloseValue = null;
-        Rating minRating = null;
-        Rating maxRating = null;
 
-        while(ratingsIterator.hasNext()) {
-            //Rating currentRating = (Rating) ratingsIterator.next();
+        while (ratingsIterator.hasNext()) {
+            Rating currentRating = (Rating) ratingsIterator.next();
 
             int begin = ratingsIterator.previousIndex() - extremaFinderConfigurator.getBackwardDaysSensitivity();
             int end = ratingsIterator.nextIndex() + extremaFinderConfigurator.getForwardDaysSensitivity();
@@ -39,27 +34,41 @@ public abstract class ExtremaFinder {
                 end = ratings.size();
             }
 
-            for (int i = begin; i <= end; i++) {
-                BigDecimal currentCloseValue = ratings.get(i).getCloseValue();
-
-                if(minCloseValue == null || maxCloseValue == null) {
-                    minCloseValue = currentCloseValue;
-                    maxCloseValue = currentCloseValue;
-                }
-
-                if(currentCloseValue.compareTo(maxCloseValue) > 0){
-                    maxCloseValue = currentCloseValue;
-                    maxRating = new Rating(ratings.get(i).getDate(), ratings.get(i).getCloseValue());
-                }
-
-                if(currentCloseValue.compareTo(minCloseValue) < 0){
-                    minCloseValue = currentCloseValue;
-                    minRating = new Rating(ratings.get(i).getDate(), ratings.get(i).getCloseValue());
-                }
-            }
-            minimumExtrema.add(minRating);
-            maximumExtrema.add(maxRating);
+            findExtremaInRange(ratings.subList(begin, end), currentRating);
         }
+    }
+
+    private void findExtremaInRange(List<Rating> ratingsRange, Rating currentRating) {
+        BigDecimal minCloseValue = null;
+        BigDecimal maxCloseValue = null;
+        Rating minRating = null;
+        Rating maxRating = null;
+
+        for (Rating rating : ratingsRange) {
+//                System.out.println(i);
+            BigDecimal currentCloseValue = rating.getCloseValue();
+
+            if (minCloseValue == null || maxCloseValue == null) {
+                minCloseValue = currentCloseValue;
+                maxCloseValue = currentCloseValue;
+                minRating = currentRating;
+                maxRating = currentRating;
+            }
+
+            if (currentCloseValue.compareTo(maxCloseValue) > 0) {
+                maxCloseValue = currentCloseValue;
+                maxRating = currentRating;
+            }
+
+            if (currentCloseValue.compareTo(minCloseValue) < 0) {
+                minCloseValue = currentCloseValue;
+                minRating = currentRating;
+            }
+        }
+
+        minimumExtrema.add(minRating);
+        maximumExtrema.add(maxRating);
+    }
 //        int prevDiff = array[0] - array[1];
 //        int i=1;
 //
@@ -90,15 +99,12 @@ public abstract class ExtremaFinder {
 //            ratings.
 //
 //        }
-    }
 
-    public List<Rating> getMinimumExtrema() {
+    public Set<Rating> getMinimumExtrema() {
         return minimumExtrema;
     }
 
-    public List<Rating> getMaximumExtrema() {
+    public Set<Rating> getMaximumExtrema() {
         return maximumExtrema;
     }
-
-
 }
