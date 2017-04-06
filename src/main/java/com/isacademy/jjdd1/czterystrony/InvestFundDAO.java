@@ -14,18 +14,22 @@ public class InvestFundDAO {
         File investFundsDataDirectory = new File(DATA_DIRECTORY);
 
         for (File file : investFundsDataDirectory.listFiles()) {
-            String dataFileName = file.getName();
-            int dotPosition = dataFileName.lastIndexOf(".");
-            if (dotPosition > 0) {
-                dataFileName = dataFileName.substring(0, dotPosition);
-            }
-            try {
-                investFunds.put(dataFileName, InvestFundParser.parse(dataFileName));
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            parse(file);
+        }
+    }
+
+    private void parse(File file){
+        String dataFileName = file.getName();
+        int dotPosition = dataFileName.lastIndexOf(".");
+        if (dotPosition > 0) {
+            dataFileName = dataFileName.substring(0, dotPosition);
+        }
+        try {
+            investFunds.put(dataFileName, InvestFundParser.parse(dataFileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
     }
 

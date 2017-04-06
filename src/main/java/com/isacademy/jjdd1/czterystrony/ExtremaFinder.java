@@ -18,7 +18,7 @@ public abstract class ExtremaFinder {
     }
 
     private void findExtrema () {
-        List<Rating> ratings = investFund.getRatings();
+        List<Rating> ratings = investFund.getAllRatings();
         ListIterator ratingsIterator = ratings.listIterator();
         BigDecimal minCloseValue = null;
         BigDecimal maxCloseValue = null;
