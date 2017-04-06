@@ -40,5 +40,4 @@ public class InvestFundDAO {
     public InvestFund getInvestFund(String investFundName) {
         return investFunds.get(investFundName);
     }
-
 }
