@@ -20,13 +20,13 @@ public abstract class ExtremaFinder {
     }
 
     private void findExtrema() {
-        List<Rating> shiftedToLeftList = getShiftedList(ratings, -extremaFinderConfigurator.getBackwardDaysSensitivity());
-        List<Rating> shiftedToRightList = getShiftedList(ratings, extremaFinderConfigurator.getForwardDaysSensitivity());
+        List<Rating> leftShiftedRatings = getShiftedList(ratings, -extremaFinderConfigurator.getBackwardDaysSensitivity());
+        List<Rating> rightShiftedRatings = getShiftedList(ratings, extremaFinderConfigurator.getForwardDaysSensitivity());
 
-        List<Boolean> booleanList1 = isGreaterList(ratings, shiftedToRightList);
-        List<Boolean> booleanList2 = isGreaterList(ratings, shiftedToLeftList);
+        List<Boolean> ratingsComparedToRightShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, rightShiftedRatings);
+        List<Boolean> ratingsComparedToLeftShiftedRatings  = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
 
-        List<Boolean> maximumSignalList = getMaximumExtremaSignalList(booleanList1, booleanList2);
+        List<Boolean> maximumSignalList = getMaximumExtremaSignalList(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);
 
         int shift = (ratingsCount - maximumSignalList.size()) / 2;
 
@@ -45,7 +45,7 @@ public abstract class ExtremaFinder {
         return shiftedList.subList(absoluteShift, list.size() - absoluteShift);
     }
 
-    private List<Boolean> isGreaterList(List<Rating> inputList, List<Rating> shiftedList) {
+    private List<Boolean> isEachRatingGreaterThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
         List<Boolean> verificationList = new LinkedList<>();
 
         int shift = (inputList.size() - shiftedList.size()) / 2;
