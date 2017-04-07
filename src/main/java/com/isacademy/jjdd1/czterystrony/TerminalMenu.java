@@ -1,12 +1,13 @@
 package com.isacademy.jjdd1.czterystrony;
 
 import java.util.List;
+import java.util.Map;
 
 public class TerminalMenu {
 
     public static void main(String[] args) {
         findExtremaForGivenInvestFound("AIG006");
-//        findExtremaInAllInvestFunds();
+        findExtremaInAllInvestFunds();
     }
 
     public static void findExtremaForGivenInvestFound(String investFundName) {
@@ -24,12 +25,11 @@ public class TerminalMenu {
     public static void findExtremaInAllInvestFunds() {
         InvestFundDAO investFundDAO = new InvestFundDAO();
 
-        for (String investFundName : investFundDAO.getAllInvestFunds().keySet()) {
-            InvestFund investFund = investFundDAO.getInvestFund(investFundName);
-            ExtremaFinder extremaFinder = new GlobalExtremaFinder(investFund);
+        for (Map.Entry<String, InvestFund> entry : investFundDAO.getAllInvestFunds().entrySet()) {
+            ExtremaFinder extremaFinder = new GlobalExtremaFinder(entry.getValue());
             List<Rating> maximumExtremaRatings = extremaFinder.getMaximumExtremaRatings();
 
-            System.out.println(investFundName);
+            System.out.println(entry.getKey());
             System.out.println("Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");
             for (Rating rating : maximumExtremaRatings) {
                 System.out.println(rating);
