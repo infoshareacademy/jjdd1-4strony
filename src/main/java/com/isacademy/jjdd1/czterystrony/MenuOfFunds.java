@@ -7,7 +7,7 @@ public class MenuOfFunds {
 
     public int menuOfFunds; {
 
-        System.out.println("Wybierz interesujący Cię fundusz:");
+        System.out.println("Wybierz interesujący Cię fundusz: ");
 
 
 

@@ -17,7 +17,7 @@ public class MainMenu {
 
         switch (start) {
             case 1:
-                System.out.println(); // --> skip to MenuOfFunds class
+                System.out.println();
                 MenuOfFunds toMenuOfFunds = new MenuOfFunds();
                 break;
             case 0:

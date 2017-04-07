@@ -8,5 +8,7 @@ public class TerminalMenu {
         for (String investFundName : investFundDAO.getAllInvestFunds().keySet()) {
             System.out.println(investFundName);
         }
+
+        MainMenu menu = new MainMenu();
     }
 }
