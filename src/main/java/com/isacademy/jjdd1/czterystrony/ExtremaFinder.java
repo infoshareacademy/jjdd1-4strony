@@ -20,8 +20,8 @@ public abstract class ExtremaFinder {
     }
 
     private void findExtrema() {
-        List<Rating> leftShiftedRatings = getShiftedList(ratings, -extremaFinderConfigurator.getBackwardDaysSensitivity());
-        List<Rating> rightShiftedRatings = getShiftedList(ratings, extremaFinderConfigurator.getForwardDaysSensitivity());
+        List<Rating> leftShiftedRatings = getShiftedRatings(ratings, -extremaFinderConfigurator.getBackwardDaysSensitivity());
+        List<Rating> rightShiftedRatings = getShiftedRatings(ratings, extremaFinderConfigurator.getForwardDaysSensitivity());
         List<Boolean> ratingsComparedToRightShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, rightShiftedRatings);
         List<Boolean> ratingsComparedToLeftShiftedRatings  = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
         List<Boolean> maximumSignalList = getMaximumExtremaSignalList(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);
@@ -36,7 +36,7 @@ public abstract class ExtremaFinder {
         }
     }
 
-    private List<Rating> getShiftedList(List<Rating> list, int shift) {
+    private List<Rating> getShiftedRatings(List<Rating> list, int shift) {
         List<Rating> shiftedList = new LinkedList<>(list);
         Collections.rotate(shiftedList, shift);
         int absoluteShift = Math.abs(shift);

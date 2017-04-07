@@ -24,14 +24,14 @@ public class ExtremaFinderAlternative {
             List<Rating> ratingsSubList = ratings.subList(beginOfRange, endOfRange);
 
             for (int j = beginOfRange; j <= endOfRange ; j++) {
-                if (isInRatingsList(j)) {
+                if (hasIndexInRatings(j)) {
 
                 }
             }
         }
     }
 
-    private Boolean isInRatingsList(int index) {
+    private Boolean hasIndexInRatings(int index) {
         return index >= 0 && index < ratings.size();
     }
 
