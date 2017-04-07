@@ -22,10 +22,8 @@ public abstract class ExtremaFinder {
     private void findExtrema() {
         List<Rating> leftShiftedRatings = getShiftedList(ratings, -extremaFinderConfigurator.getBackwardDaysSensitivity());
         List<Rating> rightShiftedRatings = getShiftedList(ratings, extremaFinderConfigurator.getForwardDaysSensitivity());
-
         List<Boolean> ratingsComparedToRightShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, rightShiftedRatings);
         List<Boolean> ratingsComparedToLeftShiftedRatings  = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
-
         List<Boolean> maximumSignalList = getMaximumExtremaSignalList(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);
 
         int shift = (ratingsCount - maximumSignalList.size()) / 2;
@@ -65,16 +63,16 @@ public abstract class ExtremaFinder {
     }
 
     private List<Boolean> getMaximumExtremaSignalList(List<Boolean> firstList, List<Boolean> secondList) {
-        List<Boolean> maximaSignalList = new LinkedList<>();
+        List<Boolean> maximumExtremaShiftedList = new LinkedList<>();
 
         for (int i = 0; i < firstList.size(); i++) {
             if (firstList.get(i) && secondList.get(i)) {
-                maximaSignalList.add(Boolean.TRUE);
+                maximumExtremaShiftedList.add(Boolean.TRUE);
             } else {
-                maximaSignalList.add(Boolean.FALSE);
+                maximumExtremaShiftedList.add(Boolean.FALSE);
             }
         }
-        return maximaSignalList;
+        return maximumExtremaShiftedList;
     }
 
     public List<Rating> getMinimumExtremaRatings() {
