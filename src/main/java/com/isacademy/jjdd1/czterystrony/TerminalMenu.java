@@ -1,35 +1,40 @@
 package com.isacademy.jjdd1.czterystrony;
 
+import java.util.List;
+
 public class TerminalMenu {
 
     public static void main(String[] args) {
+        findExtremaForGivenInvestFound("AIG006");
+//        findExtremaInAllInvestFunds();
+    }
+
+    public static void findExtremaForGivenInvestFound(String investFundName) {
+        InvestFundDAO investFundDAO = new InvestFundDAO();
+        InvestFund investFund = investFundDAO.getInvestFund(investFundName);
+        ExtremaFinder extremaFinder = new GlobalExtremaFinder(investFund);
+        List<Rating> maximumExtremaRatings = extremaFinder.getMaximumExtremaRatings();
+
+        System.out.println("Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");
+        for (Rating rating : maximumExtremaRatings) {
+            System.out.println(rating);
+        }
+    }
+
+    public static void findExtremaInAllInvestFunds() {
         InvestFundDAO investFundDAO = new InvestFundDAO();
 
-//        Set<Map.Entry<String, InvestFund>> investFundsSet = investFundDAO.getAllInvestFunds().entrySet();
-//
-//        for (Map.Entry<String, InvestFund> investFund : investFundsSet) {
-//            InvestFund investFund1 = investFund.getValue();
-//        }
-//
-//        for (String investFundName : investFundDAO.getAllInvestFunds().keySet()) {
-//            System.out.println(investFundName);
-//        }
+        for (String investFundName : investFundDAO.getAllInvestFunds().keySet()) {
+            InvestFund investFund = investFundDAO.getInvestFund(investFundName);
+            ExtremaFinder extremaFinder = new GlobalExtremaFinder(investFund);
+            List<Rating> maximumExtremaRatings = extremaFinder.getMaximumExtremaRatings();
 
-        findExtrema(investFundDAO.getInvestFund("AIP003"));
+            System.out.println(investFundName);
+            System.out.println("Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");
+            for (Rating rating : maximumExtremaRatings) {
+                System.out.println(rating);
+            }
+        }
     }
 
-    public static void findExtrema(InvestFund investFund) {
-        GlobalExtremaFinder globalExtremaFinder = new GlobalExtremaFinder(investFund);
-
-        System.out.println("Extrema lokalne:\n\nMaksima lokalne:");
-        for (Rating rating : globalExtremaFinder.getMaximumExtrema()) {
-            System.out.println(rating);
-        }
-
-        System.out.println("\nMinima lokalne:");
-        for (Rating rating : globalExtremaFinder.getMinimumExtrema()) {
-            System.out.println(rating);
-        }
-
-    }
 }

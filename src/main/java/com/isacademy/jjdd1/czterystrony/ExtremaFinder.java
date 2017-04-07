@@ -1,148 +1,87 @@
 package com.isacademy.jjdd1.czterystrony;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public abstract class ExtremaFinder {
-    private InvestFund investFund;
+    private List<Rating> ratings = new LinkedList<>();
+    private int ratingsCount = 0;
     private ExtremaFinderConfigurator extremaFinderConfigurator;
+    private List<Rating> minimumExtremaRatings = new LinkedList<>();
+    private List<Rating> maximumExtremaRatings = new LinkedList<>();
 
-    private Set<Rating> minimumExtrema = new LinkedHashSet<>();
-    private Set<Rating> maximumExtrema = new LinkedHashSet<>();
-
-    public ExtremaFinder(InvestFund investFund, ExtremaFinderConfigurator extremaFinderConfigurator){
-        this.investFund = investFund;
+    public ExtremaFinder(InvestFund investFund, ExtremaFinderConfigurator extremaFinderConfigurator) {
+        this.ratings = investFund.getAllRatings();
+        this.ratingsCount = ratings.size();
         this.extremaFinderConfigurator = extremaFinderConfigurator;
         this.findExtrema();
     }
 
     private void findExtrema() {
-        List<Rating> ratings = investFund.getAllRatings();
+        List<Rating> shiftedToLeftList = getShiftedList(ratings, -extremaFinderConfigurator.getBackwardDaysSensitivity());
+        List<Rating> shiftedToRightList = getShiftedList(ratings, extremaFinderConfigurator.getForwardDaysSensitivity());
 
-        Rating prevRating = ratings.get(0);
-        Rating currRating = ratings.get(1);
+        List<Boolean> booleanList1 = isGreaterList(ratings, shiftedToRightList);
+        List<Boolean> booleanList2 = isGreaterList(ratings, shiftedToLeftList);
 
-        BigDecimal prevCloseValue = prevRating.getCloseValue();
-        BigDecimal currCloseValue = currRating.getCloseValue();
+        List<Boolean> maximumSignalList = getMaximumExtremaSignalList(booleanList1, booleanList2);
 
-        BigDecimal prevDifference = prevCloseValue.subtract(currCloseValue);
+        int shift = (ratingsCount - maximumSignalList.size()) / 2;
 
-        int i=1;
-
-        while(i < ratings.size() - 1){
-            BigDecimal currDifference = BigDecimal.ZERO;
-            int zeroDifferenceCount = 0;
-
-            while(currDifference.equals(BigDecimal.ZERO) && i < ratings.size() - 1){
-                zeroDifferenceCount++;
-                i++;
-
-                int previousIndex = i - extremaFinderConfigurator.getBackwardDaysSensitivity();
-
-                if (previousIndex < 0) {
-                    previousIndex = 0;
-                }
-
-                prevRating = ratings.get(previousIndex);
-                currRating = ratings.get(i);
-
-                prevCloseValue = prevRating.getCloseValue();
-                currCloseValue = currRating.getCloseValue();
-
-                currDifference = prevCloseValue.subtract(currCloseValue);
+        for (int i = shift; i < ratingsCount - shift; i++) {
+            Boolean isMaximum = maximumSignalList.get(i - shift);
+            if (isMaximum) {
+                maximumExtremaRatings.add(ratings.get(i));
             }
+        }
+    }
 
-            int signCurrDifference = currDifference.compareTo(extremaFinderConfigurator.getUpperCloseValueSensitivity());
-            int signPrevDifference = prevDifference.compareTo(extremaFinderConfigurator.getLowerCloseValueSensitivity());
+    private List<Rating> getShiftedList(List<Rating> list, int shift) {
+        List<Rating> shiftedList = new LinkedList<>(list);
+        Collections.rotate(shiftedList, shift);
+        int absoluteShift = Math.abs(shift);
+        return shiftedList.subList(absoluteShift, list.size() - absoluteShift);
+    }
 
-            if( signPrevDifference != signCurrDifference && signCurrDifference != 0){
-                int index = i - 1- (zeroDifferenceCount)/2;
-                if(signPrevDifference == 1){
-                    minimumExtrema.add(ratings.get(index));
-                }else{
-                    maximumExtrema.add(ratings.get(index));
-                }
+    private List<Boolean> isGreaterList(List<Rating> inputList, List<Rating> shiftedList) {
+        List<Boolean> verificationList = new LinkedList<>();
+
+        int shift = (inputList.size() - shiftedList.size()) / 2;
+
+        for (int i = shift; i < inputList.size() - shift; i++) {
+            BigDecimal inputListCloseValue = inputList.get(i).getCloseValue();
+            BigDecimal shiftedListCloseValue = shiftedList.get(i - shift).getCloseValue();
+            BigDecimal difference = inputListCloseValue.subtract(shiftedListCloseValue);
+
+            if (difference.compareTo(extremaFinderConfigurator.getLowerCloseValueSensitivity()) == 1) {
+                verificationList.add(Boolean.TRUE);
+            } else {
+                verificationList.add(Boolean.FALSE);
             }
-            prevDifference = currDifference;
         }
+        return verificationList;
     }
 
-    private Rating getRatingForGivenDaysBefore(int currentTimeIndex, int businessDaysBeforeCurrentTimeIndex) {
-        int beforeTimeIndex = currentTimeIndex - businessDaysBeforeCurrentTimeIndex;
-        if (beforeTimeIndex < 0) {
-            beforeTimeIndex = 0;
+    private List<Boolean> getMaximumExtremaSignalList(List<Boolean> firstList, List<Boolean> secondList) {
+        List<Boolean> maximaSignalList = new LinkedList<>();
+
+        for (int i = 0; i < firstList.size(); i++) {
+            if (firstList.get(i) && secondList.get(i)) {
+                maximaSignalList.add(Boolean.TRUE);
+            } else {
+                maximaSignalList.add(Boolean.FALSE);
+            }
         }
-        return investFund.getAllRatings().get(beforeTimeIndex);
+        return maximaSignalList;
     }
 
-    private Rating getRatingForGivenDaysAfter(int currentTimeIndex, int businessDaysAfterCurrentTimeIndex) {
-        int afterTimeIndex = currentTimeIndex - businessDaysAfterCurrentTimeIndex;
-        int investFundRatingsCount = investFund.getAllRatings().size();
-        if (afterTimeIndex > investFundRatingsCount) {
-            afterTimeIndex = investFundRatingsCount;
-        }
-        return investFund.getAllRatings().get(afterTimeIndex);
+    public List<Rating> getMinimumExtremaRatings() {
+        return minimumExtremaRatings;
     }
 
-//    private void findExtrema() {
-//        List<Rating> ratings = investFund.getAllRatings();
-//        ListIterator ratingsIterator = ratings.listIterator();
-//
-//        while (ratingsIterator.hasNext()) {
-//            Rating currentRating = (Rating) ratingsIterator.next();
-//
-//            int begin = ratingsIterator.previousIndex() - extremaFinderConfigurator.getBackwardDaysSensitivity();
-//            int end = ratingsIterator.nextIndex() + extremaFinderConfigurator.getForwardDaysSensitivity();
-//
-//            if (begin < 0) {
-//                begin = 0;
-//            }
-//
-//            if (end > ratings.size()) {
-//                end = ratings.size();
-//            }
-//
-//            findExtremaInRange(ratings.subList(begin, end));
-//        }
-//    }
-//
-//    private void findExtremaInRange(List<Rating> ratingsRange) {
-//        BigDecimal minCloseValue = null;
-//        BigDecimal maxCloseValue = null;
-//        Rating minRating = null;
-//        Rating maxRating = null;
-//
-//        for (Rating rating : ratingsRange) {
-////                System.out.println(i);
-//            BigDecimal currentCloseValue = rating.getCloseValue();
-//
-//            if (minCloseValue == null || maxCloseValue == null) {
-//                minCloseValue = currentCloseValue;
-//                maxCloseValue = currentCloseValue;
-//                minRating = rating;
-//                maxRating = rating;
-//            }
-//
-//            if (currentCloseValue.compareTo(maxCloseValue) > 0) {
-//                maxCloseValue = currentCloseValue;
-//                maxRating = rating;
-//            }
-//
-//            if (currentCloseValue.compareTo(minCloseValue) < 0) {
-//                minCloseValue = currentCloseValue;
-//                minRating = rating;
-//            }
-//        }
-//
-//        minimumExtrema.add(minRating);
-//        maximumExtrema.add(maxRating);
-//    }
-
-    public Set<Rating> getMinimumExtrema() {
-        return minimumExtrema;
-    }
-
-    public Set<Rating> getMaximumExtrema() {
-        return maximumExtrema;
+    public List<Rating> getMaximumExtremaRatings() {
+        return maximumExtremaRatings;
     }
 }
