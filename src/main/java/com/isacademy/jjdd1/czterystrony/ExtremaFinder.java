@@ -40,7 +40,13 @@ public abstract class ExtremaFinder {
         List<Rating> shiftedList = new LinkedList<>(list);
         Collections.rotate(shiftedList, shift);
         int absoluteShift = Math.abs(shift);
-        return shiftedList.subList(absoluteShift, list.size() - absoluteShift);
+
+//        try {
+            return shiftedList.subList(absoluteShift, list.size() - absoluteShift);
+//        } catch (IllegalArgumentException e) {
+//            e.printStackTrace();
+//            return getShiftedRatings(list, shift - 1);
+//        }
     }
 
     private List<Boolean> isEachRatingGreaterThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {

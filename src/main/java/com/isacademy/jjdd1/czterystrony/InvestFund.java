@@ -18,4 +18,9 @@ public class InvestFund {
     public List<Rating> getAllRatings() {
         return ratings;
     }
+
+//    @Override
+//    public void promote() {
+//
+//    }
 }

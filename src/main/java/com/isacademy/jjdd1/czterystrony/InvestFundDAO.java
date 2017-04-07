@@ -6,13 +6,13 @@ import java.text.ParseException;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class InvestFundDAO {
-    public static final String DATA_DIRECTORY = "./src/main/resources/data/omegafun";
+public class InvestFundDAO implements StockExchangeDAO<> {
+    public static final String DATA_DIRECTORY = "./src/main/resources/data/stockexchange/investfunds";
     private Map<String, InvestFund> investFunds = new TreeMap<>();
 
     public InvestFundDAO() {
         File investFundsDataDirectory = new File(DATA_DIRECTORY);
-
+        Instrument instrument = new InvestFund().name;
         for (File file : investFundsDataDirectory.listFiles()) {
             parse(file);
         }

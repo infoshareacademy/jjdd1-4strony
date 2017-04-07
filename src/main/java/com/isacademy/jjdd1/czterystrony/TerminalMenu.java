@@ -6,11 +6,11 @@ import java.util.Map;
 public class TerminalMenu {
 
     public static void main(String[] args) {
-        findExtremaForGivenInvestFound("AIG006");
-        findExtremaInAllInvestFunds();
+        findExtremaForGivenInvestFund("TEST");
+        //findExtremaInAllInvestFunds();
     }
 
-    public static void findExtremaForGivenInvestFound(String investFundName) {
+    public static void findExtremaForGivenInvestFund(String investFundName) {
         InvestFundDAO investFundDAO = new InvestFundDAO();
         InvestFund investFund = investFundDAO.getInvestFund(investFundName);
         ExtremaFinder extremaFinder = new GlobalExtremaFinder(investFund);
