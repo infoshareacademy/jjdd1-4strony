@@ -1,23 +1,21 @@
 package com.isacademy.jjdd1.czterystrony;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
 public class TerminalMenu {
 
     public static void main(String[] args) {
         InvestFundDAO investFundDAO = new InvestFundDAO();
 
-        Set<Map.Entry<String, InvestFund>> investFundsSet = investFundDAO.getAllInvestFunds().entrySet();
+        findExtrema(investFundDAO.getInvestFund("AIG006"));
+    }
 
-        for (Map.Entry<String, InvestFund> investFund : investFundsSet) {
-            InvestFund investFund1 = investFund.getValue();
+    public static void findExtrema(InvestFund investFund) {
+        ExtremaFinder extremaFinder = new GlobalExtremaFinder(investFund);
+        List<Rating> maximumExtremaRatings = extremaFinder.getMaximumExtremaRatings();
+        System.out.println("Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");
+        for (Rating rating : maximumExtremaRatings) {
+            System.out.println(rating);
         }
-
-        for (String investFundName : investFundDAO.getAllInvestFunds().keySet()) {
-            System.out.println(investFundName);
-        }
-
-        //LocalExtremaFinder as = new LocalExtremaFinder();
     }
 }
