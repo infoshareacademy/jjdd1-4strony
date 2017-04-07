@@ -5,14 +5,14 @@ import java.math.BigDecimal;
 public class ExtremaFinderConfigurator {
     private int backwardDaysSensitivity;
     private int forwardDaysSensitivity;
-    private BigDecimal lowerCloseValueSensitivity;
-    private BigDecimal upperCloseValueSensitivity;
+    private BigDecimal maximumExistenceSensitivity;
+    private BigDecimal minimumExistenceSensitivity;
 
     public ExtremaFinderConfigurator(int backwardDaysSensitivity, int forwardDaysSensitivity, BigDecimal lowerCloseValueSensitivity, BigDecimal upperCloseValueSensitivity) {
         this.backwardDaysSensitivity = backwardDaysSensitivity;
         this.forwardDaysSensitivity = forwardDaysSensitivity;
-        this.lowerCloseValueSensitivity = lowerCloseValueSensitivity;
-        this.upperCloseValueSensitivity = upperCloseValueSensitivity;
+        this.maximumExistenceSensitivity = lowerCloseValueSensitivity;
+        this.minimumExistenceSensitivity = upperCloseValueSensitivity;
     }
 
     public int getBackwardDaysSensitivity() {
@@ -23,11 +23,11 @@ public class ExtremaFinderConfigurator {
         return forwardDaysSensitivity;
     }
 
-    public BigDecimal getLowerCloseValueSensitivity() {
-        return lowerCloseValueSensitivity;
+    public BigDecimal getMaximumExistenceSensitivity() {
+        return maximumExistenceSensitivity;
     }
 
-    public BigDecimal getUpperCloseValueSensitivity() {
-        return upperCloseValueSensitivity;
+    public BigDecimal getMinimumExistenceSensitivity() {
+        return minimumExistenceSensitivity;
     }
 }

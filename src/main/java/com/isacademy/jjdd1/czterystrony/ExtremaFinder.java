@@ -55,7 +55,7 @@ public abstract class ExtremaFinder {
             BigDecimal shiftedListCloseValue = shiftedList.get(i - shift).getCloseValue();
             BigDecimal difference = inputListCloseValue.subtract(shiftedListCloseValue);
 
-            if (difference.compareTo(extremaFinderConfigurator.getLowerCloseValueSensitivity()) == 1) {
+            if (difference.compareTo(extremaFinderConfigurator.getMaximumExistenceSensitivity()) == 1) {
                 verificationList.add(Boolean.TRUE);
             } else {
                 verificationList.add(Boolean.FALSE);

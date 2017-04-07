@@ -3,12 +3,12 @@ package com.isacademy.jjdd1.czterystrony;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class InvestFundDAO {
     public static final String DATA_DIRECTORY = "./src/main/resources/data/omegafun";
-    private Map<String, InvestFund> investFunds = new HashMap<>();
+    private Map<String, InvestFund> investFunds = new TreeMap<>();
 
     public InvestFundDAO() {
         File investFundsDataDirectory = new File(DATA_DIRECTORY);
