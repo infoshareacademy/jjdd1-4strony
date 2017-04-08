@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony;
 
-public class InvestFund extends Instrument implements Promotable {
+public class InvestFund extends FinancialInstrument implements Promotable {
     private int priority;
     private String company;
 
