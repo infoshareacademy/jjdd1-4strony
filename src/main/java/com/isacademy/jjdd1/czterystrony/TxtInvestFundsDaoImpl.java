@@ -9,11 +9,12 @@ public class TxtInvestFundsDaoImpl implements InvestFundsDao {
     private Map<String, InvestFund> investFunds = new TreeMap<>();
 
     public TxtInvestFundsDaoImpl() {
-        File investFundsDataDirectory = new File(DATA_DIRECTORY);
-        for (File file : investFundsDataDirectory.listFiles()) {
-            parse(file);
+        File[] txtFilesList = new File(DATA_DIRECTORY).listFiles();
+        if (txtFilesList != null) {
+            for (File file : txtFilesList) {
+                parse(file);
+            }
         }
-        String i = DATA_DIRECTORY;
     }
 
     private void parse(File file){
@@ -24,9 +25,7 @@ public class TxtInvestFundsDaoImpl implements InvestFundsDao {
         }
         try {
             investFunds.put(dataFileName, InvestFundParser.parse(dataFileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (ParseException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -44,7 +43,7 @@ public class TxtInvestFundsDaoImpl implements InvestFundsDao {
     @Override
     public List<InvestFund> getAllByName() {
         List<InvestFund> investFundsByName = getAllByPriority();
-        Collections.sort(investFundsByName, Comparator.comparing(InvestFund::getName));
+        investFundsByName.sort(Comparator.comparing(InvestFund::getName));
         return investFundsByName;
     }
 
