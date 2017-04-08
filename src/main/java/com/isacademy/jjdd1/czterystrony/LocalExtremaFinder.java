@@ -1,10 +1,7 @@
 package com.isacademy.jjdd1.czterystrony;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class LocalExtremaFinder {
     private List<Rating> ratings;
@@ -26,6 +23,10 @@ public class LocalExtremaFinder {
         List<Boolean> ratingsComparedToRightShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, rightShiftedRatings);
         List<Boolean> ratingsComparedToLeftShiftedRatings  = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
         List<Boolean> maximumSignalList = getMaximumExtremaSignalList(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);
+
+//        List<Boolean> ratingsComparedToRightShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, rightShiftedRatings);
+//        List<Boolean> ratingsComparedToLeftShiftedRatings  = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
+//        List<Boolean> maximumSignalList = getMaximumExtremaSignalList(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);
 
         int shift = (ratingsCount - maximumSignalList.size()) / 2;
 
@@ -50,9 +51,8 @@ public class LocalExtremaFinder {
     }
 
     private List<Boolean> isEachRatingGreaterThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
-        List<Boolean> verificationList = new LinkedList<>();
-
         int shift = (inputList.size() - shiftedList.size()) / 2;
+        List<Boolean> verificationList = new LinkedList<>();
 
         for (int i = shift; i < inputList.size() - shift; i++) {
             BigDecimal inputListCloseValue = inputList.get(i).getCloseValue();
@@ -66,6 +66,17 @@ public class LocalExtremaFinder {
             }
         }
         return verificationList;
+    }
+
+    private List<Boolean> isEachRatingSmallerThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
+        List<Boolean> isEachRatingSmallerThenShiftedEquivalent = isEachRatingGreaterThenShiftedEquivalent(inputList, shiftedList);
+        ListIterator<Boolean> booleanIterator = isEachRatingSmallerThenShiftedEquivalent.listIterator();
+
+        while (booleanIterator.hasNext()) {
+            boolean value = booleanIterator.next();
+            booleanIterator.set(!value);
+        }
+        return isEachRatingSmallerThenShiftedEquivalent;
     }
 
     private List<Boolean> getMaximumExtremaSignalList(List<Boolean> firstList, List<Boolean> secondList) {
