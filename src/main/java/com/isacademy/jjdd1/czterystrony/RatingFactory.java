@@ -8,10 +8,10 @@ import java.time.format.DateTimeFormatter;
 
 public class RatingFactory {
     public static Rating create(String record) throws ParseException {
-        String[] splittedByComaRecord = record.split(",");
+        String[] splitByComaRecord = record.split(",");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-        LocalDate date = LocalDate.parse(splittedByComaRecord[1], dateTimeFormatter);
-        BigDecimal closeValue = new BigDecimal(Double.parseDouble(splittedByComaRecord[5])).setScale(2, RoundingMode.HALF_UP);
+        LocalDate date = LocalDate.parse(splitByComaRecord[1], dateTimeFormatter);
+        BigDecimal closeValue = new BigDecimal(Double.parseDouble(splitByComaRecord[5])).setScale(2, RoundingMode.HALF_UP);
         return new Rating(date, closeValue);
     }
 }
