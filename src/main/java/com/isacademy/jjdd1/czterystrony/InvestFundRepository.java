@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class InvestFundDAO implements StockExchangeDAO<> {
+public class InvestFundDAO implements StockExchangeDAO<InvestFund> {
     public static final String DATA_DIRECTORY = "./src/main/resources/data/stockexchange/investfunds";
     private Map<String, InvestFund> investFunds = new TreeMap<>();
 
@@ -33,11 +33,14 @@ public class InvestFundDAO implements StockExchangeDAO<> {
         }
     }
 
-    public Map<String, InvestFund> getAllInvestFunds() {
+    public boolean add(InvestFund investFund) {
+        return false;
+    }
+    public Map<String, InvestFund> getAll() {
         return investFunds;
     }
 
-    public InvestFund getInvestFund(String investFundName) {
+    public InvestFund get(String investFundName) {
         return investFunds.get(investFundName);
     }
 }

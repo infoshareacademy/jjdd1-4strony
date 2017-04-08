@@ -3,8 +3,8 @@ package com.isacademy.jjdd1.czterystrony;
 import java.util.List;
 
 public interface StockExchangeDAO<T extends Instrument> {
-    void add(T instrument);
-    void delete(T instrument);
+    boolean add(T instrument);
+    B delete(T instrument);
     T get(String instrumentName);
     List<T> getAll();
 }
