@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.util.List;
 
 public class InvestFundFactory {
-
     public static InvestFund create(TextFileReader textFileReader) throws IOException, ParseException{
         String investFundName = textFileReader.getFileNameWithoutExtension();
         String companyName = investFundName.substring(0,2);
