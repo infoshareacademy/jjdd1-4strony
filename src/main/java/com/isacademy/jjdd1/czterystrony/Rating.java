@@ -1,18 +1,18 @@
 package com.isacademy.jjdd1.czterystrony;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Rating implements Comparable<Rating> {
-    private Date date;
+    private LocalDate date;
     private BigDecimal closeValue;
 
-    public Rating(Date date, BigDecimal closeValue) {
+    public Rating(LocalDate date, BigDecimal closeValue) {
         this.date = date;
         this.closeValue = closeValue;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
