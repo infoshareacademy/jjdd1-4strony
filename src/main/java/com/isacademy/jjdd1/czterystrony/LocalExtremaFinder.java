@@ -13,8 +13,8 @@ public class LocalExtremaFinder {
     private List<Rating> minimumExtremaRatings = new LinkedList<>();
     private List<Rating> maximumExtremaRatings = new LinkedList<>();
 
-    public LocalExtremaFinder(InvestFund investFund, LocalExtremaFinderConfigurator localExtremaFinderConfigurator) {
-        this.ratings = new ArrayList<>(investFund.getAllRatings());
+    public LocalExtremaFinder(FinancialInstrument financialInstrument, LocalExtremaFinderConfigurator localExtremaFinderConfigurator) {
+        this.ratings = new ArrayList<>(financialInstrument.getAllRatings());
         this.ratingsCount = ratings.size();
         this.localExtremaFinderConfigurator = localExtremaFinderConfigurator;
         this.findExtrema();
