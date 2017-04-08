@@ -11,12 +11,12 @@ public abstract class Instrument {
         this.name = name;
     }
 
-    public void addRating(Rating rating) {
-        ratings.add(rating);
-    }
-
     public String getName() {
         return name;
+    }
+
+    public void addRating(Rating rating) {
+        ratings.add(rating);
     }
 
     public Set<Rating> getAllRatings() {

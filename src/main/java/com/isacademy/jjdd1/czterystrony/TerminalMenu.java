@@ -5,36 +5,36 @@ import java.util.Map;
 
 public class TerminalMenu {
 
-    public static void main(String[] args) {
-        findExtremaForGivenInvestFund("TEST");
-        //findExtremaInAllInvestFunds();
-    }
-
-    public static void findExtremaForGivenInvestFund(String investFundName) {
-        InvestFundDAO investFundDAO = new InvestFundDAO();
-        InvestFund investFund = investFundDAO.getInvestFund(investFundName);
-        ExtremaFinder extremaFinder = new GlobalExtremaFinder(investFund);
-        List<Rating> maximumExtremaRatings = extremaFinder.getMaximumExtremaRatings();
-
-        System.out.println("Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");
-        for (Rating rating : maximumExtremaRatings) {
-            System.out.println(rating);
-        }
-    }
-
-    public static void findExtremaInAllInvestFunds() {
-        InvestFundDAO investFundDAO = new InvestFundDAO();
-
-        for (Map.Entry<String, InvestFund> entry : investFundDAO.getAllInvestFunds().entrySet()) {
-            ExtremaFinder extremaFinder = new GlobalExtremaFinder(entry.getValue());
-            List<Rating> maximumExtremaRatings = extremaFinder.getMaximumExtremaRatings();
-
-            System.out.println(entry.getKey());
-            System.out.println("Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");
-            for (Rating rating : maximumExtremaRatings) {
-                System.out.println(rating);
-            }
-        }
-    }
+//    public static void main(String[] args) {
+//        findExtremaForGivenInvestFund("TEST");
+//        //findExtremaInAllInvestFunds();
+//    }
+//
+//    public static void findExtremaForGivenInvestFund(String investFundName) {
+//        InvestFundRepository investFundRepository = new InvestFundRepository();
+//        InvestFund investFund = investFundRepository.getInvestFund(investFundName);
+//        LocalExtremaFinder LocalExtremaFinder = new GlobalExtremaFinder(investFund);
+//        List<Rating> maximumExtremaRatings = LocalExtremaFinder.getMaximumExtremaRatings();
+//
+//        System.out.println("Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");
+//        for (Rating rating : maximumExtremaRatings) {
+//            System.out.println(rating);
+//        }
+//    }
+//
+//    public static void findExtremaInAllInvestFunds() {
+//        InvestFundRepository investFundDAO = new InvestFundRepository();
+//
+//        for (Map.Entry<String, InvestFund> entry : investFundDAO.getAllInvestFunds().entrySet()) {
+//            LocalExtremaFinder LocalExtremaFinder = new GlobalExtremaFinder(entry.getValue());
+//            List<Rating> maximumExtremaRatings = LocalExtremaFinder.getMaximumExtremaRatings();
+//
+//            System.out.println(entry.getKey());
+//            System.out.println("Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");
+//            for (Rating rating : maximumExtremaRatings) {
+//                System.out.println(rating);
+//            }
+//        }
+//    }
 
 }

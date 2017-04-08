@@ -1,27 +1,28 @@
 package com.isacademy.jjdd1.czterystrony;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class ExtremaFinder {
-    private List<Rating> ratings = new LinkedList<>();
+public class LocalExtremaFinder {
+    private List<Rating> ratings;
     private int ratingsCount = 0;
-    private ExtremaFinderConfigurator extremaFinderConfigurator;
+    private LocalExtremaFinderConfigurator localExtremaFinderConfigurator;
     private List<Rating> minimumExtremaRatings = new LinkedList<>();
     private List<Rating> maximumExtremaRatings = new LinkedList<>();
 
-    public ExtremaFinder(InvestFund investFund, ExtremaFinderConfigurator extremaFinderConfigurator) {
-        this.ratings = investFund.getAllRatings();
+    public LocalExtremaFinder(InvestFund investFund, LocalExtremaFinderConfigurator localExtremaFinderConfigurator) {
+        this.ratings = new ArrayList<>(investFund.getAllRatings());
         this.ratingsCount = ratings.size();
-        this.extremaFinderConfigurator = extremaFinderConfigurator;
+        this.localExtremaFinderConfigurator = localExtremaFinderConfigurator;
         this.findExtrema();
     }
 
     private void findExtrema() {
-        List<Rating> leftShiftedRatings = getShiftedRatings(ratings, -extremaFinderConfigurator.getBackwardDaysSensitivity());
-        List<Rating> rightShiftedRatings = getShiftedRatings(ratings, extremaFinderConfigurator.getForwardDaysSensitivity());
+        List<Rating> leftShiftedRatings = getShiftedRatings(ratings, -localExtremaFinderConfigurator.getBackwardRatingsSensitivity());
+        List<Rating> rightShiftedRatings = getShiftedRatings(ratings, localExtremaFinderConfigurator.getForwardRatingsSensitivity());
         List<Boolean> ratingsComparedToRightShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, rightShiftedRatings);
         List<Boolean> ratingsComparedToLeftShiftedRatings  = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
         List<Boolean> maximumSignalList = getMaximumExtremaSignalList(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);
@@ -59,7 +60,7 @@ public abstract class ExtremaFinder {
             BigDecimal shiftedListCloseValue = shiftedList.get(i - shift).getCloseValue();
             BigDecimal difference = inputListCloseValue.subtract(shiftedListCloseValue);
 
-            if (difference.compareTo(extremaFinderConfigurator.getMaximumExistenceSensitivity()) == 1) {
+            if (difference.compareTo(localExtremaFinderConfigurator.getMaximumExistenceSensitivity()) == 1) {
                 verificationList.add(Boolean.TRUE);
             } else {
                 verificationList.add(Boolean.FALSE);

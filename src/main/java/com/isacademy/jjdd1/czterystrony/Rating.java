@@ -21,10 +21,15 @@ public class Rating implements Comparable<Rating> {
     }
 
     @Override
+    public int compareTo(Rating rating) {
+        return date.compareTo(rating.date);
+    }
+
+    @Override
     public String toString() {
         return "Data: " + date + " | Close value: " + closeValue;
     }
-
+}
 //    @Override
 //    public boolean equals(Object o) {
 //        if (this == o) return true;
@@ -42,9 +47,3 @@ public class Rating implements Comparable<Rating> {
 //        result = 31 * result + (closeValue != null ? closeValue.hashCode() : 0);
 //        return result;
 //    }
-
-    @Override
-    public int compareTo(Rating rating) {
-        return 0;
-    }
-}

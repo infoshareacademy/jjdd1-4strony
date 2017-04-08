@@ -2,13 +2,13 @@ package com.isacademy.jjdd1.czterystrony;
 
 import java.math.BigDecimal;
 
-public class ExtremaFinderConfigurator {
+public class LocalExtremaFinderConfigurator {
     private int backwardDaysSensitivity;
     private int forwardDaysSensitivity;
     private BigDecimal maximumExistenceSensitivity;
     private BigDecimal minimumExistenceSensitivity;
 
-    public ExtremaFinderConfigurator(int backwardRatingsSensitivity, int forwardRatingsSensitivity, BigDecimal lowerCloseValueSensitivity, BigDecimal upperCloseValueSensitivity) {
+    public LocalExtremaFinderConfigurator(int backwardRatingsSensitivity, int forwardRatingsSensitivity, BigDecimal lowerCloseValueSensitivity, BigDecimal upperCloseValueSensitivity) {
         this.backwardDaysSensitivity = backwardRatingsSensitivity;
         this.forwardDaysSensitivity = forwardRatingsSensitivity;
         this.maximumExistenceSensitivity = lowerCloseValueSensitivity;

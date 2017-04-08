@@ -7,7 +7,7 @@ import java.util.List;
 public class InvestFundParser {
     public static InvestFund parse(String dataFileName) throws IOException, ParseException{
         InvestFund investFund = new InvestFund(dataFileName);
-        List<String> content = new TxtFileReader(InvestFundDAO.DATA_DIRECTORY, dataFileName).getContentList();
+        List<String> content = new TxtFileReader(InvestFundRepository.DATA_DIRECTORY, dataFileName).getContentList();
 
         for (String row : content) {
             investFund.addRating(RatingParser.parse(row));

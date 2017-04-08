@@ -3,14 +3,16 @@ package com.isacademy.jjdd1.czterystrony;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class InvestFundDAO implements StockExchangeDAO<InvestFund> {
+public class InvestFundRepository implements StockExchangeRepository<InvestFund> {
     public static final String DATA_DIRECTORY = "./src/main/resources/data/stockexchange/investfunds";
     private Map<String, InvestFund> investFunds = new TreeMap<>();
 
-    public InvestFundDAO() {
+    public InvestFundRepository() {
         File investFundsDataDirectory = new File(DATA_DIRECTORY);
         Instrument instrument = new InvestFund().name;
         for (File file : investFundsDataDirectory.listFiles()) {
@@ -33,14 +35,27 @@ public class InvestFundDAO implements StockExchangeDAO<InvestFund> {
         }
     }
 
-    public boolean add(InvestFund investFund) {
-        return false;
-    }
-    public Map<String, InvestFund> getAll() {
-        return investFunds;
+    @Override
+    public void add(InvestFund investFund) {
+        investFunds.put(investFund.getName(), investFund);
     }
 
+    @Override
+    public void delete(InvestFund instrument) {
+        investFunds.remove(instrument.getName());
+    }
+
+    @Override
     public InvestFund get(String investFundName) {
         return investFunds.get(investFundName);
+    }
+
+    @Override
+    public List<InvestFund> getAll() {
+        return new ArrayList<>(investFunds.values());
+    }
+
+    public List<InvestFund> getAllByPriority() {
+
     }
 }
