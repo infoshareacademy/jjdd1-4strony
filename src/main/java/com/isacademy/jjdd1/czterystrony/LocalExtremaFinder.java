@@ -42,12 +42,11 @@ public class LocalExtremaFinder {
         Collections.rotate(shiftedList, shift);
         int absoluteShift = Math.abs(shift);
 
-//        try {
+        try {
             return shiftedList.subList(absoluteShift, list.size() - absoluteShift);
-//        } catch (IllegalArgumentException e) {
-//            e.printStackTrace();
-//            return getShiftedRatings(list, shift - 1);
-//        }
+        } catch (IllegalArgumentException e) {
+            return Collections.emptyList();
+        }
     }
 
     private List<Boolean> isEachRatingGreaterThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
