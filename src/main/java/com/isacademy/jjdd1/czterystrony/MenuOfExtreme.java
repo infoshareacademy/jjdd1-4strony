@@ -6,16 +6,13 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Created by piotr on 08.04.17.
- * Sierra
- * Czysty kod. Podrecznik Martin
- */
+
 public class MenuOfExtreme {
     public MenuOfExtreme(InvestFund investFund) {
-        System.out.println("Witaj w analizatorze funduszy inwestycyjnych. Wybierz co chcesz zrobić:");
-        System.out.println("[1]. Rozpocznij");
-        System.out.println("[0]. Wyjdź");
+        System.out.println("Podaj co chcesz zrobić:");
+        System.out.println("[1] Ekstrema lokalne");
+        System.out.println("[2] Ekstrema globalne");
+        System.out.println("[0] Wyjście");
 
         Scanner answer = new Scanner(System.in);
         int start = answer.nextInt();
@@ -23,12 +20,14 @@ public class MenuOfExtreme {
             case 1:
                 new LocalExtremaFinder(investFund, new ExtremaFinderConfigurator(2,2, BigDecimal.TEN, BigDecimal.TEN));
                 break;
-            case 0:
+            case 2:
                 GlobalExtremaFinder globalExtremaFinder = new GlobalExtremaFinder(investFund);
                 List<Rating> maximumExtremaRatings = globalExtremaFinder.getMaximumExtremaRatings();
                 for (Rating maximumExtremaRating : maximumExtremaRatings) {
                     System.out.println("dane rating "+maximumExtremaRating);
                 }
+            case 0:
+                System.out.println("Miłego dnia!");
 
                 break;
             default:
