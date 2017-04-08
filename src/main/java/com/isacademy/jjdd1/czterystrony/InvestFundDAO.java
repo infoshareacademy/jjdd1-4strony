@@ -8,7 +8,7 @@ import java.util.TreeMap;
 
 public class InvestFundDAO {
     public static final String DATA_DIRECTORY = "./src/main/resources/data/omegafun";
-    private Map<String, InvestFund> investFunds = new TreeMap<>();
+    public static Map<String, InvestFund> investFunds = new TreeMap<>();
 
     public InvestFundDAO() {
         File investFundsDataDirectory = new File(DATA_DIRECTORY);
@@ -33,11 +33,11 @@ public class InvestFundDAO {
         }
     }
 
-    public Map<String, InvestFund> getAllInvestFunds() {
+    public static Map<String, InvestFund> getAllInvestFunds() {
         return investFunds;
     }
 
-    public InvestFund getInvestFund(String investFundName) {
+    public static InvestFund getInvestFund(String investFundName) {
         return investFunds.get(investFundName);
     }
 }
