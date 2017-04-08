@@ -12,7 +12,7 @@ public class Main {
     }
 
     public static void findLocalExtremaForGivenInvestFundTest(String investFundName) {
-        InvestFundsDao investFundsDao = new TextInvestFundsDaoImpl();
+        InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
         InvestFund investFund = investFundsDao.get(investFundName);
 
         LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfigurator(1, 1, BigDecimal.valueOf(0.5D), BigDecimal.valueOf(0.5D));
@@ -26,7 +26,7 @@ public class Main {
     }
 
     public static void findLocalExtremaOfAllInvestFundsTest() {
-        InvestFundsDao investFundsDao = new TextInvestFundsDaoImpl();
+        InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
 
         for (InvestFund investFund : investFundsDao.getAllByName()) {
             LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfigurator(1, 1, BigDecimal.valueOf(0.5D), BigDecimal.valueOf(0.5D));
@@ -40,7 +40,7 @@ public class Main {
     }
 
     public static void printAllInvestFundsByNameTest() {
-        InvestFundsDao investFundsDao = new TextInvestFundsDaoImpl();
+        InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
 
         System.out.println("\n\nInvest funds sorted by name:");
         for (InvestFund investFund : investFundsDao.getAllByName()) {
@@ -49,7 +49,7 @@ public class Main {
     }
 
     public static void printAllInvestFundsByPriorityTest() {
-        InvestFundsDao investFundsDao = new TextInvestFundsDaoImpl();
+        InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
 
         System.out.println("\n\nInvest funds sorted by priority:");
         for (InvestFund investFund : investFundsDao.getAllByPriority()) {
