@@ -11,7 +11,7 @@ public class TerminalMenu {
 //    }
 //
 //    public static void findExtremaForGivenInvestFund(String investFundName) {
-//        InvestFundRepository investFundRepository = new InvestFundRepository();
+//        InvestFundsDao investFundRepository = new InvestFundsDao();
 //        InvestFund investFund = investFundRepository.getInvestFund(investFundName);
 //        LocalExtremaFinder LocalExtremaFinder = new GlobalExtremaFinder(investFund);
 //        List<Rating> maximumExtremaRatings = LocalExtremaFinder.getMaximumExtremaRatings();
@@ -23,7 +23,7 @@ public class TerminalMenu {
 //    }
 //
 //    public static void findExtremaInAllInvestFunds() {
-//        InvestFundRepository investFundDAO = new InvestFundRepository();
+//        InvestFundsDao investFundDAO = new InvestFundsDao();
 //
 //        for (Map.Entry<String, InvestFund> entry : investFundDAO.getAllInvestFunds().entrySet()) {
 //            LocalExtremaFinder LocalExtremaFinder = new GlobalExtremaFinder(entry.getValue());

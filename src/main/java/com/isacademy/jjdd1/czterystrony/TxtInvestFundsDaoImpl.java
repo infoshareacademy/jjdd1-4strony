@@ -8,16 +8,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class InvestFundRepository implements StockExchangeRepository<InvestFund> {
-    public static final String DATA_DIRECTORY = "./src/main/resources/data/stockexchange/investfunds";
+public class TxtInvestFundsDaoImpl implements InvestFundsDao {
     private Map<String, InvestFund> investFunds = new TreeMap<>();
 
-    public InvestFundRepository() {
+    public TxtInvestFundsDaoImpl() {
         File investFundsDataDirectory = new File(DATA_DIRECTORY);
         Instrument instrument = new InvestFund().name;
         for (File file : investFundsDataDirectory.listFiles()) {
             parse(file);
         }
+        String i = DATA_DIRECTORY;
     }
 
     private void parse(File file){
