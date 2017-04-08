@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 
-public class TextInvestFundsDaoImpl implements InvestFundsDao {
+public class InvestFundsDaoTxtImpl implements InvestFundsDao {
     private Map<String, InvestFund> investFunds = new TreeMap<>();
 
-    public TextInvestFundsDaoImpl() {
+    public InvestFundsDaoTxtImpl() {
         final File[] textFiles = new File(DATA_DIRECTORY).listFiles();
         if (textFiles != null) collectInvestFunds(textFiles);
     }
