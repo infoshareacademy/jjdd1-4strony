@@ -12,7 +12,7 @@ public interface InvestFundsDao extends StockExchangeDao<InvestFund> {
     InvestFund get(String investFundName);
 
     @Override
-    List<InvestFund> getAll();
+    List<InvestFund> getAllByName();
 
     List<InvestFund> getAllByPriority();
 }

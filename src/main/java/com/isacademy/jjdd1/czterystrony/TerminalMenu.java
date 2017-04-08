@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 public class TerminalMenu {
-
+    public static void main(String[] args) {
+        int i = "z".compareTo("a");
+        return i;
+    }
 //    public static void main(String[] args) {
 //        findExtremaForGivenInvestFund("TEST");
 //        //findExtremaInAllInvestFunds();
