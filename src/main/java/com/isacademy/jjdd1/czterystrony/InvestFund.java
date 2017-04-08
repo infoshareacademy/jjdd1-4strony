@@ -1,12 +1,19 @@
 package com.isacademy.jjdd1.czterystrony;
 
-public class InvestFund extends Instrument implements Promotable, Comparable<InvestFund> {
-    private int priority = 0;
+public class InvestFund extends Instrument implements Promotable {
+    private int priority;
     private String company;
 
-    public InvestFund(String name, String company) {
-        super(name);
+    public InvestFund(String investFundName, String company) {
+        super(investFundName);
         this.company = company;
+        this.priority = 0;
+    }
+
+    public InvestFund(String investFundName, String company, int priority) {
+        super(investFundName);
+        this.company = company;
+        this.priority = -priority;
     }
 
     public String getCompany() {
@@ -19,11 +26,6 @@ public class InvestFund extends Instrument implements Promotable, Comparable<Inv
 
     @Override
     public void promote(int priority) {
-        this.priority = (priority < 0) ? priority : 0;
-    }
-
-    @Override
-    public int compareTo(InvestFund investFund) {
-        return getName().compareTo(investFund.getName()) + priority * 100;
+        this.priority = (priority > 0) ? -priority : 0;
     }
 }
