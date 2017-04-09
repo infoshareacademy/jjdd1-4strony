@@ -17,6 +17,14 @@ public class LocalExtremaFinder {
         this.localExtremaFinderConfigurator = localExtremaFinderConfigurator;
     }
 
+    public List<Rating> getMinimumExtremaRatings() {
+        return findExtremaRatings(Extremum.MINIMUM);
+    }
+
+    public List<Rating> getMaximumExtremaRatings() {
+        return findExtremaRatings(Extremum.MAXIMUM);
+    }
+
     private List<Rating> findExtremaRatings(Extremum extremum) {
         List<Rating> leftShiftedRatings = getShiftedRatings(ratings, -localExtremaFinderConfigurator.getBackwardRatingsSensitivity());
         List<Rating> rightShiftedRatings = getShiftedRatings(ratings, localExtremaFinderConfigurator.getForwardRatingsSensitivity());
@@ -57,6 +65,17 @@ public class LocalExtremaFinder {
         }
     }
 
+    private List<Boolean> isEachRatingSmallerThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
+        List<Boolean> isEachRatingSmallerThenShiftedEquivalent = isEachRatingGreaterThenShiftedEquivalent(inputList, shiftedList);
+        ListIterator<Boolean> booleanIterator = isEachRatingSmallerThenShiftedEquivalent.listIterator();
+
+        while (booleanIterator.hasNext()) {
+            boolean value = booleanIterator.next();
+            booleanIterator.set(!value);
+        }
+        return isEachRatingSmallerThenShiftedEquivalent;
+    }
+
     private List<Boolean> isEachRatingGreaterThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
         int shift = (inputList.size() - shiftedList.size()) / 2;
         List<Boolean> verificationList = new ArrayList<>();
@@ -75,17 +94,6 @@ public class LocalExtremaFinder {
         return verificationList;
     }
 
-    private List<Boolean> isEachRatingSmallerThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
-        List<Boolean> isEachRatingSmallerThenShiftedEquivalent = isEachRatingGreaterThenShiftedEquivalent(inputList, shiftedList);
-        ListIterator<Boolean> booleanIterator = isEachRatingSmallerThenShiftedEquivalent.listIterator();
-
-        while (booleanIterator.hasNext()) {
-            boolean value = booleanIterator.next();
-            booleanIterator.set(!value);
-        }
-        return isEachRatingSmallerThenShiftedEquivalent;
-    }
-
     private List<Boolean> getExtremaSignalList(List<Boolean> firstList, List<Boolean> secondList) {
         List<Boolean> extremaSignalList = new ArrayList<>();
 
@@ -97,13 +105,5 @@ public class LocalExtremaFinder {
             }
         }
         return extremaSignalList;
-    }
-
-    public List<Rating> getMinimumExtremaRatings() {
-        return findExtremaRatings(Extremum.MINIMUM);
-    }
-
-    public List<Rating> getMaximumExtremaRatings() {
-        return findExtremaRatings(Extremum.MAXIMUM);
     }
 }
