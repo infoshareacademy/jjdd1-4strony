@@ -1,21 +1,31 @@
 package com.isacademy.jjdd1.czterystrony;
 
-import java.util.LinkedList;
-import java.util.List;
+public class InvestFund extends FinancialInstrument implements Promotable {
+    private int priority;
+    private String company;
 
-public class InvestFund {
-    private String name;
-    private List<Rating> ratings = new LinkedList<>();
-
-    public InvestFund(String name) {
-        this.name = name;
+    public InvestFund(String investFundName, String company) {
+        super(investFundName);
+        this.company = company;
+        this.priority = 0;
     }
 
-    public void addRating(Rating rating) {
-        ratings.add(rating);
+    public InvestFund(String investFundName, String company, int priority) {
+        super(investFundName);
+        this.company = company;
+        this.priority = -priority;
     }
 
-    public List<Rating> getAllRatings() {
-        return ratings;
+    public String getCompany() {
+        return company;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    @Override
+    public void promote(int priority) {
+        this.priority = (priority > 0) ? -priority : 0;
     }
 }
