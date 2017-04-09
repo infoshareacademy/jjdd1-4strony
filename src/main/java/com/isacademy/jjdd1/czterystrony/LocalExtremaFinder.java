@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.ListIterator;
 
 public class LocalExtremaFinder {
     private List<Rating> ratings;
@@ -66,17 +65,14 @@ public class LocalExtremaFinder {
     }
 
     private List<Boolean> isEachRatingSmallerThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
-        List<Boolean> isEachRatingSmallerThenShiftedEquivalent = isEachRatingGreaterThenShiftedEquivalent(inputList, shiftedList);
-        ListIterator<Boolean> booleanIterator = isEachRatingSmallerThenShiftedEquivalent.listIterator();
-
-        while (booleanIterator.hasNext()) {
-            boolean value = booleanIterator.next();
-            booleanIterator.set(!value);
-        }
-        return isEachRatingSmallerThenShiftedEquivalent;
+        return compareEachRatingWithShiftedEquivalent(inputList, shiftedList, localExtremaFinderConfigurator.getMinimumExistenceSensitivity(), Extremum.MINIMUM);
     }
 
     private List<Boolean> isEachRatingGreaterThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
+        return compareEachRatingWithShiftedEquivalent(inputList, shiftedList, localExtremaFinderConfigurator.getMaximumExistenceSensitivity(), Extremum.MAXIMUM);
+    }
+
+    private List<Boolean> compareEachRatingWithShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList, BigDecimal existenceSensitivity, Extremum extremum) {
         int shift = (inputList.size() - shiftedList.size()) / 2;
         List<Boolean> verificationList = new ArrayList<>();
 
@@ -85,7 +81,7 @@ public class LocalExtremaFinder {
             BigDecimal shiftedListCloseValue = shiftedList.get(i - shift).getCloseValue();
             BigDecimal difference = inputListCloseValue.subtract(shiftedListCloseValue);
 
-            if (difference.compareTo(localExtremaFinderConfigurator.getMaximumExistenceSensitivity()) == 1) {
+            if (difference.compareTo(existenceSensitivity) == extremum.getValue()) {
                 verificationList.add(Boolean.TRUE);
             } else {
                 verificationList.add(Boolean.FALSE);
