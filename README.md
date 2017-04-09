@@ -1,6 +1,6 @@
 # jjdd1-4strony
 
-#### InfoShareAcademy Junior Java Developer 
+#### infoShareAcademy Junior Java Developer 
 * Project: "jjdd1-4strony" InvestFundAnalyzer
 * Product Owner: Wòjcech Makùrôt
 
