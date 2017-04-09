@@ -1,5 +1,7 @@
 package com.isacademy.jjdd1.czterystrony;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -19,7 +21,7 @@ public abstract class FinancialInstrument {
         ratings.add(rating);
     }
 
-    public Set<Rating> getAllRatings() {
-        return ratings;
+    public List<Rating> getAllRatings() {
+        return new ArrayList<>(ratings);
     }
 }
