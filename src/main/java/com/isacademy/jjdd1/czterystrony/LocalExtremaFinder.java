@@ -1,45 +1,52 @@
 package com.isacademy.jjdd1.czterystrony;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ListIterator;
 
 public class LocalExtremaFinder {
     private List<Rating> ratings;
     private int ratingsCount = 0;
     private LocalExtremaFinderConfigurator localExtremaFinderConfigurator;
-    private List<Rating> minimumExtremaRatings = new LinkedList<>();
-    private List<Rating> maximumExtremaRatings = new LinkedList<>();
 
     public LocalExtremaFinder(FinancialInstrument financialInstrument, LocalExtremaFinderConfigurator localExtremaFinderConfigurator) {
         this.ratings = new ArrayList<>(financialInstrument.getAllRatings());
         this.ratingsCount = ratings.size();
         this.localExtremaFinderConfigurator = localExtremaFinderConfigurator;
-        this.findExtrema();
     }
 
-    private void findExtrema() {
+    private List<Rating> findExtremaRatings(Extremum extremum) {
         List<Rating> leftShiftedRatings = getShiftedRatings(ratings, -localExtremaFinderConfigurator.getBackwardRatingsSensitivity());
         List<Rating> rightShiftedRatings = getShiftedRatings(ratings, localExtremaFinderConfigurator.getForwardRatingsSensitivity());
-        List<Boolean> ratingsComparedToRightShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, rightShiftedRatings);
-        List<Boolean> ratingsComparedToLeftShiftedRatings  = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
-        List<Boolean> maximumSignalList = getMaximumExtremaSignalList(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);
+        List<Boolean> ratingsComparedToRightShiftedRatings = new ArrayList<>();
+        List<Boolean> ratingsComparedToLeftShiftedRatings  = new ArrayList<>();
+        List<Rating> extremaRatings = new ArrayList<>();
 
-//        List<Boolean> ratingsComparedToRightShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, rightShiftedRatings);
-//        List<Boolean> ratingsComparedToLeftShiftedRatings  = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
-//        List<Boolean> maximumSignalList = getMaximumExtremaSignalList(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);
+        if (extremum == Extremum.MINIMUM) {
+            ratingsComparedToRightShiftedRatings = isEachRatingSmallerThenShiftedEquivalent(ratings, rightShiftedRatings);
+            ratingsComparedToLeftShiftedRatings  = isEachRatingSmallerThenShiftedEquivalent(ratings, leftShiftedRatings);
+        } else {
+            ratingsComparedToRightShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, rightShiftedRatings);
+            ratingsComparedToLeftShiftedRatings  = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
+        }
 
-        int shift = (ratingsCount - maximumSignalList.size()) / 2;
+        List<Boolean> extremaSignalList = getExtremaSignalList(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);
+
+        int shift = (ratingsCount - extremaSignalList.size()) / 2;
 
         for (int i = shift; i < ratingsCount - shift; i++) {
-            Boolean isMaximum = maximumSignalList.get(i - shift);
-            if (isMaximum) {
-                maximumExtremaRatings.add(ratings.get(i));
+            Boolean isExtremum = extremaSignalList.get(i - shift);
+            if (isExtremum) {
+                extremaRatings.add(ratings.get(i));
             }
         }
+        return extremaRatings;
     }
 
     private List<Rating> getShiftedRatings(List<Rating> list, int shift) {
-        List<Rating> shiftedList = new LinkedList<>(list);
+        List<Rating> shiftedList = new ArrayList<>(list);
         Collections.rotate(shiftedList, shift);
         int absoluteShift = Math.abs(shift);
 
@@ -52,7 +59,7 @@ public class LocalExtremaFinder {
 
     private List<Boolean> isEachRatingGreaterThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
         int shift = (inputList.size() - shiftedList.size()) / 2;
-        List<Boolean> verificationList = new LinkedList<>();
+        List<Boolean> verificationList = new ArrayList<>();
 
         for (int i = shift; i < inputList.size() - shift; i++) {
             BigDecimal inputListCloseValue = inputList.get(i).getCloseValue();
@@ -79,24 +86,24 @@ public class LocalExtremaFinder {
         return isEachRatingSmallerThenShiftedEquivalent;
     }
 
-    private List<Boolean> getMaximumExtremaSignalList(List<Boolean> firstList, List<Boolean> secondList) {
-        List<Boolean> maximumExtremaShiftedList = new LinkedList<>();
+    private List<Boolean> getExtremaSignalList(List<Boolean> firstList, List<Boolean> secondList) {
+        List<Boolean> extremaSignalList = new ArrayList<>();
 
         for (int i = 0; i < firstList.size(); i++) {
             if (firstList.get(i) && secondList.get(i)) {
-                maximumExtremaShiftedList.add(Boolean.TRUE);
+                extremaSignalList.add(Boolean.TRUE);
             } else {
-                maximumExtremaShiftedList.add(Boolean.FALSE);
+                extremaSignalList.add(Boolean.FALSE);
             }
         }
-        return maximumExtremaShiftedList;
+        return extremaSignalList;
     }
 
     public List<Rating> getMinimumExtremaRatings() {
-        return minimumExtremaRatings;
+        return findExtremaRatings(Extremum.MINIMUM);
     }
 
     public List<Rating> getMaximumExtremaRatings() {
-        return maximumExtremaRatings;
+        return findExtremaRatings(Extremum.MAXIMUM);
     }
 }
