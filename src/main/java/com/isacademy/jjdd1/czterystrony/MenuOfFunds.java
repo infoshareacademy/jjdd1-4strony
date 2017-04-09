@@ -1,29 +1,18 @@
 package com.isacademy.jjdd1.czterystrony;
 
 import java.util.*;
-import java.util.function.Function;
-
-import static com.isacademy.jjdd1.czterystrony.ChoosingDateMenu.choosingDateMenu;
-
 
 public class MenuOfFunds {
-
-    public int menuOfFunds;
-
-    {
-
-
-        InvestFundDAO investFundDAO = new InvestFundDAO();
+    public int menuOfFunds() {
+        InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
         System.out.println("Wybierz interesujący Cię fundusz: ");
 
-        for (String investFundName : investFundDAO.getAllInvestFunds().keySet()) {
-            System.out.println(investFundName);
-
-
-
-
+        for (InvestFund investFund : investFundsDao.getAllByName()) {
+            System.out.println(investFund.getName());
         }
+
         Scanner choice = new Scanner(System.in);
         int i = choice.nextInt();
+        return i;
     }
 }
