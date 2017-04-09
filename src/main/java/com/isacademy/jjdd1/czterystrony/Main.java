@@ -9,6 +9,7 @@ public class Main {
         findLocalExtremaOfAllInvestFundsTest();
         printAllInvestFundsByNameTest();
         printAllInvestFundsByPriorityTest();
+        findGlobalExtremaForGivenInvestFundTest("TEST");
     }
 
     public static void findLocalExtremaForGivenInvestFundTest(String investFundName) {
@@ -37,6 +38,17 @@ public class Main {
                 System.out.println(rating);
             }
         }
+    }
+
+    public static void findGlobalExtremaForGivenInvestFundTest(String investFundName) {
+        InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
+        InvestFund investFund = investFundsDao.get(investFundName);
+
+        GlobalExtremaFinder globalExtremaFinder = new GlobalExtremaFinder(investFund);
+
+        System.out.println("\n\n" + investFund.getName() + " || Global extrema:");
+        System.out.println("Maximum: " + globalExtremaFinder.getGlobalMaximum());
+        System.out.println("Minimum: " + globalExtremaFinder.getGlobalMinimum());
     }
 
     public static void printAllInvestFundsByNameTest() {
