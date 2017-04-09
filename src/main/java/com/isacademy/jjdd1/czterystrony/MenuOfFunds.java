@@ -12,23 +12,24 @@ public class MenuOfFunds {
 
 
         InvestFundDAO investFundDAO = new InvestFundDAO();
-        System.out.println("Wybierz interesujący Cię fundusz: ");
+        System.out.println("Lista funduszy: ");
 
         Map<String, InvestFund> allInvestFunds = investFundDAO.getAllInvestFunds();
         for (String investFundName : allInvestFunds.keySet()) {
             System.out.println(investFundName);
 
         }
+        System.out.println("Wpisz nazwę wybranego funduszu, aby przejść dalej:");
 
         Scanner choice = new Scanner(System.in);
-        String fund = choice.nextLine();//fundusz wybrany przez użytkownika
+        String fund = choice.nextLine().toUpperCase();//fundusz wybrany przez użytkownika
         InvestFund investFund = allInvestFunds.get(fund);
         MenuOfExtreme menuExtreme = new MenuOfExtreme(investFund);
-//        investFund.
-
-
-        for (String fundChoice : allInvestFunds.keySet()) {
-
-        }
+//        investFund.getAllRatings();
+//
+//
+//        for (String fundChoice : allInvestFunds.keySet()) {
+//            System.out.println();
+//        }
     }
 }

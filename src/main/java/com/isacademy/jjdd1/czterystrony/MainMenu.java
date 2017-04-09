@@ -22,7 +22,8 @@ public class MainMenu {
                 System.out.println("Miłego dnia!");
                 break;
             default:
-                System.out.println("Błędny wybór.");
+                System.out.println("Błędny wybór. Spróbuj ponownie.");
+                new MainMenu();
         }
     }
 }
