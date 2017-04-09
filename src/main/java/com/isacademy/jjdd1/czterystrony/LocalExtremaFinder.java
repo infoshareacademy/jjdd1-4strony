@@ -12,7 +12,7 @@ public class LocalExtremaFinder {
     private LocalExtremaFinderConfigurator localExtremaFinderConfigurator;
 
     public LocalExtremaFinder(FinancialInstrument financialInstrument, LocalExtremaFinderConfigurator localExtremaFinderConfigurator) {
-        this.ratings = new ArrayList<>(financialInstrument.getAllRatings());
+        this.ratings = financialInstrument.getAllRatings();
         this.ratingsCount = ratings.size();
         this.localExtremaFinderConfigurator = localExtremaFinderConfigurator;
     }
