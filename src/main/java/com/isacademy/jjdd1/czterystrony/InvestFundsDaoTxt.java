@@ -10,7 +10,9 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
 
     public InvestFundsDaoTxt() {
         final File[] textFiles = new File(DATA_DIRECTORY).listFiles();
-        if (textFiles != null) collectInvestFunds(textFiles);
+        if (textFiles != null) {
+            collectInvestFunds(textFiles);
+        }
     }
 
     private void collectInvestFunds(File[] textFiles) {
