@@ -3,7 +3,9 @@ package com.isacademy.jjdd1.czterystrony;
 import java.util.*;
 
 public class MenuOfFunds {
-    public int menuOfFunds; {
+    public int menuOfFunds;
+
+    {
         InvestFundsDao investFundDao = new InvestFundsDaoTxt();
 
         System.out.println("Lista funduszy: ");

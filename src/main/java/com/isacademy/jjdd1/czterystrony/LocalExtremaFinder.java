@@ -28,15 +28,15 @@ public class LocalExtremaFinder {
         List<Rating> leftShiftedRatings = getShiftedRatings(ratings, -localExtremaFinderConfigurator.getBackwardRatingsSensitivity());
         List<Rating> rightShiftedRatings = getShiftedRatings(ratings, localExtremaFinderConfigurator.getForwardRatingsSensitivity());
         List<Boolean> ratingsComparedToRightShiftedRatings = new ArrayList<>();
-        List<Boolean> ratingsComparedToLeftShiftedRatings  = new ArrayList<>();
+        List<Boolean> ratingsComparedToLeftShiftedRatings = new ArrayList<>();
         List<Rating> extremaRatings = new ArrayList<>();
 
         if (extremum == Extremum.MINIMUM) {
             ratingsComparedToRightShiftedRatings = isEachRatingSmallerThenShiftedEquivalent(ratings, rightShiftedRatings);
-            ratingsComparedToLeftShiftedRatings  = isEachRatingSmallerThenShiftedEquivalent(ratings, leftShiftedRatings);
+            ratingsComparedToLeftShiftedRatings = isEachRatingSmallerThenShiftedEquivalent(ratings, leftShiftedRatings);
         } else {
             ratingsComparedToRightShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, rightShiftedRatings);
-            ratingsComparedToLeftShiftedRatings  = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
+            ratingsComparedToLeftShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
         }
 
         List<Boolean> extremaSignalList = getExtremaSignalList(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);

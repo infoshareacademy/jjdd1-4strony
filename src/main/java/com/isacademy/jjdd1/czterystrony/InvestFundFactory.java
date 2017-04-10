@@ -5,9 +5,9 @@ import java.text.ParseException;
 import java.util.List;
 
 public class InvestFundFactory {
-    public static InvestFund create(TextFileReader textFileReader) throws IOException, ParseException{
+    public static InvestFund create(TextFileReader textFileReader) throws IOException, ParseException {
         String investFundName = textFileReader.getFileNameWithoutExtension();
-        String companyName = investFundName.substring(0,2);
+        String companyName = investFundName.substring(0, 2);
         List<String> records = textFileReader.getContentList();
 
         InvestFund investFund = new InvestFund(investFundName, companyName);

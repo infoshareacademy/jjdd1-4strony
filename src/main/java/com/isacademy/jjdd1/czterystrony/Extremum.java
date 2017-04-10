@@ -6,7 +6,7 @@ public enum Extremum {
 
     private final int value;
 
-    Extremum (final int value) {
+    Extremum(final int value) {
         this.value = value;
     }
 

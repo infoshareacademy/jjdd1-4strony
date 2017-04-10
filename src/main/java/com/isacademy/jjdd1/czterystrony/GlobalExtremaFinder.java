@@ -27,16 +27,16 @@ public class GlobalExtremaFinder {
         for (Rating rating : ratings) {
             BigDecimal closeValue = rating.getCloseValue();
 
-            if(globalMinimumRating == null || globalMaximumRating == null) {
+            if (globalMinimumRating == null || globalMaximumRating == null) {
                 globalMinimumRating = rating;
                 globalMaximumRating = rating;
             }
 
-            if(closeValue.compareTo(globalMaximumRating.getCloseValue()) > 0){
+            if (closeValue.compareTo(globalMaximumRating.getCloseValue()) > 0) {
                 globalMaximumRating = rating;
             }
 
-            if(closeValue.compareTo(globalMinimumRating.getCloseValue()) < 0){
+            if (closeValue.compareTo(globalMinimumRating.getCloseValue()) < 0) {
                 globalMinimumRating = rating;
             }
         }

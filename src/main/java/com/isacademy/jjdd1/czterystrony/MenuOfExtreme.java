@@ -15,7 +15,7 @@ public class MenuOfExtreme {
         int chooseExtreme = answer.nextInt();
         switch (chooseExtreme) {
             case 1:
-                new LocalExtremaFinder(fund, new LocalExtremaFinderConfigurator(2,2, BigDecimal.TEN, BigDecimal.TEN));
+                new LocalExtremaFinder(fund, new LocalExtremaFinderConfigurator(2, 2, BigDecimal.TEN, BigDecimal.TEN));
                 break;
             case 2:
                 GlobalExtremaFinder globalExtremaFinder = new GlobalExtremaFinder(fund);
