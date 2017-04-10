@@ -39,12 +39,12 @@ public class LocalExtremaFinder {
             ratingsComparedToLeftShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
         }
 
-        List<Boolean> extremaSignalList = getExtremaSignalList(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);
+        List<Boolean> extremaSignals = getExtremaSignals(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);
 
-        int shift = (ratingsCount - extremaSignalList.size()) / 2;
+        int shift = (ratingsCount - extremaSignals.size()) / 2;
 
         for (int i = shift; i < ratingsCount - shift; i++) {
-            Boolean isExtremum = extremaSignalList.get(i - shift);
+            Boolean isExtremum = extremaSignals.get(i - shift);
             if (isExtremum) {
                 extremaRatings.add(ratings.get(i));
             }
@@ -52,13 +52,13 @@ public class LocalExtremaFinder {
         return extremaRatings;
     }
 
-    private List<Rating> getShiftedRatings(List<Rating> list, int shift) {
-        List<Rating> shiftedList = new ArrayList<>(list);
-        Collections.rotate(shiftedList, shift);
+    private List<Rating> getShiftedRatings(List<Rating> ratings, int shift) {
+        List<Rating> shiftedRatings = new ArrayList<>(ratings);
+        Collections.rotate(shiftedRatings, shift);
         int absoluteShift = Math.abs(shift);
 
         try {
-            return shiftedList.subList(absoluteShift, list.size() - absoluteShift);
+            return shiftedRatings.subList(absoluteShift, ratings.size() - absoluteShift);
         } catch (IllegalArgumentException e) {
             return Collections.emptyList();
         }
@@ -90,16 +90,16 @@ public class LocalExtremaFinder {
         return verificationList;
     }
 
-    private List<Boolean> getExtremaSignalList(List<Boolean> firstList, List<Boolean> secondList) {
-        List<Boolean> extremaSignalList = new ArrayList<>();
+    private List<Boolean> getExtremaSignals(List<Boolean> firstList, List<Boolean> secondList) {
+        List<Boolean> extremaSignals = new ArrayList<>();
 
         for (int i = 0; i < firstList.size(); i++) {
             if (firstList.get(i) && secondList.get(i)) {
-                extremaSignalList.add(Boolean.TRUE);
+                extremaSignals.add(Boolean.TRUE);
             } else {
-                extremaSignalList.add(Boolean.FALSE);
+                extremaSignals.add(Boolean.FALSE);
             }
         }
-        return extremaSignalList;
+        return extremaSignals;
     }
 }
