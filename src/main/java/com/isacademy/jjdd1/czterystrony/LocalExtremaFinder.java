@@ -11,7 +11,7 @@ public class LocalExtremaFinder {
     private LocalExtremaFinderConfigurator localExtremaFinderConfigurator;
 
     public LocalExtremaFinder(FinancialInstrument financialInstrument, LocalExtremaFinderConfigurator localExtremaFinderConfigurator) {
-        this.ratings = financialInstrument.getAllRatings();
+        this.ratings = financialInstrument.getRatings();
         this.ratingsCount = ratings.size();
         this.localExtremaFinderConfigurator = localExtremaFinderConfigurator;
     }

@@ -20,9 +20,9 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
             TextFileReader textFileReader = new TextFileReader(textFile);
             try {
                 InvestFund investFund = InvestFundFactory.create(textFileReader);
-                if (investFund.getName().equals("AIP021")) {
-                    investFund.promote(100);
-                }
+//                if (investFund.getName().equals("AIP021")) {
+//                    investFund.promote(100);
+//                }
                 investFunds.put(investFund.getName(), investFund);
             } catch (ParseException | IOException e) {
                 e.printStackTrace();
