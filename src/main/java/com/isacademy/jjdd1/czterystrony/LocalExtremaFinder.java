@@ -39,7 +39,7 @@ public class LocalExtremaFinder {
             ratingsComparedToLeftShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
         }
 
-        List<Boolean> extremaSignals = getExtremaSignals(ratingsComparedToRightShiftedRatings, ratingsComparedToLeftShiftedRatings);
+        List<Boolean> extremaSignals = getExtremaSignals(ratingsComparedToLeftShiftedRatings, ratingsComparedToRightShiftedRatings);
 
         int shift = (ratingsCount - extremaSignals.size()) / 2;
 
@@ -64,37 +64,37 @@ public class LocalExtremaFinder {
         }
     }
 
-    private List<Boolean> isEachRatingSmallerThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
-        return compareEachRatingWithShiftedEquivalent(inputList, shiftedList, Extremum.MINIMUM, localExtremaFinderConfigurator.getMinimumExistenceSensitivity());
+    private List<Boolean> isEachRatingSmallerThenShiftedEquivalent(List<Rating> inputRatings, List<Rating> shiftedRatings) {
+        return compareEachRatingWithShiftedEquivalent(inputRatings, shiftedRatings, Extremum.MINIMUM, localExtremaFinderConfigurator.getMinimumExistenceSensitivity());
     }
 
-    private List<Boolean> isEachRatingGreaterThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
-        return compareEachRatingWithShiftedEquivalent(inputList, shiftedList, Extremum.MAXIMUM, localExtremaFinderConfigurator.getMaximumExistenceSensitivity());
+    private List<Boolean> isEachRatingGreaterThenShiftedEquivalent(List<Rating> inputRatings, List<Rating> shiftedRatings) {
+        return compareEachRatingWithShiftedEquivalent(inputRatings, shiftedRatings, Extremum.MAXIMUM, localExtremaFinderConfigurator.getMaximumExistenceSensitivity());
     }
 
-    private List<Boolean> compareEachRatingWithShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList, Extremum extremum, BigDecimal extremumExistenceSensitivity) {
-        int shift = (inputList.size() - shiftedList.size()) / 2;
-        List<Boolean> verificationList = new ArrayList<>();
+    private List<Boolean> compareEachRatingWithShiftedEquivalent(List<Rating> inputRatings, List<Rating> shiftedRatings, Extremum extremum, BigDecimal extremumExistenceSensitivity) {
+        int shift = (inputRatings.size() - shiftedRatings.size()) / 2;
+        List<Boolean> verification = new ArrayList<>();
 
-        for (int i = shift; i < inputList.size() - shift; i++) {
-            BigDecimal inputListCloseValue = inputList.get(i).getCloseValue();
-            BigDecimal shiftedListCloseValue = shiftedList.get(i - shift).getCloseValue();
+        for (int i = shift; i < inputRatings.size() - shift; i++) {
+            BigDecimal inputListCloseValue = inputRatings.get(i).getCloseValue();
+            BigDecimal shiftedListCloseValue = shiftedRatings.get(i - shift).getCloseValue();
             BigDecimal difference = inputListCloseValue.subtract(shiftedListCloseValue);
 
             if (difference.compareTo(extremumExistenceSensitivity) == extremum.getValue()) {
-                verificationList.add(Boolean.TRUE);
+                verification.add(Boolean.TRUE);
             } else {
-                verificationList.add(Boolean.FALSE);
+                verification.add(Boolean.FALSE);
             }
         }
-        return verificationList;
+        return verification;
     }
 
-    private List<Boolean> getExtremaSignals(List<Boolean> firstList, List<Boolean> secondList) {
+    private List<Boolean> getExtremaSignals(List<Boolean> leftVerification, List<Boolean> rightVerification) {
         List<Boolean> extremaSignals = new ArrayList<>();
 
-        for (int i = 0; i < firstList.size(); i++) {
-            if (firstList.get(i) && secondList.get(i)) {
+        for (int i = 0; i < leftVerification.size(); i++) {
+            if (leftVerification.get(i) && rightVerification.get(i)) {
                 extremaSignals.add(Boolean.TRUE);
             } else {
                 extremaSignals.add(Boolean.FALSE);
