@@ -15,7 +15,7 @@ public class MenuOfExtreme {
         int chooseExtreme = answer.nextInt();
         switch (chooseExtreme) {
             case 1:
-                LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(fund, new LocalExtremaFinderConfigurator(2, 2, BigDecimal.TEN, BigDecimal.TEN));
+                LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(fund, new LocalExtremaFinderConfigurator(30, 30, BigDecimal.valueOf(20), BigDecimal.valueOf(20)));
 
                 System.out.println("Lokalne maksima:");
                 for (Rating rating : localExtremaFinder.getMaximumExtremaRatings()) {
