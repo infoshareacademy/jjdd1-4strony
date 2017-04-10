@@ -65,14 +65,14 @@ public class LocalExtremaFinder {
     }
 
     private List<Boolean> isEachRatingSmallerThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
-        return compareEachRatingWithShiftedEquivalent(inputList, shiftedList, localExtremaFinderConfigurator.getMinimumExistenceSensitivity(), Extremum.MINIMUM);
+        return compareEachRatingWithShiftedEquivalent(inputList, shiftedList, Extremum.MINIMUM, localExtremaFinderConfigurator.getMinimumExistenceSensitivity());
     }
 
     private List<Boolean> isEachRatingGreaterThenShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList) {
-        return compareEachRatingWithShiftedEquivalent(inputList, shiftedList, localExtremaFinderConfigurator.getMaximumExistenceSensitivity(), Extremum.MAXIMUM);
+        return compareEachRatingWithShiftedEquivalent(inputList, shiftedList, Extremum.MAXIMUM, localExtremaFinderConfigurator.getMaximumExistenceSensitivity());
     }
 
-    private List<Boolean> compareEachRatingWithShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList, BigDecimal existenceSensitivity, Extremum extremum) {
+    private List<Boolean> compareEachRatingWithShiftedEquivalent(List<Rating> inputList, List<Rating> shiftedList, Extremum extremum, BigDecimal extremumExistenceSensitivity) {
         int shift = (inputList.size() - shiftedList.size()) / 2;
         List<Boolean> verificationList = new ArrayList<>();
 
@@ -81,7 +81,7 @@ public class LocalExtremaFinder {
             BigDecimal shiftedListCloseValue = shiftedList.get(i - shift).getCloseValue();
             BigDecimal difference = inputListCloseValue.subtract(shiftedListCloseValue);
 
-            if (difference.compareTo(existenceSensitivity) == extremum.getValue()) {
+            if (difference.compareTo(extremumExistenceSensitivity) == extremum.getValue()) {
                 verificationList.add(Boolean.TRUE);
             } else {
                 verificationList.add(Boolean.FALSE);
