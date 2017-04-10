@@ -8,6 +8,7 @@ import java.util.TreeSet;
 
 public class InvestFundFactory {
     public static InvestFund getInvestFund(String id, String name) throws IOException, ParseException {
+
         TextFileReader textFileReader = new TextFileReader()
         String id = textFileReader.getFileNameWithoutExtension();
 

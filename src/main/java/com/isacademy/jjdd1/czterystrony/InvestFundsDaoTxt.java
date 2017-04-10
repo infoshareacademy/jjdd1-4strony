@@ -7,51 +7,45 @@ import java.util.*;
 
 public class InvestFundsDaoTxt implements InvestFundsDao {
 
-//    private Map<String, InvestFund> investFunds = new TreeMap<>();
-//    public InvestFundsDaoTxt() {
-//        File investFundsList = new File(INVEST_FUNDS_LIST_DIRECTORY);
-//
-//        File[] textFiles = new File(INVEST_FUNDS_DATA_FOLDER_DIRECTORY).listFiles();
-//        if (textFiles != null) {
-//            collectInvestFunds(textFiles);
-//        }
-//    }
-//    private void collectInvestFunds(File[] textFiles) {
-//        for (File textFile : textFiles) {
-//            TextFileReader textFileReader = new TextFileReader(textFile);
-//            try {
-//                InvestFund investFund = InvestFundFactory.getInvestFund(textFileReader);
-////                if (investFund.getName().equals("AIP021")) {
-////                    investFund.promote(100);
-////                }
-//                investFunds.put(investFund.getName(), investFund);
-//            } catch (ParseException | IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
     @Override
     public InvestFund get(String investFundId) {
-        File investFundsList = new File(INVEST_FUNDS_LIST_DIRECTORY);
-        TextFileReader textFileReader = new TextFileReader(investFundsList);
-
-        List<String> records = textFileReader.getContentList();
+        List<String> records = getListOfInvestFunds();
+        InvestFund investFund = new InvestFund.Builder().build();
 
         for (String record : records) {
             if (record.substring(BEGIN_OF_INVEST_FUND_ID, END_OF_INVEST_FUND_ID).equals(investFundId)) {
-                String investFundName = record.substring(BEGIN_OF_INVEST_FUND_NAME).trim()
-                InvestFund investFund = InvestFundFactory.getInvestFund(investFundId, investFundName);
+                String investFundName = record.substring(BEGIN_OF_INVEST_FUND_NAME).trim();
+
+                try {
+                    investFund = InvestFundFactory.getInvestFund(investFundId, investFundName);
+                } catch (ParseException | IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             }
         }
-
         return investFund;
     }
-n
+
     @Override
     public List<InvestFund> getAllByName() {
-        return new ArrayList<>(investFunds.values());
+        List<String> records = getListOfInvestFunds();
+        List<InvestFund> investFunds = new ArrayList<>();
+
+        for (String record : records) {
+            if (record.matches("(.*)txt(.*)")) {
+                String investFundId = record.substring(BEGIN_OF_INVEST_FUND_ID, END_OF_INVEST_FUND_ID);
+                String investFundName = record.substring(BEGIN_OF_INVEST_FUND_NAME).trim();
+
+                try {
+                    InvestFund investFund = InvestFundFactory.getInvestFund(investFundId, investFundName);
+                    investFunds.add(investFund);
+                } catch (ParseException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return investFunds;
     }
 
     @Override
@@ -59,5 +53,11 @@ n
         List<InvestFund> investFundsByPriority = getAllByName();
         investFundsByPriority.sort(Comparator.comparing(InvestFund::getPriority));
         return investFundsByPriority;
+    }
+
+    private List<String> getListOfInvestFunds() {
+        File investFundsList = new File(INVEST_FUNDS_LIST_DIRECTORY);
+        TextFileReader textFileReader = new TextFileReader(investFundsList);
+        return textFileReader.getContentList();
     }
 }
