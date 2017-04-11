@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        findLocalExtremaForGivenInvestFundTest("AIP003");
-//        findLocalExtremaOfAllInvestFundsTest();
-//        printAllInvestFundsByNameTest();
-//        printAllInvestFundsByPriorityTest();
-        findGlobalExtremaForGivenInvestFundTest("AIP003");
+//        findLocalExtremaForGivenInvestFundTest("AIP003");
+        findLocalExtremaOfAllInvestFundsTest();
+        printAllInvestFundsByNameTest();
+        printAllInvestFundsByPriorityTest();
+//        findGlobalExtremaForGivenInvestFundTest("AIP003");
     }
 
     public static void findLocalExtremaForGivenInvestFundTest(String investFundName) {

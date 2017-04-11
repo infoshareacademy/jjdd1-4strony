@@ -1,7 +1,6 @@
 package com.isacademy.jjdd1.czterystrony;
 
 import java.io.File;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +51,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
     }
 
     private Boolean ratingsDataFileExists(String ratingsDataFileName) {
-        File investFundDataFile = new File(InvestFundsDao.INVEST_FUNDS_DATA_FOLDER_DIRECTORY + "/" + ratingsDataFileName);
+        File investFundDataFile = new File(INVEST_FUNDS_DATA_FOLDER_DIRECTORY + "/" + ratingsDataFileName);
         return investFundDataFile.getAbsoluteFile().exists();
     }
 }
