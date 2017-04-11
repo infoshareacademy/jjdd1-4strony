@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        findLocalExtremaForGivenInvestFundTest("TEST");
-        findLocalExtremaOfAllInvestFundsTest();
-        printAllInvestFundsByNameTest();
-        printAllInvestFundsByPriorityTest();
-        findGlobalExtremaForGivenInvestFundTest("TEST");
+        findLocalExtremaForGivenInvestFundTest("AIP003");
+//        findLocalExtremaOfAllInvestFundsTest();
+//        printAllInvestFundsByNameTest();
+//        printAllInvestFundsByPriorityTest();
+        findGlobalExtremaForGivenInvestFundTest("AIP003");
     }
 
     public static void findLocalExtremaForGivenInvestFundTest(String investFundName) {
@@ -65,7 +65,7 @@ public class Main {
 
         System.out.println("\n\nInvest funds sorted by priority:");
         for (InvestFund investFund : investFundsDao.getAllByPriority()) {
-            System.out.println(investFund.getName() + " " + -investFund.getPriority());
+            System.out.println(investFund.getId() + " " + -investFund.getPriority());
         }
     }
 }

@@ -9,7 +9,7 @@ public class GlobalExtremaFinder {
     private List<Rating> ratings;
 
     public GlobalExtremaFinder(FinancialInstrument financialInstrument) {
-        this.ratings = new ArrayList<>(financialInstrument.getAllRatings());
+        this.ratings = new ArrayList<>(financialInstrument.getRatings());
     }
 
     public Rating getGlobalMinimum() {

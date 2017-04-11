@@ -1,5 +1,6 @@
 package com.isacademy.jjdd1.czterystrony;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
@@ -8,11 +9,9 @@ import java.util.TreeSet;
 
 public class InvestFundFactory {
     public static InvestFund getInvestFund(String id, String name) throws IOException, ParseException {
-
-        TextFileReader textFileReader = new TextFileReader()
-        String id = textFileReader.getFileNameWithoutExtension();
-
-        String company = investFundName.substring(0, 2);
+        File investFundDataFile = new File(InvestFundsDao.INVEST_FUNDS_DATA_FOLDER_DIRECTORY + "/" + id + ".txt");
+        TextFileReader textFileReader = new TextFileReader(investFundDataFile);
+        String company = name.replaceAll(" .+$", "");
         List<String> records = textFileReader.getContentList();
         Set<Rating> ratings = getRatings(records);
 
