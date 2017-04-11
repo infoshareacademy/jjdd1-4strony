@@ -1,36 +1,30 @@
 package com.isacademy.jjdd1.czterystrony;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class InvestFundFactory {
-    public static InvestFund getInvestFund(String id, String name) throws IOException, ParseException {
-        File investFundDataFile = new File(InvestFundsDao.INVEST_FUNDS_DATA_FOLDER_DIRECTORY + "/" + id + ".txt");
+    public static InvestFund create(String ratingsDataFileName, String investFundName) {
+        String company = investFundName.replaceAll(" .+$", "");
+        File investFundDataFile = new File(InvestFundsDao.INVEST_FUNDS_DATA_FOLDER_DIRECTORY + "/" + ratingsDataFileName);
         TextFileReader textFileReader = new TextFileReader(investFundDataFile);
-        String company = name.replaceAll(" .+$", "");
-        List<String> records = textFileReader.getContentList();
-        Set<Rating> ratings = getRatings(records);
+        List<String> records = textFileReader.getContent();
+        List<Rating> ratings = getRatings(records);
 
-        InvestFund investFund = new InvestFund.Builder()
-                .withId(id)
-                .withName(name)
+        return new InvestFund.Builder()
+                .withId(ratingsDataFileName)
+                .withName(investFundName)
                 .withCompany(company)
                 .withRatings(ratings)
                 .build();
-
-        return investFund;
     }
 
-    private static Set<Rating> getRatings(List<String> records) throws ParseException{
-        Set<Rating> ratings = new TreeSet<>();
-        for (String record : records) {
-            Rating rating = RatingFactory.create(record);
-            ratings.add(rating);
-        }
-        return ratings;
+    private static List<Rating> getRatings(List<String> records) {
+        return records.stream()
+                .skip(1)
+                .map(RatingFactory::create)
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

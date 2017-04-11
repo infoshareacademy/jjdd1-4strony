@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony;
 
-import java.util.Set;
+import java.util.List;
 
 public class InvestFund extends FinancialInstrument implements Promotable {
     private int priority;
@@ -25,7 +25,7 @@ public class InvestFund extends FinancialInstrument implements Promotable {
         }
 
         @Override
-        public Builder withRatings(Set<Rating> ratings) {
+        public Builder withRatings(List<Rating> ratings) {
             return (Builder) super.withRatings(ratings);
         }
 
@@ -41,16 +41,24 @@ public class InvestFund extends FinancialInstrument implements Promotable {
         this.priority = 0;
     }
 
-    @Override
-    public void promote(int priority) {
-        this.priority = (priority > 0) ? -priority : 0;
-    }
-
     public String getCompany() {
         return company;
     }
 
     public int getPriority() {
         return priority;
+    }
+
+    @Override
+    public void promote(int priority) {
+        this.priority = (priority > 0) ? -priority : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Company: " + getCompany() +
+                "\nName: " + getName() +
+                "\nPriority: " + getPriority() +
+                "\nRatings count: " + getRatings().size();
     }
 }

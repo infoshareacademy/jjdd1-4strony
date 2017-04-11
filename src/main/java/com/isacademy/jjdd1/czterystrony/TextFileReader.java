@@ -16,18 +16,13 @@ public class TextFileReader {
         this.filePath = Paths.get(file.getAbsolutePath());
     }
 
-    public List<String> getContentList() {
+    public List<String> getContent() {
         List<String> content = new ArrayList<>();
         try {
             content = Files.readAllLines(filePath, StandardCharsets.UTF_8);
-            content.remove(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return content;
-    }
-
-    public String getFileNameWithoutExtension() {
-        return filePath.getFileName().toString().split("\\.")[0];
     }
 }

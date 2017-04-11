@@ -2,18 +2,16 @@ package com.isacademy.jjdd1.czterystrony;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class FinancialInstrument {
     private String id;
     private String name;
-    private Set<Rating> ratings = new TreeSet<>();
+    private List<Rating> ratings = new ArrayList<>();
 
     public static class Builder {
         private String id;
         private String name;
-        private Set<Rating> ratings;
+        private List<Rating> ratings = new ArrayList<>();
 
         public Builder withId(String id) {
             this.id = id;
@@ -25,7 +23,7 @@ public class FinancialInstrument {
             return this;
         }
 
-        public Builder withRatings(Set<Rating> ratings) {
+        public Builder withRatings(List<Rating> ratings) {
             this.ratings = ratings;
             return this;
         }
@@ -38,6 +36,7 @@ public class FinancialInstrument {
     public FinancialInstrument(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
+        this.ratings = builder.ratings;
     }
 
     public String getId() {
@@ -49,6 +48,6 @@ public class FinancialInstrument {
     }
 
     public List<Rating> getRatings() {
-        return new ArrayList<>(ratings);
+        return ratings;
     }
 }
