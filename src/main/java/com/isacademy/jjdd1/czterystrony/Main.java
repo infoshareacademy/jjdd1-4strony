@@ -1,5 +1,13 @@
 package com.isacademy.jjdd1.czterystrony;
 
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
+import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
+import com.isacademy.jjdd1.czterystrony.instruments.Rating;
+import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaFinder;
+import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinder;
+import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinderConfigurator;
+
 import java.math.BigDecimal;
 import java.util.List;
 

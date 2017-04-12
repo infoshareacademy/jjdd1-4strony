@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.instruments;
 
 import java.util.List;
 

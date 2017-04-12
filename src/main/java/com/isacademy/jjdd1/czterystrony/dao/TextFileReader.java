@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.dao;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;

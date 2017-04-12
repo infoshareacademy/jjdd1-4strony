@@ -1,4 +1,10 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.ui;
+
+import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
+import com.isacademy.jjdd1.czterystrony.instruments.Rating;
+import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaFinder;
+import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinder;
+import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinderConfigurator;
 
 import java.math.BigDecimal;
 import java.util.List;

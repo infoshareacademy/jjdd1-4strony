@@ -1,4 +1,6 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.dao;
+
+import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 
 import java.io.File;
 import java.util.Comparator;

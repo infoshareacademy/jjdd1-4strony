@@ -1,4 +1,7 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.dao;
+
+import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
+import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 
 import java.io.File;
 import java.util.List;
