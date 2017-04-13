@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class MenuOfExtreme {
     public MenuOfExtreme(InvestFund fund) {
+        System.out.println("Jesteś w funduszu " + fund.getName());
         System.out.println("Wybierz co chcesz zrobić:");
         System.out.println("[1] Ekstrema lokalne");
         System.out.println("[2] Ekstrema globalne");
@@ -33,6 +34,7 @@ public class MenuOfExtreme {
                     System.out.println(rating);
                 }
 
+                System.out.println("Jesteś w funduszu " + fund.getName());
                 System.out.println("Wybierz co chcesz zrobić:");
                 System.out.println("[1] Wybierz nowy fundusz.");
                 System.out.println("[2] Powrót");
@@ -62,6 +64,7 @@ public class MenuOfExtreme {
                 for (Rating extremaRating : extremaRatings) {
                     System.out.println("dane rating " + extremaRating);
                 }
+                System.out.println("Jesteś w funduszu " + fund.getName());
                 System.out.println("Wybierz co chcesz zrobić:");
                 System.out.println("[1] Wybierz nowy fundusz.");
                 System.out.println("[2] Powrót");
