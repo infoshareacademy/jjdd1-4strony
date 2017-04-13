@@ -16,7 +16,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
 
     @Override
     public InvestFund get(String investFundName) {
-        Map<String, String> ratingsDataFileToName = ratingsDataFileToName();
+        Map<String, String> ratingsDataFileToName = ratingsDataFileToInvestFundName();
         return ratingsDataFileToName.entrySet().stream()
                 .filter(s -> s.getValue().matches(investFundName))
                 .map(s -> InvestFundFactory.create(s.getKey(), investFundName))
@@ -26,7 +26,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
 
     @Override
     public List<InvestFund> getAllByName() {
-        Map<String, String> ratingsDataFileToName = ratingsDataFileToName();
+        Map<String, String> ratingsDataFileToName = ratingsDataFileToInvestFundName();
         return ratingsDataFileToName.entrySet().stream()
                 .map(s -> InvestFundFactory.create(s.getKey(), s.getValue()))
                 .sorted(Comparator.comparing(InvestFund::getName))
@@ -35,7 +35,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
 
     @Override
     public List<InvestFund> getAllByPriority() {
-        Map<String, String> ratingsDataFileToName = ratingsDataFileToName();
+        Map<String, String> ratingsDataFileToName = ratingsDataFileToInvestFundName();
 
         return ratingsDataFileToName.entrySet().stream()
                 .map(s -> InvestFundFactory.create(s.getKey(), s.getValue()))
@@ -43,7 +43,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
                 .collect(Collectors.toList());
     }
 
-    private Map<String, String> ratingsDataFileToName() {
+    private Map<String, String> ratingsDataFileToInvestFundName() {
         File fileWithInvestFundsList = new File(INVEST_FUNDS_LIST_DIRECTORY);
         TextFileReader textFileReader = new TextFileReader(fileWithInvestFundsList);
 
