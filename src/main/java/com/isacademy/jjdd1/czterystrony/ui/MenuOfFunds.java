@@ -1,4 +1,8 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.ui;
+
+import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 
 import java.util.*;
 
@@ -15,7 +19,7 @@ public class MenuOfFunds {
 
         System.out.println("Wpisz nazwę wybranego funduszu, aby przejść dalej:");
         Scanner choice = new Scanner(System.in);
-        String fund = choice.nextLine().toUpperCase();//fundusz wybrany przez użytkownika
+        String fund = choice.nextLine();//fundusz wybrany przez użytkownika
         InvestFund investFund = investFundDao.get(fund);
         MenuOfExtreme menuExtreme = new MenuOfExtreme(investFund);
 //        investFund.getAllRatings();

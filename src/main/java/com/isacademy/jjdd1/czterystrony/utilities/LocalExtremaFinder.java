@@ -1,4 +1,7 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.utilities;
+
+import com.isacademy.jjdd1.czterystrony.instruments.FinancialInstrument;
+import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -11,7 +14,7 @@ public class LocalExtremaFinder {
     private LocalExtremaFinderConfigurator localExtremaFinderConfigurator;
 
     public LocalExtremaFinder(FinancialInstrument financialInstrument, LocalExtremaFinderConfigurator localExtremaFinderConfigurator) {
-        this.ratings = financialInstrument.getAllRatings();
+        this.ratings = financialInstrument.getRatings();
         this.ratingsCount = ratings.size();
         this.localExtremaFinderConfigurator = localExtremaFinderConfigurator;
     }

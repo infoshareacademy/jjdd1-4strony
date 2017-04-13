@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.ui;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ public class MainMenu {
     private final static Logger LOGGER = LoggerFactory.getLogger(MainMenu.class);
 
     public static void main(String[] args) {
-        System.out.println("Witaj w analizatorze funduszy inwestycyjnych. Wybierz co chcesz zrobić:");
+        System.out.println("Witaj w InvenstFundAnalyzer!\nWybierz co chcesz zrobić:");
         System.out.println("[1]. Rozpocznij");
         System.out.println("[0]. Wyjdź");
         Scanner answer = new Scanner(System.in);

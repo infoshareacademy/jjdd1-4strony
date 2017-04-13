@@ -1,16 +1,24 @@
 package com.isacademy.jjdd1.czterystrony;
 
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
+import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
+import com.isacademy.jjdd1.czterystrony.instruments.Rating;
+import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaFinder;
+import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinder;
+import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinderConfigurator;
+
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        findLocalExtremaForGivenInvestFundTest("TEST");
+//        findLocalExtremaForGivenInvestFundTest("AIP003");
         findLocalExtremaOfAllInvestFundsTest();
         printAllInvestFundsByNameTest();
         printAllInvestFundsByPriorityTest();
-        findGlobalExtremaForGivenInvestFundTest("TEST");
+//        findGlobalExtremaForGivenInvestFundTest("AIP003");
     }
 
     public static void findLocalExtremaForGivenInvestFundTest(String investFundName) {
@@ -66,7 +74,7 @@ public class Main {
 
         System.out.println("\n\nInvest funds sorted by priority:");
         for (InvestFund investFund : investFundsDao.getAllByPriority()) {
-            System.out.println(investFund.getName() + " " + -investFund.getPriority());
+            System.out.println(investFund.getId() + " " + -investFund.getPriority());
         }
     }
 }
