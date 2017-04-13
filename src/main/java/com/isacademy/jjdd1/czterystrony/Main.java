@@ -1,5 +1,6 @@
 package com.isacademy.jjdd1.czterystrony;
 
+
 import java.math.BigDecimal;
 import java.util.List;
 
