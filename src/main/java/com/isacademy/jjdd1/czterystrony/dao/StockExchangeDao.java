@@ -1,9 +1,10 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.dao;
+
+import com.isacademy.jjdd1.czterystrony.instruments.FinancialInstrument;
 
 import java.util.List;
 
 public interface StockExchangeDao<T extends FinancialInstrument> {
-    void add(T instrument);
 
     T get(String instrumentName);
 

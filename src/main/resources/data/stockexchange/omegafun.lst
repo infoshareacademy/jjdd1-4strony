@@ -1,0 +1,325 @@
+-------------------------------------------------------------------------
+data          czas      rozmiar  plik              opis
+-------------------------------------------------------------------------
+2017-03-28    23:59       31 kB  OPE033.txt        NOVO Akcji Globalnych
+2017-03-28    23:59      216 kB  SEB001.txt        NOVO Zrownowazonego Wzrostu
+2017-03-28    23:59      217 kB  SEB002.txt        NOVO Obligacji Przedsiebiorstw
+2017-03-28    23:59      215 kB  SEB003.txt        NOVO Akcji          
+2017-03-28    23:59      202 kB  SEB004.txt        NOVO Stabilnego Wzrostu
+2017-03-28    23:59      186 kB  SEB005.txt        NOVO Papierow Dluznych
+2017-03-28    23:59      100 kB  SEB009.txt        NOVO Gotowkowy      
+2017-03-28    23:59       82 kB  SEB017.txt        NOVO Aktywnej Alokacji
+2017-03-28    23:59      226 kB  UI_001.txt        UNIKorona Pieniezny 
+2017-03-28    23:59      201 kB  UI_002.txt        UNIKorona Obligacje 
+2017-03-28    23:59      244 kB  UI_003.txt        UNIKorona Zrownowazony
+2017-03-28    23:59      224 kB  UI_005.txt        UNIKorona Akcje     
+2017-03-28    23:59      172 kB  UI_008.txt        UNIWIBID Plus       
+2017-03-28    23:59      118 kB  UI_012.txt        UNIAkcje Nowa Europa
+2017-03-28    23:59      108 kB  UI_017.txt        UNIObligacje Nowa Europa
+2017-03-28    23:59      109 kB  UI_018.txt        UNIStabilny Wzrost  
+2017-03-28    23:59      100 kB  UI_019.txt        UNIAkcje Wzrostu    
+2017-03-28    23:59      100 kB  UI_021.txt        UNIAkcje Malych i Srednich Spolek
+2017-03-28    23:59       68 kB  UI_025.txt        UNIObligacje Aktywny
+2017-03-28    23:59       59 kB  UI_027.txt        UniLokata           
+2017-03-28    23:59       41 kB  UI_029.txt        UniAkcje Turcja     
+2017-03-28    23:59       44 kB  UI_030.txt        UniAkcje Dywidendowy
+2017-03-28    23:59       26 kB  UI_034.txt        UNIStrategie Dynamiczny
+2017-03-28    23:59       26 kB  UI_036.txt        UNIAkcje: Daleki Wschod
+2017-03-28    23:59       21 kB  UI_038.txt        UniAbsolute Return Uniwersalny
+2017-03-28    23:59       18 kB  UI_041.txt        UNIAkcje Globalny Dywidendowy
+2017-03-28    23:59       18 kB  UI_042.txt        UNIAkcje Biopharma  
+2017-03-28    23:59       15 kB  UI_044.txt        UNIAktywny Pieniezny
+2017-03-27    23:59       56 kB  AGI004.txt        AGIO Kapital PLUS   
+2017-03-27    23:59       13 kB  AGI043.txt        AGIO Stabilny PLUS  
+2017-03-27    23:59       13 kB  AGI044.txt        AGIO Akcji PLUS     
+2017-03-27    23:59       13 kB  AGI045.txt        AGIO Obligacji PLUS 
+2017-03-27    23:59      107 kB  AIG001.txt        MetLife Obligacji Skarbowych
+2017-03-27    23:59      122 kB  AIG002.txt        MetLife Aktywnej Alokacji
+2017-03-27    23:59      134 kB  AIG003.txt        MetLife Stabilnego Wzrostu
+2017-03-27    23:59      134 kB  AIG004.txt        MetLife Akcji       
+2017-03-27    23:59      125 kB  AIG005.txt        MetLife Pieniezny   
+2017-03-27    23:59      119 kB  AIG006.txt        MetLife Zrownowazony Nowa Europa
+2017-03-27    23:59       97 kB  AIG007.txt        MetLife Akcji Srednich Spolek
+2017-03-27    23:59      109 kB  AIG008.txt        MetLife Lokacyjny   
+2017-03-27    23:59      109 kB  AIG009.txt        MetLife Obligacji Plus
+2017-03-27    23:59       99 kB  AIG010.txt        MetLife Akcji Malych Spolek
+2017-03-27    23:59       98 kB  AIG011.txt        MetLife Ochrony Wzrostu
+2017-03-27    23:59      101 kB  AIG012.txt        MetLife Akcji Nowa Europa
+2017-03-27    23:59       98 kB  AIG013.txt        MetLife Akcji Polskich
+2017-03-27    23:59       98 kB  AIG014.txt        MetLife Obligacji Swiatowych
+2017-03-27    23:59      101 kB  AIG015.txt        MetLife Akcji Amerykanskich
+2017-03-27    23:59      106 kB  AIG016.txt        MetLife Zrownowazony Azjatycki
+2017-03-27    23:59       40 kB  AIG017.txt        MetLife Akcji Rynkow Rozwinietych
+2017-03-27    23:59       94 kB  AIG018.txt        MetLife Akcji Rynkow Wschodzacych
+2017-03-27    23:59      102 kB  AIG019.txt        MetLife Akcji Chinskich i Azjatyckich
+2017-03-27    23:59      171 kB  AIP001.txt        AVIVA Depozyt Plus  
+2017-03-27    23:59      172 kB  AIP002.txt        AVIVA Obligacji     
+2017-03-27    23:59      171 kB  AIP003.txt        AVIVA Polskich Akcji
+2017-03-27    23:59      171 kB  AIP004.txt        AVIVA Stabilnego Inwestowania
+2017-03-27    23:59      143 kB  AIP005.txt        AVIVA Ochrony Kapitalu Plus
+2017-03-27    23:59      134 kB  AIP006.txt        AVIVA Aktywnej Alokacji
+2017-03-27    23:59      114 kB  AIP007.txt        AVIVA Zrownowazony  
+2017-03-27    23:59       98 kB  AIP008.txt        AVIVA Akcji Europy Wschodzacej
+2017-03-27    23:59      100 kB  AIP009.txt        AVIVA Nowoczesnych Technologii
+2017-03-27    23:59      101 kB  AIP010.txt        AVIVA Malych Spolek 
+2017-03-27    23:59      101 kB  AIP011.txt        AVIVA Nowych Spolek 
+2017-03-27    23:59       78 kB  AIP016.txt        AVIVA Optymalnego Wzrostu
+2017-03-27    23:59       66 kB  AIP017.txt        AVIVA Akcji Rynkow Wschodzacych
+2017-03-27    23:59       61 kB  AIP018.txt        AVIVA Obligacji Dynamiczny
+2017-03-27    23:59       61 kB  AIP019.txt        AVIVA Dluznych Papierow Korporacyjnych
+2017-03-27    23:59       26 kB  AIP021.txt        AVIVA Obligacji Zamiennych
+2017-03-27    23:59       15 kB  AIP099.txt        AVIVA Oszczednosciowy
+2017-03-27    23:59       51 kB  ALT001.txt        ALTUS Absolutnej St. Zwr. Rynku Pol.
+2017-03-27    23:59       44 kB  ALT022.txt        ALTUS Stabilnego Wzrostu
+2017-03-27    23:59       40 kB  ALT023.txt        ALTUS Aktywnego Zarzadzania
+2017-03-27    23:59       38 kB  ALT024.txt        ALTUS Pieniezny     
+2017-03-27    23:59       34 kB  ALT920.txt        ALTUS Absolutnej Stopy Zwrotu Nowej Europy
+2017-03-27    23:59       34 kB  ALT921.txt        ALTUS Optymalnego Wzrostu
+2017-03-27    23:59       51 kB  ALT991.txt        ALTUS Absolutnej St. Zwr. Dluzny
+2017-03-27    23:59       51 kB  ALT992.txt        ALTUS Akcji         
+2017-03-27    23:59       48 kB  ALT993.txt        ALTUS Short         
+2017-03-27    23:59      224 kB  BPH001.txt        BPH Obligacji 2     
+2017-03-27    23:59      203 kB  BPH002.txt        BPH Akcji           
+2017-03-27    23:59      206 kB  BPH003.txt        BPH Obligacji 1     
+2017-03-27    23:59      154 kB  BPH004.txt        BPH Zrownowazony    
+2017-03-27    23:59      181 kB  BPH005.txt        BPH Akcji Dynamicznych Spolek
+2017-03-27    23:59      170 kB  BPH006.txt        BPH Akcji Rynkow Wschodzacych
+2017-03-27    23:59      204 kB  BPH007.txt        BPH Stabilnego Wzrostu
+2017-03-27    23:59      210 kB  BPH008.txt        BPH Skarbowy        
+2017-03-27    23:59      177 kB  BPH009.txt        BPH Obligacji Korporacyjnych
+2017-03-27    23:59      105 kB  BPH022.txt        BPH FIO Strategii Akcyjnej
+2017-03-27    23:59       94 kB  BPH023.txt        BPH Globalny Zywnosci i Surowcow
+2017-03-27    23:59       91 kB  BPH024.txt        BPH Akcji Globalny  
+2017-03-27    23:59       91 kB  BPH025.txt        BPH Selektywny      
+2017-03-27    23:59       31 kB  BPH028.txt        BPH Pieniezny       
+2017-03-27    23:59       13 kB  BPH033.txt        BPH Dywidendowy     
+2017-03-27    23:59       67 kB  BPS001.txt        BPS Pieniezny FIO   
+2017-03-27    23:59       67 kB  BPS002.txt        BPS Obligacji FIO   
+2017-03-27    23:59       66 kB  BPS003.txt        BPS Stabilnego Wzrostu FIO
+2017-03-27    23:59       63 kB  BPS004.txt        BPS Akcji FIO       
+2017-03-27    23:59       43 kB  BPS005.txt        BPS Plynnosciowy SFIO
+2017-03-27    23:59       43 kB  BPS006.txt        BPS Obligacji Korporacyjnych SFIO
+2017-03-27    23:59      220 kB  DWS001.txt        INVESTOR Zrownowazony
+2017-03-27    23:59      220 kB  DWS002.txt        INVESTOR Obligacji  
+2017-03-27    23:59      219 kB  DWS003.txt        INVESTOR Akcji Spolek Dywidendowych
+2017-03-27    23:59      215 kB  DWS004.txt        INVESTOR Akcji      
+2017-03-27    23:59      199 kB  DWS005.txt        INVESTOR Plynna Lokata
+2017-03-27    23:59      182 kB  DWS006.txt        INVESTOR Zabezp. Emerytalnego
+2017-03-27    23:59      165 kB  DWS011.txt        INVESTOR Top 25 Malych Spolek
+2017-03-27    23:59      108 kB  DWS016.txt        INVESTOR Top 50 MiS Spolek
+2017-03-27    23:59       92 kB  DWS019.txt        INVESTOR BRIC       
+2017-03-27    23:59       84 kB  DWS020.txt        INVESTOR Sektora Nier. i Budown.
+2017-03-27    23:59       91 kB  DWS022.txt        INVESTOR Nowych Technologii
+2017-03-27    23:59      100 kB  DWS024.txt        INVESTOR Gotowkowy  
+2017-03-27    23:59       92 kB  DWS025.txt        INVESTOR Gold Otwarty
+2017-03-27    23:59       92 kB  DWS026.txt        INVESTOR Niemcy     
+2017-03-27    23:59       92 kB  DWS027.txt        INVESTOR Rosja      
+2017-03-27    23:59       92 kB  DWS028.txt        INVESTOR Turcja     
+2017-03-27    23:59       92 kB  DWS029.txt        INVESTOR Indie i Chiny
+2017-03-27    23:59       92 kB  DWS031.txt        INVESTOR Ameryka Lacinska
+2017-03-27    23:59       22 kB  DWS034.txt        INVESTOR Obligacji Korporacyjnych
+2017-03-27    23:59       22 kB  DWS035.txt        INVESTOR Obligacji Rynkow Wschodzacych Plus
+2017-03-27    23:59       22 kB  DWS036.txt        INVESTOR Akcji Spolek Wzrostowych
+2017-03-27    23:59       22 kB  DWS037.txt        INVESTOR Bezpiecznego Wzrostu
+2017-03-27    23:59       22 kB  DWS038.txt        INVESTOR Akcji Rynkow Wschodzacych
+2017-03-27    23:59       51 kB  EQU001.txt        EQUES Akcji         
+2017-03-27    23:59       51 kB  EQU002.txt        EQUES Aktywnej Alokacji
+2017-03-27    23:59       51 kB  EQU003.txt        EQUES Obligacji     
+2017-03-27    23:59       51 kB  EQU004.txt        EQUES Pieniezny     
+2017-03-27    23:59      169 kB  KBC001.txt        KBC Aktywny         
+2017-03-27    23:59      169 kB  KBC003.txt        KBC Pieniezny       
+2017-03-27    23:59      175 kB  KBC004.txt        KBC Stabilny        
+2017-03-27    23:59      175 kB  KBC005.txt        KBC Papierow Dluznych
+2017-03-27    23:59      111 kB  KBC026.txt        KBC Akcyjny         
+2017-03-27    23:59      100 kB  KBC035.txt        KBC Akcji Malych i Srednich Sp. FIO
+2017-03-27    23:59       68 kB  KBC064.txt        KBC Globalny Akcyjny
+2017-03-27    23:59       67 kB  KBC065.txt        KBC Obligacji Korporacyjnych
+2017-03-27    23:59       56 kB  KBC070.txt        KBC Globalny Obligacyjny
+2017-03-27    23:59      175 kB  MIL001.txt        MILLENNIUM Akcji    
+2017-03-27    23:59      175 kB  MIL003.txt        MILLENNIUM Cyklu Koniunkturalnego
+2017-03-27    23:59      175 kB  MIL004.txt        MILLENNIUM Depozytowy
+2017-03-27    23:59      151 kB  MIL006.txt        MILLENNIUM Stabilnego Wzrostu
+2017-03-27    23:59      105 kB  MIL017.txt        MILLENNIUM Dynamicznych Spolek
+2017-03-27    23:59       96 kB  MIL019.txt        MILLENNIUM Absolute Return
+2017-03-27    23:59       99 kB  MIL020.txt        MILLENNIUM Obligacji Korporacyjnych
+2017-03-27    23:59       97 kB  MIL021.txt        MILLENNIUM Globalny Akcji
+2017-03-27    23:59       99 kB  MIL022.txt        MILLENNIUM Globalny Stabilnego Wzrostu
+2017-03-27    23:59       98 kB  MIL023.txt        MILLENNIUM Globalny Strategii Alternatywnych
+2017-03-27    23:59      118 kB  NOB001.txt        NOBLE FUND Pieniezny
+2017-03-27    23:59      117 kB  NOB002.txt        NOBLE FUND Mieszany 
+2017-03-27    23:59      117 kB  NOB003.txt        NOBLE FUND Akcji    
+2017-03-27    23:59      102 kB  NOB004.txt        NOBLE FUND Akcji Malych i Srednich Spolek
+2017-03-27    23:59      104 kB  NOB005.txt        NOBLE FUND Stab. Wzrostu Plus
+2017-03-27    23:59       99 kB  NOB006.txt        NOBLE FUND Timingowy
+2017-03-27    23:59       92 kB  NOB007.txt        NOBLE FUND Global Return
+2017-03-27    23:59       68 kB  NOB010.txt        NOBLE FUND Africa and Frontier
+2017-03-27    23:59       33 kB  NOB018.txt        NOBLE FUND Obligacji
+2017-03-27    23:59       49 kB  OFT001.txt        OPEN Akcji          
+2017-03-27    23:59       46 kB  OFT002.txt        OPEN MiS Spolek     
+2017-03-27    23:59       48 kB  OFT003.txt        OPEN Aktywnej Alokacji
+2017-03-27    23:59       50 kB  OFT004.txt        OPEN Obligacji      
+2017-03-27    23:59       50 kB  OFT005.txt        OPEN Pieniezny      
+2017-03-27    23:59       50 kB  OFT006.txt        OPEN Stabilnego Wzrostu
+2017-03-27    23:59      211 kB  SKA001.txt        SKARBIEC Obligacja  
+2017-03-27    23:59      223 kB  SKA002.txt        SKARBIEC Depozytowy 
+2017-03-27    23:59      214 kB  SKA003.txt        SKARBIEC Rynkow Wschodzacych
+2017-03-27    23:59      189 kB  SKA004.txt        SKARBIEC III Filar  
+2017-03-27    23:59      228 kB  SKA005.txt        SKARBIEC Kasa       
+2017-03-27    23:59      227 kB  SKA006.txt        SKARBIEC Waga       
+2017-03-27    23:59      224 kB  SKA007.txt        SKARBIEC Akcja      
+2017-03-27    23:59      177 kB  SKA008.txt        SKARBIEC Rynkow Rozwinietych
+2017-03-27    23:59      139 kB  SKA017.txt        SKARBIEC Top Funduszy Akcji SFIO
+2017-03-27    23:59      139 kB  SKA018.txt        SKARBIEC Top Fund. Stab. SFIO
+2017-03-27    23:59      117 kB  SKA024.txt        SKARBIEC Market Opportunities
+2017-03-27    23:59      104 kB  SKA027.txt        SKARBIEC Spolek Wzrostowych
+2017-03-27    23:59      102 kB  SKA028.txt        SKARBIEC Malych i Srednich Spolek
+2017-03-27    23:59      106 kB  SKA031.txt        SKARBIEC Globalny Malych i Srednich Spolek
+2017-03-27    23:59      101 kB  SKA033.txt        SKARBIEC Rynkow Surowcowych
+2017-03-27    23:59       97 kB  SKA034.txt        SKARBIEC Top Brands 
+2017-03-27    23:59       66 kB  SKA042.txt        SKARBIEC Lokacyjny  
+2017-03-27    23:59       47 kB  SKA049.txt        SKARBIEC Market Neutral
+2017-03-27    23:59       36 kB  SKA054.txt        SKARBIEC JPMorgan Emerging Markets Opportunities
+2017-03-27    23:59       37 kB  SKA055.txt        SKARBIEC JPMorgan Global High Yield Bond
+2017-03-27    23:59       37 kB  SKA056.txt        SKARBIEC JPMorgan Global Strategic Bond
+2017-03-27    23:59       37 kB  SKA057.txt        SKARBIEC JPMorgan Highbridge US STEEP
+2017-03-27    23:59       15 kB  SKA063.txt        SKARBIEC Obligacji Globalnych
+2017-03-27    23:59       10 kB  SKA070.txt        SKARBIEC JPMorgan Europe Strategic Dividend Fund Polska
+2017-03-27    23:59       10 kB  SKA071.txt        SKARBIEC JPMorgan Global Healthcare Fund Polska
+2017-03-27    23:59       10 kB  SKA072.txt        SKARBIEC JPMorgan Global Income Fund Polska
+2017-03-27    23:59       10 kB  SKA073.txt        SKARBIEC JPMorgan Global Macro Opportunities Fund Polska
+2017-03-27    23:59       76 kB  SUP001.txt        SUPERFUND SFIO RED  
+2017-03-27    23:59       77 kB  SUP002.txt        SUPERFUND SFIO Green
+2017-03-27    23:59       76 kB  SUP003.txt        SUPERFUND SFIO Blue 
+2017-03-27    23:59       63 kB  SUP004.txt        SUPERFUND Trend Plus Powiazany SFIO
+2017-03-27    23:59       66 kB  SUP006.txt        SUPERFUND Akcji     
+2017-03-27    23:59       72 kB  SUP007.txt        SUPERFUND SFIO Plynnosciowy
+2017-03-27    23:59       66 kB  SUP008.txt        SUPERFUND GoldFuture
+2017-03-27    23:59       36 kB  SUP009.txt        SUPERFUND Akcyjny   
+2017-03-27    23:59       38 kB  SUP010.txt        SUPERFUND Obligacyjny
+2017-03-27    23:59       38 kB  SUP011.txt        SUPERFUND Pieniezny 
+2017-03-27    23:59       37 kB  SUP012.txt        SUPERFUND Alternatywny
+2017-03-24    23:59      151 kB  ALL001.txt        ALLIANZ Akcji       
+2017-03-24    23:59      166 kB  ALL002.txt        ALLIANZ Obligacji Plus
+2017-03-24    23:59      151 kB  ALL003.txt        ALLIANZ Stabilnego Wzrostu
+2017-03-24    23:59      125 kB  ALL004.txt        ALLIANZ Aktywnej Alokacji
+2017-03-24    23:59      129 kB  ALL005.txt        ALLIANZ Pieniezny   
+2017-03-24    23:59      127 kB  ALL006.txt        ALLIANZ Polskich Obligacji Skarbowych
+2017-03-24    23:59      107 kB  ALL012.txt        ALLIANZ MiS Spolek  
+2017-03-24    23:59      101 kB  ALL014.txt        ALLIANZ Selektywny  
+2017-03-24    23:59       22 kB  ALL030.txt        ALLIANZ Akcji Azjatyckich
+2017-03-24    23:59       37 kB  ALL032.txt        ALLIANZ Akcji Globalnych
+2017-03-24    23:59       36 kB  ALL033.txt        ALLIANZ Surowcow i Energii
+2017-03-24    23:59       37 kB  ALL034.txt        ALLIANZ Obligacji Globalnych
+2017-03-24    23:59       17 kB  ALL035.txt        ALLIANZ Globalny Stabilnego Dochodu
+2017-03-24    23:59       14 kB  ALL036.txt        ALLIANZ Defensywna Multistrategia
+2017-03-24    23:59       14 kB  ALL037.txt        ALLIANZ Dynamiczna Multistrategia
+2017-03-24    23:59       14 kB  ALL038.txt        ALLIANZ Dywidendowy Akcji Europejskich
+2017-03-24    23:59        8 kB  ALL039.txt        ALLIANZ Malych Spolek Europejskich
+2017-03-24    23:59       14 kB  ALL040.txt        ALLIANZ Zbalansowana Multistrategia
+2017-03-24    23:59        9 kB  ALL042.txt        ALLIANZ Pieniezny Globalny
+2017-03-24    23:59        9 kB  ALL043.txt        ALLIANZ Europe Equity Growth Select
+2017-03-24    23:59        9 kB  ALL044.txt        ALLIANZ Flexi Asia Bond
+2017-03-24    23:59        9 kB  ALL045.txt        ALLIANZ PIMCO Global Low Duration Real Return
+2017-03-24    23:59        9 kB  ALL046.txt        ALLIANZ US Short Duration High Income Bond
+2017-03-24    23:59        9 kB  ALL047.txt        ALLIANZ India Equity
+2017-03-24    23:59        9 kB  ALL048.txt        ALLIANZ US Equity   
+2017-03-24    23:59        8 kB  ALL049.txt        ALLIANZ PIMCO Income
+2017-03-24    23:59        8 kB  ALL050.txt        ALLIANZ PIMCO Emerging Markets Bond
+2017-03-24    23:59        8 kB  ALL051.txt        ALLIANZ PIMCO Global Bond
+2017-03-24    23:59        8 kB  ALL052.txt        ALLIANZ PIMCO Global High Yield Bond
+2017-03-24    23:59        8 kB  ALL053.txt        ALLIANZ PIMCO Global Investment Grade Credit
+2017-03-24    23:59        8 kB  ALL054.txt        ALLIANZ PIMCO Emerging Local Bond
+2017-03-24    23:59       50 kB  CAS001.txt        CASPAR Akcji Polskich Kat. A
+2017-03-24    23:59       50 kB  CAS002.txt        CASPAR Akcji Europejskich Kat. A
+2017-03-24    23:59       47 kB  CAS003.txt        CASPAR Akcji Tureckich Kat. A
+2017-03-24    23:59       50 kB  CAS005.txt        CASPAR Ochrony Kapitalu Kat. A
+2017-03-24    23:59       14 kB  CAS006.txt        CASPAR Globalny Kat. S
+2017-03-24    23:59       28 kB  CAS902.txt        CASPAR Akcji Europejskich Kat. S
+2017-03-24    23:59      208 kB  ING001.txt        NN Akcji            
+2017-03-24    23:59      207 kB  ING002.txt        NN Zrownowazony     
+2017-03-24    23:59      187 kB  ING003.txt        NN Stabilnego Wzrostu
+2017-03-24    23:59      203 kB  ING004.txt        NN Gotowkowy        
+2017-03-24    23:59      203 kB  ING005.txt        NN Obligacji        
+2017-03-24    23:59      113 kB  ING006.txt        NN Srednich i Malych Spolek
+2017-03-24    23:59      100 kB  ING022.txt        NN Akcji Srodkowoeuropejskich
+2017-03-24    23:59      100 kB  ING024.txt        NN Lokacyjny Plus   
+2017-03-24    23:59       82 kB  ING025.txt        NN Globalny Spolek Dywidendowych
+2017-03-24    23:59       82 kB  ING026.txt        NN Spolek Dywidendowych USA
+2017-03-24    23:59       81 kB  ING027.txt        NN Europejski Spolek Dywidendowych
+2017-03-24    23:59       80 kB  ING033.txt        NN Japonia          
+2017-03-24    23:59       81 kB  ING034.txt        NN Nowej Azji       
+2017-03-24    23:59       78 kB  ING035.txt        NN Spolek Dywidendowych Rynkow Wschodzacych
+2017-03-24    23:59       76 kB  ING036.txt        NN Ameryki Lacinskiej
+2017-03-24    23:59       82 kB  ING038.txt        NN Globalny Dlugu Korporacyjnego
+2017-03-24    23:59       74 kB  ING042.txt        NN Dynamiczny Globalnej Alokacji
+2017-03-24    23:59       65 kB  ING043.txt        NN Depozytowy       
+2017-03-24    23:59       57 kB  ING044.txt        NN Obligacji Rynkow Wschodzacych (Waluta Lokalna)
+2017-03-24    23:59       50 kB  ING051.txt        NN Obligacyjny Globalnej Alokacji
+2017-03-24    23:59       35 kB  ING052.txt        NN Stabilny Globalnej Alokacji
+2017-03-24    23:59       76 kB  IPO054.txt        IPOPEMA m-INDEKS kat. A
+2017-03-24    23:59       60 kB  IPO062.txt        IPOPEMA Akcji kat. A
+2017-03-24    23:59       60 kB  IPO063.txt        IPOPEMA Makro Alokacji kat. A
+2017-03-24    23:59       60 kB  IPO064.txt        IPOPEMA Obligacji kat. A
+2017-03-24    23:59       49 kB  IPO082.txt        IPOPEMA Gotowkowy kat. A
+2017-03-24    23:59       46 kB  IPO083.txt        IPOPEMA MiS Spolek kat. A
+2017-03-24    23:59       40 kB  IPO084.txt        IPOPEMA Short Equity kat. A
+2017-03-24    23:59       17 kB  IPO099.txt        IPOPEMA Globalnych Megatrendow kat. A
+2017-03-24    23:59       21 kB  IPO145.txt        IPOPEMA Dluzny kat. A
+2017-03-24    23:59       21 kB  IPO945.txt        IPOPEMA Dluzny kat. B
+2017-03-24    23:59       73 kB  IPO954.txt        IPOPEMA m-INDEKS kat. B
+2017-03-24    23:59       57 kB  IPO962.txt        IPOPEMA Akcji kat. B
+2017-03-24    23:59       58 kB  IPO963.txt        IPOPEMA Makro Alokacji kat. B
+2017-03-24    23:59       60 kB  IPO964.txt        IPOPEMA Obligacji kat. B
+2017-03-24    23:59       49 kB  IPO982.txt        IPOPEMA Gotowkowy kat. B
+2017-03-24    23:59       46 kB  IPO983.txt        IPOPEMA MiS Spolek kat. B
+2017-03-24    23:59       39 kB  IPO984.txt        IPOPEMA Short Equity kat. B
+2017-03-24    23:59       17 kB  IPO999.txt        IPOPEMA Globalnych Megatrendow kat. B
+2017-03-24    23:59      219 kB  PKO001.txt        PKO Zrownowazony    
+2017-03-24    23:59      214 kB  PKO002.txt        PKO Stabilnego Wzrostu
+2017-03-24    23:59      201 kB  PKO005.txt        PKO Skarbowy        
+2017-03-24    23:59      149 kB  PKO006.txt        PKO Rynku Pienieznego
+2017-03-24    23:59      126 kB  PKO008.txt        PKO Akcji Nowa Europa
+2017-03-24    23:59      130 kB  PKO014.txt        PKO Obligacji Dlugoterminowych
+2017-03-24    23:59      124 kB  PKO015.txt        PKO Akcji MiS Spolek
+2017-03-24    23:59      105 kB  PKO020.txt        PKO Strategicznej Alokacji
+2017-03-24    23:59      104 kB  PKO021.txt        PKO Akcji Plus      
+2017-03-24    23:59      113 kB  PKO024.txt        PKO Papierow Dluznych Plus
+2017-03-24    23:59       77 kB  PKO026.txt        PKO Surowcow Globalny
+2017-03-24    23:59       80 kB  PKO027.txt        PKO Technologii i Innowacji Globalny
+2017-03-24    23:59       80 kB  PKO028.txt        PKO Dobr Luksusowych Globalny
+2017-03-24    23:59       74 kB  PKO029.txt        PKO Infrastruktury i Budownictwa Globalny
+2017-03-24    23:59        5 kB  PKO057.txt        PKO Medycyny i Demografii Globalny
+2017-03-24    23:59       21 kB  PKO097.txt        PKO Akcji Dywidendowych Globalny
+2017-03-24    23:59       37 kB  PKO098.txt        PKO Akcji Rynku Europejskiego
+2017-03-24    23:59       21 kB  PKO909.txt        PKO Akcji Rynku Zlota
+2017-03-24    23:59       21 kB  PKO910.txt        PKO Papierow Dluznych USD
+2017-03-24    23:59       20 kB  PKO913.txt        PKO Akcji Rynku Azji i Pacyfiku
+2017-03-24    23:59       20 kB  PKO918.txt        PKO Akcji Rynku Amerykanskiego
+2017-03-24    23:59       20 kB  PKO919.txt        PKO Akcji Rynku Japonskiego
+2017-03-24    23:59       20 kB  PKO925.txt        PKO Akcji Rynkow Wschodzacych
+2017-03-24    23:59      190 kB  PZU001.txt        PZU Akcji Krakowiak 
+2017-03-24    23:59      193 kB  PZU002.txt        PZU Stabilnego Wzrostu Mazurek
+2017-03-24    23:59      191 kB  PZU003.txt        PZU Papierow Dluznych Polonez
+2017-03-24    23:59      123 kB  PZU004.txt        PZU Gotowkowy       
+2017-03-24    23:59      118 kB  PZU005.txt        PZU Zrownowazony    
+2017-03-24    23:59      118 kB  PZU006.txt        PZU Akcji Nowa Europa
+2017-03-24    23:59      110 kB  PZU007.txt        PZU FIO Ochrony Majatku
+2017-03-24    23:59      110 kB  PZU008.txt        PZU Akcji Malych i Srednich Spolek
+2017-03-24    23:59      117 kB  PZU009.txt        PZU Akcji Rynkow Rozwinietych
+2017-03-24    23:59      116 kB  PZU010.txt        PZU Akcji Rynkow Wschodzacych
+2017-03-24    23:59      111 kB  PZU011.txt        PZU Akcji Spolek Dywidendowych
+2017-03-24    23:59      116 kB  PZU012.txt        PZU Dluzny Rynkow Wschodzacych
+2017-03-24    23:59       98 kB  PZU014.txt        PZU Energia Medycyna Ekologia
+2017-03-24    23:59       90 kB  PZU016.txt        PZU Sejf+           
+2017-03-24    23:59        9 kB  PZU030.txt        PZU Globalny Obligacji Korporacyjnych
+2017-03-24    23:59        6 kB  PZU031.txt        PZU Telekomunikacja Media Technologia
+2017-03-24    23:59        4 kB  PZU032.txt        PZU Dluzny Aktywny  
+2017-03-22    23:59       19 kB  AGI001.txt        AGIO Globalny       
+2017-03-22    23:59       20 kB  AGI002.txt        AGIO Kapital        
+2017-03-22    23:59       13 kB  AGI003.txt        AGIO Agresywny      
+2017-01-03    23:59       23 kB  UI_035.txt        UNIObligacje Zamienne
+2016-11-03    23:59        1 kB  PKO099.txt        PKO Medycyny i Demografii Globalny
+2016-06-23    23:59      106 kB  ING018.txt        NN Selektywny       
+2015-10-22    23:59       96 kB  ING019.txt        NN Srodkowoeuropejski Budownictwa i Nieruchomosci
+-------------------------------------------------------------------------
+                       28566 kB 320 plikow

@@ -1,8 +1,9 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.dao;
+
+import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -10,7 +11,7 @@ public class RatingFactory {
     private static final int DATE_COLUMN_INDEX = 1;
     private static final int CLOSE_COLUMN_INDEX = 5;
 
-    public static Rating create(String record) throws ParseException {
+    public static Rating create(String record) {
         String[] splitByComaRecord = record.split(",");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         LocalDate date = LocalDate.parse(splitByComaRecord[DATE_COLUMN_INDEX], dateTimeFormatter);

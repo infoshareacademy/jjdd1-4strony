@@ -1,10 +1,10 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.ui;
 
 import java.util.Scanner;
 
 public class MainMenu {
     public static void main(String[] args) {
-        System.out.println("Witaj w analizatorze funduszy inwestycyjnych. Wybierz co chcesz zrobić:");
+        System.out.println("Witaj w InvenstFundAnalyzer!\nWybierz co chcesz zrobić:");
         System.out.println("[1]. Rozpocznij");
         System.out.println("[0]. Wyjdź");
 

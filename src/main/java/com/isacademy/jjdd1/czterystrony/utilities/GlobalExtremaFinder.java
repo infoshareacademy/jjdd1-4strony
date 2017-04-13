@@ -1,4 +1,7 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.utilities;
+
+import com.isacademy.jjdd1.czterystrony.instruments.FinancialInstrument;
+import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -9,7 +12,7 @@ public class GlobalExtremaFinder {
     private List<Rating> ratings;
 
     public GlobalExtremaFinder(FinancialInstrument financialInstrument) {
-        this.ratings = new ArrayList<>(financialInstrument.getAllRatings());
+        this.ratings = new ArrayList<>(financialInstrument.getRatings());
     }
 
     public Rating getGlobalMinimum() {
