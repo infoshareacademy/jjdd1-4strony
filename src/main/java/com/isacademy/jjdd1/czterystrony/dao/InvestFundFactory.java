@@ -2,6 +2,7 @@ package com.isacademy.jjdd1.czterystrony.dao;
 
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
+import com.isacademy.jjdd1.czterystrony.utilities.TextFileReader;
 
 import java.io.File;
 import java.util.List;
