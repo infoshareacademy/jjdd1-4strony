@@ -16,4 +16,11 @@ public class TimeRange {
         return Period.between(start, end).getDays();
     }
 
+    public LocalDate getStart() {
+        return start;
+    }
+
+    public LocalDate getEnd() {
+        return end;
+    }
 }
