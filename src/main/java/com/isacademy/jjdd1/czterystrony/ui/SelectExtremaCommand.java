@@ -8,7 +8,7 @@ public class SelectExtremaCommand implements Command {
     public ReturnCommand returnCommand;
 
     public SelectExtremaCommand(FinancialInstrument financialInstrument) {
-        this.showLocalExtremaCommand
+
     }
 
     @Override

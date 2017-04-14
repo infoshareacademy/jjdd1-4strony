@@ -33,7 +33,7 @@ public class TerminalMenu {
             }
 
         }
-        System.exit(1);
+//        System.exit(1);
         System.out.println("===========================================================");
         System.out.println("|                 InvestFundAnalyzer v1.0                 |");
         System.out.println("|---------------------------------------------------------|");
