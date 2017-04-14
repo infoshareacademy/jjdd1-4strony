@@ -24,7 +24,7 @@ public class Main {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
         InvestFund investFund = investFundsDao.get(investFundName);
 
-        LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfigurator(1, 1, BigDecimal.valueOf(0.5D), BigDecimal.valueOf(0.5D));
+        LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfiguratorBuilder().setBackwardRatingsSensitivity(1).setForwardRatingsSensitivity(1).setLowerCloseValueSensitivity(BigDecimal.valueOf(0.5D)).setUpperCloseValueSensitivity(BigDecimal.valueOf(0.5D)).createLocalExtremaFinderConfigurator();
         LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund, localExtremaFinderConfigurator);
         List<Rating> maximumExtremaRatings = localExtremaFinder.getMaximumExtremaRatings();
 
@@ -38,7 +38,7 @@ public class Main {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
 
         for (InvestFund investFund : investFundsDao.getAllByName()) {
-            LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfigurator(1, 1, BigDecimal.valueOf(0.5D), BigDecimal.valueOf(0.5D));
+            LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfiguratorBuilder().setBackwardRatingsSensitivity(1).setForwardRatingsSensitivity(1).setLowerCloseValueSensitivity(BigDecimal.valueOf(0.5D)).setUpperCloseValueSensitivity(BigDecimal.valueOf(0.5D)).createLocalExtremaFinderConfigurator();
             LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund, localExtremaFinderConfigurator);
             List<Rating> maximumExtremaRatings = localExtremaFinder.getMaximumExtremaRatings();
             System.out.println("\n" + investFund.getName() + " || Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");

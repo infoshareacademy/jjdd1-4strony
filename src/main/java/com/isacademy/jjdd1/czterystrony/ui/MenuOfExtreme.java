@@ -4,7 +4,6 @@ import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaFinder;
 import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinder;
-import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinderConfigurator;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -22,7 +21,7 @@ public class MenuOfExtreme {
         int chooseExtreme = answer.nextInt();
         switch (chooseExtreme) {
             case 1:
-                LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(fund, new LocalExtremaFinderConfigurator(30, 30, BigDecimal.valueOf(20), BigDecimal.valueOf(20)));
+                LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(fund, new LocalExtremaFinderConfiguratorBuilder().setBackwardRatingsSensitivity(30).setForwardRatingsSensitivity(30).setLowerCloseValueSensitivity(BigDecimal.valueOf(20)).setUpperCloseValueSensitivity(BigDecimal.valueOf(20)).createLocalExtremaFinderConfigurator());
 
                 System.out.println("Lokalne maksima:");
                 for (Rating rating : localExtremaFinder.getMaximumExtremaRatings()) {

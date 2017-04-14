@@ -1,5 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.utilities;
 
+import com.isacademy.jjdd1.czterystrony.instruments.Rating;
+
 import java.time.LocalDate;
 import java.time.Period;
 
