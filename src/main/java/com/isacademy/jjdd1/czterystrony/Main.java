@@ -9,17 +9,19 @@ import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinder;
 import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinderConfigurator;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
 //        findLocalExtremaForGivenInvestFundTest("AIP003");
-        findLocalExtremaOfAllInvestFundsTest();
-        printAllInvestFundsByNameTest();
+  //      findLocalExtremaOfAllInvestFundsTest();
+   //     printAllInvestFundsByNameTest();
         printAllInvestFundsByPriorityTest();
 //        findGlobalExtremaForGivenInvestFundTest("AIP003");
     }
-
+/*
     public static void findLocalExtremaForGivenInvestFundTest(String investFundName) {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
         InvestFund investFund = investFundsDao.get(investFundName);
@@ -67,13 +69,21 @@ public class Main {
             System.out.println(investFund.getName());
         }
     }
-
+*/
     public static void printAllInvestFundsByPriorityTest() {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
-
+        List<InvestFund> allByName = investFundsDao.getAllByName();
         System.out.println("\n\nInvest funds sorted by priority:");
-        for (InvestFund investFund : investFundsDao.getAllByPriority()) {
-            System.out.println(investFund.getId() + " " + -investFund.getPriority());
+
+        for (InvestFund investFund : allByName) {
+            if (investFund.getName().equals("AVIVA Obligacji")) {
+                investFund.promote(99);
+                System.out.println(investFund.getName() + " " + -investFund.getPriority());
+            }
         }
+            for (InvestFund investFund : allByName.stream().sorted(Comparator.comparing(InvestFund::getPriority)).collect(Collectors.toList())) {
+                System.out.println(investFund.getName() + " " + -investFund.getPriority());
+            }
+
     }
 }
