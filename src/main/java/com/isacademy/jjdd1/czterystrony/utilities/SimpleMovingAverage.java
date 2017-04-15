@@ -7,14 +7,13 @@ public class SimpleMovingAverage extends MovingAverage {
 
     public SimpleMovingAverage(int period) {
         super(period);
-        this.period = period;
     }
 
     public void add(BigDecimal value) {
         sum = sum.add(value);
         window.add(value);
         if (window.size() > period) {
-            sum = sum.subtract(window.remove());
+            sum = sum.subtract(window.remove(0));
         }
     }
 
