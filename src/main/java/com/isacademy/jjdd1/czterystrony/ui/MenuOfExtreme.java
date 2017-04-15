@@ -2,8 +2,8 @@ package com.isacademy.jjdd1.czterystrony.ui;
 
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
-import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaFinder;
-import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinder;
+import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaProvider;
+import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
 
 import java.util.List;
 import java.util.Scanner;
@@ -20,15 +20,15 @@ public class MenuOfExtreme {
         int chooseExtreme = answer.nextInt();
         switch (chooseExtreme) {
             case 1:
-                LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(fund);
+                LocalExtremaProvider localExtremaProvider = new LocalExtremaProvider(fund);
 
                 System.out.println("Lokalne maksima:");
-                for (Rating rating : localExtremaFinder.findExtrema(10)) {
+                for (Rating rating : localExtremaProvider.findExtrema(10)) {
                     System.out.println(rating);
                 }
 
                 System.out.println("\nLokalne minima:");
-                for (Rating rating : localExtremaFinder.findExtrema(10)) {
+                for (Rating rating : localExtremaProvider.findExtrema(10)) {
                     System.out.println(rating);
                 }
 
@@ -57,8 +57,8 @@ public class MenuOfExtreme {
                 }
                 break;
             case 2:
-                GlobalExtremaFinder globalExtremaFinder = new GlobalExtremaFinder(fund);
-                List<Rating> extremaRatings = globalExtremaFinder.getGlobalExtrema();
+                GlobalExtremaProvider globalExtremaProvider = new GlobalExtremaProvider(fund);
+                List<Rating> extremaRatings = globalExtremaProvider.getGlobalExtrema();
                 for (Rating extremaRating : extremaRatings) {
                     System.out.println("dane rating " + extremaRating);
                 }

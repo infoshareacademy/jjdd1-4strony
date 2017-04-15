@@ -8,13 +8,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class GlobalExtremaFinder extends StatisticsFinder {
+public class GlobalExtremaProvider extends StatisticsProvider {
 
-    public GlobalExtremaFinder(FinancialInstrument financialInstrument) {
+    public GlobalExtremaProvider(FinancialInstrument financialInstrument) {
         super(financialInstrument);
     }
 
-    public GlobalExtremaFinder(FinancialInstrument financialInstrument, TimeRange timeRange) {
+    public GlobalExtremaProvider(FinancialInstrument financialInstrument, TimeRange timeRange) {
         super(financialInstrument, timeRange);
     }
 

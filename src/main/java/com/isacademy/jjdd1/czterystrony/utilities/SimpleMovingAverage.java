@@ -2,16 +2,11 @@ package com.isacademy.jjdd1.czterystrony.utilities;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.LinkedList;
-import java.util.Queue;
 
-public class SimpleMovingAverage {
-    private final Queue<BigDecimal> window = new LinkedList<>();
-    private final int period;
-    private BigDecimal sum = BigDecimal.ZERO;
+public class SimpleMovingAverage extends MovingAverage {
 
     public SimpleMovingAverage(int period) {
-        if (period <= 0) throw new IllegalArgumentException("Period must be a positive integer");
+        super(period);
         this.period = period;
     }
 

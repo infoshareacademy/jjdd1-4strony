@@ -6,15 +6,15 @@ import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class StatisticsFinder {
+public abstract class StatisticsProvider {
     protected final int DEFAULT_START_INDEX = 0;
     protected List<Rating> ratings;
 
-    public StatisticsFinder(FinancialInstrument financialInstrument) {
+    public StatisticsProvider(FinancialInstrument financialInstrument) {
         this.ratings = financialInstrument.getRatings();
     }
 
-    public StatisticsFinder(FinancialInstrument financialInstrument, TimeRange timeRange) {
+    public StatisticsProvider(FinancialInstrument financialInstrument, TimeRange timeRange) {
         this.ratings = financialInstrument.getRatings().stream()
                 .filter(t -> t.getDate().isAfter(timeRange.getStart()))
                 .filter(t -> t.getDate().isBefore(timeRange.getEnd()))

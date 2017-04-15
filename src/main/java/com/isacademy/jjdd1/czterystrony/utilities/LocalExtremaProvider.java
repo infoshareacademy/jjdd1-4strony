@@ -7,22 +7,21 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalExtremaFinder extends StatisticsFinder {
+public class LocalExtremaProvider extends StatisticsProvider {
     private final double HUNDRED_PCT = 100D;
     private final int DIGITS_AFTER_COMMA = 2;
 
-    public LocalExtremaFinder(FinancialInstrument financialInstrument) {
+    public LocalExtremaProvider(FinancialInstrument financialInstrument) {
         super(financialInstrument);
     }
 
-    public LocalExtremaFinder(FinancialInstrument financialInstrument, TimeRange timeRange) {
+    public LocalExtremaProvider(FinancialInstrument financialInstrument, TimeRange timeRange) {
         super(financialInstrument, timeRange);
     }
 
     public List<Rating> findExtrema(double minSwingLimitInPct) {
         boolean swingHigh = false;
         boolean swingLow = false;
-
         int startIndex = DEFAULT_START_INDEX;
         int endIndex = ratings.size();
         int lowIndex = startIndex;
