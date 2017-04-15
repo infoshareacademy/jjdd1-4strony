@@ -1,59 +1,133 @@
 package com.isacademy.jjdd1.czterystrony.utilities;
 
-import com.isacademy.jjdd1.czterystrony.instruments.Subtractable;
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
+import com.isacademy.jjdd1.czterystrony.instruments.FinancialInstrument;
+import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
+import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ZigZag {
-    public static <T extends Subtractable<? super T>> List<T> zigZag(List<T> list, int obsStart, int obsEnd, double minSwingPct) {
+    private final int DEFAULT_START_INDEX = 0;
+    private FinancialInstrument financialInstrument;
+    private int startIndex;
+    private int endIndex;
+
+    public static class Builder {
+        private FinancialInstrument financialInstrument;
+        private LocalDate startDate;
+        private LocalDate endDate;
+
+        public Builder(FinancialInstrument financialInstrument) {
+            this.financialInstrument = financialInstrument;
+        }
+
+        public Builder withStartDate(LocalDate startDate) {
+            this.startDate = startDate;
+            return this;
+        }
+
+        public Builder withEndDate(LocalDate endDate) {
+            this.endDate = endDate;
+            return this;
+        }
+
+        public ZigZag build() {
+            return new ZigZag(this);
+        }
+    }
+
+    public ZigZag(Builder builder) {
+        this.financialInstrument = builder.financialInstrument;
+        this.startIndex = findIndexOfClosestDate(builder.startDate, DEFAULT_START_INDEX);
+        this.endIndex = findIndexOfClosestDate(builder.endDate, financialInstrument.getRatings().size());
+    }
+
+    private int findIndexOfClosestDate(LocalDate date, int defaultIndex) {
+        if (date != null) {
+            List<LocalDate> dates = financialInstrument.getRatings().stream()
+                    .map(t -> t.getDate())
+                    .sorted()
+                    .collect(Collectors.toList());
+
+            LocalDate closestDate = DateFinder.findClosest(dates, date);
+
+            return dates.indexOf(closestDate);
+        } else {
+            return defaultIndex;
+        }
+    }
+
+    public List<Rating> findExtrema(double minSwingPct) {
+        List<Rating> ratings = financialInstrument.getRatings();
+
         boolean swingHigh = false;
         boolean swingLow = false;
 
-        int obsLow = obsStart;
-        int obsHigh = obsStart;
+        int obsLow = this.startIndex;
+        int obsHigh = this.startIndex;
 
-        List<T> zigZag = new ArrayList<>();
+        List<Rating> extrema = new ArrayList<>();
 
-        for (int obs = obsStart; obs <= obsEnd; obs++) {
-            if (list.get(obs).subtract(list.get(obsHigh)).compareTo(BigDecimal.ZERO) == 1) {
+        for (int obs = startIndex; obs < endIndex; obs++) {
+            if (ratings.get(obs).getCloseValue().subtract(ratings.get(obsHigh).getCloseValue()).compareTo(BigDecimal.ZERO) == 1) {
                 obsHigh = obs;
 
-                if (!swingLow && ((list.get(obsHigh).subtract(list.get(obsLow))).divide(list.get(obsLow)) >= minSwingPct/100D) {
-                    zigZag.add(list.get(obsLow));  // new swinglow
+                if (!swingLow &&
+                        (ratings.get(obsHigh).getCloseValue()
+                                .subtract(ratings.get(obsLow).getCloseValue()))
+                                .divide(ratings.get(obsLow).getCloseValue(), 2, BigDecimal.ROUND_HALF_UP)
+                                .compareTo(BigDecimal.valueOf(minSwingPct / 100D)) >= 0) {
+                    extrema.add(ratings.get(obsLow));  // new swinglow
                     swingHigh = false;
                     swingLow = true;
                 }
 
                 if (swingLow) obsLow = obsHigh;
 
-            } else if (list.get(obs).subtract(list.get(obsLow)).compareTo(BigDecimal.ZERO) == -1) {
+            } else if (ratings.get(obs).getCloseValue().subtract(ratings.get(obsLow).getCloseValue()).compareTo(BigDecimal.ZERO) == -1) {
                 obsLow = obs;
 
-                if (!swingHigh && ((list.get(obsHigh) - list.get(obsLow)) / list.get(obsLow)) >= minSwingPct/100D) {
-                    zigZag.add(list.get(obsHigh));  // new swinghigh
+                if (!swingHigh &&
+                        (ratings.get(obsHigh).getCloseValue()
+                                .subtract(ratings.get(obsLow).getCloseValue()))
+                                .divide(ratings.get(obsLow).getCloseValue(), 2, BigDecimal.ROUND_UP)
+                                .compareTo(BigDecimal.valueOf(minSwingPct / 100D)) >= 0) {
+                    extrema.add(ratings.get(obsHigh));  // new swinghigh
                     swingHigh = true;
                     swingLow = false;
                 }
+
                 if (swingHigh) obsHigh = obsLow;
             }
         }
-        return zigZag;
+        return extrema;
     }
 
     public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 4, 3, 2, 1, 5, 6, 8, 10, 13, 10, 5, 3, 2, 4, 6, 7, 8);
 
-        System.out.println(list.size());
+        InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
+        InvestFund investFund = investFundsDao.get("AVIVA Malych Spolek");
+        List<Rating> ratings = investFund.getRatings();
 
-        List<Integer> zigzag = ZigZag.zigZag(list, 0, 22, 99F);
+        System.out.println(ratings.size());
 
-        System.out.println(zigzag.size());
+        ZigZag zigZag = new ZigZag.Builder(investFund)
+                .withStartDate(LocalDate.parse("2011-02-17"))
+                .withEndDate(LocalDate.parse("2018-12-10"))
+                .build();
 
-        for (Integer pos : zigzag) {
-            System.out.println("pozycja: " + pos + "  wartość: " + list.get(pos));
+        List<Rating> extrema = zigZag.findExtrema(20D);
+
+        System.out.println(extrema.size());
+
+        for (Rating rating : extrema) {
+            System.out.println(rating);
         }
     }
 }
