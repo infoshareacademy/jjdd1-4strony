@@ -18,10 +18,10 @@ public class SimpleMovingAverageCalculator {
     }
 
     public List<Rating> getMovingAverageRatings() {
-        return getRatingsFromTimeRange().stream()
-                .map()
-
-        List <Rating> ratingsInTimeRange = getRatingsFromTimeRange();
+//        return getRatingsFromTimeRange().stream()
+//                .map()
+//
+//        List <Rating> ratingsInTimeRange = getRatingsFromTimeRange();
 
         return movingAverageRatings;
     }

@@ -3,7 +3,7 @@ package com.isacademy.jjdd1.czterystrony.instruments;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Rating implements Comparable<Rating> {
+public class Rating implements Comparable<Rating>, Subtractable<Rating> {
     private LocalDate date;
     private BigDecimal closeValue;
 
@@ -22,7 +22,12 @@ public class Rating implements Comparable<Rating> {
 
     @Override
     public int compareTo(Rating rating) {
-        return date.compareTo(rating.date);
+        return date.compareTo(rating.getDate());
+    }
+
+    @Override
+    public BigDecimal subtract(Rating rating) {
+        return closeValue.subtract(rating.getCloseValue());
     }
 
     @Override

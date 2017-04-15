@@ -13,10 +13,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-//        findLocalExtremaForGivenInvestFundTest("AIP003");
-        findLocalExtremaOfAllInvestFundsTest();
-        printAllInvestFundsByNameTest();
-        printAllInvestFundsByPriorityTest();
+        findLocalExtremaForGivenInvestFundTest("AVIVA Obligacji");
+//        findLocalExtremaOfAllInvestFundsTest();
+//        printAllInvestFundsByNameTest();
+//        printAllInvestFundsByPriorityTest();
 //        findGlobalExtremaForGivenInvestFundTest("AIP003");
     }
 
@@ -24,7 +24,13 @@ public class Main {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
         InvestFund investFund = investFundsDao.get(investFundName);
 
-        LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfiguratorBuilder().setBackwardRatingsSensitivity(1).setForwardRatingsSensitivity(1).setLowerCloseValueSensitivity(BigDecimal.valueOf(0.5D)).setUpperCloseValueSensitivity(BigDecimal.valueOf(0.5D)).createLocalExtremaFinderConfigurator();
+        LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfigurator.Builder()
+                .withBackwardRatingsSensitivity(30)
+                .withForwardRatingsSensitivity(30)
+                .withMaximumExistenceSensitivity(BigDecimal.valueOf(20))
+                .withMinimumExistenceSensitivity(BigDecimal.valueOf(20))
+                .build();
+
         LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund, localExtremaFinderConfigurator);
         List<Rating> maximumExtremaRatings = localExtremaFinder.getMaximumExtremaRatings();
 
@@ -38,7 +44,13 @@ public class Main {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
 
         for (InvestFund investFund : investFundsDao.getAllByName()) {
-            LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfiguratorBuilder().setBackwardRatingsSensitivity(1).setForwardRatingsSensitivity(1).setLowerCloseValueSensitivity(BigDecimal.valueOf(0.5D)).setUpperCloseValueSensitivity(BigDecimal.valueOf(0.5D)).createLocalExtremaFinderConfigurator();
+            LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfigurator.Builder()
+                    .withBackwardRatingsSensitivity(1)
+                    .withForwardRatingsSensitivity(1)
+                    .withMaximumExistenceSensitivity(BigDecimal.valueOf(0.5D))
+                    .withMinimumExistenceSensitivity(BigDecimal.valueOf(0.5D))
+                    .build();
+
             LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund, localExtremaFinderConfigurator);
             List<Rating> maximumExtremaRatings = localExtremaFinder.getMaximumExtremaRatings();
             System.out.println("\n" + investFund.getName() + " || Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");

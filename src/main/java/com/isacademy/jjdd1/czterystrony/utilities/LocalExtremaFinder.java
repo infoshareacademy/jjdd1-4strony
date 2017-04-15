@@ -5,8 +5,9 @@ import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LocalExtremaFinder {
     private List<Rating> ratings;
@@ -28,8 +29,8 @@ public class LocalExtremaFinder {
     }
 
     private List<Rating> findExtremaRatings(Extremum extremum) {
-        List<Rating> leftShiftedRatings = getShiftedRatings(ratings, -localExtremaFinderConfigurator.getBackwardRatingsSensitivity());
-        List<Rating> rightShiftedRatings = getShiftedRatings(ratings, localExtremaFinderConfigurator.getForwardRatingsSensitivity());
+        List<Rating> leftShiftedRatings = Shifter.shift(ratings, -localExtremaFinderConfigurator.getBackwardRatingsSensitivity());
+        List<Rating> rightShiftedRatings = Shifter.shift(ratings, localExtremaFinderConfigurator.getForwardRatingsSensitivity());
         List<Boolean> ratingsComparedToRightShiftedRatings = new ArrayList<>();
         List<Boolean> ratingsComparedToLeftShiftedRatings = new ArrayList<>();
         List<Rating> extremaRatings = new ArrayList<>();
@@ -53,18 +54,6 @@ public class LocalExtremaFinder {
             }
         }
         return extremaRatings;
-    }
-
-    private List<Rating> getShiftedRatings(List<Rating> ratings, int shift) {
-        List<Rating> shiftedRatings = new ArrayList<>(ratings);
-        Collections.rotate(shiftedRatings, shift);
-        int absoluteShift = Math.abs(shift);
-
-        try {
-            return shiftedRatings.subList(absoluteShift, ratings.size() - absoluteShift);
-        } catch (IllegalArgumentException e) {
-            return Collections.emptyList();
-        }
     }
 
     private List<Boolean> isEachRatingSmallerThenShiftedEquivalent(List<Rating> inputRatings, List<Rating> shiftedRatings) {
@@ -93,16 +82,20 @@ public class LocalExtremaFinder {
         return verification;
     }
 
-    private List<Boolean> getExtremaSignals(List<Boolean> leftVerification, List<Boolean> rightVerification) {
-        List<Boolean> extremaSignals = new ArrayList<>();
+    private <T> List<Boolean> getExtremaSignals(List<T> leftVerification, List<T> rightVerification) {
+        return IntStream.range(0, leftVerification.size())
+                .mapToObj(t -> leftVerification.get(t).equals(rightVerification.get(t)))
+                .collect(Collectors.toList());
 
-        for (int i = 0; i < leftVerification.size(); i++) {
-            if (leftVerification.get(i) && rightVerification.get(i)) {
-                extremaSignals.add(Boolean.TRUE);
-            } else {
-                extremaSignals.add(Boolean.FALSE);
-            }
-        }
-        return extremaSignals;
+//        List<Boolean> extremaSignals = new ArrayList<>();
+//
+//        for (int i = 0; i < leftVerification.size(); i++) {
+//            if (leftVerification.get(i) && rightVerification.get(i)) {
+//                extremaSignals.add(Boolean.TRUE);
+//            } else {
+//                extremaSignals.add(Boolean.FALSE);
+//            }
+//        }
+//        return extremaSignals;
     }
 }
