@@ -6,36 +6,27 @@ import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaFinder;
 import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinder;
-import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinderConfigurator;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         findLocalExtremaForGivenInvestFundTest("AVIVA Obligacji");
-//        findLocalExtremaOfAllInvestFundsTest();
-//        printAllInvestFundsByNameTest();
-//        printAllInvestFundsByPriorityTest();
-//        findGlobalExtremaForGivenInvestFundTest("AIP003");
+        findLocalExtremaOfAllInvestFundsTest();
+        printAllInvestFundsByNameTest();
+        printAllInvestFundsByPriorityTest();
+        findGlobalExtremaForGivenInvestFundTest("AVIVA Obligacji");
     }
 
     public static void findLocalExtremaForGivenInvestFundTest(String investFundName) {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
         InvestFund investFund = investFundsDao.get(investFundName);
 
-        LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfigurator.Builder()
-                .withBackwardRatingsSensitivity(30)
-                .withForwardRatingsSensitivity(30)
-                .withMaximumExistenceSensitivity(BigDecimal.valueOf(20))
-                .withMinimumExistenceSensitivity(BigDecimal.valueOf(20))
-                .build();
+        LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund);
+        List<Rating> extremaRatings = localExtremaFinder.findExtrema(20);
 
-        LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund, localExtremaFinderConfigurator);
-        List<Rating> maximumExtremaRatings = localExtremaFinder.getMaximumExtremaRatings();
-
-        System.out.println("Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");
-        for (Rating rating : maximumExtremaRatings) {
+        System.out.println("Local maximum extrema (found " + extremaRatings.size() + " ratings):");
+        for (Rating rating : extremaRatings) {
             System.out.println(rating);
         }
     }
@@ -44,17 +35,11 @@ public class Main {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
 
         for (InvestFund investFund : investFundsDao.getAllByName()) {
-            LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfigurator.Builder()
-                    .withBackwardRatingsSensitivity(1)
-                    .withForwardRatingsSensitivity(1)
-                    .withMaximumExistenceSensitivity(BigDecimal.valueOf(0.5D))
-                    .withMinimumExistenceSensitivity(BigDecimal.valueOf(0.5D))
-                    .build();
+            LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund);
+            List<Rating> extremaRatings = localExtremaFinder.findExtrema(30);
 
-            LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund, localExtremaFinderConfigurator);
-            List<Rating> maximumExtremaRatings = localExtremaFinder.getMaximumExtremaRatings();
-            System.out.println("\n" + investFund.getName() + " || Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");
-            for (Rating rating : maximumExtremaRatings) {
+            System.out.println("\n" + investFund.getName() + " || Local maximum extrema (found " + extremaRatings.size() + " ratings):");
+            for (Rating rating : extremaRatings) {
                 System.out.println(rating);
             }
         }

@@ -1,101 +1,123 @@
 package com.isacademy.jjdd1.czterystrony.utilities;
 
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import com.isacademy.jjdd1.czterystrony.instruments.FinancialInstrument;
+import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LocalExtremaFinder {
+    private final int DEFAULT_START_INDEX = 0;
     private List<Rating> ratings;
-    private int ratingsCount = 0;
-    private LocalExtremaFinderConfigurator localExtremaFinderConfigurator;
+    private int startIndex;
+    private int endIndex;
 
-    public LocalExtremaFinder(FinancialInstrument financialInstrument, LocalExtremaFinderConfigurator localExtremaFinderConfigurator) {
+    public LocalExtremaFinder(FinancialInstrument financialInstrument) {
         this.ratings = financialInstrument.getRatings();
-        this.ratingsCount = ratings.size();
-        this.localExtremaFinderConfigurator = localExtremaFinderConfigurator;
+        this.startIndex = DEFAULT_START_INDEX;
+        this.endIndex = ratings.size();
     }
 
-    public List<Rating> getMinimumExtremaRatings() {
-        return findExtremaRatings(Extremum.MINIMUM);
+    public LocalExtremaFinder(FinancialInstrument financialInstrument, LocalDate startDate) {
+        this.ratings = financialInstrument.getRatings();
+        this.startIndex = findIndexOfClosestDate(startDate, DEFAULT_START_INDEX);
+        this.endIndex = ratings.size();
     }
 
-    public List<Rating> getMaximumExtremaRatings() {
-        return findExtremaRatings(Extremum.MAXIMUM);
+    public LocalExtremaFinder(FinancialInstrument financialInstrument, LocalDate startDate, LocalDate endDate) {
+        this.ratings = financialInstrument.getRatings();
+        this.startIndex = findIndexOfClosestDate(startDate, DEFAULT_START_INDEX);
+        this.endIndex = findIndexOfClosestDate(endDate, ratings.size());
     }
 
-    private List<Rating> findExtremaRatings(Extremum extremum) {
-        List<Rating> leftShiftedRatings = Shifter.shift(ratings, -localExtremaFinderConfigurator.getBackwardRatingsSensitivity());
-        List<Rating> rightShiftedRatings = Shifter.shift(ratings, localExtremaFinderConfigurator.getForwardRatingsSensitivity());
-        List<Boolean> ratingsComparedToRightShiftedRatings = new ArrayList<>();
-        List<Boolean> ratingsComparedToLeftShiftedRatings = new ArrayList<>();
-        List<Rating> extremaRatings = new ArrayList<>();
+    private int findIndexOfClosestDate(LocalDate date, int defaultIndex) {
+        if (date != null) {
+            List<LocalDate> dates = ratings.stream()
+                    .map(t -> t.getDate())
+                    .sorted()
+                    .collect(Collectors.toList());
 
-        if (extremum == Extremum.MINIMUM) {
-            ratingsComparedToRightShiftedRatings = isEachRatingSmallerThenShiftedEquivalent(ratings, rightShiftedRatings);
-            ratingsComparedToLeftShiftedRatings = isEachRatingSmallerThenShiftedEquivalent(ratings, leftShiftedRatings);
+            LocalDate closestDate = DateFinder.findClosestDateInDates(dates, date);
+
+            return dates.indexOf(closestDate);
         } else {
-            ratingsComparedToRightShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, rightShiftedRatings);
-            ratingsComparedToLeftShiftedRatings = isEachRatingGreaterThenShiftedEquivalent(ratings, leftShiftedRatings);
+            return defaultIndex;
         }
+    }
 
-        List<Boolean> extremaSignals = getExtremaSignals(ratingsComparedToLeftShiftedRatings, ratingsComparedToRightShiftedRatings);
+    public List<Rating> findExtrema(double minSwingPct) {
+        boolean swingHigh = false;
+        boolean swingLow = false;
 
-        int shift = (ratingsCount - extremaSignals.size()) / 2;
+        int lowIndex = this.startIndex;
+        int highIndex = this.startIndex;
 
-        for (int i = shift; i < ratingsCount - shift; i++) {
-            Boolean isExtremum = extremaSignals.get(i - shift);
-            if (isExtremum) {
-                extremaRatings.add(ratings.get(i));
+        List<Rating> extrema = new ArrayList<>();
+
+        for (int i = startIndex; i < endIndex; i++) {
+            if (isCurrentCloseValueGreaterThenHighCloseValue(i, highIndex)) {
+                highIndex = i;
+
+                if (!swingLow &&
+                        (ratings.get(highIndex).getCloseValue()
+                                .subtract(ratings.get(lowIndex).getCloseValue()))
+                                .divide(ratings.get(lowIndex).getCloseValue(), 2, BigDecimal.ROUND_HALF_UP)
+                                .compareTo(BigDecimal.valueOf(minSwingPct / 100D)) >= 0) {
+                    extrema.add(ratings.get(lowIndex));
+                    swingHigh = false;
+                    swingLow = true;
+                }
+
+                if (swingLow) lowIndex = highIndex;
+
+            } else if (isCurrentCloseValueSmallerThenLowCloseValue(i, lowIndex)) {
+                lowIndex = i;
+
+                if (!swingHigh &&
+                        (ratings.get(highIndex).getCloseValue()
+                                .subtract(ratings.get(lowIndex).getCloseValue()))
+                                .divide(ratings.get(lowIndex).getCloseValue(), 2, BigDecimal.ROUND_UP)
+                                .compareTo(BigDecimal.valueOf(minSwingPct / 100D)) >= 0) {
+                    extrema.add(ratings.get(highIndex));
+                    swingHigh = true;
+                    swingLow = false;
+                }
+
+                if (swingHigh) highIndex = lowIndex;
             }
         }
-        return extremaRatings;
+        return extrema;
     }
 
-    private List<Boolean> isEachRatingSmallerThenShiftedEquivalent(List<Rating> inputRatings, List<Rating> shiftedRatings) {
-        return compareEachRatingWithShiftedEquivalent(inputRatings, shiftedRatings, Extremum.MINIMUM, localExtremaFinderConfigurator.getMinimumExistenceSensitivity());
+    private boolean isCurrentCloseValueGreaterThenHighCloseValue(int currentIndex, int highIndex) {
+        return ratings.get(currentIndex).getCloseValue().subtract(ratings.get(highIndex).getCloseValue()).compareTo(BigDecimal.ZERO) == 1;
     }
 
-    private List<Boolean> isEachRatingGreaterThenShiftedEquivalent(List<Rating> inputRatings, List<Rating> shiftedRatings) {
-        return compareEachRatingWithShiftedEquivalent(inputRatings, shiftedRatings, Extremum.MAXIMUM, localExtremaFinderConfigurator.getMaximumExistenceSensitivity());
+    private boolean isCurrentCloseValueSmallerThenLowCloseValue(int currentIndex, int lowIndex) {
+        return ratings.get(currentIndex).getCloseValue().subtract(ratings.get(lowIndex).getCloseValue()).compareTo(BigDecimal.ZERO) == -1;
     }
 
-    private List<Boolean> compareEachRatingWithShiftedEquivalent(List<Rating> inputRatings, List<Rating> shiftedRatings, Extremum extremum, BigDecimal extremumExistenceSensitivity) {
-        int shift = (inputRatings.size() - shiftedRatings.size()) / 2;
-        List<Boolean> verification = new ArrayList<>();
+    public static void main(String[] args) {
+        InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
+        InvestFund investFund = investFundsDao.get("AVIVA Malych Spolek");
+        List<Rating> ratings = investFund.getRatings();
 
-        for (int i = shift; i < inputRatings.size() - shift; i++) {
-            BigDecimal inputListCloseValue = inputRatings.get(i).getCloseValue();
-            BigDecimal shiftedListCloseValue = shiftedRatings.get(i - shift).getCloseValue();
-            BigDecimal difference = inputListCloseValue.subtract(shiftedListCloseValue);
+        System.out.println(ratings.size());
 
-            if (difference.compareTo(extremumExistenceSensitivity) == extremum.getValue()) {
-                verification.add(Boolean.TRUE);
-            } else {
-                verification.add(Boolean.FALSE);
-            }
+        LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund);
+
+        List<Rating> extrema = localExtremaFinder.findExtrema(10D);
+
+        System.out.println(extrema.size());
+
+        for (Rating rating : extrema) {
+            System.out.println(rating);
         }
-        return verification;
-    }
-
-    private <T> List<Boolean> getExtremaSignals(List<T> leftVerification, List<T> rightVerification) {
-        return IntStream.range(0, leftVerification.size())
-                .mapToObj(t -> leftVerification.get(t).equals(rightVerification.get(t)))
-                .collect(Collectors.toList());
-
-//        List<Boolean> extremaSignals = new ArrayList<>();
-//
-//        for (int i = 0; i < leftVerification.size(); i++) {
-//            if (leftVerification.get(i) && rightVerification.get(i)) {
-//                extremaSignals.add(Boolean.TRUE);
-//            } else {
-//                extremaSignals.add(Boolean.FALSE);
-//            }
-//        }
-//        return extremaSignals;
     }
 }
