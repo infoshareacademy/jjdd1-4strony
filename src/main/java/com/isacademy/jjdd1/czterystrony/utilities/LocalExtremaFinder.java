@@ -23,6 +23,8 @@ public class LocalExtremaFinder extends StatisticsFinder {
         boolean swingHigh = false;
         boolean swingLow = false;
 
+        int startIndex = DEFAULT_START_INDEX;
+        int endIndex = ratings.size();
         int lowIndex = startIndex;
         int highIndex = startIndex;
 
