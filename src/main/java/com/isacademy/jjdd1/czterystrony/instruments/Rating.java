@@ -1,9 +1,10 @@
 package com.isacademy.jjdd1.czterystrony.instruments;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
-public class Rating implements Comparable<Rating>, Subtractable<Rating> {
+public class Rating implements Comparable<Rating>, Subtractable<Rating>, Divisible<Rating> {
     private LocalDate date;
     private BigDecimal closeValue;
 
@@ -28,6 +29,11 @@ public class Rating implements Comparable<Rating>, Subtractable<Rating> {
     @Override
     public BigDecimal subtract(Rating rating) {
         return closeValue.subtract(rating.getCloseValue());
+    }
+
+    @Override
+    public BigDecimal divide(Rating rating) {
+        return closeValue.divide(rating.getCloseValue(), 2, RoundingMode.HALF_UP);
     }
 
     @Override

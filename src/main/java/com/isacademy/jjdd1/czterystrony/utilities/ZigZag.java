@@ -21,19 +21,19 @@ public class ZigZag {
             if (list.get(obs).subtract(list.get(obsHigh)).compareTo(BigDecimal.ZERO) == 1) {
                 obsHigh = obs;
 
-                if (!swingLow && ((list.get(obsHigh) - list.get(obsLow)) / list.get(obsLow)) * 100D >= minSwingPct) {
-                    zigZag.add(obsLow);  // new swinglow
+                if (!swingLow && ((list.get(obsHigh).subtract(list.get(obsLow))).divide(list.get(obsLow)) >= minSwingPct/100D) {
+                    zigZag.add(list.get(obsLow));  // new swinglow
                     swingHigh = false;
                     swingLow = true;
                 }
 
                 if (swingLow) obsLow = obsHigh;
 
-            } else if (list.get(obs) < list.get(obsLow)) {
+            } else if (list.get(obs).subtract(list.get(obsLow)).compareTo(BigDecimal.ZERO) == -1) {
                 obsLow = obs;
 
-                if (!swingHigh && ((list.get(obsHigh) - list.get(obsLow)) / list.get(obsLow)) * 100D >= minSwingPct) {
-                    zigZag.add(obsHigh);  // new swinghigh
+                if (!swingHigh && ((list.get(obsHigh) - list.get(obsLow)) / list.get(obsLow)) >= minSwingPct/100D) {
+                    zigZag.add(list.get(obsHigh));  // new swinghigh
                     swingHigh = true;
                     swingLow = false;
                 }
