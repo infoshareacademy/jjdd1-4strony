@@ -6,12 +6,14 @@ import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaFinder;
 import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinder;
+import com.isacademy.jjdd1.czterystrony.utilities.TimeRange;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        findLocalExtremaForGivenInvestFundTest("AVIVA Obligacji");
+        findLocalExtremaForGivenInvestFundTest("AGIO Agresywny");
         findLocalExtremaOfAllInvestFundsTest();
         printAllInvestFundsByNameTest();
         printAllInvestFundsByPriorityTest();
@@ -22,8 +24,10 @@ public class Main {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
         InvestFund investFund = investFundsDao.get(investFundName);
 
-        LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund);
-        List<Rating> extremaRatings = localExtremaFinder.findExtrema(20);
+        TimeRange timeRange = new TimeRange(LocalDate.parse("2010-01-01"), LocalDate.parse("2014-01-01"));
+        LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund, timeRange);
+
+        List<Rating> extremaRatings = localExtremaFinder.findExtrema(5);
 
         System.out.println("Local maximum extrema (found " + extremaRatings.size() + " ratings):");
         for (Rating rating : extremaRatings) {
@@ -36,7 +40,7 @@ public class Main {
 
         for (InvestFund investFund : investFundsDao.getAllByName()) {
             LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund);
-            List<Rating> extremaRatings = localExtremaFinder.findExtrema(3);
+            List<Rating> extremaRatings = localExtremaFinder.findExtrema(15);
 
             System.out.println("\n" + investFund.getName() + " || Local maximum extrema (found " + extremaRatings.size() + " ratings):");
             for (Rating rating : extremaRatings) {

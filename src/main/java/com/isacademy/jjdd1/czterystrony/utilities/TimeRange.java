@@ -1,9 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.utilities;
 
-import com.isacademy.jjdd1.czterystrony.instruments.Rating;
-
 import java.time.LocalDate;
-import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 public class TimeRange {
     private LocalDate start;
@@ -14,8 +12,8 @@ public class TimeRange {
         this.end = end;
     }
 
-    public int getDifferenceInDays() {
-        return Period.between(start, end).getDays();
+    public long getDifferenceInDays() {
+        return ChronoUnit.DAYS.between(start, end);
     }
 
     public LocalDate getStart() {

@@ -3,46 +3,30 @@ package com.isacademy.jjdd1.czterystrony.utilities;
 import com.isacademy.jjdd1.czterystrony.instruments.FinancialInstrument;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-public class GlobalExtremaFinder {
-    private List<Rating> ratings;
+public class GlobalExtremaFinder extends StatisticsFinder {
 
     public GlobalExtremaFinder(FinancialInstrument financialInstrument) {
-        this.ratings = new ArrayList<>(financialInstrument.getRatings());
+        super(financialInstrument);
+    }
+
+    public GlobalExtremaFinder(FinancialInstrument financialInstrument, TimeRange timeRange) {
+        super(financialInstrument, timeRange);
     }
 
     public Rating getGlobalMinimum() {
-        return getGlobalExtrema().get(0);
+        return Collections.min(ratings, Comparator.comparing(Rating::getCloseValue));
     }
 
     public Rating getGlobalMaximum() {
-        return getGlobalExtrema().get(1);
+        return Collections.max(ratings, Comparator.comparing(Rating::getCloseValue));
     }
 
     public List<Rating> getGlobalExtrema() {
-        Rating globalMinimumRating = null;
-        Rating globalMaximumRating = null;
-
-        for (Rating rating : ratings) {
-            BigDecimal closeValue = rating.getCloseValue();
-
-            if (globalMinimumRating == null || globalMaximumRating == null) {
-                globalMinimumRating = rating;
-                globalMaximumRating = rating;
-            }
-
-            if (closeValue.compareTo(globalMaximumRating.getCloseValue()) > 0) {
-                globalMaximumRating = rating;
-            }
-
-            if (closeValue.compareTo(globalMinimumRating.getCloseValue()) < 0) {
-                globalMinimumRating = rating;
-            }
-        }
-        return Arrays.asList(globalMinimumRating, globalMaximumRating);
+        return Arrays.asList(getGlobalMinimum(), getGlobalMaximum());
     }
 }
