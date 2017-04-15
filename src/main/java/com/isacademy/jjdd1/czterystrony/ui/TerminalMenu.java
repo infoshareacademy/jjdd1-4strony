@@ -22,7 +22,7 @@ public class TerminalMenu {
     }
 
     private static void displayIntro() {
-        char[] welcome = "W E L C O M E  I N ...\n\n".toCharArray();
+        char[] welcome = "... W E L C O M E  I N ...\n\n".toCharArray();
 
         for (char letter : welcome) {
             System.out.print(letter);

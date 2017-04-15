@@ -1,9 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.utilities;
 
-import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
-import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import com.isacademy.jjdd1.czterystrony.instruments.FinancialInstrument;
-import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 
 import java.math.BigDecimal;
@@ -51,24 +48,20 @@ public class LocalExtremaFinder {
         }
     }
 
-    public List<Rating> findExtrema(double minSwingPct) {
+    public List<Rating> findExtrema(double minSwingLimitInPct) {
         boolean swingHigh = false;
         boolean swingLow = false;
 
-        int lowIndex = this.startIndex;
-        int highIndex = this.startIndex;
+        int lowIndex = startIndex;
+        int highIndex = startIndex;
 
         List<Rating> extrema = new ArrayList<>();
 
         for (int i = startIndex; i < endIndex; i++) {
-            if (isCurrentCloseValueGreaterThenHighCloseValue(i, highIndex)) {
+            if (currentValueIsGreaterThenLastHighValue(i, highIndex)) {
                 highIndex = i;
 
-                if (!swingLow &&
-                        (ratings.get(highIndex).getCloseValue()
-                                .subtract(ratings.get(lowIndex).getCloseValue()))
-                                .divide(ratings.get(lowIndex).getCloseValue(), 2, BigDecimal.ROUND_HALF_UP)
-                                .compareTo(BigDecimal.valueOf(minSwingPct / 100D)) >= 0) {
+                if (!swingLow && percentageDifferenceBetweenHighAndLowIsGreaterThenLimit(highIndex, lowIndex, minSwingLimitInPct)) {
                     extrema.add(ratings.get(lowIndex));
                     swingHigh = false;
                     swingLow = true;
@@ -76,14 +69,10 @@ public class LocalExtremaFinder {
 
                 if (swingLow) lowIndex = highIndex;
 
-            } else if (isCurrentCloseValueSmallerThenLowCloseValue(i, lowIndex)) {
+            } else if (currentValueIsSmallerThenLastLowValue(i, lowIndex)) {
                 lowIndex = i;
 
-                if (!swingHigh &&
-                        (ratings.get(highIndex).getCloseValue()
-                                .subtract(ratings.get(lowIndex).getCloseValue()))
-                                .divide(ratings.get(lowIndex).getCloseValue(), 2, BigDecimal.ROUND_UP)
-                                .compareTo(BigDecimal.valueOf(minSwingPct / 100D)) >= 0) {
+                if (!swingHigh && percentageDifferenceBetweenHighAndLowIsGreaterThenLimit(highIndex, lowIndex, minSwingLimitInPct)) {
                     extrema.add(ratings.get(highIndex));
                     swingHigh = true;
                     swingLow = false;
@@ -95,29 +84,18 @@ public class LocalExtremaFinder {
         return extrema;
     }
 
-    private boolean isCurrentCloseValueGreaterThenHighCloseValue(int currentIndex, int highIndex) {
+    private boolean currentValueIsGreaterThenLastHighValue(int currentIndex, int highIndex) {
         return ratings.get(currentIndex).getCloseValue().subtract(ratings.get(highIndex).getCloseValue()).compareTo(BigDecimal.ZERO) == 1;
     }
 
-    private boolean isCurrentCloseValueSmallerThenLowCloseValue(int currentIndex, int lowIndex) {
+    private boolean currentValueIsSmallerThenLastLowValue(int currentIndex, int lowIndex) {
         return ratings.get(currentIndex).getCloseValue().subtract(ratings.get(lowIndex).getCloseValue()).compareTo(BigDecimal.ZERO) == -1;
     }
 
-    public static void main(String[] args) {
-        InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
-        InvestFund investFund = investFundsDao.get("AVIVA Malych Spolek");
-        List<Rating> ratings = investFund.getRatings();
-
-        System.out.println(ratings.size());
-
-        LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund);
-
-        List<Rating> extrema = localExtremaFinder.findExtrema(10D);
-
-        System.out.println(extrema.size());
-
-        for (Rating rating : extrema) {
-            System.out.println(rating);
-        }
+    private boolean percentageDifferenceBetweenHighAndLowIsGreaterThenLimit(int highIndex, int lowIndex, double minSwingLimitInPct) {
+        return (ratings.get(highIndex).getCloseValue()
+                .subtract(ratings.get(lowIndex).getCloseValue()))
+                .divide(ratings.get(lowIndex).getCloseValue(), 2, BigDecimal.ROUND_UP)
+                .compareTo(BigDecimal.valueOf(minSwingLimitInPct / 100D)) >= 0;
     }
 }

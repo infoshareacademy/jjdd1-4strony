@@ -11,7 +11,7 @@ public class SimpleMovingAverage {
     private BigDecimal sum = BigDecimal.ZERO;
 
     public SimpleMovingAverage(int period) {
-        assert period > 0 : "Period must be a positive integer";
+        if (period <= 0) throw new IllegalArgumentException("Period must be a positive integer");
         this.period = period;
     }
 

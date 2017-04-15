@@ -36,7 +36,7 @@ public class Main {
 
         for (InvestFund investFund : investFundsDao.getAllByName()) {
             LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund);
-            List<Rating> extremaRatings = localExtremaFinder.findExtrema(30);
+            List<Rating> extremaRatings = localExtremaFinder.findExtrema(3);
 
             System.out.println("\n" + investFund.getName() + " || Local maximum extrema (found " + extremaRatings.size() + " ratings):");
             for (Rating rating : extremaRatings) {
