@@ -10,12 +10,13 @@ import static org.assertj.core.api.Assertions.*;
 public class SimpleMovingAverageTest {
 
     private static final int DIGITS_AFTER_COMMA = 2;
-    private static final int period = 5;
+    private static final int POSITIVE_PERIOD = 5;
+    private static final int NEGATIVE_PERIOD = -5;
     private static SimpleMovingAverage simpleMovingAverage;
 
     @Before
     public void setup() {
-        simpleMovingAverage = new SimpleMovingAverage(period);
+        simpleMovingAverage = new SimpleMovingAverage(POSITIVE_PERIOD);
     }
 
     @Test
@@ -28,5 +29,11 @@ public class SimpleMovingAverageTest {
         BigDecimal value = BigDecimal.valueOf(10, DIGITS_AFTER_COMMA);
         simpleMovingAverage.add(value);
         assertThat(simpleMovingAverage.getAverage()).isEqualTo(value);
+    }
+
+    @Test
+    public void should_failure_when_negative_period_is_given() {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new SimpleMovingAverage(NEGATIVE_PERIOD));
     }
 }
