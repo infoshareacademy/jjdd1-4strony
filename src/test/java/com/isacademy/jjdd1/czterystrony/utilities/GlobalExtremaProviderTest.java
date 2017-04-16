@@ -11,7 +11,7 @@ import static org.mockito.Mockito.*;
 
 public class GlobalExtremaProviderTest {
 
-    public static GlobalExtremaProvider globalExtremaProvider;
+    private static GlobalExtremaProvider globalExtremaProvider;
 
     @Before
     public void setup() {
