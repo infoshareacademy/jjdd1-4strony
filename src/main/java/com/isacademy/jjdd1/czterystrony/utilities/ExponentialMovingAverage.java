@@ -24,12 +24,12 @@ public class ExponentialMovingAverage extends MovingAverage {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    private BigDecimal getSummand(int elementIndex) {
-        return getWeight(elementIndex).multiply(window.get(window.size() - elementIndex));
+    private BigDecimal getSummand(int summandIndex) {
+        return getWeight(summandIndex).multiply(window.get(window.size() - summandIndex));
     }
 
-    private BigDecimal getWeight(int elementIndex) {
-        return BigDecimal.valueOf((1 - 2 / (elementIndex + 1)) ^ (elementIndex - 1));
+    private BigDecimal getWeight(int summandIndex) {
+        return BigDecimal.valueOf((1 - 2 / (summandIndex + 1)) ^ (summandIndex - 1));
     }
 
     @Override
