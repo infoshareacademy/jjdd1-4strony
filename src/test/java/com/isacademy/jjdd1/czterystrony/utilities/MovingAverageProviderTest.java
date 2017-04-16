@@ -1,4 +1,4 @@
 package com.isacademy.jjdd1.czterystrony.utilities;
 
-public class Test {
+public class MovingAverageProviderTest {
 }
