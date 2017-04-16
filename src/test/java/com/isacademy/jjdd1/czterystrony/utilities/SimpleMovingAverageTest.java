@@ -12,6 +12,7 @@ public class SimpleMovingAverageTest {
     private static final int DIGITS_AFTER_COMMA = 2;
     private static final int POSITIVE_PERIOD = 5;
     private static final int NEGATIVE_PERIOD = -5;
+    private static final int TEST_VALUE = 10;
     private static SimpleMovingAverage simpleMovingAverage;
 
     @Before
@@ -26,7 +27,7 @@ public class SimpleMovingAverageTest {
 
     @Test
     public void average_should_be_equal_to_added_value() {
-        BigDecimal value = BigDecimal.valueOf(10, DIGITS_AFTER_COMMA);
+        BigDecimal value = BigDecimal.valueOf(TEST_VALUE, DIGITS_AFTER_COMMA);
         simpleMovingAverage.add(value);
         assertThat(simpleMovingAverage.getAverage()).isEqualTo(value);
     }

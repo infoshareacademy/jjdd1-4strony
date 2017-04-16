@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.Assert.fail;
 
 public class GlobalExtremaProviderTest {
 
@@ -19,5 +20,6 @@ public class GlobalExtremaProviderTest {
     @Test
     public void method_name() {
 //        assertThat()
+        fail();
     }
 }

@@ -29,7 +29,8 @@ public class ExponentialMovingAverage extends MovingAverage {
     }
 
     private BigDecimal getWeight(int summandIndex) {
-        return BigDecimal.valueOf((1 - 2 / (summandIndex + 1)) ^ (summandIndex - 1));
+        BigDecimal powerBase = BigDecimal.valueOf(1D - (2D / (summandIndex + 1D)));
+        return powerBase.pow(summandIndex - 1);
     }
 
     @Override
