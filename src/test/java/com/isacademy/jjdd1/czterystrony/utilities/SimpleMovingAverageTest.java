@@ -23,9 +23,8 @@ public class SimpleMovingAverageTest {
 
     @Test
     public void average_for_only_1_value_should_be_equal_to_this_value() {
-        BigDecimal value = BigDecimal.valueOf(TestAverages.TEST_VALUE, TestAverages.DIGITS_AFTER_COMMA);
-        simpleMovingAverage.add(value);
-        assertThat(simpleMovingAverage.getAverage()).isEqualTo(value);
+        simpleMovingAverage.add(TestAverages.TEST_VALUE);
+        assertThat(simpleMovingAverage.getAverage()).isEqualTo(TestAverages.TEST_VALUE);
     }
 
     @Test

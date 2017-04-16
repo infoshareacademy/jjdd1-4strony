@@ -24,9 +24,8 @@ public class ExponentialMovingAverageTest {
 
     @Test
     public void average_for_only_1_value_should_be_equal_to_this_value() {
-        BigDecimal value = BigDecimal.valueOf(TestAverages.TEST_VALUE, TestAverages.DIGITS_AFTER_COMMA);
-        exponentialMovingAverage.add(value);
-        assertThat(exponentialMovingAverage.getAverage()).isEqualTo(value);
+        exponentialMovingAverage.add(TestAverages.TEST_VALUE);
+        assertThat(exponentialMovingAverage.getAverage()).isEqualTo(TestAverages.TEST_VALUE);
     }
 
     @Test

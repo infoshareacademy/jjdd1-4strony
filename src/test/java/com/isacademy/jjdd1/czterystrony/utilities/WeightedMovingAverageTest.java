@@ -24,9 +24,8 @@ public class WeightedMovingAverageTest {
 
     @Test
     public void average_for_only_1_value_should_be_equal_to_this_value() {
-        BigDecimal value = BigDecimal.valueOf(TestAverages.TEST_VALUE, TestAverages.DIGITS_AFTER_COMMA);
-        weightedMovingAverage.add(value);
-        assertThat(weightedMovingAverage.getAverage()).isEqualTo(value);
+        weightedMovingAverage.add(TestAverages.TEST_VALUE);
+        assertThat(weightedMovingAverage.getAverage()).isEqualTo(TestAverages.TEST_VALUE);
     }
 
     @Test
