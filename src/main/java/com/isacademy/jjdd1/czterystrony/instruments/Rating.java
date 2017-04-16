@@ -27,6 +27,6 @@ public class Rating implements Comparable<Rating> {
 
     @Override
     public String toString() {
-        return "Data: " + date + " | Close value: " + closeValue;
+        return "Date: " + date + " | Close value: " + closeValue;
     }
 }

@@ -10,11 +10,13 @@ public class SimpleMovingAverage extends MovingAverage {
     }
 
     public void add(BigDecimal value) {
-        sum = sum.add(value);
         window.add(value);
+
         if (window.size() > period) {
             sum = sum.subtract(window.remove(0));
         }
+
+        sum = sum.add(value);
     }
 
     public BigDecimal getAverage() {

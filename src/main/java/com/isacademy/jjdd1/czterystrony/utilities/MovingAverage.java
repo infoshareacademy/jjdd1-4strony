@@ -3,7 +3,6 @@ package com.isacademy.jjdd1.czterystrony.utilities;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public abstract class MovingAverage {
     protected List<BigDecimal> window = new LinkedList<>();

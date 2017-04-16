@@ -38,15 +38,23 @@ public class MovingAverageProvider extends StatisticsProvider {
         InvestFund investFund = investFundsDao.get("AGIO Agresywny");
 
 //        TimeRange timeRange = new TimeRange(LocalDate.parse("2010-01-01"), LocalDate.parse("2014-01-01"));
-        SimpleMovingAverage simpleMovingAverage = new SimpleMovingAverage(10);
-        MovingAverageProvider movingAverageProvider = new MovingAverageProvider(investFund, simpleMovingAverage);
+
+        SimpleMovingAverage movingAverage = new SimpleMovingAverage(10);
+//        WeightedMovingAverage movingAverage = new WeightedMovingAverage(10);
+
+        MovingAverageProvider movingAverageProvider = new MovingAverageProvider(investFund, movingAverage);
 
         List<Rating> averageRatings = movingAverageProvider.getMovingAverageRatings();
 
-//        List<Rating> averageRatings = investFund.getRatings();
+        List<Rating> ratings = investFund.getRatings();
 
-        System.out.println("Local maximum extrema (found " + averageRatings.size() + " ratings):");
+        System.out.println("Moving average values (found " + averageRatings.size() + " ratings):");
         for (Rating rating : averageRatings) {
+            System.out.println(rating);
+        }
+
+        System.out.println("\n\nRatings (found " + ratings.size() + " ratings):");
+        for (Rating rating : ratings) {
             System.out.println(rating);
         }
     }
