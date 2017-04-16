@@ -23,7 +23,7 @@ public class ExponentialMovingAverageTest {
     }
 
     @Test
-    public void average_for_only_1_value_should_be_equal_to_this_value() {
+    public void average_for_only_1_value_should_be_equal_this_value() {
         exponentialMovingAverage.add(TestAverages.TEST_VALUE);
         assertThat(exponentialMovingAverage.getAverage()).isEqualTo(TestAverages.TEST_VALUE);
     }
