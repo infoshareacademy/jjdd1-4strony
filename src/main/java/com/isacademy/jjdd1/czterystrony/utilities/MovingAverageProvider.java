@@ -14,7 +14,7 @@ public class MovingAverageProvider extends StatisticsProvider {
         this.movingAverage = movingAverage;
     }
 
-    public MovingAverageProvider(FinancialInstrument financialInstrument, TimeRange timeRange, MovingAverage movingAverage) {
+    public MovingAverageProvider(FinancialInstrument financialInstrument, MovingAverage movingAverage, TimeRange timeRange) {
         super(financialInstrument, timeRange);
         this.movingAverage = movingAverage;
     }
