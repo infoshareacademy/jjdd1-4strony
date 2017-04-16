@@ -25,7 +25,11 @@ public class WeightedMovingAverage extends MovingAverage {
     }
 
     private BigDecimal getSummand(int summandIndex) {
-        return BigDecimal.valueOf(summandIndex).multiply(window.get(summandIndex - 1));
+        return getWeight(summandIndex).multiply(window.get(summandIndex - 1));
+    }
+
+    private BigDecimal getWeight(int summandIndex) {
+        return BigDecimal.valueOf(summandIndex);
     }
 
     @Override
