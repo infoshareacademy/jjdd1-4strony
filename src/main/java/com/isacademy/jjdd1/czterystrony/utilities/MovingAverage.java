@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class MovingAverage {
+    protected final int DIGITS_AFTER_COMMA = 2;
     protected List<BigDecimal> window = new LinkedList<>();
     protected int period;
     protected BigDecimal sum = BigDecimal.ZERO;
@@ -17,4 +18,6 @@ public abstract class MovingAverage {
     public abstract void add(BigDecimal value);
 
     public abstract BigDecimal getAverage();
+
+    abstract BigDecimal getDivisor();
 }

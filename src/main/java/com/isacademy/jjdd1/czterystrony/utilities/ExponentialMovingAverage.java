@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.stream.IntStream;
 
-public class WeightedMovingAverage extends MovingAverage {
+public class ExponentialMovingAverage extends MovingAverage {
 
-    public WeightedMovingAverage(int period) {
+    public ExponentialMovingAverage(int period) {
         super(period);
     }
 
@@ -25,7 +25,11 @@ public class WeightedMovingAverage extends MovingAverage {
     }
 
     private BigDecimal getSummand(int elementIndex) {
-        return BigDecimal.valueOf(elementIndex).multiply(window.get(elementIndex - 1));
+        return getWeight(elementIndex).multiply(window.get(window.size() - elementIndex));
+    }
+
+    private BigDecimal getWeight(int elementIndex) {
+        return BigDecimal.valueOf((1 - 2 / (elementIndex + 1)) ^ (elementIndex - 1));
     }
 
     @Override
@@ -36,6 +40,8 @@ public class WeightedMovingAverage extends MovingAverage {
 
     @Override
     BigDecimal getDivisor() {
-        return BigDecimal.valueOf(IntStream.rangeClosed(1, window.size()).sum());
+        return IntStream.rangeClosed(1, window.size())
+                .mapToObj(t -> getWeight(t))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

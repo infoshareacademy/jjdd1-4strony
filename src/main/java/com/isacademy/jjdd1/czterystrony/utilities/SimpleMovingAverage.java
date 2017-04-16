@@ -9,6 +9,7 @@ public class SimpleMovingAverage extends MovingAverage {
         super(period);
     }
 
+    @Override
     public void add(BigDecimal value) {
         window.add(value);
 
@@ -19,9 +20,14 @@ public class SimpleMovingAverage extends MovingAverage {
         sum = sum.add(value);
     }
 
+    @Override
     public BigDecimal getAverage() {
         if (window.isEmpty()) return BigDecimal.ZERO;
-        BigDecimal divisor = BigDecimal.valueOf(window.size());
-        return sum.divide(divisor, 2, RoundingMode.HALF_UP);
+        return sum.divide(getDivisor(), DIGITS_AFTER_COMMA, RoundingMode.HALF_UP);
+    }
+
+    @Override
+    BigDecimal getDivisor() {
+        return BigDecimal.valueOf(window.size());
     }
 }
