@@ -18,7 +18,7 @@ public class WeightedMovingAverageTest {
     }
 
     @Test
-    public void should_get_average_equal_to_zero() {
+    public void when_nothing_added_average_should_be_zero() {
         assertThat(weightedMovingAverage.getAverage()).isEqualTo(BigDecimal.ZERO);
     }
 

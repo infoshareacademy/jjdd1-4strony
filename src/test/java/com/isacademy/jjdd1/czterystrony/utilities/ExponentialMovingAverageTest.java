@@ -18,7 +18,7 @@ public class ExponentialMovingAverageTest {
     }
 
     @Test
-    public void should_get_average_equal_to_zero() {
+    public void when_nothing_added_average_should_be_zero() {
         assertThat(exponentialMovingAverage.getAverage()).isEqualTo(BigDecimal.ZERO);
     }
 
