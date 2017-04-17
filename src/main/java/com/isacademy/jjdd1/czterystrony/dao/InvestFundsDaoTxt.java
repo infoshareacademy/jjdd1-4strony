@@ -48,17 +48,17 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
         File fileWithInvestFundsList = new File(INVEST_FUNDS_LIST_DIRECTORY);
         TextFileReader textFileReader = new TextFileReader(fileWithInvestFundsList);
         return textFileReader.getContent().stream()
-                .filter(s -> recordContainsDataFileExtension(s))
+                .filter(s -> containsDataFileExtension(s))
                 .filter(s -> ratingsDataFileExistsFor(findIdInRecord(s)))
                 .collect(Collectors.toMap(s -> joinIdWithDataFileExtension(s), s -> findNameInRecord(s)));
     }
 
-    private Boolean recordContainsDataFileExtension(String record) {
+    private Boolean containsDataFileExtension(String record) {
         return record.matches("(.*)" + RATINGS_DATA_FILE_EXTENSION + "(.*)");
     }
 
     private Boolean ratingsDataFileExistsFor(String investFundID) {
-        File investFundDataFile = new File(INVEST_FUNDS_DATA_FOLDER_DIRECTORY + "/" + investFundID + RATINGS_DATA_FILE_EXTENSION);
+        File investFundDataFile = new File(INVEST_FUNDS_DATA_FOLDER_DIRECTORY + investFundID + RATINGS_DATA_FILE_EXTENSION);
         return investFundDataFile.getAbsoluteFile().exists();
     }
 
