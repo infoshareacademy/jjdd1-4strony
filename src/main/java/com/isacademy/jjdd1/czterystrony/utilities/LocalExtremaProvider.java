@@ -57,17 +57,20 @@ public class LocalExtremaProvider extends StatisticsProvider {
     }
 
     private boolean currentValueIsGreaterThenLastHighValue(int currentIndex, int highIndex) {
-        return ratings.get(currentIndex).getCloseValue().subtract(ratings.get(highIndex).getCloseValue()).compareTo(BigDecimal.ZERO) == 1;
+        return closeValueForIndex(currentIndex).subtract(closeValueForIndex(highIndex)).compareTo(BigDecimal.ZERO) == 1;
     }
 
     private boolean currentValueIsSmallerThenLastLowValue(int currentIndex, int lowIndex) {
-        return ratings.get(currentIndex).getCloseValue().subtract(ratings.get(lowIndex).getCloseValue()).compareTo(BigDecimal.ZERO) == -1;
+        return closeValueForIndex(currentIndex).subtract(closeValueForIndex(lowIndex)).compareTo(BigDecimal.ZERO) == -1;
     }
 
     private boolean pctDifferenceBetweenHighAndLowIsGreaterOrEqualLimit(int highIndex, int lowIndex, double minSwingLimitInPct) {
-        return (ratings.get(highIndex).getCloseValue()
-                .subtract(ratings.get(lowIndex).getCloseValue()))
-                .divide(ratings.get(lowIndex).getCloseValue(), DIGITS_AFTER_COMMA, BigDecimal.ROUND_UP)
+        return (closeValueForIndex(highIndex).subtract(closeValueForIndex(lowIndex)))
+                .divide(closeValueForIndex(lowIndex), DIGITS_AFTER_COMMA, BigDecimal.ROUND_UP)
                 .compareTo(BigDecimal.valueOf(minSwingLimitInPct / HUNDRED_PCT)) >= 0;
+    }
+
+    private BigDecimal closeValueForIndex(int index) {
+        return ratings.get(index).getCloseValue();
     }
 }
