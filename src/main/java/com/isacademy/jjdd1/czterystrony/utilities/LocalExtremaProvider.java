@@ -10,6 +10,7 @@ import java.util.List;
 public class LocalExtremaProvider extends StatisticsProvider {
     private final double HUNDRED_PCT = 100D;
     private final int DIGITS_AFTER_COMMA = 2;
+    private double minSwingLimitInPct;
 
     public LocalExtremaProvider(FinancialInstrument instrument) {
         super(instrument);
@@ -20,6 +21,7 @@ public class LocalExtremaProvider extends StatisticsProvider {
     }
 
     public List<Rating> findExtrema(double minSwingLimitInPct) {
+        this.minSwingLimitInPct = minSwingLimitInPct;
         boolean swingHigh = false;
         boolean swingLow = false;
         int startIndex = DEFAULT_START_INDEX;
@@ -33,7 +35,7 @@ public class LocalExtremaProvider extends StatisticsProvider {
             if (currentValueIsGreaterThenLastHighValue(i, highIndex)) {
                 highIndex = i;
 
-                if (!swingLow && pctDifferenceBetweenHighAndLowIsGreaterOrEqualLimit(highIndex, lowIndex, minSwingLimitInPct)) {
+                if (!swingLow && pctDifferenceBetweenHighAndLowIsGreaterOrEqualLimit(highIndex, lowIndex)) {
                     extrema.add(ratings.get(lowIndex));
                     swingHigh = false;
                     swingLow = true;
@@ -44,7 +46,7 @@ public class LocalExtremaProvider extends StatisticsProvider {
             } else if (currentValueIsSmallerThenLastLowValue(i, lowIndex)) {
                 lowIndex = i;
 
-                if (!swingHigh && pctDifferenceBetweenHighAndLowIsGreaterOrEqualLimit(highIndex, lowIndex, minSwingLimitInPct)) {
+                if (!swingHigh && pctDifferenceBetweenHighAndLowIsGreaterOrEqualLimit(highIndex, lowIndex)) {
                     extrema.add(ratings.get(highIndex));
                     swingHigh = true;
                     swingLow = false;
@@ -64,13 +66,17 @@ public class LocalExtremaProvider extends StatisticsProvider {
         return closeValueForIndex(currentIndex).subtract(closeValueForIndex(lowIndex)).compareTo(BigDecimal.ZERO) == -1;
     }
 
-    private boolean pctDifferenceBetweenHighAndLowIsGreaterOrEqualLimit(int highIndex, int lowIndex, double minSwingLimitInPct) {
+    private boolean pctDifferenceBetweenHighAndLowIsGreaterOrEqualLimit(int highIndex, int lowIndex) {
         return (closeValueForIndex(highIndex).subtract(closeValueForIndex(lowIndex)))
                 .divide(closeValueForIndex(lowIndex), DIGITS_AFTER_COMMA, BigDecimal.ROUND_UP)
-                .compareTo(BigDecimal.valueOf(minSwingLimitInPct / HUNDRED_PCT)) >= 0;
+                .compareTo(minSwingLimit()) >= 0;
     }
 
     private BigDecimal closeValueForIndex(int index) {
         return ratings.get(index).getCloseValue();
+    }
+
+    private BigDecimal minSwingLimit() {
+        return BigDecimal.valueOf(minSwingLimitInPct / HUNDRED_PCT);
     }
 }

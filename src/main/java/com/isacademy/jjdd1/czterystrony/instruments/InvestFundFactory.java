@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InvestFundFactory {
+    private static final int RECORDS_TO_SKIP = 1;
+
     public static InvestFund create(String dataFileNameWithExtension, String name) {
         String id = dataFileNameWithExtension.replaceFirst("(\\w+).*", "$1");
         String company = name.replaceAll(" .+$", "");
@@ -26,7 +28,7 @@ public class InvestFundFactory {
 
     private static List<Rating> getRatings(List<String> records) {
         return records.stream()
-                .skip(1)
+                .skip(RECORDS_TO_SKIP)
                 .map(RatingFactory::create)
                 .sorted()
                 .collect(Collectors.toList());
