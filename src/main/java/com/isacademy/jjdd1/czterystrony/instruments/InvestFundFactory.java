@@ -13,7 +13,7 @@ public class InvestFundFactory {
     public static InvestFund create(String dataFileNameWithExtension, String name) {
         String id = dataFileNameWithExtension.replaceFirst("(\\w+).*", "$1");
         String company = name.replaceAll(" .+$", "");
-        File dataFile = new File(InvestFundsDao.INVEST_FUNDS_DATA_FOLDER_DIRECTORY + "/" + dataFileNameWithExtension);
+        File dataFile = new File(InvestFundsDao.INVEST_FUNDS_DATA_FOLDER_DIRECTORY + dataFileNameWithExtension);
         TextFileReader textFileReader = new TextFileReader(dataFile);
         List<String> records = textFileReader.getContent();
         List<Rating> ratings = getRatings(records);
