@@ -7,7 +7,8 @@ import java.time.LocalDate;
 import static org.assertj.core.api.Assertions.*;
 
 public class TimeRangeTest {
-
+    private static final int DAYS_IN_NON_LEAP_YEAR = 365;
+    private static final int DAYS_IN_LEAP_YEAR = 366;
     private static LocalDate startDate;
     private static LocalDate endDate;
     private static TimeRange timeRange;
@@ -17,7 +18,7 @@ public class TimeRangeTest {
         startDate = LocalDate.parse("2014-01-01");
         endDate = LocalDate.parse("2015-01-01");
         timeRange = new TimeRange(startDate, endDate);
-        assertThat(timeRange.getDifferenceInDays()).isEqualTo(365);
+        assertThat(timeRange.getDifferenceInDays()).isEqualTo(DAYS_IN_NON_LEAP_YEAR);
     }
 
     @Test
@@ -25,7 +26,7 @@ public class TimeRangeTest {
         startDate = LocalDate.parse("2016-02-01");
         endDate = LocalDate.parse("2017-02-01");
         timeRange = new TimeRange(startDate, endDate);
-        assertThat(timeRange.getDifferenceInDays()).isEqualTo(366);
+        assertThat(timeRange.getDifferenceInDays()).isEqualTo(DAYS_IN_LEAP_YEAR);
     }
 
     @Test
