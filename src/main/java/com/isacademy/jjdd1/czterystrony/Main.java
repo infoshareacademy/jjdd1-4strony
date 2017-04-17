@@ -65,7 +65,7 @@ public class Main {
 
         System.out.println("\n\nInvest funds sorted by name:");
         for (InvestFund investFund : investFundsDao.getAllByName()) {
-            System.out.println(investFund.getName());
+            System.out.println("ID: " + investFund.getId() + " | Name: " +investFund.getName());
         }
     }
 

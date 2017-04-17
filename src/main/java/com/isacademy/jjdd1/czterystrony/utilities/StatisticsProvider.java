@@ -10,12 +10,12 @@ public abstract class StatisticsProvider {
     protected final int DEFAULT_START_INDEX = 0;
     protected List<Rating> ratings;
 
-    public StatisticsProvider(FinancialInstrument financialInstrument) {
-        this.ratings = financialInstrument.getRatings();
+    public StatisticsProvider(FinancialInstrument instrument) {
+        this.ratings = instrument.getRatings();
     }
 
-    public StatisticsProvider(FinancialInstrument financialInstrument, TimeRange timeRange) {
-        this.ratings = financialInstrument.getRatings().stream()
+    public StatisticsProvider(FinancialInstrument instrument, TimeRange timeRange) {
+        this.ratings = instrument.getRatings().stream()
                 .filter(t -> t.getDate().isAfter(timeRange.getStart()))
                 .filter(t -> t.getDate().isBefore(timeRange.getEnd()))
                 .collect(Collectors.toList());

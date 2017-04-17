@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 public class MovingAverageProvider extends StatisticsProvider {
     private MovingAverage movingAverage;
 
-    public MovingAverageProvider(FinancialInstrument financialInstrument, MovingAverage movingAverage) {
-        super(financialInstrument);
-        this.movingAverage = movingAverage;
+    public MovingAverageProvider(FinancialInstrument instrument, MovingAverage average) {
+        super(instrument);
+        this.movingAverage = average;
     }
 
-    public MovingAverageProvider(FinancialInstrument financialInstrument, MovingAverage movingAverage, TimeRange timeRange) {
-        super(financialInstrument, timeRange);
-        this.movingAverage = movingAverage;
+    public MovingAverageProvider(FinancialInstrument instrument, MovingAverage average, TimeRange timeRange) {
+        super(instrument, timeRange);
+        this.movingAverage = average;
     }
 
     public List<Rating> getMovingAverageRatings() {

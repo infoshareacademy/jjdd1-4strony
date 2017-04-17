@@ -10,12 +10,12 @@ import java.util.List;
 
 public class GlobalExtremaProvider extends StatisticsProvider {
 
-    public GlobalExtremaProvider(FinancialInstrument financialInstrument) {
-        super(financialInstrument);
+    public GlobalExtremaProvider(FinancialInstrument instrument) {
+        super(instrument);
     }
 
-    public GlobalExtremaProvider(FinancialInstrument financialInstrument, TimeRange timeRange) {
-        super(financialInstrument, timeRange);
+    public GlobalExtremaProvider(FinancialInstrument instrument, TimeRange timeRange) {
+        super(instrument, timeRange);
     }
 
     public Rating getGlobalMinimum() {

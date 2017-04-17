@@ -11,12 +11,12 @@ public class LocalExtremaProvider extends StatisticsProvider {
     private final double HUNDRED_PCT = 100D;
     private final int DIGITS_AFTER_COMMA = 2;
 
-    public LocalExtremaProvider(FinancialInstrument financialInstrument) {
-        super(financialInstrument);
+    public LocalExtremaProvider(FinancialInstrument instrument) {
+        super(instrument);
     }
 
-    public LocalExtremaProvider(FinancialInstrument financialInstrument, TimeRange timeRange) {
-        super(financialInstrument, timeRange);
+    public LocalExtremaProvider(FinancialInstrument instrument, TimeRange timeRange) {
+        super(instrument, timeRange);
     }
 
     public List<Rating> findExtrema(double minSwingLimitInPct) {
