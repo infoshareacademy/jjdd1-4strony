@@ -7,7 +7,7 @@ import java.util.List;
 public interface InvestFundsDao extends StockExchangeDao<InvestFund> {
 
     @Override
-    InvestFund get(String investFundId);
+    InvestFund get(String id);
 
     @Override
     List<InvestFund> getAllByName();

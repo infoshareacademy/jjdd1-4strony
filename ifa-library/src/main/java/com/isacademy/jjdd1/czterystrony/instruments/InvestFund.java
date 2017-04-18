@@ -57,8 +57,9 @@ public class InvestFund extends FinancialInstrument implements Promotable {
     @Override
     public String toString() {
         return "Company: " + getCompany() +
-                "\nName: " + getName() +
-                "\nPriority: " + getPriority() +
-                "\nRatings count: " + getRatings().size();
+                " | Name: " + getName() +
+                " | Priority: " + getPriority() +
+                " | Number of ratings: " + getRatings().size() +
+                "\n";
     }
 }
