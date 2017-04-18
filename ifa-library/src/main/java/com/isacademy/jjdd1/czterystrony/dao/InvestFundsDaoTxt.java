@@ -12,8 +12,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class InvestFundsDaoTxt implements InvestFundsDao {
-    private final String INVEST_FUNDS_LIST_FILE = "/data/stockexchange/omegafun.lst";
-    public static final String INVEST_FUNDS_DATA_FOLDER_DIRECTORY = "/data/stockexchange/investfunds/";
+    private final String INVEST_FUNDS_LIST_FILE = "omegafun.lst";
+    public static final String INVEST_FUNDS_DATA_FOLDER_DIRECTORY = "investfunds/";
     public static final String RATINGS_DATA_FILE_EXTENSION = ".txt";
     private final int BEGIN_OF_ID_IN_LST = 33;
     private final int END_OF_ID_IN_LST = 39;
