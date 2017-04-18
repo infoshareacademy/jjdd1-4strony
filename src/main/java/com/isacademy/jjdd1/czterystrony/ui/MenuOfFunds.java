@@ -5,15 +5,27 @@ import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MenuOfFunds {
     public int menuOfFunds;
 
     {
         InvestFundsDao investFundDao = new InvestFundsDaoTxt();
-
+        List<InvestFund> allByName = investFundDao.getAllByName();
         System.out.println("Lista funduszy: ");
-        for (InvestFund investFund : investFundDao.getAllByName()) {
+
+        for (InvestFund investFund : allByName) {
+            if (investFund.getName().equals("AVIVA Obligacji")) {
+                investFund.promote(99);
+
+            }
+
+        }
+
+
+
+        for (InvestFund investFund : allByName.stream().sorted(Comparator.comparing(InvestFund::getPriority)).collect(Collectors.toList())) {
             System.out.println(investFund.getName());
         }
 

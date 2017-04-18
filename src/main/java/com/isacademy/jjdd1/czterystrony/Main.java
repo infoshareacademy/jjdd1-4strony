@@ -78,7 +78,8 @@ public class Main {
         for (InvestFund investFund : allByName) {
             if (investFund.getName().equals("AVIVA Obligacji")) {
                 investFund.promote(99);
-                System.out.println(investFund.getName() + " " + -investFund.getPriority());
+                System.out.println("TEST-> Promote zadziałał");
+                //System.out.println(investFund.getName() + " " + -investFund.getPriority());
             }
         }
             for (InvestFund investFund : allByName.stream().sorted(Comparator.comparing(InvestFund::getPriority)).collect(Collectors.toList())) {
