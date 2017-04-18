@@ -1,5 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.instruments;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,5 +50,12 @@ public class FinancialInstrument {
 
     public List<Rating> getRatings() {
         return ratings;
+    }
+
+    public Rating getRatingAtDate(LocalDate date) {
+        return ratings.stream()
+                .filter(t -> t.getDate().equals(date))
+                .findFirst()
+                .orElse(null);
     }
 }

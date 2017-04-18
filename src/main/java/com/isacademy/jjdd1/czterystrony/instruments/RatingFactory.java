@@ -1,6 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.dao;
-
-import com.isacademy.jjdd1.czterystrony.instruments.Rating;
+package com.isacademy.jjdd1.czterystrony.instruments;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

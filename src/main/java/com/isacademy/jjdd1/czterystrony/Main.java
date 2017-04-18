@@ -4,33 +4,33 @@ import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
-import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaFinder;
-import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinder;
-import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaFinderConfigurator;
+import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaProvider;
+import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
+import com.isacademy.jjdd1.czterystrony.utilities.TimeRange;
 
-
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-//        findLocalExtremaForGivenInvestFundTest("AIP003");
+        findLocalExtremaForGivenInvestFundTest("AGIO Agresywny");
         findLocalExtremaOfAllInvestFundsTest();
         printAllInvestFundsByNameTest();
         printAllInvestFundsByPriorityTest();
-//        findGlobalExtremaForGivenInvestFundTest("AIP003");
+        findGlobalExtremaForGivenInvestFundTest("AVIVA Obligacji");
     }
 
     public static void findLocalExtremaForGivenInvestFundTest(String investFundName) {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
         InvestFund investFund = investFundsDao.get(investFundName);
 
-        LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfigurator(1, 1, BigDecimal.valueOf(0.5D), BigDecimal.valueOf(0.5D));
-        LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund, localExtremaFinderConfigurator);
-        List<Rating> maximumExtremaRatings = localExtremaFinder.getMaximumExtremaRatings();
+        TimeRange timeRange = new TimeRange(LocalDate.parse("2010-01-01"), LocalDate.parse("2014-01-01"));
+        LocalExtremaProvider localExtremaProvider = new LocalExtremaProvider(investFund, timeRange);
 
-        System.out.println("Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");
-        for (Rating rating : maximumExtremaRatings) {
+        List<Rating> extremaRatings = localExtremaProvider.findExtrema(5);
+
+        System.out.println("Local maximum extrema (found " + extremaRatings.size() + " ratings):");
+        for (Rating rating : extremaRatings) {
             System.out.println(rating);
         }
     }
@@ -39,11 +39,11 @@ public class Main {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
 
         for (InvestFund investFund : investFundsDao.getAllByName()) {
-            LocalExtremaFinderConfigurator localExtremaFinderConfigurator = new LocalExtremaFinderConfigurator(1, 1, BigDecimal.valueOf(0.5D), BigDecimal.valueOf(0.5D));
-            LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(investFund, localExtremaFinderConfigurator);
-            List<Rating> maximumExtremaRatings = localExtremaFinder.getMaximumExtremaRatings();
-            System.out.println("\n" + investFund.getName() + " || Local maximum extrema (found " + maximumExtremaRatings.size() + " ratings):");
-            for (Rating rating : maximumExtremaRatings) {
+            LocalExtremaProvider localExtremaProvider = new LocalExtremaProvider(investFund);
+            List<Rating> extremaRatings = localExtremaProvider.findExtrema(15);
+
+            System.out.println("\n" + investFund.getName() + " || Local maximum extrema (found " + extremaRatings.size() + " ratings):");
+            for (Rating rating : extremaRatings) {
                 System.out.println(rating);
             }
         }
@@ -53,11 +53,11 @@ public class Main {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
         InvestFund investFund = investFundsDao.get(investFundName);
 
-        GlobalExtremaFinder globalExtremaFinder = new GlobalExtremaFinder(investFund);
+        GlobalExtremaProvider globalExtremaProvider = new GlobalExtremaProvider(investFund);
 
         System.out.println("\n\n" + investFund.getName() + " || Global extrema:");
-        System.out.println("Maximum: " + globalExtremaFinder.getGlobalMaximum());
-        System.out.println("Minimum: " + globalExtremaFinder.getGlobalMinimum());
+        System.out.println("Maximum: " + globalExtremaProvider.getGlobalMaximum());
+        System.out.println("Minimum: " + globalExtremaProvider.getGlobalMinimum());
     }
 
     public static void printAllInvestFundsByNameTest() {
@@ -65,7 +65,7 @@ public class Main {
 
         System.out.println("\n\nInvest funds sorted by name:");
         for (InvestFund investFund : investFundsDao.getAllByName()) {
-            System.out.println(investFund.getName());
+            System.out.println("ID: " + investFund.getId() + " | Name: " +investFund.getName());
         }
     }
 

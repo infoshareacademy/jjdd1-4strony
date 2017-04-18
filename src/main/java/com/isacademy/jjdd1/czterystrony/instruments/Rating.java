@@ -22,11 +22,11 @@ public class Rating implements Comparable<Rating> {
 
     @Override
     public int compareTo(Rating rating) {
-        return date.compareTo(rating.date);
+        return date.compareTo(rating.getDate());
     }
 
     @Override
     public String toString() {
-        return "Data: " + date + " | Close value: " + closeValue;
+        return "Date: " + date + " | Close value: " + closeValue;
     }
 }

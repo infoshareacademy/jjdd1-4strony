@@ -13,7 +13,7 @@ public class InvestFund extends FinancialInstrument implements Promotable {
             this.company = company;
             return this;
         }
-
+        
         @Override
         public Builder withId(String id) {
             return (Builder) super.withId(id);
