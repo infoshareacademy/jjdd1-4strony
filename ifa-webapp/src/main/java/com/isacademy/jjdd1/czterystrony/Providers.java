@@ -1,4 +1,4 @@
-package com.example.isa.smartconnect;
+package com.isacademy.jjdd1.czterystrony;
 
 
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
