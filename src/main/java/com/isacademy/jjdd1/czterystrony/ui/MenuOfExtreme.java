@@ -30,8 +30,8 @@ public class MenuOfExtreme {
 
         switch (chooseExtreme) {
             case 1:
-                LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(fund, LocalExtremaFinderConfigurator localFinderConfugirator =  new LocalExtremaFinderConfigurator(30, 30, BigDecimal.valueOf(20), BigDecimal.valueOf(20)));
-                LOGGER.debug("Settings of local extreme: "+ );
+                LocalExtremaFinder localExtremaFinder = new LocalExtremaFinder(fund, new LocalExtremaFinderConfigurator(30, 30, BigDecimal.valueOf(20), BigDecimal.valueOf(20)));
+                LOGGER.debug("Settings of local extreme: ");
                 System.out.println("Lokalne maksima:");
                 for (Rating rating : localExtremaFinder.getMaximumExtremaRatings()) {
                     System.out.println(rating);
