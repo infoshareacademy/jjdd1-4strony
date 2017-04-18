@@ -1,5 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.ui;
 
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
+import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +27,7 @@ public class MainMenu {
                 break;
             default:
                 System.out.println("Błędny wybór. Spróbuj ponownie.");
-                LOGGER.warn("Wrong choice");
+                LOGGER.warn("Wrong choice: " + start);
                 new MainMenu();
         }
     }

@@ -1,5 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.ui;
 
+import com.isacademy.jjdd1.czterystrony.instruments.FinancialInstrument;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
@@ -18,18 +19,17 @@ public class MenuOfFunds {
         for (InvestFund investFund : investFundDao.getAllByName()) {
             System.out.println(investFund.getName());
         }
+        if (investFundDao.getAllByName().size() > 0) {
+            LOGGER.trace("Succesfully loaded " + +investFundDao.getAllByName().size() + " funds.");
+        } else {
+            LOGGER.error("There is no funds available.");
+        }
 
         System.out.println("Wpisz nazwę wybranego funduszu, aby przejść dalej:");
         Scanner choice = new Scanner(System.in);
         String fund = choice.nextLine();
         InvestFund investFund = investFundDao.get(fund);
-        LOGGER.info("Chosen fund: " + investFund);
+        LOGGER.debug("Chosen fund: " + investFund.getName());
         MenuOfExtreme menuExtreme = new MenuOfExtreme(investFund);
-//        investFund.getAllRatings();
-//
-//
-//        for (String fundChoice : allInvestFunds.keySet()) {
-//            System.out.println();
-//        }
     }
 }
