@@ -1,10 +1,8 @@
 package com.isacademy.jjdd1.czterystrony.utilities;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
@@ -12,8 +10,8 @@ import java.io.IOException;
 public class TextFileReader {
     private Path filePath;
 
-    public TextFileReader(File file) {
-        this.filePath = Paths.get(file.getAbsolutePath());
+    public TextFileReader(Path filePath) {
+        this.filePath = filePath;
     }
 
     public List<String> getContent() {
