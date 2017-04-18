@@ -74,10 +74,6 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
         return record.substring(BEGIN_OF_ID_IN_LST, END_OF_ID_IN_LST);
     }
 
-    private String joinIdWithDataFileExtension(String record) {
-        return findIdInRecord(record) + RATINGS_DATA_FILE_EXTENSION;
-    }
-
     private String findNameInRecord(String record) {
         return record.substring(BEGIN_OF_INVEST_FUND_NAME_IN_LST).trim();
     }

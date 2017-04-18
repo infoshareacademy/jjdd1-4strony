@@ -1,6 +1,5 @@
 package com.isacademy.jjdd1.czterystrony.instruments;
 
-import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 
 import java.io.BufferedReader;
@@ -33,12 +32,4 @@ public class InvestFundFactory {
                 .withRatings(ratings)
                 .build();
     }
-//
-//    private static List<Rating> getRatings(List<String> records) {
-//        return records.stream()
-//                .skip(RECORDS_TO_SKIP)
-//                .map(RatingFactory::create)
-//                .sorted()
-//                .collect(Collectors.toList());
-//    }
 }
