@@ -31,4 +31,5 @@ public class Servlet extends HttpServlet {
 
         writer.flush();
     }
+
 }
