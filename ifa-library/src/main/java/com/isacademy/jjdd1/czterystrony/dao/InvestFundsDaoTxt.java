@@ -2,7 +2,6 @@ package com.isacademy.jjdd1.czterystrony.dao;
 
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFundFactory;
-import com.sun.javafx.css.StyleCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
