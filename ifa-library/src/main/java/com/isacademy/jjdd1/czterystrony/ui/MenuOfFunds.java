@@ -20,18 +20,19 @@ public class MenuOfFunds {
         List<InvestFund> allByName = investFundDao.getAllByName();
 
 
-        System.out.println("Lista funduszy: ");
-        for (InvestFund investFund : allByName) {
-            if (investFund.getName().equals(FUND_TO_PROMOTE)) {
-                investFund.promote(PROMOTED_VALUE);
-                LOGGER.trace("Prmoted fund "+ FUND_TO_PROMOTE + " is set with priority: " + PROMOTED_VALUE);
-            }
-        }
         if (investFundDao.getAllByName().size() > 0) {
             LOGGER.trace("Succesfully loaded " + +investFundDao.getAllByName().size() + " funds.");
         } else {
             LOGGER.error("There is no funds available.");
         }
+
+        for (InvestFund investFund : allByName) {
+            if (investFund.getName().equals(FUND_TO_PROMOTE)) {
+                investFund.promote(PROMOTED_VALUE);
+                LOGGER.trace("Promoted fund "+ FUND_TO_PROMOTE + " is set with priority: " + PROMOTED_VALUE);
+            }
+        }
+        System.out.println("Lista funduszy: ");
         for (InvestFund investFund : allByName.stream()
                 .sorted(Comparator.comparing(InvestFund::getPriority))
                 .collect(Collectors.toList())) {
@@ -41,9 +42,17 @@ public class MenuOfFunds {
         Scanner choice = new Scanner(System.in);
         String fund = choice.nextLine();
 
-        InvestFund investFund = investFundDao.get(fund);
+        try {
+            InvestFund investFund = investFundDao.get(fund);
+            LOGGER.debug("Chosen fund: " + investFund.getName());
+            MenuOfExtreme menuExtreme = new MenuOfExtreme(investFund);
+        } catch (NoSuchElementException e){
+            System.out.println("Nie ma takiego elementu |" + fund + "| wybierz jeszcze raz");
+            LOGGER.warn("No such ID fund");
+            new MenuOfFunds();
+        }
 
-        LOGGER.debug("Chosen fund: " + investFund.getName());
-        MenuOfExtreme menuExtreme = new MenuOfExtreme(investFund);
+
+
     }
 }
