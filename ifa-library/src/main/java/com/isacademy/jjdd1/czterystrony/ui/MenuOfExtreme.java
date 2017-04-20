@@ -4,11 +4,15 @@ import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaProvider;
 import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuOfExtreme {
+    private final static Logger LOGGER = LoggerFactory.getLogger(MenuOfExtreme.class);
+
     public MenuOfExtreme(InvestFund fund) {
         System.out.println("Jesteś w funduszu " + fund.getName());
         System.out.println("Wybierz co chcesz zrobić:");
@@ -18,28 +22,34 @@ public class MenuOfExtreme {
 
         Scanner answer = new Scanner(System.in);
         int chooseExtreme = answer.nextInt();
+        LOGGER.trace("User's choice: " + chooseExtreme);
+
         switch (chooseExtreme) {
             case 1:
                 LocalExtremaProvider localExtremaProvider = new LocalExtremaProvider(fund);
 
+//                LOGGER.debug("Settings of local extreme: ");
                 System.out.println("Lokalne maksima:");
                 for (Rating rating : localExtremaProvider.findExtrema(10)) {
                     System.out.println(rating);
                 }
+                LOGGER.trace("Succesfully loaded " + localExtremaProvider.findExtrema(10).size() + " extremas");
 
                 System.out.println("\nLokalne minima:");
                 for (Rating rating : localExtremaProvider.findExtrema(10)) {
                     System.out.println(rating);
                 }
+                LOGGER.trace("Succesfully loaded " + localExtremaProvider.findExtrema(10).size() + " extremas");
+
 
                 System.out.println("Jesteś w funduszu " + fund.getName());
                 System.out.println("Wybierz co chcesz zrobić:");
                 System.out.println("[1] Wybierz nowy fundusz.");
                 System.out.println("[2] Powrót");
                 System.out.println("[0] Wyjście.");
-                Scanner submenu1 = new Scanner(System.in);
-                int chooseGoBack1 = submenu1.nextInt();
-                switch (chooseGoBack1) {
+                Scanner menu = new Scanner(System.in);
+                int chooseGoBackFromLocal = menu.nextInt();
+                switch (chooseGoBackFromLocal) {
                     case 1:
                         new MenuOfFunds();
                         break;
@@ -52,6 +62,7 @@ public class MenuOfExtreme {
                         break;
                     default:
                         System.out.println("Błędny wybór. Wybierz fundusz ponownie:");
+                        LOGGER.warn("Wrong choice: " + chooseGoBackFromLocal);
                         new MenuOfFunds();
                         break;
                 }
@@ -68,8 +79,8 @@ public class MenuOfExtreme {
                 System.out.println("[2] Powrót");
                 System.out.println("[0] Wyjście.");
                 Scanner submenu = new Scanner(System.in);
-                int chooseGoBack = submenu.nextInt();
-                switch (chooseGoBack) {
+                int chooseGoBackFromGlobal = submenu.nextInt();
+                switch (chooseGoBackFromGlobal) {
                     case 1:
                         new MenuOfFunds();
                         break;
@@ -82,6 +93,7 @@ public class MenuOfExtreme {
                         break;
                     default:
                         System.out.println("Błędny wybór. Wybierz fundusz ponownie:");
+                        LOGGER.warn("Wrong choice: " + chooseGoBackFromGlobal);
                         new MenuOfFunds();
                         break;
                 }
@@ -92,6 +104,7 @@ public class MenuOfExtreme {
                 break;
             default:
                 System.out.println("Błędny wybór, spróbuj jeszcze raz.");
+                LOGGER.warn("Wrong choice: " + chooseExtreme);
                 new MenuOfFunds();
         }
     }

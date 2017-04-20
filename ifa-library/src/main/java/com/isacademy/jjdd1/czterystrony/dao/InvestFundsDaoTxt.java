@@ -2,6 +2,8 @@ package com.isacademy.jjdd1.czterystrony.dao;
 
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFundFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -12,6 +14,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class InvestFundsDaoTxt implements InvestFundsDao {
+    private final static Logger LOGGER = LoggerFactory.getLogger(InvestFundsDaoTxt.class);
     private final String INVEST_FUNDS_LIST_FILE = "omegafun.lst";
     public static final String INVEST_FUNDS_DATA_FOLDER_DIRECTORY = "investfunds/";
     public static final String RATINGS_DATA_FILE_EXTENSION = ".txt";

@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>isacademy.jjdd1.4strony</groupId>
+    <!--<groupId>isacademy.jjdd1.4strony</groupId>-->
     <artifactId>ifa-library</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
