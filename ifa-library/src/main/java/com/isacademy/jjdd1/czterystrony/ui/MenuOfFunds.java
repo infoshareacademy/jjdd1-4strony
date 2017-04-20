@@ -13,19 +13,19 @@ public class MenuOfFunds {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(MenuOfFunds.class);
     public int menuOfFunds;
+    private final int PROMOTED_VALUE = 99;
+    private final String FUND_TO_PROMOTE = "AVIVA Obligacji";
 
     {
         InvestFundsDaoTxt investFundDao = new InvestFundsDaoTxt();
         List<InvestFund> allByName = investFundDao.getAllByName();
-        int promoteValue = 99;
-        String hardCodedFundToPromote = "AVIVA Obligacji";
 
 
         System.out.println("Lista funduszy: ");
         for (InvestFund investFund : allByName) {
-            if (investFund.getName().equals(hardCodedFundToPromote)) {
-                investFund.promote(promoteValue);
-                LOGGER.trace("Prmoted fund "+ hardCodedFundToPromote + " is set with priority: " + promoteValue);
+            if (investFund.getName().equals(FUND_TO_PROMOTE)) {
+                investFund.promote(PROMOTED_VALUE);
+                LOGGER.trace("Prmoted fund "+ FUND_TO_PROMOTE + " is set with priority: " + promoteValue);
             }
         }
         if (investFundDao.getAllByName().size() > 0) {
