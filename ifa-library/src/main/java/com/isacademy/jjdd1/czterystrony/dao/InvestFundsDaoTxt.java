@@ -30,6 +30,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
                 .map(s -> InvestFundFactory.create(id, s.getValue()))
                 .findFirst()
                 .get();
+
     }
 
     @Override

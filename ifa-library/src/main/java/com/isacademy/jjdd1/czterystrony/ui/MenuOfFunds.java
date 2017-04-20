@@ -35,12 +35,14 @@ public class MenuOfFunds {
         for (InvestFund investFund : allByName.stream()
                 .sorted(Comparator.comparing(InvestFund::getPriority))
                 .collect(Collectors.toList())) {
-            System.out.println(investFund.getName());
+            System.out.println(investFund.getId() + " | " + investFund.getName());
         }
-        System.out.println("Wpisz nazwę wybranego funduszu, aby przejść dalej:");
+        System.out.println("Aby przejść dalej wpisz kod identyfikacyjny wybranego funduszu (TEN PO LEWEJ) :");
         Scanner choice = new Scanner(System.in);
         String fund = choice.nextLine();
+
         InvestFund investFund = investFundDao.get(fund);
+
         LOGGER.debug("Chosen fund: " + investFund.getName());
         MenuOfExtreme menuExtreme = new MenuOfExtreme(investFund);
     }
