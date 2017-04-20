@@ -1,7 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.ui;
 
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
-import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,12 +10,12 @@ import java.util.stream.Collectors;
 
 public class MenuOfFunds {
 
+
     private final static Logger LOGGER = LoggerFactory.getLogger(MenuOfFunds.class);
-    public int menuOfFunds;
     private final int PROMOTED_VALUE = 99;
     private final String FUND_TO_PROMOTE = "AVIVA Obligacji";
 
-    {
+    public MenuOfFunds () {
         InvestFundsDaoTxt investFundDao = new InvestFundsDaoTxt();
         List<InvestFund> allByName = investFundDao.getAllByName();
 
@@ -25,7 +24,7 @@ public class MenuOfFunds {
         for (InvestFund investFund : allByName) {
             if (investFund.getName().equals(FUND_TO_PROMOTE)) {
                 investFund.promote(PROMOTED_VALUE);
-                LOGGER.trace("Prmoted fund "+ FUND_TO_PROMOTE + " is set with priority: " + promoteValue);
+                LOGGER.trace("Prmoted fund "+ FUND_TO_PROMOTE + " is set with priority: " + PROMOTED_VALUE);
             }
         }
         if (investFundDao.getAllByName().size() > 0) {
