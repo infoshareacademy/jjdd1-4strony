@@ -3,7 +3,10 @@ package com.isacademy.jjdd1.czterystrony;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.Startup;
 import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,25 +14,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/")
+@WebServlet(urlPatterns = "/investfunds")
 public class Servlet extends HttpServlet {
+
+    private List<InvestFund> investFunds;
 
     @Inject
     InvestFundsDaoTxt investFundsDaoTxt;
 
     @Override
+    public void init() throws ServletException {
+        this.investFunds = investFundsDaoTxt.getAllByPriority();
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.setContentType("text/plain;charset=UTF-8");
-        PrintWriter writer = resp.getWriter();
+//        resp.setContentType("text/html;charset=UTF-8");
 
-        List<InvestFund> investFunds = investFundsDaoTxt.getAllByName();
+        req.setAttribute("investFunds", investFunds);
 
-        investFunds.stream().forEach(writer::println);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
+        dispatcher.forward(req, resp);
 
-        writer.flush();
+//        PrintWriter writer = resp.getWriter();
+//
+//        investFunds.stream().forEach(writer::println);
+//        writer.println(LocalDateTime.now());
+//
+//        writer.flush();
     }
 
 }

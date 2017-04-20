@@ -18,36 +18,42 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
     private final int BEGIN_OF_ID_IN_LST = 33;
     private final int END_OF_ID_IN_LST = 39;
     private final int BEGIN_OF_INVEST_FUND_NAME_IN_LST = 51;
+    private List<InvestFund> investFunds;
+
+    public InvestFundsDaoTxt() {
+        this.investFunds = loadInvestFunds();
+    }
 
     @Override
     public InvestFund get(String id) {
-        Map<String, String> ratingsDataFileToName = ratingsDataFileToInvestFundName();
-        return ratingsDataFileToName.entrySet().stream()
-                .filter(s -> s.getKey().matches(id))
-                .map(s -> InvestFundFactory.create(id, s.getValue()))
-                .findFirst()
+        return investFunds.stream()
+                .filter(s -> s.getId().equals(id))
+                .reduce((a, b) -> {throw new IllegalStateException("Found more than 1 Invest Fund: " + a + ", " + b);})
                 .get();
     }
 
     @Override
     public List<InvestFund> getAllByName() {
-        Map<String, String> ratingsDataFileToName = ratingsDataFileToInvestFundName();
-        return ratingsDataFileToName.entrySet().stream()
-                .map(s -> InvestFundFactory.create(s.getKey(), s.getValue()))
+        return investFunds.stream()
                 .sorted(Comparator.comparing(InvestFund::getName))
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<InvestFund> getAllByPriority() {
-        Map<String, String> ratingsDataFileToName = ratingsDataFileToInvestFundName();
-        return ratingsDataFileToName.entrySet().stream()
-                .map(s -> InvestFundFactory.create(s.getKey(), s.getValue()))
+        return investFunds.stream()
                 .sorted(Comparator.comparing(InvestFund::getPriority))
                 .collect(Collectors.toList());
     }
 
-    public Map<String, String> ratingsDataFileToInvestFundName() {
+    private List<InvestFund> loadInvestFunds() {
+        Map<String, String> ratingsDataFileToName = ratingsDataFileToInvestFundName();
+        return ratingsDataFileToName.entrySet().stream()
+                .map(s -> InvestFundFactory.create(s.getKey(), s.getValue()))
+                .collect(Collectors.toList());
+    }
+
+    private Map<String, String> ratingsDataFileToInvestFundName() {
         InputStream stream = InvestFundsDaoTxt.class.getResourceAsStream(INVEST_FUNDS_LIST_FILE);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
         return bufferedReader.lines()

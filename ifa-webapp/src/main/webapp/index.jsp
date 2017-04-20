@@ -8,15 +8,15 @@
 </head>
 <body>
 
-<form method="get" action="/translations">
-    <input type="text" name="word" value="${word}"> <input type="submit">
-</form>
+<%--<form method="get" action="/investfunds">--%>
+    <%--<input type="text" name="word" value="${word}"> <input type="submit">--%>
+<%--</form>--%>
 
-<%--<div>--%>
-    <%--<c:forEach items="${wordList}" var="w">--%>
-        <%--<li> ${w}</li>--%>
-    <%--</c:forEach>--%>
-<%--</div>--%>
+<div>
+    <c:forEach items="${investFunds}" var="if">
+        <li> ${if}</li>
+    </c:forEach>
+</div>
 
 </body>
 </html>
