@@ -17,12 +17,15 @@ public class MenuOfFunds {
     {
         InvestFundsDaoTxt investFundDao = new InvestFundsDaoTxt();
         List<InvestFund> allByName = investFundDao.getAllByName();
+        int promoteValue = 99;
+        String hardCodedFundToPromote = "AVIVA Obligacji";
 
 
         System.out.println("Lista funduszy: ");
         for (InvestFund investFund : allByName) {
-            if (investFund.getName().equals("AVIVA Obligacji")) {
-                investFund.promote(99);
+            if (investFund.getName().equals(hardCodedFundToPromote)) {
+                investFund.promote(promoteValue);
+                LOGGER.trace("Prmoted fund "+ hardCodedFundToPromote + " is set with priority: " + promoteValue);
             }
         }
         if (investFundDao.getAllByName().size() > 0) {
