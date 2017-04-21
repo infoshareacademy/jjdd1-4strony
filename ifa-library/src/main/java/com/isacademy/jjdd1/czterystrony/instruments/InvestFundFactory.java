@@ -1,6 +1,8 @@
 package com.isacademy.jjdd1.czterystrony.instruments;
 
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -10,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class InvestFundFactory {
     private static final int RECORDS_TO_SKIP = 1;
-
+    private final static Logger LOGGER = LoggerFactory.getLogger(InvestFundFactory.class);
     public static InvestFund create(String id, String name) {
         String company = name.replaceAll(" .+$", "");
         InputStream stream = InvestFundsDaoTxt.class.getResourceAsStream(
@@ -24,7 +26,7 @@ public class InvestFundFactory {
                 .map(RatingFactory::create)
                 .sorted()
                 .collect(Collectors.toList());
-
+        LOGGER.trace("Method create() is initialized with parameters: " + id.toString() +" | " + name.toString());
         return new InvestFund.Builder()
                 .withId(id)
                 .withName(name)
