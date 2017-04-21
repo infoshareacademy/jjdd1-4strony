@@ -3,8 +3,6 @@ package com.isacademy.jjdd1.czterystrony;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Startup;
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/investfunds")
@@ -39,13 +35,6 @@ public class Servlet extends HttpServlet {
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
         dispatcher.forward(req, resp);
-
-//        PrintWriter writer = resp.getWriter();
-//
-//        investFunds.stream().forEach(writer::println);
-//        writer.println(LocalDateTime.now());
-//
-//        writer.flush();
     }
 
 }
