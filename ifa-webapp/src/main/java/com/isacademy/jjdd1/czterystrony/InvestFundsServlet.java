@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/investfunds")
-public class Servlet extends HttpServlet {
+public class InvestFundsServlet extends HttpServlet {
 
     private List<InvestFund> investFunds;
 

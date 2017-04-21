@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>Moje tłumaczenia</title>
+    <title>Invest Fund Analyzer</title>
 </head>
 <body>
 
