@@ -51,16 +51,16 @@ public class MenuOfExtreme {
                 int chooseGoBackFromLocal = menu.nextInt();
                 switch (chooseGoBackFromLocal) {
                     case 1:
-                        LOGGER.trace("User's choice: 1");
+                        LOGGER.trace("User's choice: " + chooseGoBackFromLocal);
                         new MenuOfFunds();
                         break;
                     case 2:
-                        LOGGER.trace("User's choice: 2");
+                        LOGGER.trace("User's choice: " + chooseGoBackFromLocal);
                         new MenuOfExtreme(fund);
                         break;
                     case 0:
                         System.out.println("Miłego dnia!");
-                        LOGGER.trace("User's choice: 0 - EXIT");
+                        LOGGER.trace("User's choice: " + chooseGoBackFromLocal + " EXIT");
                         break;
                     default:
                         System.out.println("Błędny wybór. Wybierz fundusz ponownie:");
@@ -84,15 +84,15 @@ public class MenuOfExtreme {
                 int chooseGoBackFromGlobal = submenu.nextInt();
                 switch (chooseGoBackFromGlobal) {
                     case 1:
-                        LOGGER.trace("User's choice: 1");
+                        LOGGER.trace("User's choice: " + chooseGoBackFromGlobal);
                         new MenuOfFunds();
                         break;
                     case 2:
-                        LOGGER.trace("User's choice: 2");
+                        LOGGER.trace("User's choice: " + chooseGoBackFromGlobal);
                         new MenuOfExtreme(fund);
                         break;
                     case 0:
-                        LOGGER.trace("User's choice: 0 - EXIT");
+                        LOGGER.trace("User's choice: " + chooseGoBackFromGlobal + " EXIT");
                         System.out.println("Miłego dnia!");
                         break;
                     default:
