@@ -28,7 +28,6 @@ public class MenuOfExtreme {
             case 1:
                 LocalExtremaProvider localExtremaProvider = new LocalExtremaProvider(fund);
 
-//                LOGGER.debug("Settings of local extreme: ");
                 System.out.println("Lokalne maksima:");
                 for (Rating rating : localExtremaProvider.findExtrema(10)) {
                     System.out.println(rating);

@@ -4,9 +4,9 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] | %-5level %logger{1.} [%line] - %msg%n%throwable}{FATAL=red,ERROR=orange,WARN=yellow,INFO=blue,DEBUG=green,TRACE=black}"/>
         </Console>
-        <!--<File name="MonitoringFile" fileName="logs/app.log">-->
-            <!--<PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] | %-18marker | %-5level %logger{1.} [%line] - %enc{%msg}%n}{FATAL=black,ERROR=red,WARN=yellow,INFO=black,DEBUG=green,TRACE=cyan}"/>-->
-        <!--</File>-->
+        <File name="MonitoringFile" fileName="logs/app.log">
+            <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] | %-5level %logger{1.} [%line] - %msg%n%throwable}{FATAL=red,ERROR=orange,WARN=yellow,INFO=blue,DEBUG=green,TRACE=black}"/>
+        </File>
         <!--<File name="FuelFile" fileName="logs/fuel_consumption.log" append="true">-->
             <!--<MarkerFilter marker="FUEL TANK" onMatch="ACCEPT" onMismatch="DENY" />-->
             <!--<PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] | %-18marker | %-5level %logger{1.} [%line] - %enc{%msg}%n}{FATAL=black,ERROR=red,WARN=yellow,INFO=black,DEBUG=green,TRACE=cyan}"/>-->
@@ -24,10 +24,11 @@
     </Appenders>
     <Loggers>
         <!--<Logger name="com.isa.jjdd.loggery.ex07_formatters.components.FuelTank" level="TRACE">-->
-            <!--<AppenderRef ref="FuelFile" />-->
+        <!--<AppenderRef ref="FuelFile" />-->
         <!--</Logger>-->
         <Root level="trace">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="MonitoringFile"/>
         </Root>
     </Loggers>
 </Configuration>
