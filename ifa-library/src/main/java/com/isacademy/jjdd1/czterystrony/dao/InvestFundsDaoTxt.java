@@ -31,7 +31,9 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
     public InvestFund get(String id) {
         return investFunds.stream()
                 .filter(s -> s.getId().equals(id))
-                .reduce((a, b) -> {throw new IllegalStateException("Found more than 1 Invest Fund: " + a + ", " + b);})
+                .reduce((a, b) -> {
+                    throw new IllegalStateException("Found more than 1 Invest Fund: " + a + ", " + b);
+                })
                 .get();
     }
 
@@ -45,7 +47,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
     @Override
     public List<InvestFund> getAllByPriority() {
         return investFunds.stream()
-                .sorted(Comparator.comparing(InvestFund::getPriority))
+                .sorted(Comparator.comparing(InvestFund::getPriority).thenComparing(InvestFund::getName))
                 .collect(Collectors.toList());
     }
 
@@ -55,7 +57,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
         return bufferedReader.lines()
                 .filter(s -> !s.isEmpty())
                 .map(s -> s.split(","))
-                .collect(Collectors.toMap(s -> s[0], s-> Integer.parseInt(s[1])));
+                .collect(Collectors.toMap(s -> s[0], s -> Integer.parseInt(s[1])));
     }
 
     private List<InvestFund> loadInvestFunds() {
