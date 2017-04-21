@@ -8,52 +8,54 @@ import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class MenuOfFunds {
 
     private static EntityManager entityManager;
-    public int menuOfFunds;
+    private final int PROMOTED_VALUE = 99;
+    private final String FUND_TO_PROMOTE = "AVIVA Obligacji";
 
-    {
+    public MenuOfFunds () {
         InvestFundsDaoTxt investFundDao = new InvestFundsDaoTxt();
         List<InvestFund> allByName = investFundDao.getAllByName();
 
+
+
+        for (InvestFund investFund : allByName) {
+            if (investFund.getName().equals(FUND_TO_PROMOTE)) {
+                investFund.promote(PROMOTED_VALUE);
+            }
+        }
         System.out.println("Lista funduszy: ");
         for (InvestFund investFund : allByName.stream()
                 .sorted(Comparator.comparing(InvestFund::getPriority))
                 .collect(Collectors.toList())) {
             System.out.println(investFund.getId() + " | " + investFund.getName());
-
-//        System.out.println("Lista funduszy: ");
-//        for (InvestFund investFund : allByName) {
-//            if (investFund.getName().equals("AVIVA Obligacji")) {
-//                investFund.promote(99);
-//            }
         }
-        for (InvestFund investFund : allByName.stream()
-                .sorted(Comparator.comparing(InvestFund::getPriority))
-                .collect(Collectors.toList())) {
-            System.out.println(investFund.getName());
-        }
-        System.out.println("Wpisz nazwę wybranego funduszu, aby przejść dalej:");
+        System.out.println("Aby przejść dalej wpisz kod identyfikacyjny wybranego funduszu (TEN PO LEWEJ) :");
         Scanner choice = new Scanner(System.in);
-        String fund = choice.nextLine();//fundusz wybrany przez użytkownika
-        InvestFund investFund = investFundDao.get(fund);
-
+        String fund = choice.nextLine();
 
         Statistics statistics = new Statistics();
         statistics.setFund(fund);
+        Date date = new Date();
+        statistics.setDate(date);
 
-        instertStatistics(statistics);
+        insertStatistics(statistics);
 
-        MenuOfExtreme menuExtreme = new MenuOfExtreme(investFund);
-
-
+        try {
+            InvestFund investFund = investFundDao.get(fund);
+            MenuOfExtreme menuExtreme = new MenuOfExtreme(investFund);
+        } catch (NoSuchElementException e){
+            System.out.println("Nie ma takiego elementu |" + fund + "| wybierz jeszcze raz");
+            new MenuOfFunds();
+        }
     }
 
-    private static void instertStatistics(Statistics statistics) {
+    private static void insertStatistics(Statistics statistics) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
         entityManager = entityManagerFactory.createEntityManager();
 

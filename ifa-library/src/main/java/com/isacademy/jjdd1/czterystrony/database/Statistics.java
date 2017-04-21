@@ -2,6 +2,7 @@ package com.isacademy.jjdd1.czterystrony.database;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @javax.persistence.Entity
@@ -12,7 +13,7 @@ public class Statistics {
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String fund;
 
     private String extremas;
