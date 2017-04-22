@@ -29,14 +29,27 @@
             <a class="navbar-brand" href="http://localhost:8080/investfunds">Invest Funds Analysis</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <%--<ul class="nav navbar-nav navbar-right">--%>
-            <%--<li><a href="#">Dashboard</a></li>--%>
-            <%--<li><a href="#">Settings</a></li>--%>
-            <%--<li><a href="#">Profile</a></li>--%>
-            <%--<li><a href="#">Help</a></li>--%>
-            <%--</ul>--%>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="znajdź fundusz">
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">About</a></li>
+            </ul>
+
+            <form class="navbar-form">
+                <div class="form-group" style="display:inline;">
+                    <div class="input-group" style="display:table;">
+                        <span class="input-group-btn" style="width:10%;">
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <input class="form-control" name="search" placeholder="znajdź fundusz" autocomplete="off"
+                               autofocus="autofocus" type="text" list="funds">
+                        <datalist id="funds">
+                            <c:forEach items="${allInvestFunds}" var="investFund">
+                                <option value="${investFund.name}"></option>
+                            </c:forEach>
+                        </datalist>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -51,27 +64,13 @@
         <div class="col-md-8 col-md-offset-2 main">
             <h1 class="page-header">Notowania funduszy inwestycyjnych</h1>
 
-            <%--<h2 class="page-header"></h2>--%>
-            <%--<div class="row placeholders">--%>
-            <%--<c:forEach items="${promotedInvestFunds}" var="promotedInvestFund">--%>
-            <%--<div class="col-xs-6 col-sm-3 placeholder navbar-promo">--%>
-            <%--&lt;%&ndash;<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="&ndash;%&gt;--%>
-            <%--&lt;%&ndash;width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">&ndash;%&gt;--%>
-            <%--<h4>${promotedInvestFund.name}</h4>--%>
-            <%--<span class="text-muted">${promotedInvestFund.id}</span><br>--%>
-            <%--<span class="text-info">kurs na dzień ${promotedInvestFund.currentRatingDate}:</span><br>--%>
-            <%--<span class="text-success">${promotedInvestFund.currentRatingValue} PLN</span>--%>
-            <%--</div>--%>
-            <%--</c:forEach>--%>
-            <%--</div>--%>
-
             <h2 class="page-header">Polecane</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-hover-promo">
                     <thead>
                     <tr>
                         <th>
-                            <span class="glyphicon glyphicon-tags"/>
+                            <span class="glyphicon glyphicon-tags"></span>
                         </th>
                         <th>fundusz</th>
                         <th class="text-center">id</th>
@@ -86,19 +85,19 @@
                             <td class="promo-color">
                                 <c:choose>
                                     <c:when test="${investFund.priority < -66}">
-                                        <span class="glyphicon glyphicon-star"/>
-                                        <span class="glyphicon glyphicon-star"/>
-                                        <span class="glyphicon glyphicon-star"/>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
                                     </c:when>
                                     <c:when test="${investFund.priority < -33}">
-                                        <span class="glyphicon glyphicon-star"/>
-                                        <span class="glyphicon glyphicon-star"/>
-                                        <span class="glyphicon glyphicon-star-empty"/>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
                                     </c:when>
                                     <c:otherwise>
-                                        <span class="glyphicon glyphicon-star"/>
-                                        <span class="glyphicon glyphicon-star-empty"/>
-                                        <span class="glyphicon glyphicon-star-empty"/>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
                                     </c:otherwise>
                                 </c:choose>
                             </td>
@@ -109,13 +108,13 @@
                             <td class="text-left">
                                 <c:choose>
                                     <c:when test="${investFund.state > 0}">
-                                        <span class="glyphicon glyphicon-arrow-up green"/>
+                                        <span class="glyphicon glyphicon-arrow-up green"></span>
                                     </c:when>
                                     <c:when test="${investFund.state == 0}">
-                                        <span class="glyphicon glyphicon-arrow-right grey"/>
+                                        <span class="glyphicon glyphicon-arrow-right grey"></span>
                                     </c:when>
                                     <c:when test="${investFund.state < 0}">
-                                        <span class="glyphicon glyphicon-arrow-down red"/>
+                                        <span class="glyphicon glyphicon-arrow-down red"></span>
                                     </c:when>
                                 </c:choose>
                             </td>
@@ -132,7 +131,7 @@
                     <thead>
                     <tr>
                         <th>
-                            <span class="glyphicon glyphicon-tags"/>
+                            <span class="glyphicon glyphicon-tags"></span>
                         </th>
                         <th>fundusz</th>
                         <th class="text-center">id</th>
@@ -152,13 +151,13 @@
                             <td class="text-left">
                                 <c:choose>
                                     <c:when test="${investFund.state > 0}">
-                                        <span class="glyphicon glyphicon-arrow-up green"/>
+                                        <span class="glyphicon glyphicon-arrow-up green"></span>
                                     </c:when>
                                     <c:when test="${investFund.state == 0}">
-                                        <span class="glyphicon glyphicon-arrow-right grey"/>
+                                        <span class="glyphicon glyphicon-arrow-right grey"></span>
                                     </c:when>
                                     <c:when test="${investFund.state < 0}">
-                                        <span class="glyphicon glyphicon-arrow-down red"/>
+                                        <span class="glyphicon glyphicon-arrow-down red"></span>
                                     </c:when>
                                 </c:choose>
                             </td>

@@ -2,7 +2,6 @@ package com.isacademy.jjdd1.czterystrony;
 
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
-import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -12,10 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = "/investfunds")
 public class InvestFundsServlet extends HttpServlet {
@@ -34,16 +31,20 @@ public class InvestFundsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
-        List<InvestFund> promotedInvestFunds = investFunds.stream()
-                .filter(s -> s.getPriority() < 0)
-                .collect(Collectors.toList());
+        List<InvestFund> promotedInvestFunds = new ArrayList<>();
+        List<InvestFund> otherInvestFunds = new ArrayList<>();
 
-        List<InvestFund> otherInvestFunds = investFunds.stream()
-                .filter(s -> s.getPriority() == 0)
-                .collect(Collectors.toList());
+        investFunds.forEach(s -> {
+            if (s.getPriority() < 0) {
+                promotedInvestFunds.add(s);
+            } else {
+                otherInvestFunds.add(s);
+            }
+        });
 
         req.setAttribute("promotedInvestFunds", promotedInvestFunds);
         req.setAttribute("otherInvestFunds", otherInvestFunds);
+        req.setAttribute("allInvestFunds", investFunds);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
         dispatcher.forward(req, resp);
