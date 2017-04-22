@@ -2,6 +2,7 @@ package com.isacademy.jjdd1.czterystrony.instruments;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class FinancialInstrument {
@@ -57,5 +58,11 @@ public class FinancialInstrument {
                 .filter(t -> t.getDate().equals(date))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public Rating getCurrentRating() {
+        return ratings.stream()
+                .max(Comparator.comparing(Rating::getDate))
+                .get();
     }
 }
