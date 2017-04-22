@@ -21,5 +21,6 @@ public class MainMenu {
                 System.out.println("Błędny wybór. Spróbuj ponownie.");
                 new MainMenu();
         }
+
     }
 }

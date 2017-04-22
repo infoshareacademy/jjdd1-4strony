@@ -8,9 +8,9 @@ import javax.enterprise.inject.Produces;
 
 @ApplicationScoped
 public class Providers {
-    // tutaj możemy zmusić serwer do stworzenia którejś z klas
-    @Produces
-    public InvestFundsDaoTxt dataFiles() {
-        return new InvestFundsDaoTxt();
-    }
+//    // tutaj możemy zmusić serwer do stworzenia którejś z klas
+//    @Produces
+//    public InvestFundsDaoTxt dataFiles() {
+//        return new InvestFundsDaoTxt();
+//    }
 }

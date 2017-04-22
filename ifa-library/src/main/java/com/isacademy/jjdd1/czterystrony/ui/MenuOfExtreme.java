@@ -9,12 +9,14 @@ import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuOfExtreme {
-
+    @PersistenceContext
     private static EntityManager entityManager;
+
     public MenuOfExtreme(InvestFund fund) {
         System.out.println("Jesteś w funduszu " + fund.getName());
         System.out.println("Wybierz co chcesz zrobić:");
@@ -28,10 +30,11 @@ public class MenuOfExtreme {
         Statistics statistics = new Statistics();
         if (chooseExtreme == 1) {
             statistics.setExtremas("locale");
-        } else if (chooseExtreme ==2) {
+            updateStatistics(statistics);
+        } else if (chooseExtreme == 2) {
             statistics.setExtremas("global");
+            updateStatistics(statistics);
         }
-        insertStatistics(statistics);
 
         switch (chooseExtreme) {
             case 1:
@@ -110,13 +113,27 @@ public class MenuOfExtreme {
                 new MenuOfFunds();
         }
     }
-    private static void insertStatistics(Statistics statistics) {
+
+    private static void updateStatistics(Statistics statistics) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
         entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
-        entityManager.persist(statistics);
-        entityManager.getTransaction().commit();
+        Statistics stats= entityManager.find(Statistics.class, Long.valueOf(2));
+        entityManager.merge(stats);
 
+
+        entityManager.getTransaction().commit();
+//    private static void updateStudents() {
+//        entityManager.getTransaction().begin();
+//        Student student = entityManager.find(Student.class, Long.valueOf(2l));
+//
+//        if (student != null) {
+//            student.setName("new name");
+//            entityManager.merge(student);
+//        }
+//
+//        entityManager.getTransaction().commit();
+//    }
     }
 }

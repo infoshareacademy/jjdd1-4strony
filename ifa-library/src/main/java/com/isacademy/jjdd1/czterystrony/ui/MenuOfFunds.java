@@ -8,12 +8,13 @@ import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class MenuOfFunds {
-
+    @PersistenceContext
     private static EntityManager entityManager;
     private final int PROMOTED_VALUE = 99;
     private final String FUND_TO_PROMOTE = "AVIVA Obligacji";
@@ -62,6 +63,7 @@ public class MenuOfFunds {
         entityManager.getTransaction().begin();
         entityManager.persist(statistics);
         entityManager.getTransaction().commit();
+
 
     }
 }
