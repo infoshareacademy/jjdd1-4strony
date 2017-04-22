@@ -1,5 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.instruments;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +11,9 @@ public class FinancialInstrument {
     private String id;
     private String name;
     private List<Rating> ratings = new ArrayList<>();
+
+    private LocalDate currentRatingDate;
+    private BigDecimal currentRatingValue;
 
     public static class Builder {
         private String id;
@@ -40,6 +44,8 @@ public class FinancialInstrument {
         this.id = builder.id;
         this.name = builder.name;
         this.ratings = builder.ratings;
+        this.currentRatingDate = getCurrentRating().getDate();
+        this.currentRatingValue = getCurrentRating().getCloseValue();
     }
 
     public String getId() {
@@ -63,5 +69,13 @@ public class FinancialInstrument {
 
     public Rating getCurrentRating() {
         return Collections.max(ratings, Comparator.comparing(Rating::getDate));
+    }
+
+    public LocalDate getCurrentRatingDate() {
+        return currentRatingDate;
+    }
+
+    public BigDecimal getCurrentRatingValue() {
+        return currentRatingValue;
     }
 }
