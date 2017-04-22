@@ -9,44 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Invest Funds Analisys</title>
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/dashboard.css" rel="stylesheet">
-    <style>
-        .table-other {
-            background-color: #e4e6ea;
-        }
-
-        .table-promo {
-            background-color: #f7eaef;
-        }
-
-        .table-hover-promo tbody tr:hover td, .table-hover tbody tr:hover th {
-            background-color: #d99bb2;
-        }
-
-        .table-hover-other tbody tr:hover td, .table-hover tbody tr:hover th {
-            background-color: #a7adba;
-        }
-
-        .green {
-            color: green;
-        }
-
-        .red {
-            color: red;
-        }
-
-        .grey {
-            color: grey;
-        }
-
-        .promo-color {
-            color: #e12453;
-        }
-        /*.navbar-promo h4:hover {*/
-        /*background-color: #d2e8ae;*/
-        /*}*/
-    </style>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
@@ -71,9 +35,9 @@
             <%--<li><a href="#">Profile</a></li>--%>
             <%--<li><a href="#">Help</a></li>--%>
             <%--</ul>--%>
-            <%--<form class="navbar-form navbar-right">--%>
-            <%--<input type="text" class="form-control" placeholder="Search...">--%>
-            <%--</form>--%>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="znajdź fundusz">
+            </form>
         </div>
     </div>
 </nav>
@@ -110,10 +74,10 @@
                             <span class="glyphicon glyphicon-tags"/>
                         </th>
                         <th>fundusz</th>
-                        <th>id</th>
-                        <th>data</th>
+                        <th class="text-center">id</th>
+                        <th class="text-center">data</th>
+                        <th class="text-right">wartość j.u. netto <em>PLN</em></th>
                         <th></th>
-                        <th>wartość j.u. netto w PLN</th>
                     </tr>
                     </thead>
                     <tbody class="table-promo">
@@ -139,22 +103,22 @@
                                 </c:choose>
                             </td>
                             <td>${investFund.name}</td>
-                            <td>${investFund.id}</td>
-                            <td>${investFund.currentRatingDate}</td>
-                            <td>
-                            <c:choose>
-                                <c:when test="${investFund.state > 0}">
-                                    <span class="glyphicon glyphicon-arrow-up green"/>
-                                </c:when>
-                                <c:when test="${investFund.state == 0}">
-                                    <span class="glyphicon glyphicon-arrow-right grey"/>
-                                </c:when>
-                                <c:when test="${investFund.state < 0}">
-                                    <span class="glyphicon glyphicon-arrow-down red"/>
-                                </c:when>
-                            </c:choose>
+                            <td class="text-center">${investFund.id}</td>
+                            <td class="text-center">${investFund.currentRatingDate}</td>
+                            <td class="text-right">${investFund.currentRatingValue}</td>
+                            <td class="text-left">
+                                <c:choose>
+                                    <c:when test="${investFund.state > 0}">
+                                        <span class="glyphicon glyphicon-arrow-up green"/>
+                                    </c:when>
+                                    <c:when test="${investFund.state == 0}">
+                                        <span class="glyphicon glyphicon-arrow-right grey"/>
+                                    </c:when>
+                                    <c:when test="${investFund.state < 0}">
+                                        <span class="glyphicon glyphicon-arrow-down red"/>
+                                    </c:when>
+                                </c:choose>
                             </td>
-                            <td>${investFund.currentRatingValue}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -171,10 +135,10 @@
                             <span class="glyphicon glyphicon-tags"/>
                         </th>
                         <th>fundusz</th>
-                        <th>id</th>
-                        <th>data</th>
+                        <th class="text-center">id</th>
+                        <th class="text-center">data</th>
+                        <th class="text-right">wartość j.u. netto<em>PLN</em></th>
                         <th></th>
-                        <th>wartość j.u. netto w PLN</th>
                     </tr>
                     </thead>
                     <tbody class="table-other">
@@ -182,9 +146,10 @@
                         <tr>
                             <td></td>
                             <td>${investFund.name}</td>
-                            <td>${investFund.id}</td>
-                            <td>${investFund.currentRatingDate}</td>
-                            <td>
+                            <td class="text-center">${investFund.id}</td>
+                            <td class="text-center">${investFund.currentRatingDate}</td>
+                            <td class="text-right">${investFund.currentRatingValue}</td>
+                            <td class="text-left">
                                 <c:choose>
                                     <c:when test="${investFund.state > 0}">
                                         <span class="glyphicon glyphicon-arrow-up green"/>
@@ -197,7 +162,6 @@
                                     </c:when>
                                 </c:choose>
                             </td>
-                            <td>${investFund.currentRatingValue}</td>
                         </tr>
                     </c:forEach>
                     </tbody>

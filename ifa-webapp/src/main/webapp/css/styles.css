@@ -108,3 +108,35 @@ body {
     display: inline-block;
     border-radius: 50%;
 }
+
+.table-other {
+    background-color: #e4e6ea;
+}
+
+.table-promo {
+    background-color: #f7eaef;
+}
+
+.table-hover-promo tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #d99bb2;
+}
+
+.table-hover-other tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #a7adba;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.grey {
+    color: grey;
+}
+
+.promo-color {
+    color: #e12453;
+}
