@@ -31,6 +31,7 @@ public class InvestFundsServlet extends HttpServlet {
 
 //        resp.setContentType("text/html;charset=UTF-8");
 
+//        investFunds.forEach(System.out::println);
         req.setAttribute("investFunds", investFunds);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
