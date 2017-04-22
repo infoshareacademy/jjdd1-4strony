@@ -38,23 +38,12 @@ public class InvestFundsServlet extends HttpServlet {
                 .filter(s -> s.getPriority() < 0)
                 .collect(Collectors.toList());
 
-//        List<List<String>> investFundsTable = investFunds.stream()
-//                .map(s -> {
-//                    Rating currentRating = s.getCurrentRating();
-//                    return Arrays.asList(s.getName(), s.getId(), currentRating.getDate().toString(), currentRating.getCloseValue().toString());
-//                })
-//                .collect(Collectors.toList());
-//
-//        List<List<>> promotedInvestFunds = investFunds.stream()
-//                .filter(s -> s.getPriority() > 0)
-//                .map(s -> {
-//                    Rating currentRating = s.getCurrentRating();
-//                    return Arrays.asList(s.getName(), s.getId(), currentRating.getDate().toString(), currentRating.getCloseValue().toString());
-//                })
-//                .collect(Collectors.toList());
+        List<InvestFund> otherInvestFunds = investFunds.stream()
+                .filter(s -> s.getPriority() == 0)
+                .collect(Collectors.toList());
 
-        req.setAttribute("investFunds", investFunds);
         req.setAttribute("promotedInvestFunds", promotedInvestFunds);
+        req.setAttribute("otherInvestFunds", otherInvestFunds);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
         dispatcher.forward(req, resp);

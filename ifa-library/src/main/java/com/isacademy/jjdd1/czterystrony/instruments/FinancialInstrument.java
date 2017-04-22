@@ -11,7 +11,6 @@ public class FinancialInstrument {
     private String id;
     private String name;
     private List<Rating> ratings = new ArrayList<>();
-
     private LocalDate currentRatingDate;
     private BigDecimal currentRatingValue;
 

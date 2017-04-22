@@ -11,6 +11,26 @@
     <title>Invest Funds Analisys</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
+    <style>
+        .table-other {
+            background-color: #e4e6ea;
+        }
+
+        .table-promo {
+            background-color: #f7eaef;
+        }
+
+        .table-hover-promo tbody tr:hover td, .table-hover tbody tr:hover th {
+            background-color: #d0829f;
+        }
+
+        .table-hover-other tbody tr:hover td, .table-hover tbody tr:hover th {
+            background-color: #a7adba;
+        }
+        /*.navbar-promo h4:hover {*/
+        /*background-color: #d2e8ae;*/
+        /*}*/
+    </style>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
@@ -49,36 +69,71 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 main">
-            <h1 class="page-header">Polecane fundusze</h1>
+            <h1 class="page-header">Notowania funduszy</h1>
 
-            <div class="row placeholders">
-                <c:forEach items="${promotedInvestFunds}" var="promotedInvestFund">
-                    <div class="col-xs-6 col-sm-3 placeholder">
-                            <%--<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="--%>
-                            <%--width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">--%>
-                        <h4>${promotedInvestFund.name}</h4>
-                        <span class="text-muted">${promotedInvestFund.id}</span><br>
-                        <span class="text-info">kurs na dzień ${promotedInvestFund.currentRatingDate}:</span><br>
-                        <span class="text-success">${promotedInvestFund.currentRatingValue} PLN</span>
-                    </div>
-                </c:forEach>
-            </div>
+            <%--<h2 class="page-header"></h2>--%>
+            <%--<div class="row placeholders">--%>
+            <%--<c:forEach items="${promotedInvestFunds}" var="promotedInvestFund">--%>
+            <%--<div class="col-xs-6 col-sm-3 placeholder navbar-promo">--%>
+            <%--&lt;%&ndash;<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="&ndash;%&gt;--%>
+            <%--&lt;%&ndash;width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">&ndash;%&gt;--%>
+            <%--<h4>${promotedInvestFund.name}</h4>--%>
+            <%--<span class="text-muted">${promotedInvestFund.id}</span><br>--%>
+            <%--<span class="text-info">kurs na dzień ${promotedInvestFund.currentRatingDate}:</span><br>--%>
+            <%--<span class="text-success">${promotedInvestFund.currentRatingValue} PLN</span>--%>
+            <%--</div>--%>
+            <%--</c:forEach>--%>
+            <%--</div>--%>
 
-            <h2 class="sub-header">Aktualne notowania</h2>
-            <%--<div class="panel-heading">Panel heading</div>--%>
+            <h2 class="page-header">Polecane</h2>
             <div class="table-responsive">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover-promo">
                     <thead>
                     <tr>
+                        <th>
+                            <span class="glyphicon glyphicon-tags"/>
+                        </th>
                         <th>fundusz</th>
                         <th>id</th>
                         <th>data</th>
                         <th>wartość j.u. netto w PLN</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <c:forEach items="${investFunds}" var="investFund">
+                    <tbody class="table-promo">
+                    <c:forEach items="${promotedInvestFunds}" var="investFund">
                         <tr>
+                            <td>
+                                <span class="glyphicon glyphicon-fire"/>
+                            </td>
+                            <td>${investFund.name}</td>
+                            <td>${investFund.id}</td>
+                            <td>${investFund.currentRatingDate}</td>
+                            <td>${investFund.currentRatingValue}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="sub-header">Pozostałe</h3>
+            <%--<div class="panel-heading">Panel heading</div>--%>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover-other">
+                    <thead>
+                    <tr>
+                        <th>
+                            <span class="glyphicon glyphicon-tags"/>
+                        </th>
+                        <th>fundusz</th>
+                        <th>id</th>
+                        <th>data</th>
+                        <th>wartość j.u. netto w PLN</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-other">
+                    <c:forEach items="${otherInvestFunds}" var="investFund">
+                        <tr>
+                            <td></td>
                             <td>${investFund.name}</td>
                             <td>${investFund.id}</td>
                             <td>${investFund.currentRatingDate}</td>
