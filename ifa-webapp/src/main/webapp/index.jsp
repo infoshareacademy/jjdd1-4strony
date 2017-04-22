@@ -21,11 +21,27 @@
         }
 
         .table-hover-promo tbody tr:hover td, .table-hover tbody tr:hover th {
-            background-color: #d0829f;
+            background-color: #d99bb2;
         }
 
         .table-hover-other tbody tr:hover td, .table-hover tbody tr:hover th {
             background-color: #a7adba;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .grey {
+            color: grey;
+        }
+
+        .promo-color {
+            color: #e12453;
         }
         /*.navbar-promo h4:hover {*/
         /*background-color: #d2e8ae;*/
@@ -69,7 +85,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 main">
-            <h1 class="page-header">Notowania funduszy</h1>
+            <h1 class="page-header">Notowania funduszy inwestycyjnych</h1>
 
             <%--<h2 class="page-header"></h2>--%>
             <%--<div class="row placeholders">--%>
@@ -96,18 +112,48 @@
                         <th>fundusz</th>
                         <th>id</th>
                         <th>data</th>
+                        <th></th>
                         <th>wartość j.u. netto w PLN</th>
                     </tr>
                     </thead>
                     <tbody class="table-promo">
                     <c:forEach items="${promotedInvestFunds}" var="investFund">
                         <tr>
-                            <td>
-                                <span class="glyphicon glyphicon-fire"/>
+                            <td class="promo-color">
+                                <c:choose>
+                                    <c:when test="${investFund.priority < -66}">
+                                        <span class="glyphicon glyphicon-star"/>
+                                        <span class="glyphicon glyphicon-star"/>
+                                        <span class="glyphicon glyphicon-star"/>
+                                    </c:when>
+                                    <c:when test="${investFund.priority < -33}">
+                                        <span class="glyphicon glyphicon-star"/>
+                                        <span class="glyphicon glyphicon-star"/>
+                                        <span class="glyphicon glyphicon-star-empty"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="glyphicon glyphicon-star"/>
+                                        <span class="glyphicon glyphicon-star-empty"/>
+                                        <span class="glyphicon glyphicon-star-empty"/>
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                             <td>${investFund.name}</td>
                             <td>${investFund.id}</td>
                             <td>${investFund.currentRatingDate}</td>
+                            <td>
+                            <c:choose>
+                                <c:when test="${investFund.state > 0}">
+                                    <span class="glyphicon glyphicon-arrow-up green"/>
+                                </c:when>
+                                <c:when test="${investFund.state == 0}">
+                                    <span class="glyphicon glyphicon-arrow-right grey"/>
+                                </c:when>
+                                <c:when test="${investFund.state < 0}">
+                                    <span class="glyphicon glyphicon-arrow-down red"/>
+                                </c:when>
+                            </c:choose>
+                            </td>
                             <td>${investFund.currentRatingValue}</td>
                         </tr>
                     </c:forEach>
@@ -127,6 +173,7 @@
                         <th>fundusz</th>
                         <th>id</th>
                         <th>data</th>
+                        <th></th>
                         <th>wartość j.u. netto w PLN</th>
                     </tr>
                     </thead>
@@ -137,6 +184,19 @@
                             <td>${investFund.name}</td>
                             <td>${investFund.id}</td>
                             <td>${investFund.currentRatingDate}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${investFund.state > 0}">
+                                        <span class="glyphicon glyphicon-arrow-up green"/>
+                                    </c:when>
+                                    <c:when test="${investFund.state == 0}">
+                                        <span class="glyphicon glyphicon-arrow-right grey"/>
+                                    </c:when>
+                                    <c:when test="${investFund.state < 0}">
+                                        <span class="glyphicon glyphicon-arrow-down red"/>
+                                    </c:when>
+                                </c:choose>
+                            </td>
                             <td>${investFund.currentRatingValue}</td>
                         </tr>
                     </c:forEach>

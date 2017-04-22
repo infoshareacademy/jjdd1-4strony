@@ -13,6 +13,7 @@ public class FinancialInstrument {
     private List<Rating> ratings = new ArrayList<>();
     private LocalDate currentRatingDate;
     private BigDecimal currentRatingValue;
+    private int state;
 
     public static class Builder {
         private String id;
@@ -43,8 +44,11 @@ public class FinancialInstrument {
         this.id = builder.id;
         this.name = builder.name;
         this.ratings = builder.ratings;
-        this.currentRatingDate = getCurrentRating().getDate();
-        this.currentRatingValue = getCurrentRating().getCloseValue();
+        Rating currentRating = getCurrentRating();
+        this.currentRatingDate = currentRating.getDate();
+        this.currentRatingValue = currentRating.getCloseValue();
+        Rating previousRating = getPreviousRating();
+        this.state = currentRatingValue.compareTo(previousRating.getCloseValue());
     }
 
     public String getId() {
@@ -76,5 +80,13 @@ public class FinancialInstrument {
 
     public BigDecimal getCurrentRatingValue() {
         return currentRatingValue;
+    }
+
+    public Rating getPreviousRating() {
+        return ratings.get(ratings.size() - 2);
+    }
+
+    public int getState() {
+        return state;
     }
 }
