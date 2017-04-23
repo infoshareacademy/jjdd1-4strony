@@ -1,15 +1,17 @@
 package com.isacademy.jjdd1.czterystrony.ui;
 
-import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
+import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class MenuOfFunds {
-
 
     private final static Logger LOGGER = LoggerFactory.getLogger(MenuOfFunds.class);
     private final int PROMOTED_VALUE = 99;
@@ -40,7 +42,12 @@ public class MenuOfFunds {
         }
         System.out.println("Aby przejść dalej wpisz kod identyfikacyjny wybranego funduszu (TEN PO LEWEJ) :");
         Scanner choice = new Scanner(System.in);
-        String fund = choice.nextLine();
+        String fund = choice.nextLine().toUpperCase();
+
+        /*MostOftenVerifiedFunds mostOftenVerifiedFunds = new MostOftenVerifiedFunds();
+        mostOftenVerifiedFunds.checkAndcountVerifiedFunds(fund);*/
+
+
 
         try {
             InvestFund investFund = investFundDao.get(fund);

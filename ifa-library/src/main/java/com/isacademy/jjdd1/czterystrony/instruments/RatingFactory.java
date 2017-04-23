@@ -17,7 +17,7 @@ public class RatingFactory {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         LocalDate date = LocalDate.parse(splitByComaRecord[DATE_COLUMN_INDEX], dateTimeFormatter);
         BigDecimal closeValue = new BigDecimal(Double.parseDouble(splitByComaRecord[CLOSE_COLUMN_INDEX])).setScale(2, RoundingMode.HALF_UP);
-        LOGGER.trace("Method create() is initialized with parameter: " + record.toString());
+//        LOGGER.trace("Method create() is initialized with parameter: " + record.toString());
         return new Rating(date, closeValue);
     }
 }

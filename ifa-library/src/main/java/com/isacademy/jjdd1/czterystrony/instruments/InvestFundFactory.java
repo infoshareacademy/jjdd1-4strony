@@ -26,7 +26,7 @@ public class InvestFundFactory {
                 .map(RatingFactory::create)
                 .sorted()
                 .collect(Collectors.toList());
-        LOGGER.trace("Method create() is initialized with parameters: " + id.toString() +" | " + name.toString());
+//        LOGGER.trace("Method create() is initialized with parameters: " + id.toString() +" | " + name.toString());
         return new InvestFund.Builder()
                 .withId(id)
                 .withName(name)
