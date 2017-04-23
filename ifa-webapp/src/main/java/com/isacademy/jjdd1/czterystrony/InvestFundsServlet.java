@@ -10,9 +10,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = "/4analysis")
 public class InvestFundsServlet extends HttpServlet {
@@ -24,7 +29,11 @@ public class InvestFundsServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        this.investFunds = investFundsDaoTxt.getAllByPriority();
+        try {
+            this.investFunds = investFundsDaoTxt.getAllByPriority();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -33,18 +42,28 @@ public class InvestFundsServlet extends HttpServlet {
 
         List<InvestFund> promotedInvestFunds = new ArrayList<>();
         List<InvestFund> otherInvestFunds = new ArrayList<>();
+        List<InvestFund> allInvestFundsByName = new ArrayList<>();
+        boolean dataFound;
 
-        investFunds.forEach(s -> {
-            if (s.getPriority() < 0) {
-                promotedInvestFunds.add(s);
-            } else {
-                otherInvestFunds.add(s);
-            }
-        });
+        try {
+            investFunds.forEach(s -> {
+                allInvestFundsByName.add(s);
+                if (s.getPriority() < 0) {
+                    promotedInvestFunds.add(s);
+                } else {
+                    otherInvestFunds.add(s);
+                }
+            });
+            allInvestFundsByName.sort(Comparator.comparing(InvestFund::getName));
+            dataFound = true;
+        } catch (Exception e) {
+            dataFound = false;
+        }
 
         req.setAttribute("promotedInvestFunds", promotedInvestFunds);
         req.setAttribute("otherInvestFunds", otherInvestFunds);
-        req.setAttribute("allInvestFunds", investFunds);
+        req.setAttribute("allInvestFunds", allInvestFundsByName);
+        req.setAttribute("dataFound", dataFound);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
         dispatcher.forward(req, resp);

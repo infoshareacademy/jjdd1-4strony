@@ -3,9 +3,7 @@ package com.isacademy.jjdd1.czterystrony.dao;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFundFactory;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -23,35 +21,51 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
     private Map<String, Integer> promotedInvestFundIdToPriority;
 
     public InvestFundsDaoTxt() {
-        this.promotedInvestFundIdToPriority = promotedInvestFundIdToPriority();
-        this.investFunds = loadInvestFunds();
+        try {
+            this.promotedInvestFundIdToPriority = promotedInvestFundIdToPriority();
+            this.investFunds = loadInvestFunds();
+        } catch (Exception e) {
+            System.out.println("Missing data files");
+        }
     }
 
     @Override
-    public InvestFund get(String id) {
-        return investFunds.stream()
-                .filter(s -> s.getId().equals(id))
-                .reduce((a, b) -> {
-                    throw new IllegalStateException("Found more than 1 Invest Fund: " + a + ", " + b);
-                })
-                .get();
+    public InvestFund get(String id) throws FileNotFoundException {
+        try {
+            return investFunds.stream()
+                    .filter(s -> s.getId().equals(id))
+                    .reduce((a, b) -> {
+                        throw new IllegalStateException("Found more than 1 Invest Fund: " + a + ", " + b);
+                    })
+                    .get();
+        } catch (Exception e) {
+            throw new FileNotFoundException();
+        }
     }
 
     @Override
-    public List<InvestFund> getAllByName() {
-        return investFunds.stream()
-                .sorted(Comparator.comparing(InvestFund::getName))
-                .collect(Collectors.toList());
+    public List<InvestFund> getAllByName() throws FileNotFoundException {
+        try {
+            return investFunds.stream()
+                    .sorted(Comparator.comparing(InvestFund::getName))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new FileNotFoundException();
+        }
     }
 
     @Override
-    public List<InvestFund> getAllByPriority() {
-        return investFunds.stream()
-                .sorted(Comparator.comparing(InvestFund::getPriority).thenComparing(InvestFund::getName))
-                .collect(Collectors.toList());
+    public List<InvestFund> getAllByPriority() throws FileNotFoundException {
+        try {
+            return investFunds.stream()
+                    .sorted(Comparator.comparing(InvestFund::getPriority).thenComparing(InvestFund::getName))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new FileNotFoundException();
+        }
     }
 
-    private Map<String, Integer> promotedInvestFundIdToPriority() {
+    private Map<String, Integer> promotedInvestFundIdToPriority() throws Exception {
         InputStream stream = InvestFundsDaoTxt.class.getResourceAsStream(PROMOTED_INVEST_FUNDS_FILE);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
         return bufferedReader.lines()
@@ -60,7 +74,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
                 .collect(Collectors.toMap(s -> s[0], s -> Integer.parseInt(s[1])));
     }
 
-    private List<InvestFund> loadInvestFunds() {
+    private List<InvestFund> loadInvestFunds() throws Exception {
         Map<String, String> investFundIdToName = investFundIdToName();
         return investFundIdToName.entrySet().stream()
                 .map(s -> InvestFundFactory.create(s.getKey(), s.getValue()))
@@ -68,7 +82,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
                 .collect(Collectors.toList());
     }
 
-    private Map<String, String> investFundIdToName() {
+    private Map<String, String> investFundIdToName() throws Exception {
         InputStream stream = InvestFundsDaoTxt.class.getResourceAsStream(INVEST_FUNDS_LIST_FILE);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
         return bufferedReader.lines()

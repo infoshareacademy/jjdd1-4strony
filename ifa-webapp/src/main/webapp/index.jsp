@@ -30,7 +30,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">About</a></li>
+                <li><a href="#">About</a></li>
             </ul>
 
             <form class="navbar-form">
@@ -44,9 +44,16 @@
                         <input class="form-control" name="search" placeholder="znajdź fundusz" autocomplete="off"
                                autofocus="autofocus" type="text" list="funds">
                         <datalist id="funds">
-                            <c:forEach items="${allInvestFunds}" var="investFund">
-                                <option value="${investFund.name}"></option>
-                            </c:forEach>
+                            <c:choose>
+                                <c:when test="${dataFound}">
+                                    <c:forEach items="${allInvestFunds}" var="investFund">
+                                        <option value="${investFund.name}"></option>
+                                    </c:forEach>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="brak danych"></option>
+                                </c:otherwise>
+                            </c:choose>
                         </datalist>
                     </div>
                 </div>
@@ -81,53 +88,69 @@
                     </tr>
                     </thead>
                     <tbody class="table-promo">
-                    <c:forEach items="${promotedInvestFunds}" var="investFund">
-                        <tr>
-                            <td class="text-center promo-color">
-                                <c:choose>
-                                    <c:when test="${investFund.priority < -66}">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                    </c:when>
-                                    <c:when test="${investFund.priority < -33}">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-                            <td>${investFund.name}</td>
-                            <td class="text-center">${investFund.id}</td>
-                            <td class="text-center">${investFund.currentRatingDate}</td>
-                            <td class="text-right">${investFund.currentRatingValue}</td>
-                                <c:choose>
-                                    <c:when test="${investFund.change > 0}">
-                                        <td class="text-left">
-                                        <span class="glyphicon glyphicon-arrow-up green"></span>
-                                        </td>
-                                        <td class="text-left green"> +${investFund.change}%</td>
-                                    </c:when>
-                                    <c:when test="${investFund.change < 0}">
-                                        <td class="text-left">
-                                        <span class="glyphicon glyphicon-arrow-down red"></span>
-                                        </td>
-                                        <td class="text-left red"> ${investFund.change}%</td>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <td class="text-left">
-                                        <span class="glyphicon glyphicon-arrow-right grey"></span>
-                                        </td>
-                                        <td class="text-left grey"> - </td>
-                                    </c:otherwise>
-                                </c:choose>
-                        </tr>
-                    </c:forEach>
+                    <c:choose>
+                        <c:when test="${dataFound}">
+                            <c:forEach items="${promotedInvestFunds}" var="investFund">
+                                <tr>
+                                    <td class="text-center promo-color">
+                                        <c:choose>
+                                            <c:when test="${investFund.priority < -66}">
+                                                <span class="glyphicon glyphicon-star"></span>
+                                                <span class="glyphicon glyphicon-star"></span>
+                                                <span class="glyphicon glyphicon-star"></span>
+                                            </c:when>
+                                            <c:when test="${investFund.priority < -33}">
+                                                <span class="glyphicon glyphicon-star"></span>
+                                                <span class="glyphicon glyphicon-star"></span>
+                                                <span class="glyphicon glyphicon-star-empty"></span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="glyphicon glyphicon-star"></span>
+                                                <span class="glyphicon glyphicon-star-empty"></span>
+                                                <span class="glyphicon glyphicon-star-empty"></span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td>${investFund.name}</td>
+                                    <td class="text-center">${investFund.id}</td>
+                                    <td class="text-center">${investFund.currentRatingDate}</td>
+                                    <td class="text-right">${investFund.currentRatingValue}</td>
+                                    <c:choose>
+                                        <c:when test="${investFund.change > 0}">
+                                            <td class="text-left">
+                                                <span class="glyphicon glyphicon-arrow-up green"></span>
+                                            </td>
+                                            <td class="text-left green"> +${investFund.change}%</td>
+                                        </c:when>
+                                        <c:when test="${investFund.change < 0}">
+                                            <td class="text-left">
+                                                <span class="glyphicon glyphicon-arrow-down red"></span>
+                                            </td>
+                                            <td class="text-left red"> ${investFund.change}%</td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td class="text-left">
+                                                <span class="glyphicon glyphicon-arrow-right grey"></span>
+                                            </td>
+                                            <td class="text-left grey"> -</td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </tr>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <tr>
+                                <td></td>
+                                <td>brak danych</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose>
                     </tbody>
                 </table>
             </div>
@@ -150,35 +173,51 @@
                     </tr>
                     </thead>
                     <tbody class="table-other">
-                    <c:forEach items="${otherInvestFunds}" var="investFund">
-                        <tr>
-                            <td class="text-center"></td>
-                            <td>${investFund.name}</td>
-                            <td class="text-center">${investFund.id}</td>
-                            <td class="text-center">${investFund.currentRatingDate}</td>
-                            <td class="text-right">${investFund.currentRatingValue}</td>
-                                <c:choose>
-                                    <c:when test="${investFund.change > 0}">
-                                        <td class="text-left">
-                                            <span class="glyphicon glyphicon-arrow-up green"></span>
-                                        </td>
-                                        <td class="text-left green"> +${investFund.change}%</td>
-                                    </c:when>
-                                    <c:when test="${investFund.change < 0}">
-                                        <td class="text-left">
-                                        <span class="glyphicon glyphicon-arrow-down red"></span>
-                                        </td>
-                                        <td class="text-left red"> ${investFund.change}%</td>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <td class="text-left">
-                                        <span class="glyphicon glyphicon-arrow-right grey"></span>
-                                        </td>
-                                        <td class="text-left grey"> - </td>
-                                    </c:otherwise>
-                                </c:choose>
-                        </tr>
-                    </c:forEach>
+                    <c:choose>
+                        <c:when test="${dataFound}">
+                            <c:forEach items="${otherInvestFunds}" var="investFund">
+                                <tr>
+                                    <td class="text-center"></td>
+                                    <td>${investFund.name}</td>
+                                    <td class="text-center">${investFund.id}</td>
+                                    <td class="text-center">${investFund.currentRatingDate}</td>
+                                    <td class="text-right">${investFund.currentRatingValue}</td>
+                                    <c:choose>
+                                        <c:when test="${investFund.change > 0}">
+                                            <td class="text-left">
+                                                <span class="glyphicon glyphicon-arrow-up green"></span>
+                                            </td>
+                                            <td class="text-left green"> +${investFund.change}%</td>
+                                        </c:when>
+                                        <c:when test="${investFund.change < 0}">
+                                            <td class="text-left">
+                                                <span class="glyphicon glyphicon-arrow-down red"></span>
+                                            </td>
+                                            <td class="text-left red"> ${investFund.change}%</td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td class="text-left">
+                                                <span class="glyphicon glyphicon-arrow-right grey"></span>
+                                            </td>
+                                            <td class="text-left grey"> -</td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </tr>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <tr>
+                                <td></td>
+                                <td>brak danych</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose>
                     </tbody>
                 </table>
             </div>
