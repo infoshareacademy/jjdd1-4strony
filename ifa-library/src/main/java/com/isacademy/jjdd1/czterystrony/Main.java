@@ -39,6 +39,7 @@ public class Main {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
 
         for (InvestFund investFund : investFundsDao.getAllByName()) {
+            System.out.println(investFund);
             LocalExtremaProvider localExtremaProvider = new LocalExtremaProvider(investFund);
             List<Rating> extremaRatings = localExtremaProvider.findExtrema(15);
 

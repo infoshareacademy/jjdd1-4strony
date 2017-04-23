@@ -60,6 +60,7 @@ public class InvestFund extends FinancialInstrument implements Promotable {
                 " | Name: " + getName() +
                 " | Priority: " + getPriority() +
                 " | Number of ratings: " + getRatings().size() +
+                " | Zmiana: " + getChange() +
                 "\n";
     }
 }
