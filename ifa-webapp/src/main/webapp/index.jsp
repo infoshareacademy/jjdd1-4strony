@@ -3,13 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>4analysis</title>
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -30,7 +30,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">About</a></li>
+                <%--<li><a href="#">About</a></li>--%>
             </ul>
 
             <form class="navbar-form">
@@ -44,16 +44,16 @@
                         <input class="form-control" name="search" placeholder="znajdź fundusz" autocomplete="off"
                                autofocus="autofocus" type="text" list="funds">
                         <datalist id="funds">
-                            <c:choose>
-                                <c:when test="${dataFound}">
-                                    <c:forEach items="${allInvestFunds}" var="investFund">
-                                        <option value="${investFund.name}"></option>
-                                    </c:forEach>
-                                </c:when>
-                                <c:otherwise>
-                                    <option value="brak danych"></option>
-                                </c:otherwise>
-                            </c:choose>
+                            <%--<c:choose>--%>
+                                <%--<c:when test="${dataFound}">--%>
+                                    <%--<c:forEach items="${allInvestFunds}" var="investFund">--%>
+                                        <%--<option value="${investFund.name}"></option>--%>
+                                    <%--</c:forEach>--%>
+                                <%--</c:when>--%>
+                                <%--<c:otherwise>--%>
+                                    <%--<option value="brak danych"></option>--%>
+                                <%--</c:otherwise>--%>
+                            <%--</c:choose>--%>
                         </datalist>
                     </div>
                 </div>
@@ -61,10 +61,6 @@
         </div>
     </div>
 </nav>
-
-<%--<form method="get" action="/investfunds">--%>
-<%--<input type="text" name="word" value="${word}"> <input type="submit">--%>
-<%--</form>--%>
 
 <div class="container-fluid">
     <div class="row">
@@ -91,7 +87,7 @@
                     <c:choose>
                         <c:when test="${dataFound}">
                             <c:forEach items="${promotedInvestFunds}" var="investFund">
-                                <tr>
+                                <tr onclick="window.document.location='/4analysis/${investFund.id}';">
                                     <td class="text-center promo-color">
                                         <c:choose>
                                             <c:when test="${investFund.priority < -66}">
@@ -176,7 +172,7 @@
                     <c:choose>
                         <c:when test="${dataFound}">
                             <c:forEach items="${otherInvestFunds}" var="investFund">
-                                <tr>
+                                <tr onclick="window.document.location='/4analysis/${investFund.id}';">
                                     <td class="text-center"></td>
                                     <td>${investFund.name}</td>
                                     <td class="text-center">${investFund.id}</td>
@@ -224,10 +220,6 @@
         </div>
     </div>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="js/bootstrap.min.js"></script>
 
 </body>
 </html>

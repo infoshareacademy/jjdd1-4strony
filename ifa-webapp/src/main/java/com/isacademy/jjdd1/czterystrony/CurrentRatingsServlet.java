@@ -1,6 +1,5 @@
 package com.isacademy.jjdd1.czterystrony;
 
-import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 
 import javax.inject.Inject;
@@ -17,17 +16,17 @@ import java.util.Comparator;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/4analysis")
-public class InvestFundsServlet extends HttpServlet {
+public class CurrentRatingsServlet extends HttpServlet {
 
     private List<InvestFund> investFunds;
 
     @Inject
-    InvestFundsDaoTxt investFundsDaoTxt;
+    DaoService daoService;
 
     @Override
     public void init() throws ServletException {
         try {
-            this.investFunds = investFundsDaoTxt.getAllByPriority();
+            this.investFunds = daoService.getAllByPriority();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

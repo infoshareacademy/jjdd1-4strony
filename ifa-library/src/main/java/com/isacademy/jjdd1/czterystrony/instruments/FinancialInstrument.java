@@ -1,12 +1,16 @@
 package com.isacademy.jjdd1.czterystrony.instruments;
 
+import com.isacademy.jjdd1.czterystrony.utilities.TimeRange;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FinancialInstrument {
     private String id;
@@ -64,11 +68,11 @@ public class FinancialInstrument {
         return ratings;
     }
 
-    public Rating getRatingAtDate(LocalDate date) {
+    public List<Rating> getRatingsInTimeRange(TimeRange timeRange) {
         return ratings.stream()
-                .filter(t -> t.getDate().equals(date))
-                .findFirst()
-                .orElse(null);
+                .filter(t -> t.getDate().isAfter(timeRange.getStart()))
+                .filter(t -> t.getDate().isBefore(timeRange.getEnd()))
+                .collect(Collectors.toList());
     }
 
     public Rating getCurrentRating() {
