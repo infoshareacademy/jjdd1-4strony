@@ -2,7 +2,6 @@ package com.isacademy.jjdd1.czterystrony.ui;
 
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
-import com.isacademy.jjdd1.czterystrony.utilities.MostOftenVerifiedFunds;
 
 import java.util.Comparator;
 import java.util.List;
@@ -32,12 +31,11 @@ public class MenuOfFunds {
         Scanner choice = new Scanner(System.in);
         String fund = choice.nextLine();//fundusz wybrany przez użytkownika
 
-        MostOftenVerifiedFunds mostOftenVerifiedFunds = new MostOftenVerifiedFunds();
-        mostOftenVerifiedFunds.checkAndcountVerifiedFunds(fund);
+        /*MostOftenVerifiedFunds mostOftenVerifiedFunds = new MostOftenVerifiedFunds();
+        mostOftenVerifiedFunds.checkAndcountVerifiedFunds(fund);*/
 
         InvestFund investFund = investFundDao.get(fund);
         MenuOfExtreme menuExtreme = new MenuOfExtreme(investFund);
-
 
 
 //        investFund.getAllRatings();
