@@ -1,7 +1,7 @@
 # jjdd1-4strony
 
 #### infoShareAcademy Junior Java Developer 
-* Project: "jjdd1-4strony" Invest Funds Analysis
+* Project: "jjdd1-4strony" 4analysis
 * Product Owner: Wòjcech Makùrôt
 
 ## Development team:
