@@ -225,7 +225,7 @@
                             </div>
                         </div>
                     </div>
-                    <label>Parametr wskaźnika Zig-Zag: </label>
+                    <label>Parametr wskaźnika Zig-Zag w [%]: </label>
                     <input type="number" name="zigZag" value="${zigZag}">
                     <button type="submit" class="btn btn-info">Pokaż ekstrema</button>
                 </form>
