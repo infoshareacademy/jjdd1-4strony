@@ -224,10 +224,31 @@
                                 </div>
                             </div>
                         </div>
+                        <br>
+                        <div class="col-xs-6">
+                            <div>
+                                <h5 class="sub-header"><strong>Wskaźnik ZigZag</strong></h5>
+                                <span class="text-info">parametr filtrujący w [%]:</span><br>
+                                <input type="number" name="zigZag" value="${zigZag}"><br>
+                                <button type="submit" class="btn btn-info" value="extrema">Pokaż ekstrema</button>
+                            </div><br>
+                            <%--<div>--%>
+                                <%--<h5 class="sub-header"><strong>Średnia krocząca</strong></h5>--%>
+                                <%--<div class="radio">--%>
+                                    <%--<label><input type="radio" name="ma" value="SMA">prosta (SMA)</label>--%>
+                                <%--</div>--%>
+                                <%--<div class="radio">--%>
+                                    <%--<label><input type="radio" name="ma" value="WMA">ważona (WMA)</label>--%>
+                                <%--</div>--%>
+                                <%--<div class="radio">--%>
+                                    <%--<label><input type="radio" name="ma" value="EMA">wykładnicza (EMA)</label>--%>
+                                <%--</div>--%>
+                                <%--<span class="text-info">okres w [dniach]:</span><br>--%>
+                                <%--<input type="number" name="period" value="${period}"><br>--%>
+                                <%--<button type="submit" class="btn btn-info" value="average">Pokaż średnią</button>--%>
+                            <%--</div>--%>
+                        </div>
                     </div>
-                    <label>Parametr wskaźnika Zig-Zag w [%]: </label>
-                    <input type="number" name="zigZag" value="${zigZag}">
-                    <button type="submit" class="btn btn-info">Pokaż ekstrema</button>
                 </form>
 
                 <div class="table-responsive col-md-4">
