@@ -8,19 +8,25 @@ import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaProvider;
 import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
 import com.isacademy.jjdd1.czterystrony.utilities.TimeRange;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        findLocalExtremaForGivenInvestFundTest("AGI001");
-        findLocalExtremaOfAllInvestFundsTest();
-        printAllInvestFundsByNameTest();
-        printAllInvestFundsByPriorityTest();
-        findGlobalExtremaForGivenInvestFundTest("AGI001");
+        try {
+            findLocalExtremaForGivenInvestFundTest("AGI001");
+            findLocalExtremaOfAllInvestFundsTest();
+            printAllInvestFundsByNameTest();
+            printAllInvestFundsByPriorityTest();
+            findGlobalExtremaForGivenInvestFundTest("AGI001");
+        } catch (FileNotFoundException e) {
+            System.out.println("Missing data files");
+        }
     }
 
-    public static void findLocalExtremaForGivenInvestFundTest(String investFundName) {
+    public static void findLocalExtremaForGivenInvestFundTest(String investFundName) throws FileNotFoundException {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
         InvestFund investFund = investFundsDao.get(investFundName);
 
@@ -35,10 +41,11 @@ public class Main {
         }
     }
 
-    public static void findLocalExtremaOfAllInvestFundsTest() {
+    public static void findLocalExtremaOfAllInvestFundsTest() throws FileNotFoundException {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
 
         for (InvestFund investFund : investFundsDao.getAllByName()) {
+            System.out.println(investFund);
             LocalExtremaProvider localExtremaProvider = new LocalExtremaProvider(investFund);
             List<Rating> extremaRatings = localExtremaProvider.findExtrema(15);
 
@@ -49,7 +56,7 @@ public class Main {
         }
     }
 
-    public static void findGlobalExtremaForGivenInvestFundTest(String investFundName) {
+    public static void findGlobalExtremaForGivenInvestFundTest(String investFundName) throws FileNotFoundException {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
         InvestFund investFund = investFundsDao.get(investFundName);
 
@@ -60,16 +67,16 @@ public class Main {
         System.out.println("Minimum: " + globalExtremaProvider.getGlobalMinimum());
     }
 
-    public static void printAllInvestFundsByNameTest() {
+    public static void printAllInvestFundsByNameTest() throws FileNotFoundException {
         InvestFundsDaoTxt investFundsDao = new InvestFundsDaoTxt();
 
         System.out.println("\n\nInvest funds sorted by name:");
         for (InvestFund investFund : investFundsDao.getAllByName()) {
-            System.out.println("ID: " + investFund.getId() + " | Name: " +investFund.getName());
+            System.out.println("ID: " + investFund.getId() + " | Name: " + investFund.getName());
         }
     }
 
-    public static void printAllInvestFundsByPriorityTest() {
+    public static void printAllInvestFundsByPriorityTest() throws FileNotFoundException {
         InvestFundsDao investFundsDao = new InvestFundsDaoTxt();
 
         System.out.println("\n\nInvest funds sorted by priority:");
