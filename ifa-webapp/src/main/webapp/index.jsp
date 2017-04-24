@@ -87,7 +87,7 @@
                     <c:choose>
                         <c:when test="${dataFound}">
                             <c:forEach items="${promotedInvestFunds}" var="investFund">
-                                <tr onclick="window.document.location='/4analysis/${investFund.id}';">
+                                <tr onclick="window.document.location='/4analysis/notowania/${investFund.id}';">
                                     <td class="text-center promo-color">
                                         <c:choose>
                                             <c:when test="${investFund.priority < -66}">
@@ -172,7 +172,7 @@
                     <c:choose>
                         <c:when test="${dataFound}">
                             <c:forEach items="${otherInvestFunds}" var="investFund">
-                                <tr onclick="window.document.location='/4analysis/${investFund.id}';">
+                                <tr onclick="window.document.location='/4analysis/notowania/${investFund.id}';">
                                     <td class="text-center"></td>
                                     <td>${investFund.name}</td>
                                     <td class="text-center">${investFund.id}</td>

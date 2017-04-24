@@ -169,8 +169,9 @@
     <div class="row">
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="http://localhost:8080/4analysis/notowania/${investFund.id}">Notowania <span class="sr-only">(current)</span></a></li>
-                <li><a href="http://localhost:8080/4analysis/analiza/${investFund.id}">Analiza techniczna</a></li>
+                <li><a href="http://localhost:8080/4analysis/notowania/${investFund.id}">Notowania</a></li>
+                <li class="active"><a href="http://localhost:8080/4analysis/analiza/${investFund.id}">Analiza techniczna<span
+                        class="sr-only">(current)</span></a></li>
             </ul>
         </div>
         <div class="col-md-8 col-md-offset-2 main">
@@ -201,8 +202,8 @@
             </div>
 
             <div class="row main">
-                <h4 class="page-header">Notowania</h4>
-                <form method="get" action="/4analysis/notowania/${investFund.id}">
+                <h4 class="page-header">Analiza techniczna</h4>
+                <form method="get" action="/4analysis/analiza/${investFund.id}">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-2 box">
@@ -224,7 +225,9 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-info">Pokaż notowania</button>
+                    <label>Parametr wskaźnika Zig-Zag: </label>
+                    <input type="number" name="zigZag" value="${zigZag}">
+                    <button type="submit" class="btn btn-info">Pokaż ekstrema</button>
                 </form>
 
                 <div class="table-responsive col-md-4">

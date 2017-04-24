@@ -2,6 +2,7 @@ package com.isacademy.jjdd1.czterystrony;
 
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
+import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
 import com.isacademy.jjdd1.czterystrony.utilities.TimeRange;
 
 import javax.inject.Inject;
@@ -16,13 +17,14 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-@WebServlet(urlPatterns = "/4analysis/notowania/*")
-public class InvestFundServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/4analysis/analiza/*")
+public class AnalysisServlet extends HttpServlet {
 
     private InvestFund investFund;
     private List<Rating> ratings;
     private TimeRange timeRange;
-
+    private LocalExtremaProvider localExtremaProvider;
+    private int zigZag;
     @Inject
     DaoService daoService;
 
@@ -32,16 +34,19 @@ public class InvestFundServlet extends HttpServlet {
         String investFundId = req.getPathInfo().substring(1);
 
         setTimeRange(req);
+        setZigZag(req);
 
         investFund = daoService.get(investFundId);
-        ratings = investFund.getRatingsInTimeRange(timeRange);
+        localExtremaProvider = new LocalExtremaProvider(investFund, timeRange);
+        ratings = localExtremaProvider.findExtrema(zigZag);
 
         req.setAttribute("investFund", investFund);
         req.setAttribute("ratings", ratings);
         req.setAttribute("from", timeRange.getStart());
         req.setAttribute("to", timeRange.getEnd());
+        req.setAttribute("zigZag", zigZag);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/fund.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/analysis.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -60,5 +65,15 @@ public class InvestFundServlet extends HttpServlet {
         }
 
         timeRange = new TimeRange(dateFrom, dateTo);
+    }
+
+    private void setZigZag(HttpServletRequest req) {
+        String zigZagReq = req.getParameter("zigZag");
+
+        if (!Objects.isNull(zigZagReq) && !zigZagReq.isEmpty()) {
+            zigZag = Integer.parseInt(zigZagReq);
+        } else {
+            zigZag = 0;
+        }
     }
 }
