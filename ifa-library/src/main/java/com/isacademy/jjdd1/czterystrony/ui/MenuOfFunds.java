@@ -12,7 +12,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.Comparator;
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.stream.Collectors;
 
 public class MenuOfFunds {
     public int menuOfFunds;
-
+    @PersistenceContext
     private static EntityManager entityManager;
     private final static Logger LOGGER = LoggerFactory.getLogger(MenuOfFunds.class);
     private final int PROMOTED_VALUE = 99;
