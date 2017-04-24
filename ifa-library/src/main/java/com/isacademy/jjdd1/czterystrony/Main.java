@@ -74,7 +74,7 @@ public class Main {
 
         System.out.println("\n\nInvest funds sorted by priority:");
         for (InvestFund investFund : investFundsDao.getAllByPriority()) {
-            System.out.println(investFund.getId() + " " + -investFund.getPriority());
+            System.out.println(investFund.getId() + " | " + investFund.getName() + " " + -investFund.getPriority());
         }
     }
 }
