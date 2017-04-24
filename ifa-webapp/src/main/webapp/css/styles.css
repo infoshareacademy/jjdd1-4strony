@@ -1,0 +1,74 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+}
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.navbar-fixed-top {
+    border: 0;
+}
+
+/*
+ * Main content
+ */
+
+.main {
+    padding: 20px;
+}
+
+@media (min-width: 768px) {
+    .main {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+
+.main .page-header {
+    margin-top: 0;
+}
+
+.table-other {
+    background-color: #e4e6ea;
+}
+
+.table-promo {
+    background-color: #f7eaef;
+}
+
+.table-hover-promo tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #d99bb2;
+    cursor: pointer;
+}
+
+.table-hover-other tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #a7adba;
+    cursor: pointer;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.grey {
+    color: grey;
+}
+
+.promo-color {
+    color: #e12453;
+}
