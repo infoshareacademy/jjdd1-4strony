@@ -2,6 +2,8 @@ package com.isacademy.jjdd1.czterystrony.dao;
 
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFundFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -12,6 +14,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class InvestFundsDaoTxt implements InvestFundsDao {
+    private final static Logger LOGGER = LoggerFactory.getLogger(InvestFundsDaoTxt.class);
     private final String INVEST_FUNDS_LIST_FILE = "omegafun.lst";
     public static final String INVEST_FUNDS_DATA_FOLDER_DIRECTORY = "investfunds/";
     public static final String RATINGS_DATA_FILE_EXTENSION = ".txt";
@@ -29,6 +32,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
 
     @Override
     public InvestFund get(String id) {
+//        LOGGER.trace("Method ratingsDataFileToInvestFundName() is initialized parameter: " + id.toString());
         return investFunds.stream()
                 .filter(s -> s.getId().equals(id))
                 .reduce((a, b) -> {
@@ -39,6 +43,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
 
     @Override
     public List<InvestFund> getAllByName() {
+        LOGGER.trace("Method getAllByName() is initialized with no parameters");
         return investFunds.stream()
                 .sorted(Comparator.comparing(InvestFund::getName))
                 .collect(Collectors.toList());
@@ -46,6 +51,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
 
     @Override
     public List<InvestFund> getAllByPriority() {
+        LOGGER.trace("Method getAllByPriority() is initialized with no parameters");
         return investFunds.stream()
                 .sorted(Comparator.comparing(InvestFund::getPriority).thenComparing(InvestFund::getName))
                 .collect(Collectors.toList());
@@ -71,6 +77,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
     private Map<String, String> investFundIdToName() {
         InputStream stream = InvestFundsDaoTxt.class.getResourceAsStream(INVEST_FUNDS_LIST_FILE);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
+        LOGGER.trace("Method ratingsDataFileToInvestFundName() is initialized with no parameters");
         return bufferedReader.lines()
                 .filter(s -> containsDataFileExtension(s))
                 .filter(s -> ratingsDataFileExistsFor(findIdInRecord(s)))
@@ -78,11 +85,13 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
     }
 
     private Boolean containsDataFileExtension(String record) {
+//        LOGGER.trace("Method containsDataFileExtension() is initialized with parameters: " + record.toString());
         return record.matches("(.*)" + RATINGS_DATA_FILE_EXTENSION + "(.*)");
     }
 
     private Boolean ratingsDataFileExistsFor(String investFundID) {
         InputStream stream = InvestFundsDaoTxt.class.getResourceAsStream(INVEST_FUNDS_DATA_FOLDER_DIRECTORY + investFundID + RATINGS_DATA_FILE_EXTENSION);
+//        LOGGER.trace("Method ratingsDataFileExistsFor() is initialized with parameter: " + investFundID);
         try {
             new BufferedReader(new InputStreamReader(stream));
             return true;
