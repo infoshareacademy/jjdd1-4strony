@@ -206,7 +206,7 @@
                 <form method="get" action="/4analysis/analiza/${investFund.id}">
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-2 box">
+                            <div class="col-xs-3 col-md-2 box">
                                 <label>od</label>
                                 <div class="input-group">
                                 <span class="input-group-addon"><span
@@ -215,7 +215,7 @@
                                            placeholder="od">
                                 </div>
                             </div>
-                            <div class="col-md-2 col-md-offset-1 box">
+                            <div class="col-xs-3 col-md-2 col-md-offset-1 box">
                                 <label>do</label>
                                 <div class="input-group">
                                 <span class="input-group-addon"><span
