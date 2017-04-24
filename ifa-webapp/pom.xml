@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>isacademy.jjdd1.4strony</groupId>
-        <artifactId>invest-fund-analyzer</artifactId>
+        <artifactId>invest-funds-analysis</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
