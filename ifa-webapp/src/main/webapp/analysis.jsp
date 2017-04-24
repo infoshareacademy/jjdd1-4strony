@@ -179,7 +179,7 @@
                 <h3 class="page-header"><a
                         href="http://localhost:8080/4analysis/notowania/${investFund.id}">${investFund.name}</a></h3>
                 <span class="text-muted">${investFund.id} </span><br>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <span class="lead"><strong>${investFund.currentRatingValue} PLN </strong></span>
                     <c:choose>
                         <c:when test="${investFund.change > 0}">
