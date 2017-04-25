@@ -1,37 +1,37 @@
 package com.isacademy.jjdd1.czterystrony.utilities;
 
-        import java.util.Map;
-        import java.util.TreeMap;
+import java.util.Map;
+import java.util.TreeMap;
 
-        public class MostOftenVerifiedFunds{
+public class MostOftenVerifiedFunds {
 
-        static private Integer countState=1;
+    static private Integer countState = 1;
 
-        public Map<String,Integer> counterOfVerifiedFunds= new TreeMap<>();
+    public Map<String, Integer> counterOfVerifiedFunds = new TreeMap<>();
 
-            public void checkAndcountVerifiedFunds(String fund){
+    public void checkAndcountVerifiedFunds(String fund) {
 
-            Map<String,Integer>listOfVerifiedFunds=new TreeMap<>();
+        Map<String, Integer> listOfVerifiedFunds = new TreeMap<>();
 
-            new TestMapDataFundsCounterPrep(listOfVerifiedFunds);//examplesofdateforthepresentation
+        new TestMapDataFundsCounterPrep(listOfVerifiedFunds);//examplesofdateforthepresentation
 
-            if(listOfVerifiedFunds.containsKey(fund)){
+        if (listOfVerifiedFunds.containsKey(fund)) {
 
-                  listOfVerifiedFunds.replace(fund,listOfVerifiedFunds.get(fund)+countState);
+            listOfVerifiedFunds.replace(fund, listOfVerifiedFunds.get(fund) + countState);
 
-            }else{
+        } else {
 
-                listOfVerifiedFunds.put(fund,countState);
-                System.out.println("");
-            }
-
-            System.out.println("Najczęściej weryfikowane fundusze:");
+            listOfVerifiedFunds.put(fund, countState);
             System.out.println("");
-
-            for(String key:listOfVerifiedFunds.keySet())
-
-                 System.out.println(key+"-"+listOfVerifiedFunds.get(key));
-
-            }
-
         }
+
+        System.out.println("Najczęściej weryfikowane fundusze:");
+        System.out.println("");
+
+        for (String key : listOfVerifiedFunds.keySet())
+
+            System.out.println(key + "-" + listOfVerifiedFunds.get(key));
+
+    }
+
+}

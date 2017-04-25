@@ -11,112 +11,8 @@
     <title>4analysis</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
-    <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--%>
     <link rel="stylesheet" type="text/css" media="screen"
           href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
-    <%--<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>--%>
-    <%--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>--%>
-
-    <%--<style>--%>
-        <%--body {--%>
-            <%--padding-top: 50px;--%>
-        <%--}--%>
-
-        <%--.sub-header {--%>
-            <%--padding-bottom: 10px;--%>
-            <%--border-bottom: 1px solid #eee;--%>
-        <%--}--%>
-
-        <%--.navbar-fixed-top {--%>
-            <%--border: 0;--%>
-        <%--}--%>
-
-        <%--/*--%>
-         <%--* Sidebar--%>
-         <%--*/--%>
-
-        <%--/* Hide for mobile, show later */--%>
-        <%--.sidebar {--%>
-            <%--display: none;--%>
-        <%--}--%>
-
-        <%--@media (min-width: 768px) {--%>
-            <%--.sidebar {--%>
-                <%--position: fixed;--%>
-                <%--top: 51px;--%>
-                <%--bottom: 0;--%>
-                <%--left: 0;--%>
-                <%--z-index: 1000;--%>
-                <%--display: block;--%>
-                <%--padding: 20px;--%>
-                <%--overflow-x: hidden;--%>
-                <%--overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */--%>
-                <%--background-color: #f5f5f5;--%>
-                <%--border-right: 1px solid #eee;--%>
-            <%--}--%>
-        <%--}--%>
-
-        <%--/* Sidebar navigation */--%>
-        <%--.nav-sidebar {--%>
-            <%--margin-right: -21px; /* 20px padding + 1px border */--%>
-            <%--margin-bottom: 20px;--%>
-            <%--margin-left: -20px;--%>
-        <%--}--%>
-
-        <%--.nav-sidebar > li > a {--%>
-            <%--padding-right: 20px;--%>
-            <%--padding-left: 20px;--%>
-        <%--}--%>
-
-        <%--.nav-sidebar > .active > a,--%>
-        <%--.nav-sidebar > .active > a:hover,--%>
-        <%--.nav-sidebar > .active > a:focus {--%>
-            <%--color: #fff;--%>
-            <%--background-color: #428bca;--%>
-        <%--}--%>
-
-        <%--.main {--%>
-            <%--padding: 20px;--%>
-        <%--}--%>
-
-        <%--@media (min-width: 768px) {--%>
-            <%--.main {--%>
-                <%--padding-right: 40px;--%>
-                <%--padding-left: 40px;--%>
-            <%--}--%>
-        <%--}--%>
-
-        <%--.main .page-header {--%>
-            <%--margin-top: 0;--%>
-        <%--}--%>
-
-        <%--.table-other {--%>
-            <%--background-color: #e4e6ea;--%>
-        <%--}--%>
-
-        <%--.table-hover-promo tbody tr:hover td, .table-hover tbody tr:hover th {--%>
-            <%--background-color: #d99bb2;--%>
-            <%--cursor: pointer;--%>
-        <%--}--%>
-
-        <%--.table-hover-other tbody tr:hover td, .table-hover tbody tr:hover th {--%>
-            <%--background-color: #a7adba;--%>
-            <%--cursor: pointer;--%>
-        <%--}--%>
-
-        <%--.green {--%>
-            <%--color: green;--%>
-        <%--}--%>
-
-        <%--.red {--%>
-            <%--color: red;--%>
-        <%--}--%>
-
-        <%--.grey {--%>
-            <%--color: grey;--%>
-        <%--}--%>
-
-    <%--</style>--%>
 </head>
 <body>
 
@@ -232,21 +128,22 @@
                                 <span class="text-info">parametr filtrujący w [%]:</span><br>
                                 <input type="number" name="zigZag" value="${zigZag}"><br>
                                 <button type="submit" class="btn btn-info" value="extrema">Pokaż ekstrema</button>
-                            </div><br>
+                            </div>
+                            <br>
                             <%--<div>--%>
-                                <%--<h5 class="sub-header"><strong>Średnia krocząca</strong></h5>--%>
-                                <%--<div class="radio">--%>
-                                    <%--<label><input type="radio" name="ma" value="SMA">prosta (SMA)</label>--%>
-                                <%--</div>--%>
-                                <%--<div class="radio">--%>
-                                    <%--<label><input type="radio" name="ma" value="WMA">ważona (WMA)</label>--%>
-                                <%--</div>--%>
-                                <%--<div class="radio">--%>
-                                    <%--<label><input type="radio" name="ma" value="EMA">wykładnicza (EMA)</label>--%>
-                                <%--</div>--%>
-                                <%--<span class="text-info">okres w [dniach]:</span><br>--%>
-                                <%--<input type="number" name="period" value="${period}"><br>--%>
-                                <%--<button type="submit" class="btn btn-info" value="average">Pokaż średnią</button>--%>
+                            <%--<h5 class="sub-header"><strong>Średnia krocząca</strong></h5>--%>
+                            <%--<div class="radio">--%>
+                            <%--<label><input type="radio" name="ma" value="SMA">prosta (SMA)</label>--%>
+                            <%--</div>--%>
+                            <%--<div class="radio">--%>
+                            <%--<label><input type="radio" name="ma" value="WMA">ważona (WMA)</label>--%>
+                            <%--</div>--%>
+                            <%--<div class="radio">--%>
+                            <%--<label><input type="radio" name="ma" value="EMA">wykładnicza (EMA)</label>--%>
+                            <%--</div>--%>
+                            <%--<span class="text-info">okres w [dniach]:</span><br>--%>
+                            <%--<input type="number" name="period" value="${period}"><br>--%>
+                            <%--<button type="submit" class="btn btn-info" value="average">Pokaż średnią</button>--%>
                             <%--</div>--%>
                         </div>
                     </div>

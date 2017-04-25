@@ -46,9 +46,6 @@ public class MenuOfFunds {
             Scanner choice = new Scanner(System.in);
             String fund = choice.nextLine().toUpperCase();
 
-        /*MostOftenVerifiedFunds mostOftenVerifiedFunds = new MostOftenVerifiedFunds();
-        mostOftenVerifiedFunds.checkAndcountVerifiedFunds(fund);*/
-
             try {
                 InvestFund investFund = investFundDao.get(fund);
                 LOGGER.debug("Chosen fund: " + investFund.getName());
