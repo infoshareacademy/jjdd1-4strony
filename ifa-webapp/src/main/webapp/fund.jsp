@@ -161,9 +161,11 @@
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: [<c:forEach items="${ratings}" var="rating">
+                ${rating.date} ,
+                </c:forEach>],
             datasets: [{
-                label: '# of Votes',
+                label: 'Wycena',
                 data: [<c:forEach items="${ratings}" var="rating">
                 ${rating.closeValue} ,
                 </c:forEach>],
