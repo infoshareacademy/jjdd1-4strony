@@ -156,6 +156,7 @@
 <script src="/js/jquery-3.2.1.js"></script>
 <script src="/js/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <script>
+
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -163,7 +164,9 @@
             labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: [<c:forEach items="${ratings}" var="rating">
+                ${rating.closeValue} ,
+                </c:forEach>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
