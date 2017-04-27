@@ -2,19 +2,22 @@ package com.isacademy.jjdd1.czterystrony.dao;
 
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFundFactory;
+import com.isacademy.jjdd1.czterystrony.instruments.InvestFundFactoryWeb;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class InvestFundsDaoTxt implements InvestFundsDao {
-    private final static Logger LOGGER = LoggerFactory.getLogger(InvestFundsDaoTxt.class);
-    private final String INVEST_FUNDS_LIST_FILE = "omegafun.lst";
-    public static final String INVEST_FUNDS_DATA_FOLDER_DIRECTORY = "investfunds/";
+public class InvestFundsDaoWeb implements InvestFundsDao, Serializable {
+    private static final Logger LOGGER = LoggerFactory.getLogger(InvestFundsDaoTxt.class);
+    private static final String INVEST_FUNDS_LIST_FILE_URL = "http://bossa.pl/pub/fundinwest/omega/omegafun.lst";
+    public static final String INVEST_FUNDS_RATINGS_ZIP_URL = "http://bossa.pl/pub/fundinwest/omega/omegafun.zip";
     public static final String RATINGS_DATA_FILE_EXTENSION = ".txt";
     private final String PROMOTED_INVEST_FUNDS_FILE = "promoted-invest-funds.txt";
     private final int BEGIN_OF_ID_IN_LST = 33;
@@ -23,7 +26,7 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
     private List<InvestFund> investFunds;
     private Map<String, Integer> promotedInvestFundIdToPriority;
 
-    public InvestFundsDaoTxt() {
+    public InvestFundsDaoWeb() {
         try {
             this.promotedInvestFundIdToPriority = promotedInvestFundIdToPriority();
             this.investFunds = loadInvestFunds();
@@ -44,33 +47,23 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
     private List<InvestFund> loadInvestFunds() throws Exception {
         Map<String, String> investFundIdToName = investFundIdToName();
         return investFundIdToName.entrySet().stream()
-                .map(s -> InvestFundFactory.create(s.getKey(), s.getValue()))
+                .map(s -> InvestFundFactoryWeb.create(s.getKey(), s.getValue()))
                 .map(s -> checkPromotionAndPromote(s))
                 .collect(Collectors.toList());
     }
 
-    private Map<String, String> investFundIdToName() throws Exception {
-        InputStream stream = InvestFundsDaoTxt.class.getResourceAsStream(INVEST_FUNDS_LIST_FILE);
+    private Map<String, String> investFundIdToName() throws IOException {
+        URL url = new URL(INVEST_FUNDS_LIST_FILE_URL);
+        URLConnection urlConnection = url.openConnection();
+        InputStream stream = urlConnection.getInputStream();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
-        LOGGER.trace("Method ratingsDataFileToInvestFundName() is initialized with no parameters");
         return bufferedReader.lines()
                 .filter(s -> containsDataFileExtension(s))
-                .filter(s -> ratingsDataFileExistsFor(findIdInRecord(s)))
                 .collect(Collectors.toMap(s -> findIdInRecord(s), s -> findNameInRecord(s)));
     }
 
     private Boolean containsDataFileExtension(String record) {
         return record.matches("(.*)" + RATINGS_DATA_FILE_EXTENSION + "(.*)");
-    }
-
-    private Boolean ratingsDataFileExistsFor(String investFundID) {
-        InputStream stream = InvestFundsDaoTxt.class.getResourceAsStream(INVEST_FUNDS_DATA_FOLDER_DIRECTORY + investFundID + RATINGS_DATA_FILE_EXTENSION);
-        try {
-            new BufferedReader(new InputStreamReader(stream));
-            return true;
-        } catch (NullPointerException e) {
-            return false;
-        }
     }
 
     private String findIdInRecord(String record) {
@@ -107,7 +100,6 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
     @Override
     public List<InvestFund> getAllByName() throws FileNotFoundException {
         try {
-            LOGGER.trace("Method getAllByName() is initialized with no parameters");
             return investFunds.stream()
                     .sorted(Comparator.comparing(InvestFund::getName))
                     .collect(Collectors.toList());
@@ -119,12 +111,17 @@ public class InvestFundsDaoTxt implements InvestFundsDao {
     @Override
     public List<InvestFund> getAllByPriority() throws FileNotFoundException {
         try {
-            LOGGER.trace("Method getAllByPriority() is initialized with no parameters");
             return investFunds.stream()
                     .sorted(Comparator.comparing(InvestFund::getPriority).thenComparing(InvestFund::getName))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             throw new FileNotFoundException();
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+        InvestFundsDaoWeb investFundsDaoWeb = new InvestFundsDaoWeb();
+
+        investFundsDaoWeb.getAllByName().forEach(System.out::println);
     }
 }

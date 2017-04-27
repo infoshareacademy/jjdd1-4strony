@@ -1,28 +1,29 @@
 package com.isacademy.jjdd1.czterystrony;
 
-import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoWeb;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.List;
 
 @SessionScoped
-public class DaoService {
+public class DaoService implements Serializable{
 
     @Inject
-    InvestFundsDaoTxt investFundsDaoTxt;
+    InvestFundsDaoWeb investFundsDao;
 
     public InvestFund get(String id) throws FileNotFoundException {
-        return investFundsDaoTxt.get(id);
+        return investFundsDao.get(id);
     }
 
     public List<InvestFund> getAllByName() throws FileNotFoundException {
-        return investFundsDaoTxt.getAllByName();
+        return investFundsDao.getAllByName();
     }
 
     public List<InvestFund> getAllByPriority() throws FileNotFoundException {
-        return investFundsDaoTxt.getAllByPriority();
+        return investFundsDao.getAllByPriority();
     }
 }
