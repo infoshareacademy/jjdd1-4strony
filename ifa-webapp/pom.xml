@@ -17,6 +17,18 @@
 
     <properties>
         <failOnMissingWebXml>false</failOnMissingWebXml>
+
+        <!-- mysql -->
+        <version.mysql>5.1.41</version.mysql>
+        <jdbc.datasource>java:jboss/datasources/MySQLDS</jdbc.datasource>
+        <mysql.connection.url>jdbc:mysql://localhost:3306/test??useUnicode=yes&amp;characterEncoding=UTF-8</mysql.connection.url>
+        <mysql.username>root</mysql.username>
+        <mysql.password>root</mysql.password>
+
+        <!-- wildfly admin -->
+        <wildfly.adminUsername>admin</wildfly.adminUsername>
+        <wildfly.adminPassword>admin123</wildfly.adminPassword>
+        <wildfly.add-user>${wildfly.adminUsername}:${wildfly.adminPassword}:group:ManagementRealm:false</wildfly.add-user>
     </properties>
 
     <dependencies>
@@ -25,6 +37,12 @@
             <groupId>isacademy.jjdd1.4strony</groupId>
             <artifactId>ifa-library</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${version.mysql}</version>
         </dependency>
 
         <dependency>
@@ -38,6 +56,13 @@
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
             <scope>provided</scope>
         </dependency>
 

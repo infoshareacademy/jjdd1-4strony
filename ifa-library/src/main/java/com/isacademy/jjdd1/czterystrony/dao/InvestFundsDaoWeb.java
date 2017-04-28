@@ -1,10 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.dao;
 
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
-import com.isacademy.jjdd1.czterystrony.instruments.InvestFundFactory;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFundFactoryWeb;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.URL;
@@ -15,7 +12,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class InvestFundsDaoWeb implements InvestFundsDao, Serializable {
-    private static final Logger LOGGER = LoggerFactory.getLogger(InvestFundsDaoTxt.class);
     private static final String INVEST_FUNDS_LIST_FILE_URL = "http://bossa.pl/pub/fundinwest/omega/omegafun.lst";
     public static final String INVEST_FUNDS_RATINGS_ZIP_URL = "http://bossa.pl/pub/fundinwest/omega/omegafun.zip";
     public static final String RATINGS_DATA_FILE_EXTENSION = ".txt";
