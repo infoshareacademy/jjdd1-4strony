@@ -26,7 +26,7 @@
         <!--<Logger name="com.isa.jjdd.loggery.ex07_formatters.components.FuelTank" level="TRACE">-->
         <!--<AppenderRef ref="FuelFile" />-->
         <!--</Logger>-->
-        <Root level="trace">
+        <Root level="warn">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="MonitoringFile"/>
         </Root>

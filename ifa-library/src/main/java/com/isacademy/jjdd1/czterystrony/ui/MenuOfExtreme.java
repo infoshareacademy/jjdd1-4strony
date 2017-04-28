@@ -30,7 +30,7 @@ public class MenuOfExtreme {
 
         Scanner answer = new Scanner(System.in);
         int chooseExtreme = answer.nextInt();
-        LOGGER.trace("User's choice: " + chooseExtreme);
+        LOGGER.trace("User's choice: {}", chooseExtreme);
 
 
         Statistics statistics = new Statistics();
@@ -50,13 +50,13 @@ public class MenuOfExtreme {
                 for (Rating rating : localExtremaProvider.findExtrema(10)) {
                     System.out.println(rating);
                 }
-                LOGGER.trace("Succesfully loaded " + localExtremaProvider.findExtrema(10).size() + " extremas");
+                LOGGER.trace("Succesfully loaded {} extremas", localExtremaProvider.findExtrema(10).size());
 
                 System.out.println("\nLokalne minima:");
                 for (Rating rating : localExtremaProvider.findExtrema(10)) {
                     System.out.println(rating);
                 }
-                LOGGER.trace("Succesfully loaded " + localExtremaProvider.findExtrema(10).size() + " extremas");
+                LOGGER.trace("Succesfully loaded {} extremas", localExtremaProvider.findExtrema(10).size());
 
 
                 System.out.println("Jesteś w funduszu " + fund.getName());
@@ -68,20 +68,20 @@ public class MenuOfExtreme {
                 int chooseGoBackFromLocal = menu.nextInt();
                 switch (chooseGoBackFromLocal) {
                     case 1:
-                        LOGGER.trace("User's choice: " + chooseGoBackFromLocal);
+                        LOGGER.trace("User's choice: {}", chooseGoBackFromLocal);
                         new MenuOfFunds();
                         break;
                     case 2:
-                        LOGGER.trace("User's choice: " + chooseGoBackFromLocal);
+                        LOGGER.trace("User's choice: {}", chooseGoBackFromLocal);
                         new MenuOfExtreme(fund);
                         break;
                     case 0:
                         System.out.println("Miłego dnia!");
-                        LOGGER.trace("User's choice: " + chooseGoBackFromLocal + " EXIT");
+                        LOGGER.trace("User's choice: {} \nExit", chooseGoBackFromLocal);
                         break;
                     default:
                         System.out.println("Błędny wybór. Wybierz fundusz ponownie:");
-                        LOGGER.warn("Wrong choice: " + chooseGoBackFromLocal);
+                        LOGGER.warn("Wrong choice: {}", chooseGoBackFromLocal);
                         new MenuOfFunds();
                         break;
                 }
@@ -101,20 +101,20 @@ public class MenuOfExtreme {
                 int chooseGoBackFromGlobal = submenu.nextInt();
                 switch (chooseGoBackFromGlobal) {
                     case 1:
-                        LOGGER.trace("User's choice: " + chooseGoBackFromGlobal);
+                        LOGGER.trace("User's choice: {}", chooseGoBackFromGlobal);
                         new MenuOfFunds();
                         break;
                     case 2:
-                        LOGGER.trace("User's choice: " + chooseGoBackFromGlobal);
+                        LOGGER.trace("User's choice: {}", chooseGoBackFromGlobal);
                         new MenuOfExtreme(fund);
                         break;
                     case 0:
-                        LOGGER.trace("User's choice: " + chooseGoBackFromGlobal + " EXIT");
+                        LOGGER.trace("User's choice: {} \nExit", chooseGoBackFromGlobal);
                         System.out.println("Miłego dnia!");
                         break;
                     default:
                         System.out.println("Błędny wybór. Wybierz fundusz ponownie:");
-                        LOGGER.warn("Wrong choice: " + chooseGoBackFromGlobal);
+                        LOGGER.warn("Wrong choice: {}", chooseGoBackFromGlobal);
                         new MenuOfFunds();
                         break;
                 }
@@ -125,7 +125,7 @@ public class MenuOfExtreme {
                 break;
             default:
                 System.out.println("Błędny wybór, spróbuj jeszcze raz.");
-                LOGGER.warn("Wrong choice: " + chooseExtreme);
+                LOGGER.warn("Wrong choice: {}", chooseExtreme);
                 new MenuOfFunds();
         }
     }
@@ -135,7 +135,8 @@ public class MenuOfExtreme {
         entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
-        Statistics stats= entityManager.find(Statistics.class, Long.valueOf(2));
+        Statistics stats= entityManager.find(Statistics.class, Long.valueOf(1));
+        stats.setExtremas(statistics.getExtremas());
         entityManager.merge(stats);
 
 
