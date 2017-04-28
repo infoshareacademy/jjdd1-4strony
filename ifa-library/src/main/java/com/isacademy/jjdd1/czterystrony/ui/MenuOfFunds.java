@@ -56,8 +56,6 @@ public class MenuOfFunds {
             Scanner choice = new Scanner(System.in);
             String fund = choice.nextLine().toUpperCase();
 
-        /*MostOftenVerifiedFunds mostOftenVerifiedFunds = new MostOftenVerifiedFunds();
-        mostOftenVerifiedFunds.checkAndcountVerifiedFunds(fund);*/
             Statistics statistics = new Statistics();
             statistics.setFund(fund);
             Date date = new Date();
@@ -74,18 +72,8 @@ public class MenuOfFunds {
                 LOGGER.warn("No such ID fund");
                 new MenuOfFunds();
             }
-            try {
-                InvestFund investFund = investFundDao.get(fund);
-                LOGGER.debug("Chosen fund: " + investFund.getName());
-                MenuOfExtreme menuExtreme = new MenuOfExtreme(investFund);
-            } catch (NoSuchElementException e) {
-                System.out.println("Nie ma takiego elementu |" + fund + "| wybierz jeszcze raz");
-                LOGGER.warn("No such ID fund");
-                new MenuOfFunds();
-            }
         } catch (FileNotFoundException e) {
             System.out.println("Resource files not found.");
-
         }
     }
 

@@ -8,7 +8,6 @@ import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaProvider;
 import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
 import com.isacademy.jjdd1.czterystrony.utilities.TimeRange;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
