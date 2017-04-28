@@ -28,8 +28,9 @@ public class InvestFundFactoryWeb {
             InputStream stream = urlConnection.getInputStream();
             ZipInputStream zipInputStream = new ZipInputStream(stream);
 
-            for (ZipEntry zipEntry; (zipEntry = zipInputStream.getNextEntry()) != null; ) {
-                if (zipEntry.getName().equals(id + InvestFundsDaoWeb.RATINGS_DATA_FILE_EXTENSION)) {
+            ZipEntry entry;
+            while ((entry = zipInputStream.getNextEntry()) != null) {
+                if (entry.getName().equals(id + InvestFundsDaoWeb.RATINGS_DATA_FILE_EXTENSION)) {
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(zipInputStream));
                     ratings = bufferedReader.lines()
                             .skip(RECORDS_TO_SKIP)
