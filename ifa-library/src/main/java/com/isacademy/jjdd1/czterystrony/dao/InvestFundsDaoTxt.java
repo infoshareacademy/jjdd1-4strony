@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class InvestFundsDaoTxt implements InvestFundsDao {
+public class InvestFundsDaoTxt implements InvestFundsDao, Serializable {
     private final static Logger LOGGER = LoggerFactory.getLogger(InvestFundsDaoTxt.class);
     private final String INVEST_FUNDS_LIST_FILE = "omegafun.lst";
     public static final String INVEST_FUNDS_DATA_FOLDER_DIRECTORY = "investfunds/";

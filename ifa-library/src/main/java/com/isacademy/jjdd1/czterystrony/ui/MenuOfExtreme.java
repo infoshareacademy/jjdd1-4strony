@@ -2,8 +2,8 @@ package com.isacademy.jjdd1.czterystrony.ui;
 
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
-import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaProvider;
-import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
+import com.isacademy.jjdd1.czterystrony.analysis.GlobalExtremaProvider;
+import com.isacademy.jjdd1.czterystrony.analysis.LocalExtremaProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

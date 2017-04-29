@@ -1,8 +1,7 @@
-package com.isacademy.jjdd1.czterystrony.utilities;
+package com.isacademy.jjdd1.czterystrony.analysis;
 
 import com.isacademy.jjdd1.czterystrony.instruments.FinancialInstrument;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;

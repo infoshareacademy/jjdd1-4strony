@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony;
 
-import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoWeb;
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 
 import javax.enterprise.context.SessionScoped;
@@ -13,7 +13,7 @@ import java.util.List;
 public class DaoService implements Serializable{
 
     @Inject
-    InvestFundsDaoWeb investFundsDao;
+    InvestFundsDaoTxt investFundsDao;
 
     public InvestFund get(String id) throws FileNotFoundException {
         return investFundsDao.get(id);

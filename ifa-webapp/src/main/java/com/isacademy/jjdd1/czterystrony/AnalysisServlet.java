@@ -2,8 +2,8 @@ package com.isacademy.jjdd1.czterystrony;
 
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
-import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
-import com.isacademy.jjdd1.czterystrony.utilities.TimeRange;
+import com.isacademy.jjdd1.czterystrony.analysis.LocalExtremaProvider;
+import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;

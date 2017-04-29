@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.utilities;
+package com.isacademy.jjdd1.czterystrony.analysis;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,24 +8,24 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class WeightedMovingAverageTest {
+public class ExponentialMovingAverageTest {
 
-    private static WeightedMovingAverage weightedMovingAverage;
+    private static ExponentialMovingAverage exponentialMovingAverage;
 
     @Before
     public void setup() {
-        weightedMovingAverage = new WeightedMovingAverage(TestAverages.POSITIVE_PERIOD);
+        exponentialMovingAverage = new ExponentialMovingAverage(TestAverages.POSITIVE_PERIOD);
     }
 
     @Test
     public void when_nothing_added_average_should_be_zero() {
-        assertThat(weightedMovingAverage.getAverage()).isEqualTo(BigDecimal.ZERO);
+        assertThat(exponentialMovingAverage.getAverage()).isEqualTo(BigDecimal.ZERO);
     }
 
     @Test
     public void average_for_only_1_value_should_be_equal_this_value() {
-        weightedMovingAverage.add(TestAverages.TEST_VALUE);
-        assertThat(weightedMovingAverage.getAverage()).isEqualTo(TestAverages.TEST_VALUE);
+        exponentialMovingAverage.add(TestAverages.TEST_VALUE);
+        assertThat(exponentialMovingAverage.getAverage()).isEqualTo(TestAverages.TEST_VALUE);
     }
 
     @Test

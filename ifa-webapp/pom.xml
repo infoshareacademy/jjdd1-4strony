@@ -21,9 +21,9 @@
         <!-- mysql -->
         <version.mysql>5.1.41</version.mysql>
         <jdbc.datasource>java:jboss/datasources/MySQLDS</jdbc.datasource>
-        <mysql.connection.url>jdbc:mysql://localhost:3306/test??useUnicode=yes&amp;characterEncoding=UTF-8</mysql.connection.url>
+        <mysql.connection.url>jdbc:mysql://localhost:3306/4analysis??useUnicode=yes&amp;characterEncoding=UTF-8</mysql.connection.url>
         <mysql.username>root</mysql.username>
-        <mysql.password>root</mysql.password>
+        <mysql.password>pass</mysql.password>
 
         <!-- wildfly admin -->
         <wildfly.adminUsername>admin</wildfly.adminUsername>

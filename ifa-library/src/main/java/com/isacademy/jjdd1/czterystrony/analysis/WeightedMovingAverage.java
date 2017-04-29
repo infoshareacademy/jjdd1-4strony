@@ -1,12 +1,12 @@
-package com.isacademy.jjdd1.czterystrony.utilities;
+package com.isacademy.jjdd1.czterystrony.analysis;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.stream.IntStream;
 
-public class ExponentialMovingAverage extends MovingAverage {
+public class WeightedMovingAverage extends MovingAverage {
 
-    public ExponentialMovingAverage(int period) {
+    public WeightedMovingAverage(int period) {
         super(period);
     }
 
@@ -25,12 +25,11 @@ public class ExponentialMovingAverage extends MovingAverage {
     }
 
     private BigDecimal getSummand(int summandIndex) {
-        return getWeight(summandIndex).multiply(window.get(window.size() - summandIndex));
+        return getWeight(summandIndex).multiply(window.get(summandIndex - 1));
     }
 
     private BigDecimal getWeight(int summandIndex) {
-        BigDecimal powerBase = BigDecimal.valueOf(1D - (2D / (summandIndex + 1D)));
-        return powerBase.pow(summandIndex - 1);
+        return BigDecimal.valueOf(summandIndex);
     }
 
     @Override
@@ -41,8 +40,6 @@ public class ExponentialMovingAverage extends MovingAverage {
 
     @Override
     BigDecimal getDivisor() {
-        return IntStream.rangeClosed(1, window.size())
-                .mapToObj(t -> getWeight(t))
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        return BigDecimal.valueOf(IntStream.rangeClosed(1, window.size()).sum());
     }
 }

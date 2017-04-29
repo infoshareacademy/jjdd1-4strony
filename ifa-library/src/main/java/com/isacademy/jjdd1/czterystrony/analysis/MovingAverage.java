@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.utilities;
+package com.isacademy.jjdd1.czterystrony.analysis;
 
 import java.math.BigDecimal;
 import java.util.LinkedList;

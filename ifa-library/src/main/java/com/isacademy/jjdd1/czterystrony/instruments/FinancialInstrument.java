@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.instruments;
 
-import com.isacademy.jjdd1.czterystrony.utilities.TimeRange;
+import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
