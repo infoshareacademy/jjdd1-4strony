@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN" name="4analysis">
+<Configuration status="DEBUG" name="4analysis">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] | %-5level %logger{1.} [%line] - %msg%n%throwable}{FATAL=red,ERROR=orange,WARN=yellow,INFO=blue,DEBUG=green,TRACE=black}"/>
@@ -26,7 +26,7 @@
         <!--<Logger name="com.isa.jjdd.loggery.ex07_formatters.components.FuelTank" level="TRACE">-->
         <!--<AppenderRef ref="FuelFile" />-->
         <!--</Logger>-->
-        <Root level="debug">
+        <Root level="trace">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="MonitoringFile"/>
         </Root>
