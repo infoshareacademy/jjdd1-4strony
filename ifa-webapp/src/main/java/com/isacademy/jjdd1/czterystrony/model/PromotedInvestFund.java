@@ -15,7 +15,7 @@ public class PromotedInvestFund {
 
     @Column(unique = true)
     @NotNull
-    @Size(min = 6, max =6)
+    @Size(min = 6, max = 6)
     private String investFundId;
 
     @Min(0)
