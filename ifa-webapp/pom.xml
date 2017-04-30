@@ -78,6 +78,8 @@
                 <version>1.1.0.Final</version>
                 <configuration>
                     <skip>false</skip>
+                    <username>${wildfly.adminUsername}</username>
+                    <password>${wildfly.adminPassword}</password>
                 </configuration>
 
                 <executions>

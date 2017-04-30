@@ -114,10 +114,4 @@ public class InvestFundsDaoWeb implements InvestFundsDao, Serializable {
             throw new FileNotFoundException();
         }
     }
-
-    public static void main(String[] args) throws Exception {
-        InvestFundsDaoWeb investFundsDaoWeb = new InvestFundsDaoWeb();
-
-        investFundsDaoWeb.getAllByName().forEach(System.out::println);
-    }
 }
