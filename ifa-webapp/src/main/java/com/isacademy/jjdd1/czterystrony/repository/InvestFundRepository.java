@@ -20,15 +20,16 @@ public class InvestFundRepository {
 
     public void add(InvestFund investFund) {
         entityManager.persist(investFund);
-        log.info("ADD: Persisted fund: {}", investFund.getId());
+        log.info("Added new invest fund: {}", investFund.getId());
     }
 
     public void update(InvestFund investFund) {
-        investFund.setFullName(investFund.getFullName());
-        investFund.setLastRatingDate(investFund.getLastRatingDate());
-        investFund.setPriority(investFund.getPriority());
-        entityManager.persist(investFund);
-        log.info("UPDATE: Persisted fund: {}", investFund.getId());
+        InvestFund retrievedInvestFund = queryById(investFund.getId());
+        retrievedInvestFund.setFullName(investFund.getFullName());
+        retrievedInvestFund.setLastRatingDate(investFund.getLastRatingDate());
+        retrievedInvestFund.setPriority(investFund.getPriority());
+        entityManager.persist(retrievedInvestFund);
+        log.info("Updated invest fund: {}", retrievedInvestFund.getId());
     }
 
     public InvestFund queryById(String id) {

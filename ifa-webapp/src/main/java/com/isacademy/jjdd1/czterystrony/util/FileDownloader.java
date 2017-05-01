@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.util;
 
-import javax.ejb.Singleton;
+import javax.ejb.Stateless;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
-@Singleton
+@Stateless
 public class FileDownloader {
 
     public void download(String fileSource, Path destinationPath) throws IOException {

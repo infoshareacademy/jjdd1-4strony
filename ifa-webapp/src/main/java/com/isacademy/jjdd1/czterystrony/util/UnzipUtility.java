@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.util;
 
-import javax.ejb.Singleton;
+import javax.ejb.Stateless;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-@Singleton
+@Stateless
 public class UnzipUtility {
 
     private static final int BUFFER_SIZE = 4096;
