@@ -60,24 +60,18 @@ public class DatabaseUpdater {
         }
     }
 
-    public void updateAllRatings() throws IOException {
+    public void updateRatings() throws IOException {
         investFunds = investFundRepository.getAll();
 
         for (InvestFund investFund : investFunds) {
-            String id = investFund.getId();
-            Path path = TMP_PROJECT_FOLDER.resolve(id + RATINGS_DATA_FILE_EXTENSION);
-            updateFundRatingsFromFile(path, investFund);
+            updateFundRatings(investFund);
             log.info("Updated ratings for: {}", investFund.getId());
-
-//        investFund = investFunds.get(5);
-//        path = TMP_PROJECT_FOLDER.resolve(
-//                investFund.getId() + RATINGS_DATA_FILE_EXTENSION);
-//        updateFundRatingsFromFile(investFund, path);
         }
     }
 
-    private void updateFundRatingsFromFile(Path path, InvestFund investFund) throws IOException {
-        InputStream stream = Files.newInputStream(path);
+    private void updateFundRatings(InvestFund investFund) throws IOException {
+        Path filePath = TMP_PROJECT_FOLDER.resolve(investFund.getId() + RATINGS_DATA_FILE_EXTENSION);
+        InputStream stream = Files.newInputStream(filePath);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
         bufferedReader.lines()
                 .skip(RECORDS_TO_SKIP_IN_RATINGS_FILE)
@@ -87,7 +81,9 @@ public class DatabaseUpdater {
                 .forEach(rating -> ratingRepository.add(rating, investFund.getId()));
     }
 
-    private void appendRatingToDatabaseByInsertInto(String record) {
-
+    public void insertAllRatings() {
+        investFundRepository.getAll().stream()
+                .map(fund -> TMP_PROJECT_FOLDER.resolve(fund.getId() + RATINGS_DATA_FILE_EXTENSION))
+                .forEach(path -> ratingRepository.insertDataFromCsv(path.toString()));
     }
 }

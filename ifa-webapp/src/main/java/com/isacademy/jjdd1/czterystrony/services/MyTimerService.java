@@ -29,6 +29,7 @@ public class MyTimerService {
         downloadRatings();
         unzipRatings();
         updateInvestFunds();
+
 //        updateRatings();
     }
 
@@ -64,11 +65,16 @@ public class MyTimerService {
 
     private void updateRatings() {
         try {
-            updater.updateAllRatings();
+            updater.updateRatings();
             log.info("All ratings updated.");
         } catch (IOException e) {
             e.printStackTrace();
             log.error("Cannot update ratings");
         }
+    }
+
+    private void insertAllRatings() {
+        updater.insertAllRatings();
+        log.info("All ratings updated.");
     }
 }
