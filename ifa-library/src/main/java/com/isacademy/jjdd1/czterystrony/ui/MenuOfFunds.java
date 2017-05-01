@@ -2,9 +2,7 @@ package com.isacademy.jjdd1.czterystrony.ui;
 
 import com.isacademy.jjdd1.czterystrony.database.Statistics;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
-import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
-import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

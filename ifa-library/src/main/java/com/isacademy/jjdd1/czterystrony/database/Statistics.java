@@ -13,7 +13,6 @@ public class Statistics {
     @GeneratedValue
     private Long id;
 
-    @Column
     private String fund;
 
     private String extremas;

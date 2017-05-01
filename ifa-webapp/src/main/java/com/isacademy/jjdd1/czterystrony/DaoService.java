@@ -1,28 +1,56 @@
 package com.isacademy.jjdd1.czterystrony;
 
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
+import com.isacademy.jjdd1.czterystrony.database.Statistics;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import java.io.FileNotFoundException;
+import java.util.Date;
 import java.util.List;
 
 @SessionScoped
 public class DaoService {
 
+    private final static Logger log = LoggerFactory.getLogger(DaoService.class);
+    @PersistenceContext
+    private static EntityManager entityManager;
     @Inject
     InvestFundsDaoTxt investFundsDaoTxt;
 
-    public InvestFund get(String id) throws FileNotFoundException {
-        return investFundsDaoTxt.get(id);
-    }
 
+    public InvestFund get(String id) throws FileNotFoundException {
+        log.warn("Fund loaded {}", id);
+        Statistics statistics = new Statistics();
+        statistics.setFund(id);
+        Date date = new Date();
+        statistics.setDate(date);
+        insertStatistic(statistics);
+        return investFundsDaoTxt.get(id);
+
+
+    }
     public List<InvestFund> getAllByName() throws FileNotFoundException {
         return investFundsDaoTxt.getAllByName();
     }
 
     public List<InvestFund> getAllByPriority() throws FileNotFoundException {
         return investFundsDaoTxt.getAllByPriority();
+    }
+
+    private static void insertStatistic(Statistics statistics) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
+        entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(statistics);
+        entityManager.getTransaction().commit();
     }
 }
