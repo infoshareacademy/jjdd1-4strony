@@ -24,12 +24,12 @@ public class MyTimerService {
     @EJB
     DatabaseUpdater updater;
 
-    @Schedule(minute = "45/30", hour = "*", persistent = false)
+    @Schedule(minute = "30/30", hour = "*", persistent = false)
     void updateDatabase() {
         downloadRatings();
         unzipRatings();
         updateInvestFunds();
-        updateRatings();
+//        updateRatings();
     }
 
     private void downloadRatings() {

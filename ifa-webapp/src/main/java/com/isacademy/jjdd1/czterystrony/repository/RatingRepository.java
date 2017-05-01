@@ -29,4 +29,18 @@ public class RatingRepository {
         query.setParameter("investFund", investFund);
         return query.getResultList();
     }
+
+    public void insertDataFromCsv(String filePath) {
+        String sql = "LOAD DATA LOCAL INFILE ?filePath" +
+                "INTO TABLE Rating" +
+                "FIELDS TERMINATED BY ','" +
+                "LINES TERMINATED BY '\r\n'" +
+                "IGNORE 1 LINES" +
+                "(investFund_id, @date, open, high, low, close, @notimported)" +
+                "SET date = str_to_date(@date, '%Y%m%d')";
+
+        Query query = entityManager.createNativeQuery(sql);
+        query.setParameter("filePath", filePath);
+        query.executeUpdate();
+    }
 }
