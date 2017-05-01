@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.repository;
+package com.isacademy.jjdd1.czterystrony.repositories;
 
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import org.slf4j.Logger;

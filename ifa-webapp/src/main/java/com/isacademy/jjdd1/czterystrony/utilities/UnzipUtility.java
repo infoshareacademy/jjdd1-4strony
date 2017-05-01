@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.util;
+package com.isacademy.jjdd1.czterystrony.utilities;
 
 import javax.ejb.Stateless;
 import java.io.BufferedOutputStream;

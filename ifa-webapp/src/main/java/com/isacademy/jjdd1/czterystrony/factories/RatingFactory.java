@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class RatingFactory {
+    private static final String DELIMITER = ",";
     private static final String DATE_PATTERN = "yyyyMMdd";
     private static final int DATE_COLUMN_INDEX_IN_DATA_FILE = 1;
     private static final int OPEN_COLUMN_INDEX_IN_DATA_FILE = 2;
@@ -16,8 +17,8 @@ public class RatingFactory {
     private static final int LOW_COLUMN_INDEX_IN_DATA_FILE = 4;
     private static final int CLOSE_COLUMN_INDEX_IN_DATA_FILE = 5;
 
-    public static Rating create(String record) {
-        String[] splittedRecord = record.split(",");
+    public static Rating create(String record, InvestFund investFund) {
+        String[] splittedRecord = record.split(DELIMITER);
 
         return new Rating.Builder()
                 .withDate(parseDateFrom(splittedRecord[DATE_COLUMN_INDEX_IN_DATA_FILE]))
@@ -25,6 +26,7 @@ public class RatingFactory {
                 .withHigh(parseValueFrom(splittedRecord[HIGH_COLUMN_INDEX_IN_DATA_FILE]))
                 .withLow(parseValueFrom(splittedRecord[LOW_COLUMN_INDEX_IN_DATA_FILE]))
                 .withClose(parseValueFrom(splittedRecord[CLOSE_COLUMN_INDEX_IN_DATA_FILE]))
+                .withInvestFund(investFund)
                 .build();
     }
 

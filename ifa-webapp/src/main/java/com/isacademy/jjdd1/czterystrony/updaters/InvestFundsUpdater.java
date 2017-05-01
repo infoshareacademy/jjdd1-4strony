@@ -1,8 +1,8 @@
-package com.isacademy.jjdd1.czterystrony.services;
+package com.isacademy.jjdd1.czterystrony.updaters;
 
 import com.isacademy.jjdd1.czterystrony.factories.InvestFundFactory;
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
-import com.isacademy.jjdd1.czterystrony.repository.InvestFundRepository;
+import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -13,10 +13,10 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-import static com.isacademy.jjdd1.czterystrony.util.Constants.*;
+import static com.isacademy.jjdd1.czterystrony.utilities.Constants.*;
 
 @Stateless
-public class InvestFundUpdater {
+public class InvestFundsUpdater {
 
     @EJB
     private InvestFundRepository investFundRepository;

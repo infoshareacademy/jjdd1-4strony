@@ -1,9 +1,9 @@
-package com.isacademy.jjdd1.czterystrony.services;
+package com.isacademy.jjdd1.czterystrony.updaters;
 
 import com.isacademy.jjdd1.czterystrony.factories.RatingFactory;
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
-import com.isacademy.jjdd1.czterystrony.repository.InvestFundRepository;
-import com.isacademy.jjdd1.czterystrony.repository.RatingRepository;
+import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
+import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,10 +17,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import static com.isacademy.jjdd1.czterystrony.util.Constants.*;
+import static com.isacademy.jjdd1.czterystrony.utilities.Constants.*;
 
 @Stateless
-public class RatingUpdater {
+public class RatingsUpdater {
 
     private static Logger log = LoggerFactory.getLogger(InvestFundRepository.class);
 
@@ -44,9 +44,10 @@ public class RatingUpdater {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
         bufferedReader.lines()
                 .skip(RECORDS_TO_SKIP_IN_RATINGS_FILE)
-                .map(record -> RatingFactory.create(record))
+                .map(record -> RatingFactory.create(record, investFund))
                 .filter(rating -> rating.getDate().isAfter(investFund.getLastRatingDate()))
-                .peek(rating -> log.info("New rating for: {} with date: {}", rating.getInvestFund().getId(), rating.getDate()))
+                .filter(rating -> ratingRepository.queryByDateAndFund(rating.getDate(), investFund).isEmpty())
+                .peek(rating -> log.info("New rating for: {} with date: {}", investFund.getId(), rating.getDate()))
                 .forEach(rating -> ratingRepository.add(rating, investFund.getId()));
     }
 }

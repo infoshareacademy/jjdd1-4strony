@@ -1,5 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.services;
 
+import com.isacademy.jjdd1.czterystrony.updaters.DatabaseUpdater;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,18 +14,10 @@ public class ScheduleTimerService {
     private static Logger log = LoggerFactory.getLogger(ScheduleTimerService.class);
 
     @EJB
-    RatingsDownloader ratingsDownloader;
+    private DatabaseUpdater databaseUpdater;
 
-    @EJB
-    RatingsUnzipper ratingsUnzipper;
-
-    @EJB
-    DatabaseUpdater databaseUpdater;
-
-    @Schedule(dayOfWeek = "Mon-Fri", hour = "10", persistent = false)
+    @Schedule(dayOfWeek = "Mon-Fri", hour = "10", minute = "30", persistent = false)
     void updateDatabase() {
-        ratingsDownloader.download();
-        ratingsUnzipper.unzip();
         databaseUpdater.update();
         log.info("Database updated.");
     }
