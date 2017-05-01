@@ -1,7 +1,5 @@
 package com.isacademy.jjdd1.czterystrony.instruments;
 
-import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoWeb;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
