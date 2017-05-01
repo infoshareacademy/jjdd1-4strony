@@ -11,8 +11,8 @@ import java.util.List;
 
 @Entity
 @Table(indexes = {@Index(
-        name = "UX_InvestFund_id_fullName",
-        columnList = "id,fullName")
+        name = "UX_InvestFund_id_name",
+        columnList = "id,name")
 })
 public class InvestFund {
 
@@ -22,7 +22,7 @@ public class InvestFund {
     private String id;
 
     @NotNull
-    private String fullName;
+    private String name;
 
     @NotNull
     private LocalDate lastRatingDate;
@@ -40,13 +40,13 @@ public class InvestFund {
 
     public InvestFund(Builder builder) {
         this.id = builder.id;
-        this.fullName = builder.fullName;
+        this.name = builder.name;
         this.lastRatingDate = builder.lastRatingDate;
     }
 
     public static class Builder {
         private String id;
-        private String fullName;
+        private String name;
         private LocalDate lastRatingDate;
 
         public InvestFund.Builder withId(String id) {
@@ -54,8 +54,8 @@ public class InvestFund {
             return this;
         }
 
-        public InvestFund.Builder withFulltName(String fullName) {
-            this.fullName = fullName;
+        public InvestFund.Builder withName(String name) {
+            this.name = name;
             return this;
         }
 
@@ -73,12 +73,12 @@ public class InvestFund {
         return id;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
     public void setLastRatingDate(LocalDate lastRatingDate) {
@@ -105,7 +105,7 @@ public class InvestFund {
     public String toString() {
         return "InvestFund{" +
                 "id=" + id +
-                ", fullName='" + fullName + '\'' +
+                ", name='" + name + '\'' +
                 ", lastRatingDate=" + lastRatingDate +
                 ", priority=" + priority +
                 '}';

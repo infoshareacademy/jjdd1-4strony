@@ -25,7 +25,7 @@ public class InvestFundRepository {
 
     public void update(InvestFund investFund) {
         InvestFund retrievedInvestFund = queryById(investFund.getId());
-        retrievedInvestFund.setFullName(investFund.getFullName());
+        retrievedInvestFund.setName(investFund.getName());
         retrievedInvestFund.setLastRatingDate(investFund.getLastRatingDate());
         retrievedInvestFund.setPriority(investFund.getPriority());
         entityManager.persist(retrievedInvestFund);
