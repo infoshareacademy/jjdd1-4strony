@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.services;
 
 import javax.faces.bean.SessionScoped;
 

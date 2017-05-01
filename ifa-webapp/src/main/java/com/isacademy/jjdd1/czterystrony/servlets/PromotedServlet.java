@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.servlets;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;

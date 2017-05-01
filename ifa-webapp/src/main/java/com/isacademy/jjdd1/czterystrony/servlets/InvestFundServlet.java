@@ -1,8 +1,8 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.servlets;
 
+import com.isacademy.jjdd1.czterystrony.services.DaoService;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
-import com.isacademy.jjdd1.czterystrony.analysis.LocalExtremaProvider;
 import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 
 import javax.inject.Inject;
@@ -17,14 +17,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-@WebServlet(urlPatterns = "/4analysis/analiza/*")
-public class AnalysisServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/4analysis/notowania/*")
+public class InvestFundServlet extends HttpServlet {
 
     private InvestFund investFund;
     private List<Rating> ratings;
     private TimeRange timeRange;
-    private LocalExtremaProvider localExtremaProvider;
-    private int zigZag;
+
     @Inject
     DaoService daoService;
 
@@ -34,19 +33,16 @@ public class AnalysisServlet extends HttpServlet {
         String investFundId = req.getPathInfo().substring(1);
 
         setTimeRange(req);
-        setZigZag(req);
 
         investFund = daoService.get(investFundId);
-        localExtremaProvider = new LocalExtremaProvider(investFund, timeRange);
-        ratings = localExtremaProvider.findExtrema(zigZag);
+        ratings = investFund.getRatingsInTimeRange(timeRange);
 
         req.setAttribute("investFund", investFund);
         req.setAttribute("ratings", ratings);
         req.setAttribute("from", timeRange.getStart());
         req.setAttribute("to", timeRange.getEnd());
-        req.setAttribute("zigZag", zigZag);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/analysis.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/fund.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -65,15 +61,5 @@ public class AnalysisServlet extends HttpServlet {
         }
 
         timeRange = new TimeRange(dateFrom, dateTo);
-    }
-
-    private void setZigZag(HttpServletRequest req) {
-        String zigZagReq = req.getParameter("zigZag");
-
-        if (!Objects.isNull(zigZagReq) && !zigZagReq.isEmpty()) {
-            zigZag = Integer.parseInt(zigZagReq);
-        } else {
-            zigZag = 0;
-        }
     }
 }

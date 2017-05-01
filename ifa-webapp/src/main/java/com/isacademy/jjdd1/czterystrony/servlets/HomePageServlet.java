@@ -1,5 +1,6 @@
-package com.isacademy.jjdd1.czterystrony;
+package com.isacademy.jjdd1.czterystrony.servlets;
 
+import com.isacademy.jjdd1.czterystrony.services.DaoService;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 
 import javax.inject.Inject;
@@ -15,8 +16,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/4analysis")
-public class CurrentRatingsServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/")
+public class HomePageServlet extends HttpServlet {
 
     private List<InvestFund> investFunds;
 
@@ -35,6 +36,11 @@ public class CurrentRatingsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
+
+        if (!req.getRequestURI().equals("/4analysis")) {
+            resp.sendRedirect("http://localhost:8080/4analysis");
+            return;
+        }
 
         List<InvestFund> promotedInvestFunds = new ArrayList<>();
         List<InvestFund> otherInvestFunds = new ArrayList<>();

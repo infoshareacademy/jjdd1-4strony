@@ -11,7 +11,9 @@ public abstract class MovingAverage {
     protected BigDecimal sum = BigDecimal.ZERO;
 
     public MovingAverage(int period) {
-        if (period <= 0) throw new IllegalArgumentException("Period must be a positive integer");
+        if (period <= 0) {
+            throw new IllegalArgumentException("Period must be a positive integer");
+        }
         this.period = period;
     }
 
