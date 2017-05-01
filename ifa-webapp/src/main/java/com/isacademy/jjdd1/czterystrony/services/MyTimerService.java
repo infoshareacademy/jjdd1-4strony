@@ -24,13 +24,17 @@ public class MyTimerService {
     @EJB
     DatabaseUpdater updater;
 
-    @Schedule(minute = "30/30", hour = "*", persistent = false)
-    void updateDatabase() {
-        downloadRatings();
-        unzipRatings();
-        updateInvestFunds();
+    @Schedule(minute = "1/30", hour = "*", persistent = false)
+    void updateDatabase1() {
+//        downloadRatings();
+//        unzipRatings();
+//        updateInvestFunds();
+    }
 
-//        updateRatings();
+    @Schedule(minute = "17/30", hour = "*", persistent = false)
+    void updateDatabase2() {
+        insertAllRatings();
+        //        updateRatings();
     }
 
     private void downloadRatings() {
@@ -59,7 +63,7 @@ public class MyTimerService {
             log.info("Invest funds updated.");
         } catch (IOException e) {
             e.printStackTrace();
-            log.error("Cannot update invest funds");
+            log.error("Cannot update invest funds.");
         }
     }
 
@@ -69,7 +73,7 @@ public class MyTimerService {
             log.info("All ratings updated.");
         } catch (IOException e) {
             e.printStackTrace();
-            log.error("Cannot update ratings");
+            log.error("Cannot update ratings.");
         }
     }
 
