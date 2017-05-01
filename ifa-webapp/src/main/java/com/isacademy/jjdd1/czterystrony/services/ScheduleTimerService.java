@@ -5,15 +5,17 @@ import com.isacademy.jjdd1.czterystrony.util.UnzipUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.*;
 import java.io.IOException;
 
 import static com.isacademy.jjdd1.czterystrony.util.Constants.*;
 
-@Stateless
-public class MyTimerService {
+@Startup
+@Singleton
+public class ScheduleTimerService {
 
-    private static Logger log = LoggerFactory.getLogger(MyTimerService.class);
+    private static Logger log = LoggerFactory.getLogger(ScheduleTimerService.class);
 
     @EJB
     FileDownloader downloader;
@@ -24,17 +26,13 @@ public class MyTimerService {
     @EJB
     DatabaseUpdater updater;
 
-    @Schedule(minute = "1/30", hour = "*", persistent = false)
-    void updateDatabase1() {
-//        downloadRatings();
-//        unzipRatings();
-//        updateInvestFunds();
-    }
-
-    @Schedule(minute = "17/30", hour = "*", persistent = false)
-    void updateDatabase2() {
+    @PostConstruct
+    @Schedule(dayOfWeek = "Mon-Fri", hour = "10", persistent = false)
+    void downloadDataAndUpdateInvestFunds() {
+        downloadRatings();
+        unzipRatings();
+        updateInvestFunds();
         insertAllRatings();
-        //        updateRatings();
     }
 
     private void downloadRatings() {
@@ -67,6 +65,7 @@ public class MyTimerService {
         }
     }
 
+    @Schedule(minute = "*/3", hour = "*", persistent = false)
     private void updateRatings() {
         try {
             updater.updateRatings();
@@ -77,8 +76,8 @@ public class MyTimerService {
         }
     }
 
-    private void insertAllRatings() {
+    void insertAllRatings() {
         updater.insertAllRatings();
-        log.info("All ratings updated.");
+        log.info("All ratings from csv files added to database.");
     }
 }

@@ -83,6 +83,7 @@ public class DatabaseUpdater {
 
     public void insertAllRatings() {
         investFundRepository.getAll().stream()
+                .filter(fund -> fund.getRatings().isEmpty())
                 .map(fund -> TMP_PROJECT_FOLDER.resolve(fund.getId() + RATINGS_DATA_FILE_EXTENSION))
                 .forEach(path -> ratingRepository.insertDataFromCsv(path.toString()));
     }
