@@ -1,7 +1,5 @@
 package com.isacademy.jjdd1.czterystrony;
 
-import com.isacademy.jjdd1.czterystrony.model.PromotedInvestFund;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

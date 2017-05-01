@@ -1,7 +1,5 @@
 package com.isacademy.jjdd1.czterystrony;
 
-import com.isacademy.jjdd1.czterystrony.model.PromotedInvestFund;
-
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
