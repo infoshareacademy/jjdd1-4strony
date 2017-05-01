@@ -5,14 +5,12 @@ import com.isacademy.jjdd1.czterystrony.util.UnzipUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ejb.EJB;
-import javax.ejb.Schedule;
-import javax.ejb.Singleton;
+import javax.ejb.*;
 import java.io.IOException;
 
 import static com.isacademy.jjdd1.czterystrony.util.Constants.*;
 
-@Singleton
+@Stateless
 public class MyTimerService {
 
     private static Logger log = LoggerFactory.getLogger(MyTimerService.class);
@@ -23,22 +21,54 @@ public class MyTimerService {
     @EJB
     UnzipUtility unzipper;
 
-    @Schedule(second = "*/30", minute = "*", hour = "*", persistent = false)
-    void downloadAndUnzipFundsRatings() {
+    @EJB
+    DatabaseUpdater updater;
+
+    @Schedule(minute = "45/30", hour = "*", persistent = false)
+    void updateDatabase() {
+        downloadRatings();
+        unzipRatings();
+        updateInvestFunds();
+        updateRatings();
+    }
+
+    private void downloadRatings() {
         try {
             downloader.download(FUNDS_RATINGS_ZIP_SOURCE, FUNDS_RATINGS_ZIP_PATH);
-            log.debug("Funds ratings zip downloaded from: {} to {}", FUNDS_RATINGS_ZIP_SOURCE, FUNDS_RATINGS_ZIP_PATH);
+            log.info("Funds ratings zip downloaded from: {} to {}", FUNDS_RATINGS_ZIP_SOURCE, FUNDS_RATINGS_ZIP_PATH);
         } catch (IOException e) {
             e.printStackTrace();
             log.error("Cannot download ratings source from: {}", FUNDS_RATINGS_ZIP_SOURCE);
         }
+    }
 
+    private void unzipRatings() {
         try {
             unzipper.unzip(FUNDS_RATINGS_ZIP_PATH, TMP_PROJECT_FOLDER);
-            log.debug("Funds ratings unzipped to: {}", TMP_PROJECT_FOLDER);
+            log.info("Funds ratings unzipped to: {}", TMP_PROJECT_FOLDER);
         } catch (IOException e) {
             e.printStackTrace();
             log.error("Cannot uznip ratings file: {} to: {}", FUNDS_RATINGS_ZIP_PATH, TMP_PROJECT_FOLDER);
+        }
+    }
+
+    private void updateInvestFunds() {
+        try {
+            updater.updateInvestFunds();
+            log.info("Invest funds updated.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("Cannot update invest funds");
+        }
+    }
+
+    private void updateRatings() {
+        try {
+            updater.updateAllRatings();
+            log.info("All ratings updated.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("Cannot update ratings");
         }
     }
 }

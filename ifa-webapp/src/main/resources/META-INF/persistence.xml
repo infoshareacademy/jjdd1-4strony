@@ -5,13 +5,9 @@
     <persistence-unit name="sample" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/MySqlDS</jta-data-source>
         <properties>
-            <!--<property name="connection.driver_class" value="com.mysql.jdbc.Driver"/>-->
-            <!--<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/4analysis"/>-->
-            <!--<property name="hibernate.connection.user" value="root" />-->
-            <!--<property name="hibernate.connection.password" value="pass" />-->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
