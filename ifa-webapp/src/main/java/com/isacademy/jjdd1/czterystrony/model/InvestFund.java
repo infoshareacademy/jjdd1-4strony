@@ -1,5 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
+import com.isacademy.jjdd1.czterystrony.repositories.NamedNativeQueries;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -10,6 +12,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(indexes = {@Index(
+        name = "UX_InvestFund_id_name",
+        columnList = "id,name")
+})
 @SqlResultSetMapping(name = "InvestFundDetailsMapping",
         classes = {
                 @ConstructorResult(
@@ -24,11 +31,10 @@ import java.util.List;
                         }
                 )}
 )
-@Entity
-@Table(indexes = {@Index(
-        name = "UX_InvestFund_id_name",
-        columnList = "id,name")
-})
+@NamedNativeQuery(
+        name = "selectInvestFundDetails",
+        query = NamedNativeQueries.investFundDetails,
+        resultSetMapping = "InvestFundDetailsMapping")
 public class InvestFund {
 
     @Id

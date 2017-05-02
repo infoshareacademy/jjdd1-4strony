@@ -28,7 +28,6 @@ public class InvestFundRepository {
         InvestFund retrievedInvestFund = queryById(investFund.getId());
         retrievedInvestFund.setName(investFund.getName());
         retrievedInvestFund.setLastRatingDate(investFund.getLastRatingDate());
-        retrievedInvestFund.setPriority(investFund.getPriority());
         entityManager.persist(retrievedInvestFund);
         log.info("Updated invest fund: {}", retrievedInvestFund.getId());
     }
@@ -43,34 +42,7 @@ public class InvestFundRepository {
     }
 
     public List<InvestFundDetails> getAllWithDetails() {
-        //language=MySQL
-        String sql = "SELECT " +
-                "f.name AS name, " +
-                "f.id AS id, " +
-                "f.priority AS priority, " +
-                "tab2.date AS date, " +
-                "tab2.close AS close, " +
-                "tab2.diff AS diff " +
-                "FROM InvestFund AS f JOIN (SELECT r1.investFund_id, r1.date, r1.close, " +
-                "ROUND((r1.close - r2.close)/r2.close*100, 2) AS diff " +
-                "FROM (SELECT r.investFund_id, r.date, r.close, r.row_number " +
-                "FROM (SELECT Rating. *, (@i \\:= IF(@fund = Rating.investFund_id, @i +1, " +
-                "IF(@fund \\:= Rating.investFund_id, 1, 1))) AS row_number " +
-                "FROM Rating CROSS JOIN (SELECT @i \\:= 0, @fund \\:= NULL)c " +
-                "ORDER BY Rating.investFund_id, Rating.date DESC) AS r " +
-                "WHERE r.row_number <= 2) AS r1 " +
-                "JOIN (SELECT r.investFund_id, r.date, r.close, r.row_number " +
-                "FROM (SELECT Rating. *, (@i \\:= IF(@fund = Rating.investFund_id,@i +1, " +
-                "IF(@fund \\:= Rating.investFund_id, 1, 1))) AS row_number " +
-                "FROM Rating CROSS JOIN (SELECT @i \\:= 0, @fund \\:= NULL) c " +
-                "ORDER BY Rating.investFund_id, Rating.date DESC) AS r " +
-                "WHERE r.row_number <= 2) AS r2 ON r1.investFund_id = r2.investFund_id " +
-                "WHERE r1.row_number = 1 AND r2.row_number = 2) tab2 " +
-                "ON f.id = tab2.investFund_id";
-
-//        Query query = entityManager.createQuery("SELECT f, r.close FROM InvestFund f JOIN Rating r ON f.id = r.investFund WHERE r.date = f.lastRatingDate");
-        Query query = entityManager.createNativeQuery(sql, "InvestFundDetailsMapping");
-//        query.setParameter("abc", ":=");
+        Query query = entityManager.createNamedQuery("selectInvestFundDetails");
         return query.getResultList();
     }
 }
