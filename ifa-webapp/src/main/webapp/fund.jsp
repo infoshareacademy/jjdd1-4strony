@@ -77,15 +77,15 @@
                         href="http://localhost:8080/4analysis/notowania/${investFund.id}">${investFund.name}</a></h3>
                 <span class="text-muted">${investFund.id} </span><br>
                 <div class="col-md-4">
-                    <span class="lead"><strong>${investFund.currentRatingValue} PLN </strong></span>
+                    <span class="lead"><strong>${investFund.date} PLN </strong></span>
                     <c:choose>
-                        <c:when test="${investFund.change > 0}">
+                        <c:when test="${investFund.diff > 0}">
                             <span class="glyphicon glyphicon-arrow-up green"></span>
-                            <span class="green"> +${investFund.change}% </span>
+                            <span class="green"> +${investFund.diff}% </span>
                         </c:when>
-                        <c:when test="${investFund.change < 0}">
+                        <c:when test="${investFund.diff < 0}">
                             <span class="glyphicon glyphicon-arrow-down red"></span>
-                            <span class="red"> ${investFund.change}% </span>
+                            <span class="red"> ${investFund.diff}% </span>
                         </c:when>
                         <c:otherwise>
                             <span class="glyphicon glyphicon-arrow-right grey"></span>
@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="row">
-                <span class="text-info">wycena na dzień ${investFund.currentRatingDate}</span>
+                <span class="text-info">wycena na dzień ${investFund.date}</span>
             </div>
 
             <div class="row main">
@@ -137,7 +137,7 @@
                         <c:forEach items="${ratings}" var="rating">
                             <tr>
                                 <td>${rating.date}</td>
-                                <td>${rating.closeValue}</td>
+                                <td>${rating.close}</td>
                             </tr>
                         </c:forEach>
                         </tbody>

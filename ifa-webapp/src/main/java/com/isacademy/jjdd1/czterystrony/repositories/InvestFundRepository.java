@@ -25,14 +25,14 @@ public class InvestFundRepository {
     }
 
     public void update(InvestFund investFund) {
-        InvestFund retrievedInvestFund = queryById(investFund.getId());
+        InvestFund retrievedInvestFund = getById(investFund.getId());
         retrievedInvestFund.setName(investFund.getName());
         retrievedInvestFund.setLastRatingDate(investFund.getLastRatingDate());
         entityManager.persist(retrievedInvestFund);
         log.info("Updated invest fund: {}", retrievedInvestFund.getId());
     }
 
-    public InvestFund queryById(String id) {
+    public InvestFund getById(String id) {
         return entityManager.find(InvestFund.class, id);
     }
 

@@ -35,10 +35,15 @@ public class AnalysisServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         String investFundId = req.getPathInfo().substring(1);
 
+        investFund = daoService.get(investFundId);
+
+        if (investFund == null) {
+            resp.sendRedirect("http://localhost:8080/4analysis");
+            return;
+        }
+
         setTimeRange(req);
         setZigZag(req);
-
-        investFund = daoService.get(investFundId);
         localExtremaProvider = new LocalExtremaProvider(investFund, timeRange);
         ratings = localExtremaProvider.findExtrema(zigZag);
 
@@ -55,7 +60,7 @@ public class AnalysisServlet extends HttpServlet {
     private void setTimeRange(HttpServletRequest req) {
         String from = req.getParameter("from");
         String to = req.getParameter("to");
-        LocalDate dateFrom = LocalDate.of(2000,1,1);
+        LocalDate dateFrom = LocalDate.of(1900,1,1);
         LocalDate dateTo = LocalDate.now();
 
         if (!Objects.isNull(from) && !from.isEmpty()) {

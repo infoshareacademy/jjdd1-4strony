@@ -38,11 +38,11 @@ public class InvestFundsUpdater {
     }
 
     private boolean isNew(InvestFund investFund) {
-        return investFundRepository.queryById(investFund.getId()) == null;
+        return investFundRepository.getById(investFund.getId()) == null;
     }
 
     private boolean isUpdated(InvestFund investFund) {
-        InvestFund retrievedInvestFund = investFundRepository.queryById(investFund.getId());
+        InvestFund retrievedInvestFund = investFundRepository.getById(investFund.getId());
         return investFund.getLastRatingDate().isAfter(retrievedInvestFund.getLastRatingDate());
     }
 

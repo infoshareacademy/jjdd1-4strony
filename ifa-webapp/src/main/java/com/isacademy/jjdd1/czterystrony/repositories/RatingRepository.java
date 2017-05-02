@@ -1,5 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.repositories;
 
+import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import com.isacademy.jjdd1.czterystrony.model.Rating;
 
@@ -21,13 +22,37 @@ public class RatingRepository {
         investFund.getRatings().add(rating);
     }
 
-    public List<Rating> queryByDateAndFund(LocalDate date, InvestFund investFund) {
-        Query query = entityManager.createQuery(
-                "SELECT r FROM Rating r WHERE " +
-                        "r.date = :date AND r.investFund = :investFund");
+    public List<Rating> getAllByFund(InvestFund investFund) {
+        Query query = entityManager.createNamedQuery("Rating.getAllByFund");
+        query.setParameter("investFund", investFund);
+        return query.getResultList();
+    }
+
+    public List<Rating> getByFundAndDate(InvestFund investFund, LocalDate date) {
+        Query query = entityManager.createNamedQuery("Rating.getByFundAndDate");
         query.setParameter("date", date);
         query.setParameter("investFund", investFund);
         return query.getResultList();
+    }
+
+    public List<Rating> getByFundInTimeRange(InvestFund investFund, TimeRange timeRange) {
+        Query query = entityManager.createNamedQuery("Rating.getByFundInTimeRange");
+        query.setParameter("startDate", timeRange.getStart());
+        query.setParameter("endDate", timeRange.getEnd());
+        query.setParameter("investFund", investFund);
+        return query.getResultList();
+    }
+
+    public Rating getOldestForFund(InvestFund investFund) {
+        Query query = entityManager.createNamedQuery("Rating.getOldestForFund");
+        query.setParameter("investFund", investFund);
+        return (Rating) query.getResultList().get(0);
+    }
+
+    public Rating getNewestForFund(InvestFund investFund) {
+        Query query = entityManager.createNamedQuery("Rating.getNewestForFund");
+        query.setParameter("investFund", investFund);
+        return (Rating) query.getResultList().get(0);
     }
 
     public void insertDataFromCsv(String filePath) {

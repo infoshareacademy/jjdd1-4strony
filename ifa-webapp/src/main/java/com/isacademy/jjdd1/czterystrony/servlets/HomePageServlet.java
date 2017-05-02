@@ -16,8 +16,6 @@ import java.util.List;
 @WebServlet(urlPatterns = "/4analysis")
 public class HomePageServlet extends HttpServlet {
 
-    private boolean dataFound;
-
     @EJB
     Views views;
 
@@ -34,9 +32,8 @@ public class HomePageServlet extends HttpServlet {
         List<InvestFundDetails> promotedInvestFunds = views.getPromotedFunds();
         List<InvestFundDetails> notPromotedInvestFunds = views.getNotPromotedFunds();
 
-        if (allInvestFunds.isEmpty()) {
-            dataFound = false;
-        } else {
+        boolean dataFound = false;
+        if (!allInvestFunds.isEmpty()) {
             dataFound = true;
         }
 

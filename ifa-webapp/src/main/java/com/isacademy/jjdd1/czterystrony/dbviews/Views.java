@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.*;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Startup
@@ -34,6 +35,12 @@ public class Views {
         this.notPromotedFunds = allFunds.stream()
                 .filter(f -> f.getPriority() == 0)
                 .collect(Collectors.toList());
+    }
+
+    public Optional<InvestFundDetails> getById(String id) {
+        return allFunds.stream()
+                .filter(f -> f.getId().equals(id))
+                .findFirst();
     }
 
     public List<InvestFundDetails> getAllFunds() {

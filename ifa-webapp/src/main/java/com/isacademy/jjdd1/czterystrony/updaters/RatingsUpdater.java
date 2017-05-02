@@ -46,7 +46,7 @@ public class RatingsUpdater {
                 .skip(RECORDS_TO_SKIP_IN_RATINGS_FILE)
                 .map(record -> RatingFactory.create(record, investFund))
                 .filter(rating -> rating.getDate().isAfter(investFund.getLastRatingDate()))
-                .filter(rating -> ratingRepository.queryByDateAndFund(rating.getDate(), investFund).isEmpty())
+                .filter(rating -> ratingRepository.getByFundAndDate(investFund, rating.getDate()).isEmpty())
                 .peek(rating -> log.info("New rating for: {} with date: {}", investFund.getId(), rating.getDate()))
                 .forEach(rating -> ratingRepository.add(rating, investFund.getId()));
     }

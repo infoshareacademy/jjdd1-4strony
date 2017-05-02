@@ -11,6 +11,28 @@ import java.time.LocalDate;
         name = "UX_Rating_id_date_investFund_id",
         columnList = "id,date,investFund_id")
 })
+@NamedQueries({
+        @NamedQuery(
+                name = "Rating.getAllByFund",
+                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund"
+        ),
+        @NamedQuery(
+                name = "Rating.getByFundAndDate",
+                query = "SELECT r FROM Rating r WHERE r.date = :date AND r.investFund = :investFund"
+        ),
+        @NamedQuery(
+                name = "Rating.getByFundInTimeRange",
+                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund AND r.date >= :startDate AND r.date < :endDate"
+        ),
+        @NamedQuery(
+                name = "Rating.getOldestForFund",
+                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund ORDER BY r.date ASC"
+        ),
+        @NamedQuery(
+                name = "Rating.getNewestForFund",
+                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund ORDER BY r.date DESC"
+        )
+})
 public class Rating {
 
     @Id
