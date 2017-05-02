@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.repositories;
 
-public final class NamedNativeQueries {
-    private NamedNativeQueries() {
+public final class InvestFundNamedNativeQueries {
+    private InvestFundNamedNativeQueries() {
     }
 
     //language=MySQL

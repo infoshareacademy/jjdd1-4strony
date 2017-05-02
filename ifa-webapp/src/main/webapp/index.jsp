@@ -223,7 +223,7 @@
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/dataTables.bootstrap.min.js"></script>
 <script>
-    $(window).load(function() {
+    $(document).ready(function () {
         $(".table").DataTable();
     });
 </script>

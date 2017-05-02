@@ -42,7 +42,7 @@ public class InvestFundRepository {
     }
 
     public List<InvestFundDetails> getAllWithDetails() {
-        Query query = entityManager.createNamedQuery("selectInvestFundDetails");
+        Query query = entityManager.createNamedQuery("InvestFund.getAllWithDetails");
         return query.getResultList();
     }
 }

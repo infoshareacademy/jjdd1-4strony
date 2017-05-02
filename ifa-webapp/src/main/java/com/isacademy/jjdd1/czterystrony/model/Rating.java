@@ -1,5 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
+import com.isacademy.jjdd1.czterystrony.repositories.RatingNamedNativeQueries;
+
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -33,6 +35,10 @@ import java.time.LocalDate;
                 query = "SELECT r FROM Rating r WHERE r.investFund = :investFund ORDER BY r.date DESC"
         )
 })
+@NamedNativeQuery(
+        name = "Rating.insertDataFromCsv",
+        query = RatingNamedNativeQueries.insertFromCsv
+)
 public class Rating {
 
     @Id

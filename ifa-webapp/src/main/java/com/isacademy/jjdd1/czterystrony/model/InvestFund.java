@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
-import com.isacademy.jjdd1.czterystrony.repositories.NamedNativeQueries;
+import com.isacademy.jjdd1.czterystrony.repositories.InvestFundNamedNativeQueries;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -32,8 +32,8 @@ import java.util.List;
                 )}
 )
 @NamedNativeQuery(
-        name = "selectInvestFundDetails",
-        query = NamedNativeQueries.investFundDetails,
+        name = "InvestFund.getAllWithDetails",
+        query = InvestFundNamedNativeQueries.investFundDetails,
         resultSetMapping = "InvestFundDetailsMapping")
 public class InvestFund {
 
