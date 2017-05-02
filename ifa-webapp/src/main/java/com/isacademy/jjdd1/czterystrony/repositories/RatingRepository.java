@@ -22,12 +22,6 @@ public class RatingRepository {
         investFund.getRatings().add(rating);
     }
 
-    public List<Rating> getAllByFund(InvestFund investFund) {
-        Query query = entityManager.createNamedQuery("Rating.getAllByFund");
-        query.setParameter("investFund", investFund);
-        return query.getResultList();
-    }
-
     public List<Rating> getByFundAndDate(InvestFund investFund, LocalDate date) {
         Query query = entityManager.createNamedQuery("Rating.getByFundAndDate");
         query.setParameter("date", date);

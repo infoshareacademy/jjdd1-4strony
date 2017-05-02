@@ -7,6 +7,7 @@ import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 import com.isacademy.jjdd1.czterystrony.model.Rating;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
 import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;
+import com.isacademy.jjdd1.czterystrony.technicalanalysis.LocalExtremaProvider;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -20,7 +21,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-@WebServlet(urlPatterns = "/4analysis/notowania/*")
+@WebServlet(urlPatterns = {"/4analysis/notowania/*", "/4analysis/analiza/*"})
 public class InvestFundServlet extends HttpServlet {
 
     @Inject
@@ -34,10 +35,8 @@ public class InvestFundServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.setContentType("text/html;charset=UTF-8");
         String investFundId = req.getPathInfo().substring(1);
-
         InvestFundDetails investFundDetails = views.getById(investFundId).get();
         InvestFund investFund = investFundRepository.getById(investFundId);
         String from = req.getParameter("from");
@@ -56,12 +55,27 @@ public class InvestFundServlet extends HttpServlet {
         TimeRange timeRange = new TimeRange(dateFrom, dateTo);
         List<Rating> ratings = ratingRepository.getByFundInTimeRange(investFund, timeRange);
 
+        RequestDispatcher dispatcher;
+        if (req.getRequestURI().contains("analiza")) {
+            String zigZagReq = req.getParameter("zigZag");
+            int zigZag = 0;
+            if (!Objects.isNull(zigZagReq) && !zigZagReq.isEmpty()) {
+                zigZag = Integer.parseInt(zigZagReq);
+            }
+
+            LocalExtremaProvider localExtremaProvider = new LocalExtremaProvider(ratings);
+            ratings = localExtremaProvider.findExtrema(zigZag);
+            req.setAttribute("zigZag", zigZag);
+            dispatcher = req.getRequestDispatcher("/analysis.jsp");
+        } else {
+            dispatcher = req.getRequestDispatcher("/fund.jsp");
+        }
+
         req.setAttribute("investFund", investFundDetails);
         req.setAttribute("ratings", ratings);
         req.setAttribute("from", timeRange.getStart());
         req.setAttribute("to", timeRange.getEnd());
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/fund.jsp");
         dispatcher.forward(req, resp);
     }
 }

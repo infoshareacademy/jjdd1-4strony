@@ -77,7 +77,7 @@
                         href="http://localhost:8080/4analysis/notowania/${investFund.id}">${investFund.name}</a></h3>
                 <span class="text-muted">${investFund.id} </span><br>
                 <div class="col-md-4">
-                    <span class="lead"><strong>${investFund.date} PLN </strong></span>
+                    <span class="lead"><strong>${investFund.close} PLN </strong></span>
                     <c:choose>
                         <c:when test="${investFund.diff > 0}">
                             <span class="glyphicon glyphicon-arrow-up green"></span>

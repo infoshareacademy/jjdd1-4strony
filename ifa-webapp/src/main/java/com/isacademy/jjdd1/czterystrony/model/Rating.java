@@ -15,10 +15,6 @@ import java.time.LocalDate;
 })
 @NamedQueries({
         @NamedQuery(
-                name = "Rating.getAllByFund",
-                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund"
-        ),
-        @NamedQuery(
                 name = "Rating.getByFundAndDate",
                 query = "SELECT r FROM Rating r WHERE r.date = :date AND r.investFund = :investFund"
         ),
