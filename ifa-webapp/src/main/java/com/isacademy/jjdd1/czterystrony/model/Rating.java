@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
-import com.isacademy.jjdd1.czterystrony.repositories.RatingNamedNativeQueries;
+import com.isacademy.jjdd1.czterystrony.queries.RatingNamedNativeQueries;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;

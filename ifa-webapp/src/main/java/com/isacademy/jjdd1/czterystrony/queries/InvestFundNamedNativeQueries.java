@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.repositories;
+package com.isacademy.jjdd1.czterystrony.queries;
 
 public final class InvestFundNamedNativeQueries {
     private InvestFundNamedNativeQueries() {

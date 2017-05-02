@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
-import com.isacademy.jjdd1.czterystrony.repositories.InvestFundNamedNativeQueries;
+import com.isacademy.jjdd1.czterystrony.queries.InvestFundNamedNativeQueries;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
