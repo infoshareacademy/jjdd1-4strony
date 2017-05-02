@@ -5,10 +5,25 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@SqlResultSetMapping(name = "InvestFundDetailsMapping",
+        classes = {
+                @ConstructorResult(
+                        targetClass = InvestFundDetails.class,
+                        columns = {
+                                @ColumnResult(name = "name", type = String.class),
+                                @ColumnResult(name = "id", type = String.class),
+                                @ColumnResult(name = "priority", type = int.class),
+                                @ColumnResult(name = "date", type = LocalDate.class),
+                                @ColumnResult(name = "close", type = BigDecimal.class),
+                                @ColumnResult(name = "diff", type = BigDecimal.class)
+                        }
+                )}
+)
 @Entity
 @Table(indexes = {@Index(
         name = "UX_InvestFund_id_name",

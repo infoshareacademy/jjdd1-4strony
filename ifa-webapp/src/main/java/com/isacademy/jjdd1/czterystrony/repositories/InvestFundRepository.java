@@ -1,6 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.repositories;
 
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
+import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,20 +42,26 @@ public class InvestFundRepository {
         return query.getResultList();
     }
 
-    public List<Object[]> getAllWithCurrentRating() {
+    public List<InvestFundDetails> getAllWithDetails() {
         //language=MySQL
-        String sql = "SELECT f.name, f.id, f.priority, tab2.date, tab2.close, tab2.diff " +
+        String sql = "SELECT " +
+                "f.name AS name, " +
+                "f.id AS id, " +
+                "f.priority AS priority, " +
+                "tab2.date AS date, " +
+                "tab2.close AS close, " +
+                "tab2.diff AS diff " +
                 "FROM InvestFund AS f JOIN (SELECT r1.investFund_id, r1.date, r1.close, " +
                 "ROUND((r1.close - r2.close)/r2.close*100, 2) AS diff " +
                 "FROM (SELECT r.investFund_id, r.date, r.close, r.row_number " +
-                "FROM (SELECT Rating. *, (@i \\:= if(@fund = Rating.investFund_id, @i +1, " +
-                "if(@fund \\:= Rating.investFund_id, 1, 1))) AS row_number " +
+                "FROM (SELECT Rating. *, (@i \\:= IF(@fund = Rating.investFund_id, @i +1, " +
+                "IF(@fund \\:= Rating.investFund_id, 1, 1))) AS row_number " +
                 "FROM Rating CROSS JOIN (SELECT @i \\:= 0, @fund \\:= NULL)c " +
                 "ORDER BY Rating.investFund_id, Rating.date DESC) AS r " +
                 "WHERE r.row_number <= 2) AS r1 " +
                 "JOIN (SELECT r.investFund_id, r.date, r.close, r.row_number " +
-                "FROM (SELECT Rating. *, (@i \\:= if(@fund = Rating.investFund_id,@i +1, " +
-                "if(@fund \\:= Rating.investFund_id, 1, 1))) AS row_number " +
+                "FROM (SELECT Rating. *, (@i \\:= IF(@fund = Rating.investFund_id,@i +1, " +
+                "IF(@fund \\:= Rating.investFund_id, 1, 1))) AS row_number " +
                 "FROM Rating CROSS JOIN (SELECT @i \\:= 0, @fund \\:= NULL) c " +
                 "ORDER BY Rating.investFund_id, Rating.date DESC) AS r " +
                 "WHERE r.row_number <= 2) AS r2 ON r1.investFund_id = r2.investFund_id " +
@@ -62,18 +69,8 @@ public class InvestFundRepository {
                 "ON f.id = tab2.investFund_id";
 
 //        Query query = entityManager.createQuery("SELECT f, r.close FROM InvestFund f JOIN Rating r ON f.id = r.investFund WHERE r.date = f.lastRatingDate");
-        Query query = entityManager.createNativeQuery(sql);
+        Query query = entityManager.createNativeQuery(sql, "InvestFundDetailsMapping");
 //        query.setParameter("abc", ":=");
-        return query.getResultList();
-    }
-
-    public List<Object[]> getPromotedWithCurrentRating() {
-        Query query = entityManager.createQuery("SELECT f, r.close FROM InvestFund f JOIN Rating r ON f.id = r.investFund WHERE r.date = f.lastRatingDate AND f.priority > 0 ORDER BY f.priority DESC, f.name ASC");
-        return query.getResultList();
-    }
-
-    public List<Object[]> getNotPromotedWithCurrentRating() {
-        Query query = entityManager.createQuery("SELECT f, r.close FROM InvestFund f JOIN Rating r ON f.id = r.investFund WHERE r.date = f.lastRatingDate AND f.priority = 0 ORDER BY f.name DESC");
         return query.getResultList();
     }
 }

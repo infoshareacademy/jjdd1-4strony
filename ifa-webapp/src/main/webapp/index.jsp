@@ -86,15 +86,15 @@
                     <c:choose>
                         <c:when test="${dataFound}">
                             <c:forEach items="${promotedInvestFunds}" var="investFund">
-                                <tr onclick="window.document.location='/4analysis/notowania/${investFund[1]}';">
+                                <tr onclick="window.document.location='/4analysis/notowania/${investFund.id}';">
                                     <td class="text-center promo-color">
                                         <c:choose>
-                                            <c:when test="${investFund[2] > 66}">
+                                            <c:when test="${investFund.priority > 66}">
                                                 <span class="glyphicon glyphicon-star"></span>
                                                 <span class="glyphicon glyphicon-star"></span>
                                                 <span class="glyphicon glyphicon-star"></span>
                                             </c:when>
-                                            <c:when test="${investFund[2] > 33}">
+                                            <c:when test="${investFund.priority > 33}">
                                                 <span class="glyphicon glyphicon-star"></span>
                                                 <span class="glyphicon glyphicon-star"></span>
                                                 <span class="glyphicon glyphicon-star-empty"></span>
@@ -106,22 +106,22 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </td>
-                                    <td>${investFund[0]}</td>
-                                    <td class="text-center">${investFund[1]}</td>
-                                    <td class="text-center">${investFund[3]}</td>
-                                    <td class="text-right">${investFund[4]}</td>
+                                    <td>${investFund.name}</td>
+                                    <td class="text-center">${investFund.id}</td>
+                                    <td class="text-center">${investFund.date}</td>
+                                    <td class="text-right">${investFund.close}</td>
                                     <c:choose>
-                                        <c:when test="${investFund[5] > 0}">
+                                        <c:when test="${investFund.diff > 0}">
                                             <td class="text-left">
                                                 <span class="glyphicon glyphicon-arrow-up green"></span>
                                             </td>
-                                            <td class="text-left green"> +${investFund[5]}%</td>
+                                            <td class="text-left green"> +${investFund.diff}%</td>
                                         </c:when>
-                                        <c:when test="${investFund[5] < 0}">
+                                        <c:when test="${investFund.diff < 0}">
                                             <td class="text-left">
                                                 <span class="glyphicon glyphicon-arrow-down red"></span>
                                             </td>
-                                            <td class="text-left red"> ${investFund[5]}%</td>
+                                            <td class="text-left red"> ${investFund.diff}%</td>
                                         </c:when>
                                         <c:otherwise>
                                             <td class="text-left">
@@ -170,25 +170,25 @@
                     <tbody class="table-other">
                     <c:choose>
                         <c:when test="${dataFound}">
-                            <c:forEach items="${otherInvestFunds}" var="investFund">
-                                <tr onclick="window.document.location='/4analysis/notowania/${investFund[1]}';">
+                            <c:forEach items="${notPromotedInvestFunds}" var="investFund">
+                                <tr onclick="window.document.location='/4analysis/notowania/${investFund.id}';">
                                     <td class="text-center"></td>
-                                    <td>${investFund[0]}</td>
-                                    <td class="text-center">${investFund[1]}</td>
-                                    <td class="text-center">${investFund[3]}</td>
-                                    <td class="text-right">${investFund[4]}</td>
+                                    <td>${investFund.name}</td>
+                                    <td class="text-center">${investFund.id}</td>
+                                    <td class="text-center">${investFund.date}</td>
+                                    <td class="text-right">${investFund.close}</td>
                                     <c:choose>
-                                        <c:when test="${investFund[5] > 0}">
+                                        <c:when test="${investFund.diff > 0}">
                                             <td class="text-left">
                                                 <span class="glyphicon glyphicon-arrow-up green"></span>
                                             </td>
-                                            <td class="text-left green"> +${investFund[5]}%</td>
+                                            <td class="text-left green"> +${investFund.diff}%</td>
                                         </c:when>
-                                        <c:when test="${investFund[5] < 0}">
+                                        <c:when test="${investFund.diff < 0}">
                                             <td class="text-left">
                                                 <span class="glyphicon glyphicon-arrow-down red"></span>
                                             </td>
-                                            <td class="text-left red"> ${investFund[5]}%</td>
+                                            <td class="text-left red"> ${investFund.diff}%</td>
                                         </c:when>
                                         <c:otherwise>
                                             <td class="text-left">

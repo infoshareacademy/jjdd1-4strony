@@ -1,6 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
 import com.isacademy.jjdd1.czterystrony.dbviews.Views;
+import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -29,9 +30,9 @@ public class HomePageServlet extends HttpServlet {
             return;
         }
 
-        List<Object[]> allInvestFunds = views.getAllFunds();
-        List<Object[]> promotedInvestFunds = views.getPromotedFunds();
-        List<Object[]> otherInvestFunds = views.getNotPromotedFunds();
+        List<InvestFundDetails> allInvestFunds = views.getAllFunds();
+        List<InvestFundDetails> promotedInvestFunds = views.getPromotedFunds();
+        List<InvestFundDetails> notPromotedInvestFunds = views.getNotPromotedFunds();
 
         if (allInvestFunds.isEmpty()) {
             dataFound = false;
@@ -40,7 +41,7 @@ public class HomePageServlet extends HttpServlet {
         }
 
         req.setAttribute("promotedInvestFunds", promotedInvestFunds);
-        req.setAttribute("otherInvestFunds", otherInvestFunds);
+        req.setAttribute("notPromotedInvestFunds", notPromotedInvestFunds);
         req.setAttribute("allInvestFunds", allInvestFunds);
         req.setAttribute("dataFound", dataFound);
 
