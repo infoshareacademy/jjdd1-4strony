@@ -85,15 +85,15 @@
                     <c:choose>
                         <c:when test="${dataFound}">
                             <c:forEach items="${promotedInvestFunds}" var="investFund">
-                                <tr onclick="window.document.location='/4analysis/notowania/${investFund.id}';">
+                                <tr onclick="window.document.location='/4analysis/notowania/${investFund[0]}';">
                                     <td class="text-center promo-color">
                                         <c:choose>
-                                            <c:when test="${investFund.priority < -66}">
+                                            <c:when test="${investFund[4] < -66}">
                                                 <span class="glyphicon glyphicon-star"></span>
                                                 <span class="glyphicon glyphicon-star"></span>
                                                 <span class="glyphicon glyphicon-star"></span>
                                             </c:when>
-                                            <c:when test="${investFund.priority < -33}">
+                                            <c:when test="${investFund[4] < -33}">
                                                 <span class="glyphicon glyphicon-star"></span>
                                                 <span class="glyphicon glyphicon-star"></span>
                                                 <span class="glyphicon glyphicon-star-empty"></span>
@@ -105,10 +105,10 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </td>
-                                    <td>${investFund.name}</td>
-                                    <td class="text-center">${investFund.id}</td>
-                                    <td class="text-center">${investFund.currentRatingDate}</td>
-                                    <td class="text-right">${investFund.currentRatingValue}</td>
+                                    <td>${investFund[2]}</td>
+                                    <td class="text-center">${investFund[0]}</td>
+                                    <td class="text-center">${investFund[1]}</td>
+                                    <td class="text-right">${investFund[5]}</td>
                                     <c:choose>
                                         <c:when test="${investFund.change > 0}">
                                             <td class="text-left">

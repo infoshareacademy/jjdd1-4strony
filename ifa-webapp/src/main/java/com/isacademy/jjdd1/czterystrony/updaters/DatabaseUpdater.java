@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.updaters;
 
-import com.isacademy.jjdd1.czterystrony.services.RatingsDownloader;
-import com.isacademy.jjdd1.czterystrony.services.RatingsUnzipper;
+import com.isacademy.jjdd1.czterystrony.utilities.RatingsDownloader;
+import com.isacademy.jjdd1.czterystrony.utilities.RatingsUnzipper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

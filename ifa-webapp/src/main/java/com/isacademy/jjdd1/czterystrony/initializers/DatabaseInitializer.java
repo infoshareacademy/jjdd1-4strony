@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.initializers;
 
-import com.isacademy.jjdd1.czterystrony.services.RatingsDownloader;
-import com.isacademy.jjdd1.czterystrony.services.RatingsUnzipper;
+import com.isacademy.jjdd1.czterystrony.utilities.RatingsDownloader;
+import com.isacademy.jjdd1.czterystrony.utilities.RatingsUnzipper;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

@@ -1,6 +1,5 @@
-package com.isacademy.jjdd1.czterystrony.services;
+package com.isacademy.jjdd1.czterystrony.utilities;
 
-import com.isacademy.jjdd1.czterystrony.utilities.UnzipUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
