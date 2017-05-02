@@ -1,7 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
-import com.isacademy.jjdd1.czterystrony.model.InvestFund;
-import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
+import com.isacademy.jjdd1.czterystrony.dbviews.Views;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -11,18 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/")
+@WebServlet(urlPatterns = "/4analysis")
 public class HomePageServlet extends HttpServlet {
 
-//    @Inject
-//    DaoService daoService;
+    private boolean dataFound;
 
     @EJB
-    InvestFundRepository investFundRepository;
+    Views views;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,30 +29,19 @@ public class HomePageServlet extends HttpServlet {
             return;
         }
 
-        List<Object[]> promotedInvestFunds = investFundRepository.getPromotedWithCurrentRating();
-        List<Object[]> otherInvestFunds = investFundRepository.getNotPromotedWithCurrentRating();
-        List<Object[]> allInvestFundsByName = investFundRepository.getAllWithCurrentRating();
+        List<Object[]> allInvestFunds = views.getAllFunds();
+        List<Object[]> promotedInvestFunds = views.getPromotedFunds();
+        List<Object[]> otherInvestFunds = views.getNotPromotedFunds();
 
-        boolean dataFound = true;
-        
-//        try {
-//            investFunds.forEach(s -> {
-//                allInvestFundsByName.add(s);
-//                if (s.getPriority() < 0) {
-//                    promotedInvestFunds.add(s);
-//                } else {
-//                    otherInvestFunds.add(s);
-//                }
-//            });
-//            allInvestFundsByName.sort(Comparator.comparing(InvestFund::getName));
-//            dataFound = true;
-//        } catch (Exception e) {
-//            dataFound = false;
-//        }
+        if (allInvestFunds.isEmpty()) {
+            dataFound = false;
+        } else {
+            dataFound = true;
+        }
 
         req.setAttribute("promotedInvestFunds", promotedInvestFunds);
         req.setAttribute("otherInvestFunds", otherInvestFunds);
-        req.setAttribute("allInvestFunds", allInvestFundsByName);
+        req.setAttribute("allInvestFunds", allInvestFunds);
         req.setAttribute("dataFound", dataFound);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
