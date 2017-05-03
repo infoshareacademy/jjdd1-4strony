@@ -1,11 +1,16 @@
 package com.isacademy.jjdd1.czterystrony;
 
+import com.isacademy.jjdd1.czterystrony.database.Statistics;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
 import com.isacademy.jjdd1.czterystrony.utilities.TimeRange;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,6 +31,7 @@ public class AnalysisServlet extends HttpServlet {
     private TimeRange timeRange;
     private LocalExtremaProvider localExtremaProvider;
     private int zigZag;
+    private static EntityManager entityManager;
     @Inject
     DaoService daoService;
 
@@ -32,6 +39,12 @@ public class AnalysisServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
         String investFundId = req.getPathInfo().substring(1);
+        Statistics statistics = new Statistics();
+        statistics.setFund(investFundId);
+        Date date = new Date();
+        statistics.setDate(date);
+
+        insertStatistic(statistics);
 
         setTimeRange(req);
         setZigZag(req);
@@ -75,5 +88,14 @@ public class AnalysisServlet extends HttpServlet {
         } else {
             zigZag = 0;
         }
+    }
+
+    private static void insertStatistic(Statistics statistics) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
+        entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(statistics);
+        entityManager.getTransaction().commit();
     }
 }

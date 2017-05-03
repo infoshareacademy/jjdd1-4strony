@@ -18,8 +18,8 @@ import java.util.Scanner;
 public class MenuOfExtreme {
     private final static Logger LOGGER = LoggerFactory.getLogger(MenuOfExtreme.class);
 
-    @PersistenceContext
-    private static EntityManager entityManager;
+//    @PersistenceContext
+//    private static EntityManager entityManager;
 
     public MenuOfExtreme(InvestFund fund) {
         System.out.println("Jesteś w funduszu " + fund.getName());
@@ -33,14 +33,14 @@ public class MenuOfExtreme {
         LOGGER.trace("User's choice: {}", chooseExtreme);
 
 
-        Statistics statistics = new Statistics();
-        if (chooseExtreme == 1) {
-            statistics.setExtremas("locale");
-            updateStatistics(statistics);
-        } else if (chooseExtreme == 2) {
-            statistics.setExtremas("global");
-            updateStatistics(statistics);
-        }
+//        Statistics statistics = new Statistics();
+//        if (chooseExtreme == 1) {
+//            statistics.setExtremas("locale");
+//            updateStatistics(statistics);
+//        } else if (chooseExtreme == 2) {
+//            statistics.setExtremas("global");
+//            updateStatistics(statistics);
+//        }
 
         switch (chooseExtreme) {
             case 1:
@@ -129,18 +129,18 @@ public class MenuOfExtreme {
                 new MenuOfFunds();
         }
     }
-
-    private static void updateStatistics(Statistics statistics) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
-        entityManager = entityManagerFactory.createEntityManager();
-
-        entityManager.getTransaction().begin();
-        Statistics stats= entityManager.find(Statistics.class, Long.valueOf(1));
-        stats.setExtremas(statistics.getExtremas());
-        entityManager.merge(stats);
-
-
-        entityManager.getTransaction().commit();
+//
+//    private static void updateStatistics(Statistics statistics) {
+//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
+//        entityManager = entityManagerFactory.createEntityManager();
+//
+//        entityManager.getTransaction().begin();
+//        Statistics stats= entityManager.find(Statistics.class, Long.valueOf(1));
+//        stats.setExtremas(statistics.getExtremas());
+//        entityManager.merge(stats);
+//
+//
+//        entityManager.getTransaction().commit();
 //    private static void updateStudents() {
 //        entityManager.getTransaction().begin();
 //        Student student = entityManager.find(Student.class, Long.valueOf(2l));
@@ -152,5 +152,5 @@ public class MenuOfExtreme {
 //
 //        entityManager.getTransaction().commit();
 //    }
-    }
+//    }
 }

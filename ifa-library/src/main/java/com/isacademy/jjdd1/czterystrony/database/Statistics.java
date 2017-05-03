@@ -15,10 +15,28 @@ public class Statistics {
 
     private String fund;
 
-    private String extremas;
-
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
+    private LocalDate dateFrom;
+
+    private LocalDate dateTo;
+
+    public LocalDate getDateFrom() {
+        return dateFrom;
+    }
+
+    public void setDateFrom(LocalDate dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+
+    public LocalDate getDateTo() {
+        return dateTo;
+    }
+
+    public void setDateTo(LocalDate dateTo) {
+        this.dateTo = dateTo;
+    }
 
     private String User;
 
@@ -36,14 +54,6 @@ public class Statistics {
 
     public void setFund(String fund) {
         this.fund = fund;
-    }
-
-    public String getExtremas() {
-        return extremas;
-    }
-
-    public void setExtremas(String extremas) {
-        this.extremas = extremas;
     }
 
     public Date getDate() {
@@ -67,8 +77,9 @@ public class Statistics {
         return "Statistics{" +
                 "id=" + id +
                 ", fund='" + fund + '\'' +
-                ", extremas='" + extremas + '\'' +
                 ", date=" + date +
+                ", dateFrom=" + dateFrom +
+                ", dateTo=" + dateTo +
                 ", User='" + User + '\'' +
                 '}';
     }
