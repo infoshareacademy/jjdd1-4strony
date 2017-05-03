@@ -22,6 +22,16 @@ public class Statistics {
 
     private LocalDate dateTo;
 
+    private int zigZag;
+
+    public int getZigZag() {
+        return zigZag;
+    }
+
+    public void setZigZag(int zigZag) {
+        this.zigZag = zigZag;
+    }
+
     public LocalDate getDateFrom() {
         return dateFrom;
     }
@@ -80,6 +90,7 @@ public class Statistics {
                 ", date=" + date +
                 ", dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
+                ", zigZag=" + zigZag +
                 ", User='" + User + '\'' +
                 '}';
     }

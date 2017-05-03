@@ -5,7 +5,10 @@ import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
 import com.isacademy.jjdd1.czterystrony.utilities.TimeRange;
+import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
 
+import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -32,6 +35,7 @@ public class AnalysisServlet extends HttpServlet {
     private LocalExtremaProvider localExtremaProvider;
     private int zigZag;
     private static EntityManager entityManager;
+    private Statistics statistics = new Statistics();
     @Inject
     DaoService daoService;
 
@@ -44,7 +48,7 @@ public class AnalysisServlet extends HttpServlet {
         Date date = new Date();
         statistics.setDate(date);
 
-        insertStatistic(statistics);
+        updateStatistic(statistics);
 
         setTimeRange(req);
         setZigZag(req);
@@ -78,6 +82,9 @@ public class AnalysisServlet extends HttpServlet {
         }
 
         timeRange = new TimeRange(dateFrom, dateTo);
+        statistics.setDateFrom(dateFrom);
+        statistics.setDateTo(dateTo);
+        updateStatistic(statistics);
     }
 
     private void setZigZag(HttpServletRequest req) {
@@ -88,6 +95,8 @@ public class AnalysisServlet extends HttpServlet {
         } else {
             zigZag = 0;
         }
+        statistics.setZigZag(zigZag);
+        updateStatistic(statistics);
     }
 
     private static void insertStatistic(Statistics statistics) {
@@ -96,6 +105,14 @@ public class AnalysisServlet extends HttpServlet {
 
         entityManager.getTransaction().begin();
         entityManager.persist(statistics);
+        entityManager.getTransaction().commit();
+    }
+    private static void updateStatistic(Statistics statistics) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
+        entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+        entityManager.merge(statistics);
         entityManager.getTransaction().commit();
     }
 }
