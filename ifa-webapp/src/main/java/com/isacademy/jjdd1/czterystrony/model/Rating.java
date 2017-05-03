@@ -20,7 +20,7 @@ import java.time.LocalDate;
         ),
         @NamedQuery(
                 name = "Rating.getByFundInTimeRange",
-                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund AND r.date >= :startDate AND r.date < :endDate"
+                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund AND r.date >= :startDate AND r.date <= :endDate"
         ),
         @NamedQuery(
                 name = "Rating.getOldestForFund",
