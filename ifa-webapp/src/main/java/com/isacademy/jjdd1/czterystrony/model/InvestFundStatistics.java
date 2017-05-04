@@ -5,10 +5,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(indexes = {@Index(
+        name = "UX_id_investFundId",
+        columnList = "id,investFundId")
+})
 public class InvestFundStatistics {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String investFundId;
