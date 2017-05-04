@@ -34,9 +34,14 @@ public class InvestFundIdFilter implements Filter {
     }
 
     private boolean fundIdIsValid(HttpServletRequest request) {
-        String investFundId = request.getPathInfo().substring(1);
-        Optional<InvestFundDetails> investFundDetailsOptional = views.getById(investFundId);
-        return investFundDetailsOptional.isPresent();
+        String pathInfo = request.getPathInfo();
+
+        if (pathInfo != null) {
+            String investFundId = request.getPathInfo().substring(1);
+            Optional<InvestFundDetails> investFundDetailsOptional = views.getById(investFundId);
+            return investFundDetailsOptional.isPresent();
+        }
+        return false;
     }
 
     @Override
