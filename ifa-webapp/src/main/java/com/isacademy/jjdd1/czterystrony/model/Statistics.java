@@ -7,13 +7,12 @@ import java.util.Date;
 
 @Entity
 @Table
-
 public class Statistics {
     @Id
     @GeneratedValue
     private Long id;
 
-    private String fund;
+    private String investFundId;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
@@ -27,6 +26,11 @@ public class Statistics {
     private double averageDateDifference;
 
     private double averageValueDifference;
+
+    private String user;
+
+    public Statistics() {
+    }
 
     public double getAverageDateDifference() {
         return averageDateDifference;
@@ -68,8 +72,6 @@ public class Statistics {
         this.dateTo = dateTo;
     }
 
-    private String User;
-
     public Long getId() {
         return id;
     }
@@ -78,12 +80,12 @@ public class Statistics {
         this.id = id;
     }
 
-    public String getFund() {
-        return fund;
+    public String getInvestFundId() {
+        return investFundId;
     }
 
-    public void setFund(String fund) {
-        this.fund = fund;
+    public void setInvestFundId(String fund) {
+        this.investFundId = fund;
     }
 
     public Date getDate() {
@@ -95,25 +97,25 @@ public class Statistics {
     }
 
     public String getUser() {
-        return User;
+        return user;
     }
 
     public void setUser(String user) {
-        User = user;
+        this.user = user;
     }
 
     @Override
     public String toString() {
         return "Statistics{" +
                 "id=" + id +
-                ", fund='" + fund + '\'' +
+                ", fund='" + investFundId + '\'' +
                 ", date=" + date +
                 ", dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
                 ", zigZag=" + zigZag +
                 ", averageDateDifference=" + averageDateDifference +
                 ", averageValueDifference=" + averageValueDifference +
-                ", User='" + User + '\'' +
+                ", user='" + user + '\'' +
                 '}';
     }
 }
