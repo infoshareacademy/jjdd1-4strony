@@ -4,7 +4,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] | %-5level %logger{1.} [%line] - %msg%n%throwable}{FATAL=red,ERROR=orange,WARN=yellow,INFO=blue,DEBUG=green,TRACE=black}"/>
         </Console>
-        <File name="MonitoringFile" fileName="logs/app__.log">
+        <File name="MonitoringFile" fileName="logs/app_.log">
             <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] | %-5level %logger{1.} [%line] - %msg%n%throwable}"/>
         </File>
     </Appenders>
