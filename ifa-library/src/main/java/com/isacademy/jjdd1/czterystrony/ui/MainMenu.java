@@ -15,7 +15,7 @@ public class MainMenu {
         System.out.println("[0]. Wyjdź");
         Scanner answer = new Scanner(System.in);
         int start = answer.nextInt();
-        LOGGER.trace("Users choice: " + start);
+        LOGGER.trace("Users choice: {}", start);
         switch (start) {
             case 1:
                 MenuOfFunds toMenuOfFunds = new MenuOfFunds();
@@ -25,8 +25,9 @@ public class MainMenu {
                 break;
             default:
                 System.out.println("Błędny wybór. Spróbuj ponownie.");
-                LOGGER.warn("Wrong choice: " + start);
+                LOGGER.warn("Wrong choice: {}", start);
                 new MainMenu();
         }
+
     }
 }

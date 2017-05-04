@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.ui;
 
-import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
+import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +13,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class MenuOfFunds {
-
+    public int menuOfFunds;
     private final static Logger LOGGER = LoggerFactory.getLogger(MenuOfFunds.class);
     private final int PROMOTED_VALUE = 99;
     private final String FUND_TO_PROMOTE = "AVIVA Obligacji";

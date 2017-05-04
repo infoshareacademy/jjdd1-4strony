@@ -10,7 +10,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>isacademy.jjdd1.4strony</groupId>
     <artifactId>ifa-webapp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -124,7 +123,6 @@
                                     <properties>
                                         <jndi-name>${jdbc.datasource}</jndi-name>
                                         <enabled>true</enabled>
-                                        <!--<enable>true</enable>-->
                                         <connection-url>${mysql.connection.url}</connection-url>
                                         <driver-name>mysql.jar_com.mysql.jdbc.Driver_5_1</driver-name>
                                         <user-name>${mysql.username}</user-name>
