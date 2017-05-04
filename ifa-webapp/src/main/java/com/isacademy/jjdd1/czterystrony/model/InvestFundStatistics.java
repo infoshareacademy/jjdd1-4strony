@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table
-public class Statistics {
+public class InvestFundStatistics {
     @Id
     @GeneratedValue
     private Long id;
@@ -29,7 +29,7 @@ public class Statistics {
 
     private String user;
 
-    public Statistics() {
+    public InvestFundStatistics() {
     }
 
     public double getAverageDateDifference() {
@@ -106,7 +106,7 @@ public class Statistics {
 
     @Override
     public String toString() {
-        return "Statistics{" +
+        return "InvestFundStatistics{" +
                 "id=" + id +
                 ", fund='" + investFundId + '\'' +
                 ", date=" + date +

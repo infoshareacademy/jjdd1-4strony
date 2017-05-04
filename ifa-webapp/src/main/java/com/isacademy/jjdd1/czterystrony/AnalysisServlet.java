@@ -1,6 +1,6 @@
 //package com.isacademy.jjdd1.czterystrony;
 //
-//import com.isacademy.jjdd1.czterystrony.model.Statistics;
+//import com.isacademy.jjdd1.czterystrony.model.InvestFundStatistics;
 //import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 //import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 //import com.isacademy.jjdd1.czterystrony.analysis.LocalExtremaProvider;
@@ -33,7 +33,7 @@
 //    private LocalExtremaProvider localExtremaProvider;
 //    private int zigZag;
 //    private static EntityManager entityManager;
-//    private Statistics statistics;
+//    private InvestFundStatistics statistics;
 //    @Inject
 //    DaoService daoService;
 //
@@ -43,7 +43,7 @@
 //    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        resp.setContentType("text/html;charset=UTF-8");
 //        String investFundId = req.getPathInfo().substring(1);
-//        statistics = new Statistics();
+//        statistics = new InvestFundStatistics();
 //        statistics.setFund(investFundId);
 //        Date date = new Date();
 //        statistics.setDate(date);
@@ -99,7 +99,7 @@
 //        updateStatistic(statistics);
 //    }
 //
-//    private void insertStatistic(Statistics statistics) {
+//    private void insertStatistic(InvestFundStatistics statistics) {
 //        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
 //        entityManager = entityManagerFactory.createEntityManager();
 //        entityManager.getTransaction().begin();
@@ -107,7 +107,7 @@
 //        entityManager.getTransaction().commit();
 //    }
 //
-//    private static void updateStatistic(Statistics statistics) {
+//    private static void updateStatistic(InvestFundStatistics statistics) {
 //        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
 //        entityManager = entityManagerFactory.createEntityManager();
 //
