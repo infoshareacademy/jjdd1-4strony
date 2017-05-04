@@ -5,15 +5,13 @@ import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
 import com.isacademy.jjdd1.czterystrony.utilities.TimeRange;
-import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,20 +33,22 @@ public class AnalysisServlet extends HttpServlet {
     private LocalExtremaProvider localExtremaProvider;
     private int zigZag;
     private static EntityManager entityManager;
-    private Statistics statistics = new Statistics();
+    private Statistics statistics;
     @Inject
     DaoService daoService;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AnalysisServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
         String investFundId = req.getPathInfo().substring(1);
-        Statistics statistics = new Statistics();
+        statistics = new Statistics();
         statistics.setFund(investFundId);
         Date date = new Date();
         statistics.setDate(date);
 
-        updateStatistic(statistics);
+        insertStatistic(statistics);
 
         setTimeRange(req);
         setZigZag(req);
@@ -99,20 +99,22 @@ public class AnalysisServlet extends HttpServlet {
         updateStatistic(statistics);
     }
 
-    private static void insertStatistic(Statistics statistics) {
+    private void insertStatistic(Statistics statistics) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
         entityManager = entityManagerFactory.createEntityManager();
-
         entityManager.getTransaction().begin();
         entityManager.persist(statistics);
         entityManager.getTransaction().commit();
     }
+
     private static void updateStatistic(Statistics statistics) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
         entityManager = entityManagerFactory.createEntityManager();
 
+
         entityManager.getTransaction().begin();
         entityManager.merge(statistics);
         entityManager.getTransaction().commit();
+        LOGGER.info("Updated statistic: {}", statistics);
     }
 }

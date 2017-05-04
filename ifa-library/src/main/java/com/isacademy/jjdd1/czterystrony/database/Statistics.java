@@ -24,6 +24,26 @@ public class Statistics {
 
     private int zigZag;
 
+    private double averageDateDifference;
+
+    private double averageValueDifference;
+
+    public double getAverageDateDifference() {
+        return averageDateDifference;
+    }
+
+    public void setAverageDateDifference(double averageDateDifference) {
+        this.averageDateDifference = averageDateDifference;
+    }
+
+    public double getAverageValueDifference() {
+        return averageValueDifference;
+    }
+
+    public void setAverageValueDifference(double averageValueDifference) {
+        this.averageValueDifference = averageValueDifference;
+    }
+
     public int getZigZag() {
         return zigZag;
     }
@@ -91,6 +111,8 @@ public class Statistics {
                 ", dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
                 ", zigZag=" + zigZag +
+                ", averageDateDifference=" + averageDateDifference +
+                ", averageValueDifference=" + averageValueDifference +
                 ", User='" + User + '\'' +
                 '}';
     }
