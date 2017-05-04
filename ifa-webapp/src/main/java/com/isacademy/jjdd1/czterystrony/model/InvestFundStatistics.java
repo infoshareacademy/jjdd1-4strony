@@ -1,9 +1,8 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -14,8 +13,7 @@ public class InvestFundStatistics {
 
     private String investFundId;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private LocalDateTime dateTime;
 
     private LocalDate dateFrom;
 
@@ -88,12 +86,12 @@ public class InvestFundStatistics {
         this.investFundId = fund;
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateTime(LocalDateTime date) {
+        this.dateTime = date;
     }
 
     public String getUser() {
@@ -109,7 +107,7 @@ public class InvestFundStatistics {
         return "InvestFundStatistics{" +
                 "id=" + id +
                 ", fund='" + investFundId + '\'' +
-                ", date=" + date +
+                ", date=" + dateTime +
                 ", dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
                 ", zigZag=" + zigZag +
