@@ -1,6 +1,5 @@
 package com.isacademy.jjdd1.czterystrony.ui;
 
-import com.isacademy.jjdd1.czterystrony.database.Statistics;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 import com.isacademy.jjdd1.czterystrony.utilities.GlobalExtremaProvider;
@@ -8,18 +7,11 @@ import com.isacademy.jjdd1.czterystrony.utilities.LocalExtremaProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuOfExtreme {
     private final static Logger LOGGER = LoggerFactory.getLogger(MenuOfExtreme.class);
-
-//    @PersistenceContext
-//    private static EntityManager entityManager;
 
     public MenuOfExtreme(InvestFund fund) {
         System.out.println("Jesteś w funduszu " + fund.getName());
@@ -31,16 +23,6 @@ public class MenuOfExtreme {
         Scanner answer = new Scanner(System.in);
         int chooseExtreme = answer.nextInt();
         LOGGER.trace("User's choice: {}", chooseExtreme);
-
-
-//        Statistics statistics = new Statistics();
-//        if (chooseExtreme == 1) {
-//            statistics.setExtremas("locale");
-//            updateStatistics(statistics);
-//        } else if (chooseExtreme == 2) {
-//            statistics.setExtremas("global");
-//            updateStatistics(statistics);
-//        }
 
         switch (chooseExtreme) {
             case 1:
@@ -57,7 +39,6 @@ public class MenuOfExtreme {
                     System.out.println(rating);
                 }
                 LOGGER.trace("Succesfully loaded {} extremas", localExtremaProvider.findExtrema(10).size());
-
 
                 System.out.println("Jesteś w funduszu " + fund.getName());
                 System.out.println("Wybierz co chcesz zrobić:");
@@ -129,28 +110,4 @@ public class MenuOfExtreme {
                 new MenuOfFunds();
         }
     }
-//
-//    private static void updateStatistics(Statistics statistics) {
-//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
-//        entityManager = entityManagerFactory.createEntityManager();
-//
-//        entityManager.getTransaction().begin();
-//        Statistics stats= entityManager.find(Statistics.class, Long.valueOf(1));
-//        stats.setExtremas(statistics.getExtremas());
-//        entityManager.merge(stats);
-//
-//
-//        entityManager.getTransaction().commit();
-//    private static void updateStudents() {
-//        entityManager.getTransaction().begin();
-//        Student student = entityManager.find(Student.class, Long.valueOf(2l));
-//
-//        if (student != null) {
-//            student.setName("new name");
-//            entityManager.merge(student);
-//        }
-//
-//        entityManager.getTransaction().commit();
-//    }
-//    }
 }

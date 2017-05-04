@@ -1,17 +1,11 @@
 package com.isacademy.jjdd1.czterystrony.ui;
 
-import com.isacademy.jjdd1.czterystrony.database.Statistics;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import java.util.*;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -20,8 +14,6 @@ import java.util.stream.Collectors;
 
 public class MenuOfFunds {
     public int menuOfFunds;
-    @PersistenceContext
-    private static EntityManager entityManager;
     private final static Logger LOGGER = LoggerFactory.getLogger(MenuOfFunds.class);
     private final int PROMOTED_VALUE = 99;
     private final String FUND_TO_PROMOTE = "AVIVA Obligacji";
@@ -54,13 +46,6 @@ public class MenuOfFunds {
             Scanner choice = new Scanner(System.in);
             String fund = choice.nextLine().toUpperCase();
 
-            Statistics statistics = new Statistics();
-            statistics.setFund(fund);
-            Date date = new Date();
-            statistics.setDate(date);
-
-            insertStatistics(statistics);
-
             try {
                 InvestFund investFund = investFundDao.get(fund);
                 LOGGER.debug("Chosen fund: " + investFund.getName());
@@ -73,15 +58,5 @@ public class MenuOfFunds {
         } catch (FileNotFoundException e) {
             System.out.println("Resource files not found.");
         }
-    }
-
-    private static void insertStatistics(Statistics statistics) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example");
-        entityManager = entityManagerFactory.createEntityManager();
-
-        entityManager.getTransaction().begin();
-        entityManager.persist(statistics);
-        entityManager.getTransaction().commit();
-
     }
 }
