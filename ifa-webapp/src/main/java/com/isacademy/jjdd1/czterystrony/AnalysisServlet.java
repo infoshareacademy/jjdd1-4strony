@@ -1,6 +1,6 @@
 //package com.isacademy.jjdd1.czterystrony;
 //
-//import com.isacademy.jjdd1.czterystrony.database.Statistics;
+//import com.isacademy.jjdd1.czterystrony.model.Statistics;
 //import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 //import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 //import com.isacademy.jjdd1.czterystrony.analysis.LocalExtremaProvider;

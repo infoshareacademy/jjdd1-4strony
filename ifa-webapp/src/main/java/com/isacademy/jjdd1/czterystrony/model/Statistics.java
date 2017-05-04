@@ -1,12 +1,12 @@
-package com.isacademy.jjdd1.czterystrony.database;
+package com.isacademy.jjdd1.czterystrony.model;
 
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 
-@javax.persistence.Entity
-@javax.persistence.Table
+@Entity
+@Table
 
 public class Statistics {
     @Id
