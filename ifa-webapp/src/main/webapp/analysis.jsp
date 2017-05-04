@@ -188,7 +188,7 @@
             datasets: [{
                 label: 'Wycena',
                 data: [<c:forEach items="${ratings}" var="rating">
-                    ${rating.closeValue} ,
+                    ${rating.close} ,
                     </c:forEach>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
