@@ -4,6 +4,7 @@ import com.isacademy.jjdd1.czterystrony.dbviews.Views;
 import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +17,7 @@ import java.util.List;
 @WebServlet(urlPatterns = "/4analysis")
 public class HomePageServlet extends HttpServlet {
 
-    @EJB
+    @Inject
     Views views;
 
     @Override

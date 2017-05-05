@@ -7,23 +7,24 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.io.IOException;
 
 @Stateless
 public class DatabaseUpdater {
     private static Logger log = LoggerFactory.getLogger(DatabaseUpdater.class);
 
-    @EJB
-    private RatingsDownloader ratingsDownloader;
+    @Inject
+    RatingsDownloader ratingsDownloader;
 
-    @EJB
-    private RatingsUnzipper ratingsUnzipper;
+    @Inject
+    RatingsUnzipper ratingsUnzipper;
 
-    @EJB
-    private InvestFundsUpdater investFundsUpdater;
+    @Inject
+    InvestFundsUpdater investFundsUpdater;
 
-    @EJB
-    private RatingsUpdater ratingsUpdater;
+    @Inject
+    RatingsUpdater ratingsUpdater;
 
     public void update() {
         ratingsDownloader.download();

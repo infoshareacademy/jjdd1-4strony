@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.io.IOException;
 
 import static com.isacademy.jjdd1.czterystrony.utilities.Constants.*;
@@ -14,8 +15,8 @@ public class RatingsDownloader {
 
     private static Logger log = LoggerFactory.getLogger(RatingsDownloader.class);
 
-    @EJB
-    private FileDownloader downloader;
+    @Inject
+    FileDownloader downloader;
 
     public void download() {
         try {

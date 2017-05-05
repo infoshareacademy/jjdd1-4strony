@@ -6,6 +6,7 @@ import com.isacademy.jjdd1.czterystrony.model.Rating;
 import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -18,8 +19,8 @@ public class LocalExtremaProvider {
     private int minSwingLimitInPct;
     private List<Rating> ratings;
 
-    @EJB
-    private RatingRepository ratingRepository;
+    @Inject
+    RatingRepository ratingRepository;
 
     @Interceptors(AnalysisAudit.class)
     public List<Rating> findExtrema(InvestFund investFund, TimeRange timeRange, int minSwingLimitInPct) {

@@ -7,14 +7,15 @@ import com.isacademy.jjdd1.czterystrony.model.Rating;
 import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MovingAverageProvider {
     private MovingAverage movingAverage;
 
-    @EJB
-    private RatingRepository ratingRepository;
+    @Inject
+    RatingRepository ratingRepository;
 
     public List<Rating> getMovingAverageRatings(InvestFund investFund, TimeRange timeRange, MovingAverage movingAverage) {
         this.movingAverage = movingAverage;

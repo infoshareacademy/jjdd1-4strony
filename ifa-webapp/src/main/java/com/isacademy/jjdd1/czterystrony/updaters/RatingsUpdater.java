@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,11 +25,11 @@ public class RatingsUpdater {
 
     private static Logger log = LoggerFactory.getLogger(InvestFundRepository.class);
 
-    @EJB
-    private InvestFundRepository investFundRepository;
+    @Inject
+    InvestFundRepository investFundRepository;
 
-    @EJB
-    private RatingRepository ratingRepository;
+    @Inject
+    RatingRepository ratingRepository;
 
     public void update() throws IOException {
         List<InvestFund> investFunds = investFundRepository.getAll();

@@ -8,17 +8,18 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
+import javax.inject.Inject;
 
 @Singleton
 public class ScheduleTimerService {
 
     private static Logger log = LoggerFactory.getLogger(ScheduleTimerService.class);
 
-    @EJB
-    private DatabaseUpdater databaseUpdater;
+    @Inject
+    DatabaseUpdater databaseUpdater;
 
-    @EJB
-    private Views views;
+    @Inject
+    Views views;
 
     @Schedule(dayOfWeek = "Mon-Fri", hour = "10", minute = "30", persistent = false)
     void updateDatabase() {

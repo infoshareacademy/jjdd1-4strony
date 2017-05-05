@@ -15,7 +15,7 @@ import java.util.List;
 public class RatingRepository {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    EntityManager entityManager;
 
     public void add(Rating rating, String investFundId) {
         InvestFund investFund = entityManager.find(InvestFund.class, investFundId);

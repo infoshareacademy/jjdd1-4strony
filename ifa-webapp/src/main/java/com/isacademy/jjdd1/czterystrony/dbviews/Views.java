@@ -5,6 +5,7 @@ import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.*;
+import javax.inject.Inject;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -18,8 +19,8 @@ public class Views {
     private List<InvestFundDetails> promotedFunds;
     private List<InvestFundDetails> notPromotedFunds;
 
-    @EJB
-    private InvestFundRepository investFundRepository;
+    @Inject
+    InvestFundRepository investFundRepository;
 
     @PostConstruct
     public void updateViews() {

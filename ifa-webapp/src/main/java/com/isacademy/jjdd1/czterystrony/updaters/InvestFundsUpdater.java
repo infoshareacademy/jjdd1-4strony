@@ -6,6 +6,7 @@ import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,8 +19,8 @@ import static com.isacademy.jjdd1.czterystrony.utilities.Constants.*;
 @Stateless
 public class InvestFundsUpdater {
 
-    @EJB
-    private InvestFundRepository investFundRepository;
+    @Inject
+    InvestFundRepository investFundRepository;
 
     public void update() throws IOException {
         URL url = new URL(FUNDS_LIST_SOURCE);

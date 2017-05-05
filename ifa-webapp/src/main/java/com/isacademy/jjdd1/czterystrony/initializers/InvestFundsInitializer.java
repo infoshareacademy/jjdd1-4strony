@@ -9,6 +9,7 @@ import javax.ejb.DependsOn;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.inject.Inject;
 import java.io.IOException;
 
 @Startup
@@ -18,8 +19,8 @@ public class InvestFundsInitializer {
 
     private static Logger log = LoggerFactory.getLogger(InvestFundsInitializer.class);
 
-    @EJB
-    private InvestFundsUpdater investFundsUpdater;
+    @Inject
+    InvestFundsUpdater investFundsUpdater;
 
     @PostConstruct
     void initialize() {

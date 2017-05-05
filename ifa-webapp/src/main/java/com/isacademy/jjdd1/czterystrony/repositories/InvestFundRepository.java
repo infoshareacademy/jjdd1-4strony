@@ -17,7 +17,7 @@ public class InvestFundRepository {
     private static Logger log = LoggerFactory.getLogger(InvestFundRepository.class);
 
     @PersistenceContext
-    private EntityManager entityManager;
+    EntityManager entityManager;
 
     public void add(InvestFund investFund) {
         entityManager.persist(investFund);

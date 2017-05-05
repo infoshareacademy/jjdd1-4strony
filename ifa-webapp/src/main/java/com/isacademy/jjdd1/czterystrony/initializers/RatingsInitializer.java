@@ -10,6 +10,7 @@ import javax.ejb.DependsOn;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.inject.Inject;
 
 import static com.isacademy.jjdd1.czterystrony.utilities.Constants.RATINGS_DATA_FILE_EXTENSION;
 import static com.isacademy.jjdd1.czterystrony.utilities.Constants.TMP_PROJECT_FOLDER;
@@ -21,11 +22,11 @@ public class RatingsInitializer {
 
     private static Logger log = LoggerFactory.getLogger(RatingsInitializer.class);
 
-    @EJB
-    private InvestFundRepository investFundRepository;
+    @Inject
+    InvestFundRepository investFundRepository;
 
-    @EJB
-    private RatingRepository ratingRepository;
+    @Inject
+    RatingRepository ratingRepository;
 
     @PostConstruct
     public void initialize() {

@@ -7,16 +7,17 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.inject.Inject;
 
 @Startup
 @Singleton
 public class DatabaseInitializer {
 
-    @EJB
-    private RatingsDownloader ratingsDownloader;
+    @Inject
+    RatingsDownloader ratingsDownloader;
 
-    @EJB
-    private RatingsUnzipper ratingsUnzipper;
+    @Inject
+    RatingsUnzipper ratingsUnzipper;
 
     @PostConstruct
     void initialize() {

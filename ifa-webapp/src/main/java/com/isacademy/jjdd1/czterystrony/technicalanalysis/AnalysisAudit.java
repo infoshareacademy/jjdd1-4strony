@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
 
@@ -15,8 +16,8 @@ public class AnalysisAudit {
 
     private static Logger log = LoggerFactory.getLogger(AnalysisAudit.class);
 
-    @EJB
-    private StatisticsRepository statisticsRepository;
+    @Inject
+    StatisticsRepository statisticsRepository;
 
     @AroundInvoke
     public Object addToStatistics(InvocationContext ic) throws Throwable {
