@@ -19,7 +19,7 @@ public class AnalysisAudit {
     private StatisticsRepository statisticsRepository;
 
     @AroundInvoke
-    public Object addToStatistics(InvocationContext ic) throws Throwable{
+    public Object addToStatistics(InvocationContext ic) throws Throwable {
         InvestFund investFund = (InvestFund) ic.getParameters()[0];
         TimeRange timeRange = (TimeRange) ic.getParameters()[1];
         int minSwingLimitInPct = (int) ic.getParameters()[2];
@@ -35,5 +35,4 @@ public class AnalysisAudit {
         log.info("User {} checked {} fund", investFundStatistics.getUser(), investFundStatistics.getId());
         return ic.proceed();
     }
-
 }
