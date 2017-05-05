@@ -1,22 +1,29 @@
 package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
+import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
+import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import com.isacademy.jjdd1.czterystrony.model.Rating;
+import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;
 
+import javax.ejb.EJB;
 import javax.interceptor.Interceptors;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LocalExtremaProvider {
-    private final double HUNDRED_PCT = 100D;
+    private final BigDecimal HUNDRED_PCT = BigDecimal.valueOf(100);
     private final int DIGITS_AFTER_COMMA = 2;
     private final int DEFAULT_START_INDEX = 0;
-    private double minSwingLimitInPct;
+    private int minSwingLimitInPct;
     private List<Rating> ratings;
 
+    @EJB
+    private RatingRepository ratingRepository;
+
     @Interceptors(AnalysisAudit.class)
-    public List<Rating> findExtrema(List<Rating> ratings, double minSwingLimitInPct) {
-        this.ratings = ratings;
+    public List<Rating> findExtrema(InvestFund investFund, TimeRange timeRange, int minSwingLimitInPct) {
+        this.ratings = ratingRepository.getByFundInTimeRange(investFund, timeRange);
         this.minSwingLimitInPct = minSwingLimitInPct;
         boolean swingHigh = false;
         boolean swingLow = false;
@@ -73,6 +80,6 @@ public class LocalExtremaProvider {
     }
 
     private BigDecimal minSwingLimit() {
-        return BigDecimal.valueOf(minSwingLimitInPct / HUNDRED_PCT);
+        return BigDecimal.valueOf(minSwingLimitInPct).divide(HUNDRED_PCT, DIGITS_AFTER_COMMA, BigDecimal.ROUND_UP);
     }
 }

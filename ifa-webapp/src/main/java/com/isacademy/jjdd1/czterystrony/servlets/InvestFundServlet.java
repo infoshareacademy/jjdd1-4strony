@@ -63,7 +63,7 @@ public class InvestFundServlet extends HttpServlet {
                 zigZag = Integer.parseInt(zigZagReq);
             }
 
-            LocalExtremaProvider localExtremaProvider = new LocalExtremaProvider(ratings);
+            LocalExtremaProvider localExtremaProvider = new LocalExtremaProvider(investFund);
             ratings = localExtremaProvider.findExtrema(zigZag);
             req.setAttribute("zigZag", zigZag);
             dispatcher = req.getRequestDispatcher("/analysis.jsp");

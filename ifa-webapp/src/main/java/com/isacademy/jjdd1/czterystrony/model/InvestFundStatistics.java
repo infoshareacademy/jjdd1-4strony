@@ -1,20 +1,22 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(indexes = {@Index(
         name = "UX_id_investFundId",
-        columnList = "id,investFundId")
+        columnList = "id,investFund")
 })
 public class InvestFundStatistics {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String investFundId;
+    @ManyToOne
+    private InvestFund investFund;
 
     private LocalDateTime dateTime;
 
@@ -24,92 +26,111 @@ public class InvestFundStatistics {
 
     private int zigZag;
 
-    private double averageDateDifference;
+    private BigDecimal averageDateDifference;
 
-    private double averageValueDifference;
+    private BigDecimal averageValueDifference;
 
     private String user;
 
     public InvestFundStatistics() {
     }
 
-    public double getAverageDateDifference() {
+    public InvestFundStatistics(Builder builder) {
+        this.dateTime = LocalDateTime.now();
+        this.investFund = builder.investFund;
+    }
+
+    public static class Builder {
+        private InvestFund investFund;
+        private LocalDateTime dateTime;
+        private LocalDate dateFrom;
+        private LocalDate dateTo;
+        private int zigZag;
+        private BigDecimal averageDateDifference;
+        private BigDecimal averageValueDifference;
+        private String user;
+
+        public Builder withInvestFund(InvestFund investFund) {
+            this.investFund = investFund;
+            return this;
+        }
+
+        public Builder withDateFrom(LocalDate dateFrom) {
+            this.dateFrom = dateFrom;
+            return this;
+        }
+
+        public Builder withDateTo(LocalDate dateTo) {
+            this.dateTo = dateTo;
+            return this;
+        }
+
+        public Builder withZigZag(int zigZag) {
+            this.zigZag = zigZag;
+            return this;
+        }
+
+        public Builder withAverageDateDifference(BigDecimal averageDateDifference) {
+            this.averageDateDifference = averageDateDifference;
+            return this;
+        }
+
+        public Builder withAverageValueDifference(BigDecimal averageValueDifference) {
+            this.averageValueDifference = averageValueDifference;
+            return this;
+        }
+
+        public Builder withUser(String user) {
+            this.user = user;
+            return this;
+        }
+
+        public InvestFundStatistics build() {
+            return new InvestFundStatistics(this);
+        }
+    }
+
+    public BigDecimal getAverageDateDifference() {
         return averageDateDifference;
     }
 
-    public void setAverageDateDifference(double averageDateDifference) {
-        this.averageDateDifference = averageDateDifference;
-    }
-
-    public double getAverageValueDifference() {
+    public BigDecimal getAverageValueDifference() {
         return averageValueDifference;
-    }
-
-    public void setAverageValueDifference(double averageValueDifference) {
-        this.averageValueDifference = averageValueDifference;
     }
 
     public int getZigZag() {
         return zigZag;
     }
 
-    public void setZigZag(int zigZag) {
-        this.zigZag = zigZag;
-    }
-
     public LocalDate getDateFrom() {
         return dateFrom;
-    }
-
-    public void setDateFrom(LocalDate dateFrom) {
-        this.dateFrom = dateFrom;
     }
 
     public LocalDate getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(LocalDate dateTo) {
-        this.dateTo = dateTo;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getInvestFundId() {
-        return investFundId;
-    }
-
-    public void setInvestFundId(String fund) {
-        this.investFundId = fund;
+    public InvestFund getInvestFund() {
+        return investFund;
     }
 
     public LocalDateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime date) {
-        this.dateTime = date;
-    }
-
     public String getUser() {
         return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
     }
 
     @Override
     public String toString() {
         return "InvestFundStatistics{" +
                 "id=" + id +
-                ", fund='" + investFundId + '\'' +
+                ", fund='" + investFund + '\'' +
                 ", date=" + dateTime +
                 ", dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
