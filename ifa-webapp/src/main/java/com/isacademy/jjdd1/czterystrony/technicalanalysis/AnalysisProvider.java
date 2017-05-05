@@ -4,11 +4,11 @@ import com.isacademy.jjdd1.czterystrony.model.Rating;
 
 import java.util.List;
 
-public abstract class StatisticsProvider {
+public abstract class AnalysisProvider {
 
     protected List<Rating> ratings;
 
-    StatisticsProvider(List<Rating> ratings) {
+    AnalysisProvider(List<Rating> ratings) {
         this.ratings = ratings;
     }
 }

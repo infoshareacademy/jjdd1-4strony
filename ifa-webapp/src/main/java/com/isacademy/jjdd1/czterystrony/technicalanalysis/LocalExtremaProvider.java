@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalExtremaProvider extends StatisticsProvider {
+public class LocalExtremaProvider extends AnalysisProvider {
     private final double HUNDRED_PCT = 100D;
     private final int DIGITS_AFTER_COMMA = 2;
     private final int DEFAULT_START_INDEX = 0;

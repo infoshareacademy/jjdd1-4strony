@@ -6,7 +6,7 @@ import com.isacademy.jjdd1.czterystrony.model.Rating;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MovingAverageProvider extends StatisticsProvider {
+public class MovingAverageProvider extends AnalysisProvider {
     private MovingAverage movingAverage;
 
     public MovingAverageProvider(List<Rating> ratings, MovingAverage average) {
