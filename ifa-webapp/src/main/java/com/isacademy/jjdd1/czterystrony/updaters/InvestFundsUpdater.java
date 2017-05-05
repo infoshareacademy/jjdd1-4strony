@@ -4,7 +4,6 @@ import com.isacademy.jjdd1.czterystrony.factories.InvestFundFactory;
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.BufferedReader;

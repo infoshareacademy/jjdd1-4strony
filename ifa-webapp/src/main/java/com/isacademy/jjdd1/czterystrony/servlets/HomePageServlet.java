@@ -3,7 +3,6 @@ package com.isacademy.jjdd1.czterystrony.servlets;
 import com.isacademy.jjdd1.czterystrony.dbviews.Views;
 import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
 
-import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

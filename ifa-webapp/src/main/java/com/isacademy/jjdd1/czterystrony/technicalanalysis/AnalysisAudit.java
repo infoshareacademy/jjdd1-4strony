@@ -7,7 +7,6 @@ import com.isacademy.jjdd1.czterystrony.repositories.StatisticsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;

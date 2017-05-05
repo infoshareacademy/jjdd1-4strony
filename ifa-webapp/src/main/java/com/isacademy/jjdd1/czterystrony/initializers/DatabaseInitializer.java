@@ -4,7 +4,6 @@ import com.isacademy.jjdd1.czterystrony.utilities.RatingsDownloader;
 import com.isacademy.jjdd1.czterystrony.utilities.RatingsUnzipper;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;

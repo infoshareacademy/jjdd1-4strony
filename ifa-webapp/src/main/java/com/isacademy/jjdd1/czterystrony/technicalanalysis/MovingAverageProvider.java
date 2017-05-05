@@ -6,7 +6,6 @@ import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import com.isacademy.jjdd1.czterystrony.model.Rating;
 import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;
 
-import javax.ejb.EJB;
 import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;

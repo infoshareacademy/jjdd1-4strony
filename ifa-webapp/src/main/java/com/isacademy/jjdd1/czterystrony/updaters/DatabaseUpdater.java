@@ -5,7 +5,6 @@ import com.isacademy.jjdd1.czterystrony.utilities.RatingsUnzipper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.IOException;
