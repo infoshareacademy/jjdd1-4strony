@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(indexes = {@Index(
-        name = "UX_id_investFundId",
-        columnList = "id,investFund")
+        name = "UX_id_investFund_id",
+        columnList = "id,investFund_id")
 })
 public class InvestFundStatistics {
     @Id
@@ -38,6 +38,12 @@ public class InvestFundStatistics {
     public InvestFundStatistics(Builder builder) {
         this.dateTime = LocalDateTime.now();
         this.investFund = builder.investFund;
+        this.zigZag= builder.zigZag;
+        this.averageDateDifference = builder.averageDateDifference;
+        this.averageValueDifference = builder.averageValueDifference;
+        this.dateFrom = builder.dateFrom;
+        this.dateTo = builder.dateTo;
+        this.user = builder.user;
     }
 
     public static class Builder {

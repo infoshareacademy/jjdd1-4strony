@@ -4,9 +4,11 @@ import com.isacademy.jjdd1.czterystrony.model.InvestFundStatistics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+@Stateless
 public class StatisticsRepository {
 
     private static Logger log = LoggerFactory.getLogger(InvestFundRepository.class);
