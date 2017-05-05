@@ -2,21 +2,21 @@ package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
 import com.isacademy.jjdd1.czterystrony.model.Rating;
 
+import javax.interceptor.Interceptors;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalExtremaProvider extends AnalysisProvider {
+public class LocalExtremaProvider {
     private final double HUNDRED_PCT = 100D;
     private final int DIGITS_AFTER_COMMA = 2;
     private final int DEFAULT_START_INDEX = 0;
     private double minSwingLimitInPct;
+    private List<Rating> ratings;
 
-    public LocalExtremaProvider(List<Rating> ratings) {
-        super(ratings);
-    }
-
-    public List<Rating> findExtrema(double minSwingLimitInPct) {
+    @Interceptors(AnalysisAudit.class)
+    public List<Rating> findExtrema(List<Rating> ratings, double minSwingLimitInPct) {
+        this.ratings = ratings;
         this.minSwingLimitInPct = minSwingLimitInPct;
         boolean swingHigh = false;
         boolean swingLow = false;
