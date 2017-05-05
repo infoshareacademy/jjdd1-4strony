@@ -22,7 +22,7 @@ public class AnalysisAudit {
     public Object addToStatistics(InvocationContext ic) throws Throwable{
         InvestFund investFund = (InvestFund) ic.getParameters()[0];
         TimeRange timeRange = (TimeRange) ic.getParameters()[1];
-        double minSwingLimitInPct = (double) ic.getParameters()[2];
+        int minSwingLimitInPct = (int) ic.getParameters()[2];
 
         InvestFundStatistics investFundStatistics = new InvestFundStatistics.Builder()
                 .withInvestFund(investFund)

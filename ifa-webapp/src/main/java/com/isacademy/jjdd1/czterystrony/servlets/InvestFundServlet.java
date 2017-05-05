@@ -33,6 +33,9 @@ public class InvestFundServlet extends HttpServlet {
     @Inject
     RatingRepository ratingRepository;
 
+    @Inject
+    LocalExtremaProvider localExtremaProvider;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
@@ -63,8 +66,7 @@ public class InvestFundServlet extends HttpServlet {
                 zigZag = Integer.parseInt(zigZagReq);
             }
 
-            LocalExtremaProvider localExtremaProvider = new LocalExtremaProvider(investFund);
-            ratings = localExtremaProvider.findExtrema(zigZag);
+            ratings = localExtremaProvider.findExtrema(investFund, timeRange, zigZag);
             req.setAttribute("zigZag", zigZag);
             dispatcher = req.getRequestDispatcher("/analysis.jsp");
         } else {
