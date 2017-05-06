@@ -61,7 +61,7 @@
     <form class="form-horizontal" role="form" action="/4analysis/updatefund" method="post">
         <h2>Zmień dane funduszu</h2>
         <div class="form-group">
-            <label for="fund-id" class="col-sm-4 control-label">Wybierz wg ID:</label>
+            <label for="fund-id" class="col-sm-4 control-label">wybierz wg ID</label>
             <div class="col-sm-4">
                 <select name="id" id="fund-id" class="form-control">
                     <option>-</option>
@@ -72,13 +72,13 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="fund-name" class="col-sm-4 control-label">Nazwa</label>
+            <label for="fund-name" class="col-sm-4 control-label">nazwa</label>
             <div class="col-sm-4">
                 <input id="fund-name" type=text" name="name" placeholder="nazwa" class="form-control" required>
             </div>
         </div>
         <div class="form-group">
-            <label for="fund-priority" class="col-sm-4 control-label">Promocja</label>
+            <label for="fund-priority" class="col-sm-4 control-label">promocja</label>
             <div class="col-sm-4">
                 <input id="fund-priority" type="number" name="priority" min="0" max="100" placeholder="promocja"
                        class="form-control" required>

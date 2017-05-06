@@ -62,10 +62,11 @@
     <div class="row">
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="http://localhost:8080/4analysis/notowania/${investFund.id}">Notowania <span
-                        class="sr-only">(current)</span></a></li>
+                <li><a href="http://localhost:8080/4analysis/notowania/${investFund.id}">Notowania</a></li>
                 <li><a href="http://localhost:8080/4analysis/wyniki/${investFund.id}">Wyniki</a></li>
-                <li><a href="http://localhost:8080/4analysis/analiza/${investFund.id}">Analiza techniczna</a></li>
+                <li class="active"><a href=http://localhost:8080/4analysis/analiza/${investFund.id}">Analiza
+                    techniczna<span
+                            class="sr-only">(current)</span></a></li>
             </ul>
         </div>
         <div class="col-md-8 col-md-offset-2 main">
@@ -105,7 +106,8 @@
                                 <div class="input-group">
                                 <span class="input-group-addon"><span
                                         class="glyphicon glyphicon-calendar"></span></span>
-                                    <input type="date" id="date-picker-start" name="from" value="${from}" class="form-control date-picker">
+                                    <input type="date" id="date-picker-start" name="from" value="${from}"
+                                           class="form-control date-picker">
                                 </div>
                             </div>
                             <div class="col-xs-3 col-md-offset-1 box">
@@ -113,7 +115,8 @@
                                 <div class="input-group">
                                 <span class="input-group-addon"><span
                                         class="glyphicon glyphicon-calendar"></span></span>
-                                    <input type="date" id="date-picker-end" name="to" value="${to}" class="form-control date-picker">
+                                    <input type="date" id="date-picker-end" name="to" value="${to}"
+                                           class="form-control date-picker">
                                 </div>
                             </div>
                         </div>
@@ -186,12 +189,12 @@
         type: 'line',
         data: {
             labels: [<c:forEach items="${ratings}" var="rating">
-                ${rating.date} ,
+                ${rating.date},
                 </c:forEach>],
             datasets: [{
                 label: 'Wycena',
                 data: [<c:forEach items="${ratings}" var="rating">
-                    ${rating.close} ,
+                    ${rating.close},
                     </c:forEach>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -216,7 +219,7 @@
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero:true
+                        beginAtZero: true
                     }
                 }]
             }
