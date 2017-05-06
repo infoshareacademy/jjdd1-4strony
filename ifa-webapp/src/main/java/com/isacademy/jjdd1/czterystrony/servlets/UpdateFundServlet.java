@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @WebServlet(urlPatterns = "/4analysis/updatefund")
 public class UpdateFundServlet extends HttpServlet {
@@ -37,11 +38,14 @@ public class UpdateFundServlet extends HttpServlet {
         int priority = Integer.parseInt(req.getParameter("priority"));
 
         InvestFund investFund = investFundRepository.getById(id);
-        investFund.setPriority(priority);
-        investFund.setName(name);
-        log.info("Updated priority: {} for fund {}", priority, id);
-        log.info("Updated name: {} for fund {}", name, id);
-        investFundRepository.update(investFund);
+
+        if (Objects.nonNull(investFund)) {
+            investFund.setPriority(priority);
+            investFund.setName(name);
+            log.info("Updated priority: {} for fund {}", priority, id);
+            log.info("Updated name: {} for fund {}", name, id);
+            investFundRepository.update(investFund);
+        }
         doGet(req, resp);
     }
 }

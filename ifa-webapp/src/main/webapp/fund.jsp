@@ -165,7 +165,7 @@
     </div>
 </div>
 <footer class="footer">
-    <div class="container col-sm-offset-9">
+    <div class="container">
         <p class="text-muted">by <strong>4strony</strong> team.</p>
     </div>
 </footer>
