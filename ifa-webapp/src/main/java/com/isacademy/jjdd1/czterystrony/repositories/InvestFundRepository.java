@@ -25,11 +25,8 @@ public class InvestFundRepository {
     }
 
     public void update(InvestFund investFund) {
-        InvestFund retrievedInvestFund = getById(investFund.getId());
-        retrievedInvestFund.setName(investFund.getName());
-        retrievedInvestFund.setLastRatingDate(investFund.getLastRatingDate());
-        entityManager.persist(retrievedInvestFund);
-        log.info("Updated invest fund: {}", retrievedInvestFund.getId());
+        entityManager.merge(investFund);
+        log.info("Updated invest fund: {}", investFund.getId());
     }
 
     public InvestFund getById(String id) {

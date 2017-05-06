@@ -222,6 +222,6 @@
         }
     });
 </script>
-<script src="/js/ajax.js"></script>
+<script src="/js/fund-ajax.js"></script>
 </body>
 </html>

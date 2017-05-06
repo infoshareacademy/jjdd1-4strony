@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 @WebFilter(urlPatterns = {"/4analysis/notowania/*", "/4analysis/analiza/*"})
@@ -36,7 +37,7 @@ public class InvestFundIdFilter implements Filter {
     private boolean fundIdIsValid(HttpServletRequest request) {
         String pathInfo = request.getPathInfo();
 
-        if (pathInfo != null) {
+        if (Objects.nonNull(pathInfo)) {
             String investFundId = request.getPathInfo().substring(1);
             Optional<InvestFundDetails> investFundDetailsOptional = views.getById(investFundId);
             return investFundDetailsOptional.isPresent();

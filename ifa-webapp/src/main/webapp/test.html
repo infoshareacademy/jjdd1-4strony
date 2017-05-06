@@ -11,28 +11,23 @@
 </head>
 <body>
 <form action="/4analysis/promotion" method="post">
-    <div>Identyfikator funduszu:
-        <select name="id" id="fund-id">
+    <div>Id funduszu:
+        <select name="investFundId">
             <c:forEach items="${investFunds}" var="investFund">
                 <option value="${investFund.id}">${investFund.id}</option>
             </c:forEach>
         </select>
     </div>
     <div>Nazwa:</div>
-    <div>
-        <input id="fund-name" type=text" name="name" required>
-    </div>
+    <div id="fund-name"></div>
     <div>Ustaw priorytet funduszu:</div>
     <div>
-        <input id="fund-priority" type="number" name="priority" min="0" max="100" required>
+        <input id="type-priority" type="number" name="priority" min="0" max="100" required>
     </div>
     <div>
         <input type="submit" value="Uaktualnij bazę danych"/>
     </div>
 </form>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
 <script src="/js/promotion-ajax.js"></script>
 </body>
 </html>

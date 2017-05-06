@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Objects;
 
 import static com.isacademy.jjdd1.czterystrony.utilities.Constants.*;
 
@@ -38,7 +39,7 @@ public class InvestFundsUpdater {
     }
 
     private boolean isNew(InvestFund investFund) {
-        return investFundRepository.getById(investFund.getId()) == null;
+        return Objects.isNull(investFundRepository.getById(investFund.getId()));
     }
 
     private boolean isUpdated(InvestFund investFund) {
@@ -50,7 +51,10 @@ public class InvestFundsUpdater {
         if (isNew(investFund)) {
             investFundRepository.add(investFund);
         } else {
-            investFundRepository.update(investFund);
+            InvestFund updatedInvestFund = investFundRepository.getById(investFund.getId());
+            updatedInvestFund.setName(investFund.getName());
+            updatedInvestFund.setLastRatingDate(investFund.getLastRatingDate());
+            investFundRepository.update(updatedInvestFund);
         }
     }
 }

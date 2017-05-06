@@ -1,5 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.isacademy.jjdd1.czterystrony.queries.InvestFundNamedNativeQueries;
 
 import javax.persistence.*;
@@ -45,6 +47,7 @@ public class InvestFund {
     @NotNull
     private String name;
 
+    @JsonIgnore
     @NotNull
     private LocalDate lastRatingDate;
 
@@ -53,6 +56,7 @@ public class InvestFund {
     @NotNull
     private int priority;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "investFund", cascade = CascadeType.PERSIST)
     private List<Rating> ratings = new ArrayList<>();
 
