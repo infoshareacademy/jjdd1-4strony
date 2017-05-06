@@ -1,8 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -15,7 +13,6 @@
           href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
 </head>
 <body>
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -61,7 +58,6 @@
         </div>
     </div>
 </nav>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2 sidebar">
@@ -168,6 +164,11 @@
         </div>
     </div>
 </div>
+<footer class="footer">
+    <div class="container col-sm-offset-9">
+        <p class="text-muted">by <strong>4strony</strong> team.</p>
+    </div>
+</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

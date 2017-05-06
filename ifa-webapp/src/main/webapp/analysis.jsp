@@ -1,8 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -15,7 +13,6 @@
           href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
 </head>
 <body>
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -61,15 +58,14 @@
         </div>
     </div>
 </nav>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="http://localhost:8080/4analysis/notowania/${investFund.id}">Notowania</a></li>
-                <li><a href="http://localhost:8080/4analysis/wyniki/${investFund.id}">Wyniki</a></li>
-                <li class="active"><a href="http://localhost:8080/4analysis/analiza/${investFund.id}">Analiza techniczna<span
+                <li class="active"><a href="http://localhost:8080/4analysis/notowania/${investFund.id}">Notowania <span
                         class="sr-only">(current)</span></a></li>
+                <li><a href="http://localhost:8080/4analysis/wyniki/${investFund.id}">Wyniki</a></li>
+                <li><a href="http://localhost:8080/4analysis/analiza/${investFund.id}">Analiza techniczna</a></li>
             </ul>
         </div>
         <div class="col-md-8 col-md-offset-2 main">
@@ -173,6 +169,11 @@
         </div>
     </div>
 </div>
+<footer class="footer">
+    <div class="container col-sm-offset-9">
+        <p class="text-muted">by <strong>4strony</strong> team.</p>
+    </div>
+</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

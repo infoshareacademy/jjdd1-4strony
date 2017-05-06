@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/4analysis/promotion")
-public class PromotionServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/4analysis/updatefund")
+public class UpdateFundServlet extends HttpServlet {
 
-    private static Logger log = LoggerFactory.getLogger(PromotionServlet.class);
+    private static Logger log = LoggerFactory.getLogger(UpdateFundServlet.class);
 
     @Inject
     InvestFundRepository investFundRepository;
@@ -27,7 +27,7 @@ public class PromotionServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         List<InvestFund> investFunds = investFundRepository.getAll();
         req.setAttribute("investFunds", investFunds);
-        req.getRequestDispatcher("/promotion.jsp").forward(req,resp);
+        req.getRequestDispatcher("/updatefund.jsp").forward(req,resp);
     }
 
     @Override

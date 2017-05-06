@@ -1,20 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>4analysis</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
-    <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -60,7 +57,6 @@
         </div>
     </div>
 </nav>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 main">
@@ -219,6 +215,11 @@
         </div>
     </div>
 </div>
+<footer class="footer">
+    <div class="container col-sm-offset-9">
+        <p class="text-muted">by <strong>4strony</strong> team.</p>
+    </div>
+</footer>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
