@@ -67,6 +67,7 @@
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li><a href="http://localhost:8080/4analysis/notowania/${investFund.id}">Notowania</a></li>
+                <li><a href="http://localhost:8080/4analysis/wyniki/${investFund.id}">Wyniki</a></li>
                 <li class="active"><a href="http://localhost:8080/4analysis/analiza/${investFund.id}">Analiza techniczna<span
                         class="sr-only">(current)</span></a></li>
             </ul>
@@ -108,8 +109,7 @@
                                 <div class="input-group">
                                 <span class="input-group-addon"><span
                                         class="glyphicon glyphicon-calendar"></span></span>
-                                    <input type="date" name="from" value="${from}" class="form-control"
-                                           placeholder="od">
+                                    <input type="date" id="date-picker-start" name="from" value="${from}" class="form-control date-picker">
                                 </div>
                             </div>
                             <div class="col-xs-3 col-md-offset-1 box">
@@ -117,7 +117,7 @@
                                 <div class="input-group">
                                 <span class="input-group-addon"><span
                                         class="glyphicon glyphicon-calendar"></span></span>
-                                    <input type="date" name="to" value="${to}" class="form-control" placeholder="od">
+                                    <input type="date" id="date-picker-end" name="to" value="${to}" class="form-control date-picker">
                                 </div>
                             </div>
                         </div>
@@ -177,7 +177,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-<script src="/js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script>
 
     var ctx = document.getElementById("myChart");
@@ -222,5 +222,6 @@
         }
     });
 </script>
+<script src="/js/ajax.js"></script>
 </body>
 </html>
