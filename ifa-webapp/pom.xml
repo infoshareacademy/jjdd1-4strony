@@ -20,7 +20,7 @@
         <!-- mysql -->
         <version.mysql>5.1.41</version.mysql>
         <jdbc.datasource>java:jboss/datasources/MySqlDS</jdbc.datasource>
-        <mysql.connection.url>jdbc:mysql://localhost:3306/4analysis??useUnicode=yes&amp;characterEncoding=UTF-8</mysql.connection.url>
+        <mysql.connection.url>jdbc:mysql://localhost:4444/4analysis??useUnicode=yes&amp;characterEncoding=UTF-8</mysql.connection.url>
         <mysql.username>root</mysql.username>
         <mysql.password>pass</mysql.password>
 
