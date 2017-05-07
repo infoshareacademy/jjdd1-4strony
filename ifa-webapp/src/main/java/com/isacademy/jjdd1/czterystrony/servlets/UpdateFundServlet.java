@@ -1,9 +1,8 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
+import com.isacademy.jjdd1.czterystrony.repositories.InvestFundFacade;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -13,15 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 @WebServlet(urlPatterns = "/4analysis/updatefund")
 public class UpdateFundServlet extends HttpServlet {
 
-    private static Logger log = LoggerFactory.getLogger(UpdateFundServlet.class);
-
     @Inject
     InvestFundRepository investFundRepository;
+
+    @Inject
+    InvestFundFacade investFundFacade;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,15 +36,13 @@ public class UpdateFundServlet extends HttpServlet {
         String name = req.getParameter("name");
         int priority = Integer.parseInt(req.getParameter("priority"));
 
-        InvestFund investFund = investFundRepository.getById(id);
-
-        if (Objects.nonNull(investFund)) {
-            investFund.setPriority(priority);
-            investFund.setName(name);
-            log.info("Updated priority: {} for fund {}", priority, id);
-            log.info("Updated name: {} for fund {}", name, id);
-            investFundRepository.update(investFund);
+        try {
+            investFundFacade.updateName(id, name);
+            investFundFacade.updatePriority(id, priority);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
+
         doGet(req, resp);
     }
 }

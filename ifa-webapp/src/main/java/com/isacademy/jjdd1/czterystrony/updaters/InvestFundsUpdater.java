@@ -54,7 +54,6 @@ public class InvestFundsUpdater {
             InvestFund updatedInvestFund = investFundRepository.getById(investFund.getId());
             updatedInvestFund.setName(investFund.getName());
             updatedInvestFund.setLastRatingDate(investFund.getLastRatingDate());
-            investFundRepository.update(updatedInvestFund);
         }
     }
 }
