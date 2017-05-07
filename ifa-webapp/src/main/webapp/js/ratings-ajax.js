@@ -1,43 +1,45 @@
 $(document).ready(function () {
     $.ajax({
-        url: '/resources/ratings/json/' + $('#fund-id').text(),
+        url: '/resources/ratings/all/json/' + $('#fund-id').text(),
         dataType: 'json',
         success: function (response) {
             var chart = AmCharts.makeChart("chart-container", {
                 type: "stock",
                 "theme": "light",
 
-                "dataSets": [
-                    {
-                        "fieldMappings": [{
-                            "fromField": "close",
-                            "toField": "close"
-                        }
-                        ],
-                        "dataProvider": response,
-                        "categoryField": "date",
-                        "compared": false
-                    }
-                ],
+                "dataSets": [{
+                    "fieldMappings": [{
+                        "fromField": "close",
+                        "toField": "close"
+                    }],
+                    "dataProvider": response,
+                    "categoryField": "date",
+                    "compared": false
+                }],
 
                 "panels": [{
                     recalculateToPercents: "never",
 
-                    "valueAxes": [
-                        {"id": "axis1"},
-                        {"id": "axis2"}
-                    ],
+                    "title": "wartość j.u. netto w PLN",
 
-                    "stockGraphs": [
-                        {
-                            "id": "g1",
-                            "title": "Graph #1",
-                            "lineThickness": 2,
-                            "valueField": "close",
-                            "useDataSetColors": false,
-                            "valueAxis": "axis1",
-                        }
-                    ]
+                    "valueAxes": [{
+                        "id": "axis1",
+                        "minimum": 0
+                    }],
+
+                    "stockGraphs": [{
+                        "id": "g1",
+                        "title": $('#fund-id').text(),
+                        "lineThickness": 2,
+                        "valueField": "close",
+                        "useDataSetColors": false,
+                        "valueAxis": "axis1"
+                    }],
+
+                    "stockLegend": {
+                        "valueTextRegular": " ",
+                        "markerType": "none"
+                    }
 
                 }],
 
@@ -56,22 +58,47 @@ $(document).ready(function () {
 
                 "periodSelector": {
                     "position": "bottom",
-                    "periods": [{
-                        "period": "MM",
-                        "count": 1,
-                        "label": "1 month"
-                    }, {
-                        "period": "YYYY",
-                        "count": 1,
-                        "label": "1 year"
-                    }, {
-                        "period": "YTD",
-                        "label": "YTD"
-                    }, {
-                        "period": "MAX",
-                        "selected": true,
-                        "label": "MAX"
-                    }]
+                    "periods": [
+                        {
+                            "period": "DD",
+                            "count": 7,
+                            "label": "7 days"
+                        }, {
+                            "period": "MM",
+                            "count": 1,
+                            "label": "1 month"
+                        }, {
+                            "period": "MM",
+                            "count": 3,
+                            "label": "3 months"
+                        }, {
+                            "period": "MM",
+                            "count": 6,
+                            "label": "6 months"
+                        }, {
+                            "period": "YYYY",
+                            "count": 1,
+                            "label": "1 year"
+                        }, {
+                            "period": "YYYY",
+                            "count": 3,
+                            "label": "3 years"
+                        },{
+                            "period": "YTD",
+                            "label": "YTD"
+                        }, {
+                            "period": "MAX",
+                            "selected": true,
+                            "label": "MAX"
+                        }
+                    ]
+                },
+
+                "panelsSettings": {
+                    "usePrefixes": true
+                },
+                "export": {
+                    "enabled": true
                 }
             });
         },

@@ -24,7 +24,7 @@ public class Ratings2JsonService {
     RatingRepository ratingRepository;
 
     @GET
-    @Path("/json/{investFundId}")
+    @Path("/timeRange/json/{investFundId}")
     @Produces("application/json")
     public List<Rating> getRatingsInTimeRange(
             @PathParam("investFundId") String id,
@@ -37,7 +37,7 @@ public class Ratings2JsonService {
     }
 
     @GET
-    @Path("/json/{investFundId}")
+    @Path("/all/json/{investFundId}")
     @Produces("application/json")
     public List<Rating> getRatings(@PathParam("investFundId") String id) {
         log.info("Provided all ratings for {}", id);
