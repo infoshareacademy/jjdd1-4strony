@@ -1,10 +1,10 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
-import com.isacademy.jjdd1.czterystrony.dbviews.Views;
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
 import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 import com.isacademy.jjdd1.czterystrony.model.Rating;
+import com.isacademy.jjdd1.czterystrony.repositories.InvestFundDetailsRepository;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
 import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.LocalExtremaProvider;
@@ -25,7 +25,7 @@ import java.util.Objects;
 public class InvestFundServlet extends HttpServlet {
 
     @Inject
-    Views views;
+    InvestFundDetailsRepository investFundDetailsRepository;
 
     @Inject
     InvestFundRepository investFundRepository;
@@ -40,7 +40,7 @@ public class InvestFundServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
         String investFundId = req.getPathInfo().substring(1);
-        InvestFundDetails investFundDetails = views.getById(investFundId).get();
+        InvestFundDetails investFundDetails = investFundDetailsRepository.getById(investFundId);
         InvestFund investFund = investFundRepository.getById(investFundId);
         String from = req.getParameter("from");
         String to = req.getParameter("to");

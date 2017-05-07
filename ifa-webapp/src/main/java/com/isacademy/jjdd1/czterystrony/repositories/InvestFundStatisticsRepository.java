@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class StatisticsRepository {
+public class InvestFundStatisticsRepository {
 
     private static Logger log = LoggerFactory.getLogger(InvestFundStatistics.class);
 

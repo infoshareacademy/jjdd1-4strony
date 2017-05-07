@@ -1,7 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.repositories;
 
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
-import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,22 +23,12 @@ public class InvestFundRepository {
         log.info("Added new invest fund: {}", investFund.getId());
     }
 
-    public void update(InvestFund investFund) {
-        entityManager.merge(investFund);
-        log.info("Updated invest fund: {}", investFund.getId());
-    }
-
     public InvestFund getById(String id) {
         return entityManager.find(InvestFund.class, id);
     }
 
     public List<InvestFund> getAll() {
         Query query = entityManager.createQuery("SELECT f FROM InvestFund f");
-        return query.getResultList();
-    }
-
-    public List<InvestFundDetails> getAllWithDetails() {
-        Query query = entityManager.createNamedQuery("InvestFund.getAllWithDetails");
         return query.getResultList();
     }
 }

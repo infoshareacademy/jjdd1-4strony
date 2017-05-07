@@ -34,10 +34,16 @@ import java.util.List;
                         }
                 )}
 )
-@NamedNativeQuery(
-        name = "InvestFund.getAllWithDetails",
-        query = InvestFundNamedNativeQueries.investFundDetails,
-        resultSetMapping = "InvestFundDetailsMapping")
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "InvestFund.getAllWithDetails",
+                query = InvestFundNamedNativeQueries.allWithDetails,
+                resultSetMapping = "InvestFundDetailsMapping"),
+        @NamedNativeQuery(
+                name = "InvestFund.getByIdWithDetails",
+                query = InvestFundNamedNativeQueries.byIdWithDetails,
+                resultSetMapping = "InvestFundDetailsMapping")
+})
 public class InvestFund {
 
     @Id

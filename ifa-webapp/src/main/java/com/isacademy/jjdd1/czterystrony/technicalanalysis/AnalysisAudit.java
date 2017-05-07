@@ -3,7 +3,7 @@ package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import com.isacademy.jjdd1.czterystrony.model.InvestFundStatistics;
-import com.isacademy.jjdd1.czterystrony.repositories.StatisticsRepository;
+import com.isacademy.jjdd1.czterystrony.repositories.InvestFundStatisticsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +16,7 @@ public class AnalysisAudit {
     private static Logger log = LoggerFactory.getLogger(AnalysisAudit.class);
 
     @Inject
-    StatisticsRepository statisticsRepository;
+    InvestFundStatisticsRepository investFundStatisticsRepository;
 
     @AroundInvoke
     public Object addToStatistics(InvocationContext ic) throws Throwable {
@@ -31,7 +31,7 @@ public class AnalysisAudit {
                 .withZigZag(minSwingLimitInPct)
                 .build();
 
-        statisticsRepository.add(investFundStatistics);
+        investFundStatisticsRepository.add(investFundStatistics);
         log.info("User {} checked {} fund", investFundStatistics.getUser(), investFundStatistics.getId());
         return ic.proceed();
     }

@@ -1,7 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.filters;
 
-import com.isacademy.jjdd1.czterystrony.dbviews.Views;
-import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
+import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
 
 import javax.inject.Inject;
 import javax.servlet.*;
@@ -10,13 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Objects;
-import java.util.Optional;
 
 @WebFilter(urlPatterns = {"/4analysis/notowania/*", "/4analysis/analiza/*"})
 public class InvestFundIdFilter implements Filter {
 
     @Inject
-    Views views;
+    InvestFundRepository repository;
 
     @Override
     public void doFilter(ServletRequest request,
@@ -39,19 +37,16 @@ public class InvestFundIdFilter implements Filter {
 
         if (Objects.nonNull(pathInfo)) {
             String investFundId = request.getPathInfo().substring(1);
-            Optional<InvestFundDetails> investFundDetailsOptional = views.getById(investFundId);
-            return investFundDetailsOptional.isPresent();
+            return Objects.nonNull(repository.getById(investFundId));
         }
         return false;
     }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
     public void destroy() {
-
     }
 }

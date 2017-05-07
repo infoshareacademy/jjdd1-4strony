@@ -1,14 +1,13 @@
 package com.isacademy.jjdd1.czterystrony.dbviews;
 
 import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
-import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
+import com.isacademy.jjdd1.czterystrony.repositories.InvestFundDetailsRepository;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.*;
 import javax.inject.Inject;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Startup
@@ -20,11 +19,11 @@ public class Views {
     private List<InvestFundDetails> notPromotedFunds;
 
     @Inject
-    InvestFundRepository investFundRepository;
+    InvestFundDetailsRepository repository;
 
     @PostConstruct
     public void updateViews() {
-        this.allFunds = investFundRepository.getAllWithDetails().stream()
+        this.allFunds = repository.getAll().stream()
                 .sorted(Comparator.comparing(InvestFundDetails::getName))
                 .collect(Collectors.toList());
 
@@ -36,12 +35,6 @@ public class Views {
         this.notPromotedFunds = allFunds.stream()
                 .filter(f -> f.getPriority() == 0)
                 .collect(Collectors.toList());
-    }
-
-    public Optional<InvestFundDetails> getById(String id) {
-        return allFunds.stream()
-                .filter(f -> f.getId().equals(id))
-                .findFirst();
     }
 
     public List<InvestFundDetails> getAllFunds() {
