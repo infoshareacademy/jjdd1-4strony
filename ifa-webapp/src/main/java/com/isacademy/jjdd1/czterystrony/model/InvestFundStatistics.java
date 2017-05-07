@@ -48,7 +48,6 @@ public class InvestFundStatistics {
 
     public static class Builder {
         private InvestFund investFund;
-        private LocalDateTime dateTime;
         private LocalDate dateFrom;
         private LocalDate dateTo;
         private int zigZag;
