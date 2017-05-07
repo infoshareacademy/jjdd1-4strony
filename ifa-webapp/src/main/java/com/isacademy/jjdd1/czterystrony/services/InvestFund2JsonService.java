@@ -18,7 +18,7 @@ public class InvestFund2JsonService {
     @GET
     @Path("/json/{id}")
     @Produces("application/json")
-    public InvestFund getInvestFundInJson(@PathParam("id") String id) {
+    public InvestFund getInvestFund(@PathParam("id") String id) {
         return investFundRepository.getById(id);
     }
 }

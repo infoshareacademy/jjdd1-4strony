@@ -1,6 +1,8 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isacademy.jjdd1.czterystrony.queries.RatingNamedNativeQueries;
+import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
@@ -41,6 +43,7 @@ public class Rating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonSerialize(using = JsonDateSerializer.class)
     @NotNull
     private LocalDate date;
 

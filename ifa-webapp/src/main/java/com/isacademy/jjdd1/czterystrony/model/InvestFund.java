@@ -1,8 +1,9 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isacademy.jjdd1.czterystrony.queries.InvestFundNamedNativeQueries;
+import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -47,7 +48,7 @@ public class InvestFund {
     @NotNull
     private String name;
 
-    @JsonIgnore
+    @JsonSerialize(using = JsonDateSerializer.class)
     @NotNull
     private LocalDate lastRatingDate;
 
