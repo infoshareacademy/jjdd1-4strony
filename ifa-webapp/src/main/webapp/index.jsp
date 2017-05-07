@@ -171,11 +171,7 @@
         </div>
     </div>
 </div>
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted">by <strong>4strony</strong> team.</p>
-    </div>
-</footer>
+<%@include file="footer.jsp" %>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
