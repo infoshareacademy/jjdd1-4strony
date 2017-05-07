@@ -74,13 +74,13 @@
         <div class="form-group">
             <label for="fund-name" class="col-sm-4 control-label">nazwa</label>
             <div class="col-sm-4">
-                <input id="fund-name" type=text" name="name" placeholder="nazwa" class="form-control" required>
+                <input id="fund-name" type=text" name="name" placeholder="pełna nazwa funduszu" class="form-control" required>
             </div>
         </div>
         <div class="form-group">
             <label for="fund-priority" class="col-sm-4 control-label">promocja</label>
             <div class="col-sm-4">
-                <input id="fund-priority" type="number" name="priority" min="0" max="100" placeholder="promocja"
+                <input id="fund-priority" type="number" name="priority" min="0" max="100" placeholder="liczby od 0 do 100"
                        class="form-control" required>
             </div>
         </div>
