@@ -11,13 +11,13 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class StatisticsRepository {
 
-    private static Logger log = LoggerFactory.getLogger(InvestFundRepository.class);
+    private static Logger log = LoggerFactory.getLogger(InvestFundStatistics.class);
 
     @PersistenceContext
     EntityManager entityManager;
 
     public void add(InvestFundStatistics investFundStatistics) {
         entityManager.persist(investFundStatistics);
-        log.info("Added new invest fund: {}", investFundStatistics.getId());
+        log.info("Added new statistics record for fund {}", investFundStatistics.getId());
     }
 }
