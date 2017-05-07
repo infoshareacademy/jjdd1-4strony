@@ -36,7 +36,7 @@ public class InvestFundIdFilter implements Filter {
         String pathInfo = request.getPathInfo();
 
         if (Objects.nonNull(pathInfo)) {
-            String investFundId = request.getPathInfo().substring(1);
+            String investFundId = pathInfo.substring(1);
             return Objects.nonNull(repository.getById(investFundId));
         }
         return false;

@@ -11,6 +11,12 @@
     <link href="/css/styles.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen"
           href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+    <style>
+        #chart-container {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
 </head>
 <body>
 <%@include file="navbar.jsp" %>
@@ -28,7 +34,7 @@
             <div class="row">
                 <h3 class="page-header"><a
                         href="http://localhost:8080/4analysis/notowania/${investFund.id}">${investFund.name}</a></h3>
-                <span class="text-muted">${investFund.id} </span><br>
+                <span id="fund-id" class="text-muted">${investFund.id}</span><br>
                 <div class="col-md-4">
                     <span class="lead"><strong>${investFund.close} PLN </strong></span>
                     <c:choose>
@@ -51,126 +57,20 @@
                 <span class="text-info">wycena na dzień ${investFund.date}</span>
             </div>
 
-            <div class="row main">
-                <h4 class="page-header">Notowania</h4>
-                <form>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-xs-3 box">
-                                <label>od</label>
+            <div id="chart-container"></div>
 
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </div>
-                                    <input type="date" id="date-picker-start" value="${from}"
-                                           class="form-control date-picker">
-                                </div>
-
-                                <%--<div class="input-group" data-provide="datepicker">--%>
-                                <%--<span class="input-group-addon"><span--%>
-                                <%--class="glyphicon glyphicon-calendar"></span></span>--%>
-                                <%--<input type="date" id="date-picker-start" name="from" value="${from}" class="form-control date-picker">--%>
-                                <%--</div>--%>
-
-
-                            </div>
-                            <div class="col-xs-3 col-md-offset-1 box">
-                                <label>do</label>
-
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </div>
-                                    <input type="date" id="date-picker-end" value="${to}"
-                                           class="form-control date-picker">
-                                </div>
-
-                                <%--<div class="input-group" data-provide="datepicker">--%>
-                                <%--<span class="input-group-addon"><span--%>
-                                <%--class="glyphicon glyphicon-calendar"></span></span>--%>
-                                <%--<input type="date" id="date-picker-end" name="to" value="${to}" class="form-control date-picker">--%>
-                                <%--</div>--%>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
-                <div class="table-responsive col-md-4">
-                    <table class="table table-striped table-condensed table-hover-other">
-                        <thead>
-                        <tr>
-                            <th>data</th>
-                            <th>wycena</th>
-                        </tr>
-                        </thead>
-                        <tbody class="table-other">
-                        <c:forEach items="${ratings}" var="rating">
-                            <tr>
-                                <td>${rating.date}</td>
-                                <td>${rating.close}</td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-
-
-            </div>
         </div>
     </div>
 </div>
 <%@include file="footer.jsp" %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js"></script>
-<%--<script>--%>
-<%--var ctx = document.getElementById("myChart");--%>
-<%--var myChart = new Chart(ctx, {--%>
-<%--type: 'line',--%>
-<%--data: {--%>
-<%--labels: [<c:forEach items="${ratings}" var="rating">--%>
-<%--${rating.date},--%>
-<%--</c:forEach>],--%>
-<%--datasets: [{--%>
-<%--label: 'Wycena',--%>
-<%--data: [<c:forEach items="${ratings}" var="rating">--%>
-<%--${rating.close},--%>
-<%--</c:forEach>],--%>
-<%--backgroundColor: [--%>
-<%--'rgba(255, 99, 132, 0.2)',--%>
-<%--'rgba(54, 162, 235, 0.2)',--%>
-<%--'rgba(255, 206, 86, 0.2)',--%>
-<%--'rgba(75, 192, 192, 0.2)',--%>
-<%--'rgba(153, 102, 255, 0.2)',--%>
-<%--'rgba(255, 159, 64, 0.2)'--%>
-<%--],--%>
-<%--borderColor: [--%>
-<%--'rgba(255,99,132,1)',--%>
-<%--'rgba(54, 162, 235, 1)',--%>
-<%--'rgba(255, 206, 86, 1)',--%>
-<%--'rgba(75, 192, 192, 1)',--%>
-<%--'rgba(153, 102, 255, 1)',--%>
-<%--'rgba(255, 159, 64, 1)'--%>
-<%--],--%>
-<%--borderWidth: 1--%>
-<%--}]--%>
-<%--},--%>
-<%--options: {--%>
-<%--scales: {--%>
-<%--yAxes: [{--%>
-<%--ticks: {--%>
-<%--beginAtZero: true--%>
-<%--}--%>
-<%--}]--%>
-<%--}--%>
-<%--}--%>
-<%--});--%>
-<%--</script>--%>
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+<script src="https://www.amcharts.com/lib/3/amstock.js"></script>
 <script src="/js/ratings-ajax.js"></script>
 </body>
 </html>

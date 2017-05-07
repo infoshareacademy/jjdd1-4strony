@@ -1,62 +1,82 @@
 $(document).ready(function () {
-    $('.date-picker').datepicker()
-        .on('dp.change', function (e) {
-            $.ajax({
-                type: 'Post',
-                url: '/4analysis/test',
-                data: {
-                    start: $('#date-picker-start').val(),
-                    end: $('#date-picker-end').val()
+    $.ajax({
+        url: '/resources/ratings/json/' + $('#fund-id').text(),
+        dataType: 'json',
+        success: function (response) {
+            var chart = AmCharts.makeChart("chart-container", {
+                type: "stock",
+                "theme": "light",
+
+                "dataSets": [
+                    {
+                        "fieldMappings": [{
+                            "fromField": "close",
+                            "toField": "close"
+                        }
+                        ],
+                        "dataProvider": response,
+                        "categoryField": "date",
+                        "compared": false
+                    }
+                ],
+
+                "panels": [{
+                    recalculateToPercents: "never",
+
+                    "valueAxes": [
+                        {"id": "axis1"},
+                        {"id": "axis2"}
+                    ],
+
+                    "stockGraphs": [
+                        {
+                            "id": "g1",
+                            "title": "Graph #1",
+                            "lineThickness": 2,
+                            "valueField": "close",
+                            "useDataSetColors": false,
+                            "valueAxis": "axis1",
+                        }
+                    ]
+
+                }],
+
+                "chartScrollbarSettings": {
+                    "graph": "g1"
                 },
-                success: function (response) {
-                    $('#date-picker-start').val(response);
+
+                "chartCursorSettings": {
+                    "valueBalloonsEnabled": true,
+                    "fullWidth": true,
+                    "cursorAlpha": 0.1,
+                    "valueLineBalloonEnabled": true,
+                    "valueLineEnabled": true,
+                    "valueLineAlpha": 0.5
+                },
+
+                "periodSelector": {
+                    "position": "bottom",
+                    "periods": [{
+                        "period": "MM",
+                        "count": 1,
+                        "label": "1 month"
+                    }, {
+                        "period": "YYYY",
+                        "count": 1,
+                        "label": "1 year"
+                    }, {
+                        "period": "YTD",
+                        "label": "YTD"
+                    }, {
+                        "period": "MAX",
+                        "selected": true,
+                        "label": "MAX"
+                    }]
                 }
             });
-        });
-
-    // $('.datepicker').datepicker()
-    //     .on(changeDate, function () {
-    //         $.ajax({
-    //             type: 'Post',
-    //             url: '/4analysis/notowania',
-    //             data: {
-    //                 start: $('#date-picker-start').val(),
-    //                 end: $('#date-picker-end').val()
-    //             },
-    //             success: function (response) {
-    //                 $('#date-picker-start').val(response);
-    //             }
-    //         });
-    //     });
-    //
-    //
-    // $('.date-picker').datepicker({
-    //     onSelect: function() {
-    //         $.ajax({
-    //             type: 'Post',
-    //             url: '/4analysis/notowania',
-    //             data: {
-    //                 start: $('#date-picker-start').val(),
-    //                 end: $('#date-picker-end').val()
-    //             },
-    //             success: function (response) {
-    //                 $('#date-picker-start').val(response);
-    //             }
-    //         });
-    //     }
-    // });
-
-    // $('.date-picker').blur(function () {
-    //     $.ajax({
-    //         type: 'Post',
-    //         url: '/4analysis/test',
-    //         data: {
-    //             start: $('#date-picker-start').val(),
-    //             end: $('#date-picker-end').val()
-    //         },
-    //         success: function (response) {
-    //             $('#date-picker-start').val(response);
-    //         }
-    //     });
-    // });
+        },
+        error: function (response, status, er) {
+            alert("error: " + response + " status: " + status + " er:" + er);
+        }
+    });
 });

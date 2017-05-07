@@ -178,6 +178,6 @@
         }
     });
 </script>
-<script src="/js/ratings-ajax.js"></script>
+<%--<script src="/js/ratings-ajax.js"></script>--%>
 </body>
 </html>

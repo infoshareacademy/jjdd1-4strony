@@ -49,6 +49,12 @@ public class RatingRepository {
         return (Rating) query.getResultList().get(0);
     }
 
+    public List<Rating> getAllByFund(InvestFund investFund) {
+        Query query = entityManager.createNamedQuery("Rating.getAllByFund");
+        query.setParameter("investFund", investFund);
+        return query.getResultList();
+    }
+
     public void insertDataFromCsv(String filePath) {
         Query query = entityManager.createNamedQuery("Rating.insertDataFromCsv");
         query.setParameter("filePath", filePath);

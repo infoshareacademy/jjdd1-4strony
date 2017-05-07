@@ -26,14 +26,25 @@ public class Ratings2JsonService {
     @GET
     @Path("/json/{investFundId}")
     @Produces("application/json")
-    public List<Rating> getRatings(
+    public List<Rating> getRatingsInTimeRange(
             @PathParam("investFundId") String id,
             @QueryParam("from") RestDateParam from,
             @QueryParam("to") RestDateParam to) {
 
-        InvestFund investFund = investFundRepository.getById(id);
         TimeRange timeRange = new TimeRange(from.getDate(), to.getDate());
-        log.info("Provided ratings for {} from {} to {}", id, from, to);
-        return ratingRepository.getByFundInTimeRange(investFund, timeRange);
+        log.info("Provided ratings for {} from {} to {}", id, from.getDate(), to.getDate());
+        return ratingRepository.getByFundInTimeRange(getFund(id), timeRange);
+    }
+
+    @GET
+    @Path("/json/{investFundId}")
+    @Produces("application/json")
+    public List<Rating> getRatings(@PathParam("investFundId") String id) {
+        log.info("Provided all ratings for {}", id);
+        return ratingRepository.getAllByFund(getFund(id));
+    }
+
+    private InvestFund getFund(String id) {
+        return investFundRepository.getById(id);
     }
 }

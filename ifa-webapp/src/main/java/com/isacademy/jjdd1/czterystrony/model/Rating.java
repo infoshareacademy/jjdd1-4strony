@@ -31,6 +31,10 @@ import java.time.LocalDate;
         @NamedQuery(
                 name = "Rating.getNewestForFund",
                 query = "SELECT r FROM Rating r WHERE r.investFund = :investFund ORDER BY r.date DESC"
+        ),
+        @NamedQuery(
+                name = "Rating.getAllByFund",
+                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund ORDER BY r.date ASC"
         )
 })
 @NamedNativeQuery(
