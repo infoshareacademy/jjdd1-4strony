@@ -19,4 +19,11 @@ public class RestDateParam {
     public LocalDate getDate() {
         return date;
     }
+
+    @Override
+    public String toString() {
+        return "RestDateParam{" +
+                "date=" + date +
+                '}';
+    }
 }

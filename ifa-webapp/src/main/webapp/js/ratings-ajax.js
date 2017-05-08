@@ -58,6 +58,7 @@ $(document).ready(function () {
 
                 "periodSelector": {
                     "position": "bottom",
+                    "dateFormat": "YYYY-MM-DD",
                     "periods": [
                         {
                             "period": "DD",
@@ -88,7 +89,7 @@ $(document).ready(function () {
                             "label": "YTD"
                         }, {
                             "period": "MAX",
-                            "selected": true,
+                            // "selected": true,
                             "label": "MAX"
                         }
                     ]

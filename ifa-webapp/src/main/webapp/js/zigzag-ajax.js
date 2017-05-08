@@ -22,6 +22,8 @@ function getAjax() {
         url: '/resources/zigzag/all/json/' + $('#fund-id').text(),
         data: {
             "zigZag": $('#zigZag').val(),
+            "startDate": $('.amcharts-start-date-input').val(),
+            "endDate": $('.amcharts-end-date-input').val()
         },
         dataType: 'json',
         success: function (response) {
@@ -39,7 +41,6 @@ function getAjax() {
                     "color": "#d23a3a",
                     "dataProvider": ratings,
                     "categoryField": "date",
-                    // "compared": true
                 }, {
                     "title": $('#fund-id').text() + " (ZigZag)",
                     "fieldMappings": [{
@@ -98,6 +99,7 @@ function getAjax() {
 
                 "periodSelector": {
                     "position": "bottom",
+                    "dateFormat": "YYYY-MM-DD",
                     "periods": [
                         {
                             "period": "DD",
@@ -128,7 +130,7 @@ function getAjax() {
                             "label": "YTD"
                         }, {
                             "period": "MAX",
-                            "selected": true,
+                            // "selected": true,
                             "label": "MAX"
                         }
                     ]

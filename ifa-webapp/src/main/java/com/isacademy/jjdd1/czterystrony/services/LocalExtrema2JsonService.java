@@ -32,15 +32,15 @@ public class LocalExtrema2JsonService {
     @GET
     @Path("/timeRange/json/{investFundId}")
     @Produces("application/json")
-    public List<Rating> getRatingsInTimeRange(
+    public List<Rating> getZigZagInTimeRange(
             @PathParam("investFundId") String id,
-            @QueryParam("from") RestDateParam from,
-            @QueryParam("to") RestDateParam to,
-            @QueryParam("zigZag") RestIntegerParam zigZag) {
+            @QueryParam("zigZag") RestIntegerParam zigZag,
+            @QueryParam("startDate") RestDateParam start,
+            @QueryParam("endDate") RestDateParam end) {
 
-        TimeRange timeRange = new TimeRange(from.getDate(), to.getDate());
+        TimeRange timeRange = new TimeRange(start.getDate(), end.getDate());
         List<Rating> ratings = ratingRepository.getByFundInTimeRange(getFund(id), timeRange);
-        log.info("Provided local extrema for {} from {} to {}", id, from.getDate(), to.getDate());
+        log.info("Provided local extrema for {} start {} end {}", id, start.getDate(), end.getDate());
         return localExtremaProvider.findExtrema(ratings, zigZag.getNumber());
     }
 
@@ -48,9 +48,11 @@ public class LocalExtrema2JsonService {
     @Path("/all/json/{investFundId}")
     @Produces("application/json")
     @Interceptors(AnalysisAudit.class)
-    public List<Rating> getRatings(
+    public List<Rating> getZigZag(
             @PathParam("investFundId") String id,
-            @QueryParam("zigZag") RestIntegerParam zigZag) {
+            @QueryParam("zigZag") RestIntegerParam zigZag,
+            @QueryParam("startDate") RestDateParam start,
+            @QueryParam("endDate") RestDateParam end) {
 
         List<Rating> ratings = ratingRepository.getAllByFund(getFund(id));
         log.info("Provided all local extrema for {}", id);
