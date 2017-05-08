@@ -65,10 +65,11 @@ function getAjax() {
                     "stockGraphs": [{
                         "id": "g1",
                         // "title": $('#fund-id').text() + " (ZigZag)",
-                        "lineThickness": 2,
+                        "lineThickness": 1,
                         "valueField": "close",
                         "comparable": true,
                         "compareField": "close",
+                        "compareGraphLineThickness": 2
                         // "useDataSetColors": false,
                         // "valueAxis": "axis1"
                     }],

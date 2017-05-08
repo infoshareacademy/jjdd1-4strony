@@ -24,7 +24,7 @@ $(document).ready(function () {
 
                     "valueAxes": [{
                         "id": "axis1",
-                        "minimum": 0
+                        // "minimum": 0
                     }],
 
                     "stockGraphs": [{
