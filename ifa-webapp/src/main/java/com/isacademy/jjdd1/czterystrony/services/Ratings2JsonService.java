@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.services;
 
-import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
+import com.isacademy.jjdd1.czterystrony.technicalanalysis.TimeRange;
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import com.isacademy.jjdd1.czterystrony.model.Rating;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/ratings")
@@ -25,7 +26,7 @@ public class Ratings2JsonService {
 
     @GET
     @Path("/timeRange/json/{investFundId}")
-    @Produces("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Rating> getRatingsInTimeRange(
             @PathParam("investFundId") String id,
             @QueryParam("from") RestDateParam from,
@@ -38,7 +39,7 @@ public class Ratings2JsonService {
 
     @GET
     @Path("/all/json/{investFundId}")
-    @Produces("application/json")
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Rating> getRatings(@PathParam("investFundId") String id) {
         log.info("Provided all ratings for {}", id);
         return ratingRepository.getAllByFund(getFund(id));
