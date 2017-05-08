@@ -9,14 +9,7 @@
     <title>4analysis</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen"
-          href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
-    <style>
-        #chart-container {
-            width: 100%;
-            height: 500px;
-        }
-    </style>
+    <link href="/css/charts.css" rel="stylesheet">
 </head>
 <body>
 <%@include file="navbar.jsp" %>

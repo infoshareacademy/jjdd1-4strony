@@ -1,12 +1,9 @@
 package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
-import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
-import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import com.isacademy.jjdd1.czterystrony.model.Rating;
 import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;
 
 import javax.inject.Inject;
-import javax.interceptor.Interceptors;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +18,8 @@ public class LocalExtremaProvider {
     @Inject
     RatingRepository ratingRepository;
 
-    @Interceptors(AnalysisAudit.class)
-    public List<Rating> findExtrema(InvestFund investFund, TimeRange timeRange, int minSwingLimitInPct) {
-        this.ratings = ratingRepository.getByFundInTimeRange(investFund, timeRange);
+    public List<Rating> findExtrema(List<Rating> ratings, int minSwingLimitInPct) {
+        this.ratings = ratings;
         this.minSwingLimitInPct = minSwingLimitInPct;
         boolean swingHigh = false;
         boolean swingLow = false;

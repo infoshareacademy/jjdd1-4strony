@@ -1,9 +1,9 @@
 package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
-import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
-import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import com.isacademy.jjdd1.czterystrony.model.InvestFundStatistics;
+import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundStatisticsRepository;
+import com.isacademy.jjdd1.czterystrony.services.RestIntegerParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,17 +18,20 @@ public class AnalysisAudit {
     @Inject
     InvestFundStatisticsRepository investFundStatisticsRepository;
 
+    @Inject
+    InvestFundRepository investFundRepository;
+
     @AroundInvoke
     public Object addToStatistics(InvocationContext ic) throws Throwable {
-        InvestFund investFund = (InvestFund) ic.getParameters()[0];
-        TimeRange timeRange = (TimeRange) ic.getParameters()[1];
-        int minSwingLimitInPct = (int) ic.getParameters()[2];
+        String investFundId = (String) ic.getParameters()[0];
+//        TimeRange timeRange = (TimeRange) ic.getParameters()[1];
+        RestIntegerParam zigZag = (RestIntegerParam) ic.getParameters()[1];
 
         InvestFundStatistics investFundStatistics = new InvestFundStatistics.Builder()
-                .withInvestFund(investFund)
-                .withDateFrom(timeRange.getStart())
-                .withDateTo(timeRange.getEnd())
-                .withZigZag(minSwingLimitInPct)
+                .withInvestFund(investFundRepository.getById(investFundId))
+//                .withDateFrom(timeRange.getStart())
+//                .withDateTo(timeRange.getEnd())
+                .withZigZag(zigZag.getNumber())
                 .build();
 
         investFundStatisticsRepository.add(investFundStatistics);

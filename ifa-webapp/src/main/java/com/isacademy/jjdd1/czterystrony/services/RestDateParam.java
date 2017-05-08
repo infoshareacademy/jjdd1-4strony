@@ -9,7 +9,7 @@ public class RestDateParam {
 
     private LocalDate date;
 
-    public RestDateParam(String date) throws WebApplicationException{
+    public RestDateParam(String date) throws WebApplicationException {
         try {
             this.date = LocalDate.parse(date);
         } catch (DateTimeParseException e) {
