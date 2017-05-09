@@ -1,0 +1,22 @@
+version: '3'
+services:
+  4analysisApp:
+    build: ../ifa-webapp/
+    ports:
+      - 8080:8080
+      - 9990:9990
+    networks:
+      - 4strony
+  mysqldb:
+    container_name: "4analysisDB"
+    image: mysql
+    environment:
+          - MYSQL_DATABASE=4analysis
+          - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 4444:3306
+    networks:
+      - 4strony
+networks:
+  czterystrony:
+    driver: bridge
