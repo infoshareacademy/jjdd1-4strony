@@ -1,18 +1,18 @@
 version: '3'
 services:
-  4analysisdb:
-    container_name: "4analysisDB"
+  db:
+    container_name: "db"
     image: mysql:latest
     environment:
-      - MYSQL_DATABASE=sample
+      - MYSQL_DATABASE=4analysis
       - MYSQL_USER=mysql
       - MYSQL_PASSWORD=mysql
       - MYSQL_ROOT_PASSWORD=pass
-  4analysisapp:
-    container_name: "4analysisAPP"
+  app:
+    container_name: "app"
     build: .
     environment:
-      - MYSQL_URI=4analysisDB:3306
+      - MYSQL_URI=db:3306
       - MYSQL_DATABASE=4analysis
       - MYSQL_USER=mysql
       - MYSQL_PASSWORD=mysql
@@ -20,3 +20,5 @@ services:
     ports:
       - 8080:8080
       - 9990:9990
+    depends_on:
+      - db
