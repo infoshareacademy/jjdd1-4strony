@@ -17,40 +17,40 @@ function wait_for_server() {
 }
 
 echo "=> Starting WildFly server"
-$JBOSS_HOME/bin/$JBOSS_MODE.sh -b 0.0.0.0 -bmanagement 0.0.0.0 -c $JBOSS_CONFIG &
+$JBOSS_HOME/bin/$JBOSS_MODE.sh -b 0.0.0.0 -c $JBOSS_CONFIG &
 
 echo "=> Waiting for the server to boot"
 wait_for_server
 
 echo "=> Executing the commands"
-echo "=> MYSQL_HOST (explicit): " $MYSQL_HOST
-echo "=> MYSQL_PORT (explicit): " $MYSQL_PORT
-echo "=> MYSQL (docker host): " $DB_PORT_3306_TCP_ADDR
-echo "=> MYSQL (docker port): " $DB_PORT_3306_TCP_PORT
-echo "=> MYSQL (k8s host): " $MYSQL_SERVICE_SERVICE_HOST
-echo "=> MYSQL (k8s port): " $MYSQL_SERVICE_SERVICE_PORT
-echo "=> MYSQL_URI (docker with networking): " $MYSQL_URI
+echo "=> MYSQL_URI: " $MYSQL_URI
+echo "=> MYSQL_DATABASE: " $MYSQL_DATABASE
+echo "=> MYSQL_USER: " $MYSQL_USER
+echo "=> MYSQL_PASSWORD: " $MYSQL_PASSWORD
+echo "=> MYSQL_ROOT_PASSWORD: " $MYSQL_ROOT_PASSWORD
 
 $JBOSS_CLI -c << EOF
 batch
 
-#set CONNECTION_URL=jdbc:mysql://$MYSQL_SERVICE_SERVICE_HOST:$MYSQL_SERVICE_SERVICE_PORT/sample
-set CONNECTION_URL=jdbc:mysql://localhost:4444/4analysis
+#set CONNECTION_URL
+set CONNECTION_URL=jdbc:mysql://$MYSQL_URI/$MYSQL_DATABASE
 echo "Connection URL: " $CONNECTION_URL
 
 # Add MySQL module
-module add --name=com.mysql --resources=/opt/jboss/wildfly/config/mysql-connector-java-5.1.41-bin.jar
-#--dependencies=javax.api,javax.transaction.api
+module add --name=com.mysql --resources=/opt/jboss/wildfly/customization/mysql-connector-java-5.1.41.jar --dependencies=javax.api,javax.transaction.api
 
 # Add MySQL driver
 /subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
 
 # Add the datasource
-data-source add --name=mysqlDS --driver-name=mysql --jndi-name=java:jboss/datasources/MySqlDS --connection-url=jdbc:mysql://localhost:4444/4analysis??useUnicode=yes&amp;characterEncoding=UTF-8 --user-name=root --password=pass --enabled=true
+data-source add --name=mysqlDS --driver-name=mysql --jndi-name=java:jboss/datasources/ExampleMySQLDS --connection-url=jdbc:mysql://$MYSQL_URI/$MYSQL_DATABASE?useUnicode=true&amp;characterEncoding=UTF-8 --user-name=$MYSQL_USER --password=$MYSQL_PASSWORD --enabled=true
 
 # Execute the batch
 run-batch
 EOF
+
+# Deploy the WAR
+cp /opt/jboss/wildfly/customization/ROOT.war $JBOSS_HOME/$JBOSS_MODE/deployments/ROOT.war
 
 echo "=> Shutting down WildFly"
 if [ "$JBOSS_MODE" = "standalone" ]; then
@@ -60,4 +60,10 @@ else
 fi
 
 echo "=> Restarting WildFly"
+
+#add user for console management tool
+/opt/jboss/wildfly/bin/add-user.sh admin admin --silent
+
+#run wildfly
 $JBOSS_HOME/bin/$JBOSS_MODE.sh -b 0.0.0.0 -bmanagement 0.0.0.0 -c $JBOSS_CONFIG
+
