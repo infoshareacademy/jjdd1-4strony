@@ -20,9 +20,9 @@ public class InvestFundStatistics {
 
     private LocalDateTime dateTime;
 
-    private LocalDate dateFrom;
+    private LocalDate startDate;
 
-    private LocalDate dateTo;
+    private LocalDate endDate;
 
     private int zigZag;
 
@@ -41,15 +41,15 @@ public class InvestFundStatistics {
         this.zigZag= builder.zigZag;
         this.averageDateDifference = builder.averageDateDifference;
         this.averageValueDifference = builder.averageValueDifference;
-        this.dateFrom = builder.dateFrom;
-        this.dateTo = builder.dateTo;
+        this.startDate = builder.startDate;
+        this.endDate = builder.endDate;
         this.user = builder.user;
     }
 
     public static class Builder {
         private InvestFund investFund;
-        private LocalDate dateFrom;
-        private LocalDate dateTo;
+        private LocalDate startDate;
+        private LocalDate endDate;
         private int zigZag;
         private BigDecimal averageDateDifference;
         private BigDecimal averageValueDifference;
@@ -60,13 +60,13 @@ public class InvestFundStatistics {
             return this;
         }
 
-        public Builder withDateFrom(LocalDate dateFrom) {
-            this.dateFrom = dateFrom;
+        public Builder withStartDate(LocalDate date) {
+            this.startDate = date;
             return this;
         }
 
-        public Builder withDateTo(LocalDate dateTo) {
-            this.dateTo = dateTo;
+        public Builder withEndDate(LocalDate date) {
+            this.endDate = date;
             return this;
         }
 
@@ -107,12 +107,12 @@ public class InvestFundStatistics {
         return zigZag;
     }
 
-    public LocalDate getDateFrom() {
-        return dateFrom;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public LocalDate getDateTo() {
-        return dateTo;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
     public Long getId() {
@@ -137,8 +137,8 @@ public class InvestFundStatistics {
                 "id=" + id +
                 ", fund='" + investFund + '\'' +
                 ", date=" + dateTime +
-                ", dateFrom=" + dateFrom +
-                ", dateTo=" + dateTo +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 ", zigZag=" + zigZag +
                 ", averageDateDifference=" + averageDateDifference +
                 ", averageValueDifference=" + averageValueDifference +

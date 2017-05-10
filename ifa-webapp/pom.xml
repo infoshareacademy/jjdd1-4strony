@@ -16,20 +16,6 @@
 
     <properties>
         <failOnMissingWebXml>false</failOnMissingWebXml>
-
-        <!-- mysql -->
-        <version.mysql>5.1.41</version.mysql>
-        <jdbc.datasource>java:jboss/datasources/MySqlDS</jdbc.datasource>
-        <mysql.connection.url>jdbc:mysql://localhost:4444/4analysis??useUnicode=yes&amp;characterEncoding=UTF-8
-        </mysql.connection.url>
-        <mysql.username>root</mysql.username>
-        <mysql.password>pass</mysql.password>
-
-        <!-- wildfly admin -->
-        <wildfly.adminUsername>admin</wildfly.adminUsername>
-        <wildfly.adminPassword>admin123</wildfly.adminPassword>
-        <wildfly.add-user>${wildfly.adminUsername}:${wildfly.adminPassword}:group:ManagementRealm:false
-        </wildfly.add-user>
     </properties>
 
     <dependencies>
@@ -38,12 +24,6 @@
             <groupId>isacademy.jjdd1.4strony</groupId>
             <artifactId>ifa-library</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${version.mysql}</version>
         </dependency>
 
         <dependency>
@@ -78,80 +58,6 @@
 
     <build>
         <finalName>ROOT</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.1.0.Final</version>
-                <configuration>
-                    <skip>false</skip>
-                    <username>${wildfly.adminUsername}</username>
-                    <password>${wildfly.adminPassword}</password>
-                </configuration>
-
-                <executions>
-                    <!-- Start and Undeploy the application on clean -->
-                    <execution>
-                        <id>undeploy</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>start</goal>
-                            <goal>undeploy</goal>
-                        </goals>
-                        <configuration>
-                            <ignoreMissingDeployment>true</ignoreMissingDeployment>
-                        </configuration>
-                    </execution>
-
-                    <!-- Deploy the JDBC library -->
-                    <execution>
-                        <id>deploy-driver</id>
-                        <phase>install</phase>
-                        <configuration>
-                            <groupId>mysql</groupId>
-                            <artifactId>mysql-connector-java</artifactId>
-                            <name>mysql.jar</name>
-                        </configuration>
-                        <goals>
-                            <goal>deploy-artifact</goal>
-                        </goals>
-                    </execution>
-
-                    <!-- Add a data source -->
-                    <execution>
-                        <id>add-datasource</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>add-resource</goal>
-                        </goals>
-                        <configuration>
-                            <address>subsystem=datasources,data-source=MySqlDS</address>
-                            <resources>
-                                <resource>
-                                    <properties>
-                                        <jndi-name>${jdbc.datasource}</jndi-name>
-                                        <enabled>true</enabled>
-                                        <connection-url>${mysql.connection.url}</connection-url>
-                                        <driver-name>mysql.jar_com.mysql.jdbc.Driver_5_1</driver-name>
-                                        <user-name>${mysql.username}</user-name>
-                                        <password>${mysql.password}</password>
-                                    </properties>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-
-                    <!-- Deploy the application on install -->
-                    <execution>
-                        <id>deploy</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
     </build>
 
 </project>

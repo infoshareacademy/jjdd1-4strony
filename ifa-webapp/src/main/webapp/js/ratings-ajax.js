@@ -12,6 +12,7 @@ $(document).ready(function () {
                         "fromField": "close",
                         "toField": "close"
                     }],
+                    "color": "#d23a3a",
                     "dataProvider": response,
                     "categoryField": "date",
                     "compared": false
@@ -32,13 +33,13 @@ $(document).ready(function () {
                         "title": $('#fund-id').text(),
                         "lineThickness": 2,
                         "valueField": "close",
-                        "useDataSetColors": false,
+                        // "useDataSetColors": false,
                         "valueAxis": "axis1"
                     }],
 
                     "stockLegend": {
-                        "valueTextRegular": " ",
-                        "markerType": "none"
+                        // "valueTextRegular": " ",
+                        // "markerType": "none"
                     }
 
                 }],
@@ -57,38 +58,42 @@ $(document).ready(function () {
                 },
 
                 "periodSelector": {
+                    "fromText": "Data od:",
+                    "toText": "do:",
+                    "periodsText": "Zakres:",
                     "position": "bottom",
+                    "dateFormat": "YYYY-MM-DD",
                     "periods": [
                         {
                             "period": "DD",
                             "count": 7,
-                            "label": "7 days"
+                            "label": "7 dni"
                         }, {
                             "period": "MM",
                             "count": 1,
-                            "label": "1 month"
+                            "label": "1 mies."
                         }, {
                             "period": "MM",
                             "count": 3,
-                            "label": "3 months"
+                            "label": "3 mies."
                         }, {
                             "period": "MM",
                             "count": 6,
-                            "label": "6 months"
+                            "label": "6 mies."
                         }, {
                             "period": "YYYY",
                             "count": 1,
-                            "label": "1 year"
+                            "label": "1 rok"
                         }, {
                             "period": "YYYY",
                             "count": 3,
-                            "label": "3 years"
-                        },{
+                            "label": "3 lata"
+                        }, {
                             "period": "YTD",
                             "label": "YTD"
                         }, {
                             "period": "MAX",
-                            "selected": true,
+                            // "selected": true,
                             "label": "MAX"
                         }
                     ]

@@ -1,7 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
 import com.isacademy.jjdd1.czterystrony.analysis.MovingAverage;
-import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import com.isacademy.jjdd1.czterystrony.model.Rating;
 import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;

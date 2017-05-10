@@ -1,6 +1,32 @@
 var ratings = [];
+var startDate;
+var endDate;
+var chart;
 
 $(document).ready(function () {
+    getTimeRange();
+    getRatings();
+    getAjax();
+    $('#zigZag').bind('change', function () {
+        getAjaxOnChange();
+    });
+});
+
+function getTimeRange() {
+    $.ajax({
+        url: '/resources/investfund/timeRange/json/' + $('#fund-id').text(),
+        dataType: 'json',
+        success: function (response) {
+            startDate = response.start;
+            endDate = response.end;
+        },
+        error: function (response, status, er) {
+            alert("error: " + response + " status: " + status + " er:" + er);
+        }
+    });
+}
+
+function getRatings() {
     $.ajax({
         url: '/resources/ratings/all/json/' + $('#fund-id').text(),
         dataType: 'json',
@@ -11,21 +37,19 @@ $(document).ready(function () {
             alert("error: " + response + " status: " + status + " er:" + er);
         }
     });
-    getAjax();
-    $('#zigZag').bind('keyup input change', function () {
-        getAjax();
-    });
-});
+}
 
 function getAjax() {
     $.ajax({
         url: '/resources/zigzag/all/json/' + $('#fund-id').text(),
         data: {
             "zigZag": $('#zigZag').val(),
+            "startDate": startDate,
+            "endDate": endDate
         },
         dataType: 'json',
         success: function (response) {
-            var chart = AmCharts.makeChart("chart-container", {
+            chart = AmCharts.makeChart("chart-container", {
                 type: "stock",
                 "theme": "light",
 
@@ -34,19 +58,17 @@ function getAjax() {
                     "fieldMappings": [{
                         "fromField": "close",
                         "toField": "close"
-                    }
-                    ],
-                    "color": "#d23a3a",
+                    }],
+                    "color": "#081ba5",
                     "dataProvider": ratings,
                     "categoryField": "date",
-                    // "compared": true
                 }, {
                     "title": $('#fund-id').text() + " (ZigZag)",
                     "fieldMappings": [{
                         "fromField": "close",
                         "toField": "close"
                     }],
-                    "color": "#7f8da9",
+                    "color": "#d23a3a",
                     "dataProvider": response,
                     "categoryField": "date",
                     "compared": true
@@ -97,38 +119,42 @@ function getAjax() {
                 },
 
                 "periodSelector": {
+                    "fromText": "Data od:",
+                    "toText": "do:",
+                    "periodsText": "Zakres:",
                     "position": "bottom",
+                    "dateFormat": "YYYY-MM-DD",
                     "periods": [
                         {
                             "period": "DD",
                             "count": 7,
-                            "label": "7 days"
+                            "label": "7 dni"
                         }, {
                             "period": "MM",
                             "count": 1,
-                            "label": "1 month"
+                            "label": "1 mies."
                         }, {
                             "period": "MM",
                             "count": 3,
-                            "label": "3 months"
+                            "label": "3 mies."
                         }, {
                             "period": "MM",
                             "count": 6,
-                            "label": "6 months"
+                            "label": "6 mies."
                         }, {
                             "period": "YYYY",
                             "count": 1,
-                            "label": "1 year"
+                            "label": "1 rok"
                         }, {
                             "period": "YYYY",
                             "count": 3,
-                            "label": "3 years"
+                            "label": "3 lata"
                         }, {
                             "period": "YTD",
                             "label": "YTD"
                         }, {
                             "period": "MAX",
-                            "selected": true,
+                            // "selected": true,
                             "label": "MAX"
                         }
                     ]
@@ -145,6 +171,25 @@ function getAjax() {
                     "enabled": true
                 }
             });
+        },
+        error: function (response, status, er) {
+            alert("error: " + response + " status: " + status + " er:" + er);
+        }
+    });
+}
+
+function getAjaxOnChange() {
+    $.ajax({
+        url: '/resources/zigzag/all/json/' + $('#fund-id').text(),
+        data: {
+            "zigZag": $('#zigZag').val(),
+            "startDate": $('.amcharts-start-date-input').val(),
+            "endDate": $('.amcharts-end-date-input').val()
+        },
+        dataType: 'json',
+        success: function (response) {
+            chart.dataSets[1].dataProvider = response;
+            chart.validateData();
         },
         error: function (response, status, er) {
             alert("error: " + response + " status: " + status + " er:" + er);
