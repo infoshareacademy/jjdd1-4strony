@@ -37,7 +37,7 @@ set CONNECTION_URL=jdbc:mysql://$MYSQL_URI/$MYSQL_DATABASE
 echo "Connection URL: " $CONNECTION_URL
 
 # Add MySQL module
-module add --name=com.mysql --resources=/opt/jboss/wildfly/customization/mysql-connector-java-5.1.41.jar --dependencies=javax.api,javax.transaction.api
+module add --name=com.mysql --resources=/opt/jboss/wildfly/config/mysql-connector-java-5.1.41.jar --dependencies=javax.api,javax.transaction.api
 
 # Add MySQL driver
 /subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
@@ -50,7 +50,7 @@ run-batch
 EOF
 
 # Deploy the WAR
-cp /opt/jboss/wildfly/customization/ROOT.war $JBOSS_HOME/$JBOSS_MODE/deployments/ROOT.war
+cp /opt/jboss/wildfly/config/ROOT.war $JBOSS_HOME/$JBOSS_MODE/deployments/ROOT.war
 
 echo "=> Shutting down WildFly"
 if [ "$JBOSS_MODE" = "standalone" ]; then

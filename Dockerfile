@@ -1,6 +1,6 @@
 FROM jboss/wildfly:latest
 
-ADD customization /opt/jboss/wildfly/customization/
-COPY ifa-webapp/target/ROOT.war /opt/jboss/wildfly/customization/
+ADD config /opt/jboss/wildfly/config/
+COPY ifa-webapp/target/ROOT.war /opt/jboss/wildfly/config/
 
-CMD ["/opt/jboss/wildfly/customization/execute.sh"]
+CMD ["/opt/jboss/wildfly/config/execute.sh"]

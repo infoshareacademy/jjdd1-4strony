@@ -8,6 +8,8 @@ services:
       - MYSQL_USER=mysql
       - MYSQL_PASSWORD=mysql
       - MYSQL_ROOT_PASSWORD=pass
+    ports:
+      - 4444:3306
   app:
     container_name: "app"
     build: .
