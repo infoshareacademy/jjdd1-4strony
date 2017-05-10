@@ -9,7 +9,7 @@
     <title>4analysis</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
-    <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/css/statistic.css" rel="stylesheet">
 </head>
 <body>
 <%@include file="navbar.jsp" %>
@@ -33,7 +33,6 @@
                         <th></th>
                     </tr>
                     </thead>
-
                 </table>
             </div>
         </div>

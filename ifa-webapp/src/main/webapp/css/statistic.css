@@ -73,7 +73,7 @@ div.dataTables_wrapper div.dataTables_processing {
     padding: 1em 0
 }
 
-table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sorting_desc, table.dataTable thead > tr > th.sorting, table.dataTable thead > tr > td.sorting_asc, table.dataTable thead > tr > td.sorting_desc, table.dataTable thead > tr > td.sorting {
+table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sorting_desc, table.dataTable thead > tr > th.sorting {
     padding-right: 30px
 }
 
@@ -81,12 +81,12 @@ table.dataTable thead > tr > th:active, table.dataTable thead > tr > td:active {
     outline: none
 }
 
-table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled {
+table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc {
     cursor: pointer;
     position: relative
 }
 
-table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled: after {
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after {
     position: absolute;
     bottom: 8px;
     right: 8px;
@@ -152,14 +152,6 @@ table.dataTable.table-condensed .sorting:after, table.dataTable.table-condensed 
 
 table.table-bordered. dataTable th, table.table-bordered.dataTable td {
     border-left-width: 0
-}
-
-table.table-bordered.dataTable th:last-child, table.table-bordered.dataTable th:last-child, table.table-bordered.dataTable td:last-child, table.table-bordered. dataTable td:last-child {
-    border-right-width: 0
-}
-
-table.table-bordered.dataTable tbody th, table.table-bordered. dataTable tbody td {
-    border-bottom-width: 0
 }
 
 div.dataTables_scrollHead table.table-bordered {
