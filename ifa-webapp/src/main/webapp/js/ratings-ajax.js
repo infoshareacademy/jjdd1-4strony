@@ -93,7 +93,7 @@ $(document).ready(function () {
                             "label": "YTD"
                         }, {
                             "period": "MAX",
-                            // "selected": true,
+                            "selected": true,
                             "label": "MAX"
                         }
                     ]

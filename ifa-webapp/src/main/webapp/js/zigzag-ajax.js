@@ -154,7 +154,7 @@ function getAjax() {
                             "label": "YTD"
                         }, {
                             "period": "MAX",
-                            // "selected": true,
+                            "selected": true,
                             "label": "MAX"
                         }
                     ]
