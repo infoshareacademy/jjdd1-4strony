@@ -1,22 +1,23 @@
 package com.isacademy.jjdd1.czterystrony.analysis;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AvgDifferenceBtwQuotas {
 
 
-    List<Double> listOfDifferencesInQuotas = new ArrayList<>();
-    List<Double> listOfQuotas = new ArrayList<>();
+    List<BigDecimal> listOfDifferencesInQuotas = new ArrayList<>();
+    List<BigDecimal> listOfQuotas = new ArrayList<>();
 
 
-    public List<Double> calculationOfTheDiffInQuotas() {
+    public List<BigDecimal> calculationOfTheDiffInQuotas() {
 
-        listOfQuotas.add(0.00d);
-        listOfQuotas.add(100.00d);
-        listOfQuotas.add(50.00d);
-        listOfQuotas.add(300.00d);
-        listOfQuotas.add(50.00d);
+        listOfQuotas.add(BigDecimal.valueOf(0.00));
+        listOfQuotas.add(BigDecimal.valueOf(100.00));
+        listOfQuotas.add(BigDecimal.valueOf(50.00));
+        listOfQuotas.add(BigDecimal.valueOf(300.00));
+        listOfQuotas.add(BigDecimal.valueOf(50.00));
         /*listOfQuotas.add(400.00d);
         listOfQuotas.add(700.00d);
         listOfQuotas.add(600.00d);
@@ -30,11 +31,13 @@ public class AvgDifferenceBtwQuotas {
 
         for (int i = 0; i < listOfQuotas.size() - 1; i++) {
             int nextListElement = 1;
-            double differenceInPositive;
-            double differenceValue = listOfQuotas.get(i) - (listOfQuotas.get((i) + nextListElement));
+            BigDecimal differenceInPositive;
+            BigDecimal differenceValue;
+            differenceValue = listOfQuotas.get(i).subtract(listOfQuotas.get((i) + nextListElement));
 
-            if (differenceValue < 0) {
-                differenceInPositive = differenceValue * (-1);
+            if (differenceValue.compareTo(BigDecimal.ZERO) < 0) {
+
+                differenceInPositive = differenceValue.abs();
                 listOfDifferencesInQuotas.add(i, differenceInPositive);
             } else {
                 listOfDifferencesInQuotas.add(i, differenceValue);
@@ -45,17 +48,21 @@ public class AvgDifferenceBtwQuotas {
 
     }
 
-    public double calculateAverage(List<Double> listOfDifferencesInQuotas) {
+    public BigDecimal calculateAverage(List<BigDecimal> listOfDifferencesInQuotas) {
         if (listOfDifferencesInQuotas == null || listOfDifferencesInQuotas.isEmpty()) {
-            return 0;
+            return BigDecimal.ZERO;
         }
 
-        double sum = 0;
-        for (Double mark : listOfDifferencesInQuotas) {
-            sum += mark;
+        BigDecimal sum = BigDecimal.valueOf(0.00);
+        for (BigDecimal mark : listOfDifferencesInQuotas) {
+            sum = sum.add(mark) ;
+
         }
+
         System.out.println("Suma tych różnic to: " + sum);
-        return sum / listOfDifferencesInQuotas.size();
+        System.out.println(BigDecimal.valueOf(listOfDifferencesInQuotas.size()));
+
+        return sum.divide(BigDecimal.valueOf(listOfDifferencesInQuotas.size()));
     }
 
     public static void main(String[] args) {
