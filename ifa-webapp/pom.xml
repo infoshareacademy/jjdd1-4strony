@@ -19,7 +19,6 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>isacademy.jjdd1.4strony</groupId>
             <artifactId>ifa-library</artifactId>
@@ -30,13 +29,6 @@
             <groupId>org.jboss</groupId>
             <artifactId>jboss-vfs</artifactId>
             <version>3.2.12.Final</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -53,7 +45,6 @@
             <version>3.1.2.Final</version>
             <scope>provided</scope>
         </dependency>
-
     </dependencies>
 
     <build>
