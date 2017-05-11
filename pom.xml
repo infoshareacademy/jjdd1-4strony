@@ -21,7 +21,6 @@
     </modules>
 
     <dependencies>
-
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
@@ -67,61 +66,5 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
-
-    <profiles>
-        <profile>
-            <id>docker</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>io.fabric8</groupId>
-                        <artifactId>docker-maven-plugin</artifactId>
-                        <version>0.20.1</version>
-                        <configuration>
-                            <images>
-                                <image>
-                                    <alias>db</alias>
-                                    <name>fouranalysis/db:latest</name>
-                                    <external>
-                                        <type>compose</type>
-                                        <basedir>.</basedir>
-                                        <composeFile>docker-compose.yml</composeFile>
-                                    </external>
-                                </image>
-                                <image>
-                                    <alias>webapp</alias>
-                                    <name>fouranalysis/webapp:latest</name>
-                                    <external>
-                                        <type>compose</type>
-                                        <basedir>.</basedir>
-                                        <composeFile>docker-compose.yml</composeFile>
-                                    </external>
-                                </image>
-                            </images>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>docker:build</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>build</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>docker:start</id>
-                                <phase>install</phase>
-                                <goals>
-                                    <goal>run</goal>
-                                    <goal>logs</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
 </project>
