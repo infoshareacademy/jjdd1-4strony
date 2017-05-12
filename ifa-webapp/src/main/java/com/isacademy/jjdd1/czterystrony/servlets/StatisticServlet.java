@@ -1,10 +1,11 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
-import com.isacademy.jjdd1.czterystrony.model.InvestFund;
-import com.isacademy.jjdd1.czterystrony.repositories.InvestFundFacade;
-import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
+import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
+import com.isacademy.jjdd1.czterystrony.model.StatisticDetails;
+import com.isacademy.jjdd1.czterystrony.repositories.StatisticDetailsRepository;
 
 import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,16 +19,17 @@ import java.util.List;
 public class StatisticServlet extends HttpServlet {
 
     @Inject
-    InvestFundRepository investFundRepository;
-
-    @Inject
-    InvestFundFacade investFundFacade;
+    StatisticDetailsRepository statisticDetailsRepository;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        List<InvestFund> investFunds = investFundRepository.getAll();
-        req.setAttribute("investFunds", investFunds);
-        req.getRequestDispatcher("/statistic.jsp").forward(req, resp);
+        List<StatisticDetails> statisticDetails = statisticDetailsRepository.getAll();
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/statistic.jsp");
+        req.setAttribute("statisticsDetails", statisticDetails);
+        dispatcher.forward(req, resp);
     }
+
+
 }

@@ -24,15 +24,20 @@
                 <table class="table table-striped table-hover-other">
                     <thead>
                     <tr>
-                        <th class="text-center col-md-1">
-                            <span class="glyphicon glyphicon-tags"></span>
-                        </th>
                         <th>fundusz</th>
                         <th class="text-center">id</th>
                         <th class="text-center">liczba kliknięć</th>
-                        <th></th>
                     </tr>
                     </thead>
+                    <tbody>
+                    <c:forEach items="${statisticsDetails}" var="statisticsDetail">
+                        <tr>
+                            <td>${statisticsDetail.name}</td>
+                            <td>${statisticsDetail.id}</td>
+                            <td>${statisticsDetail.clicks}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
                 </table>
             </div>
         </div>
