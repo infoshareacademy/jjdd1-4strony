@@ -14,12 +14,10 @@
 <body>
 <%@include file="navbar.jsp" %>
 <div class="container-fluid">
-    <form class="form-horizontal" role="form" action="/4analysis/statistic" method="post">
+    <form class="form-horizontal" role="form" action="/4analysis/statistics" method="post">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 main">
             <h1 class="page-header">Statystyka notowań funduszy inwestycyjnych</h1>
-
-            <%--<div class="panel-heading">Panel heading</div>--%>
             <div class="table-responsive">
                 <table class="table table-striped table-hover-other">
                     <thead>
