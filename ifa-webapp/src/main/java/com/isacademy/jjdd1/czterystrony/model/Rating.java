@@ -1,5 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isacademy.jjdd1.czterystrony.queries.RatingNamedNativeQueries;
 import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
@@ -129,6 +130,7 @@ public class Rating {
         this.date = date;
     }
 
+    @JsonIgnore
     public BigDecimal getOpen() {
         return open;
     }
@@ -137,6 +139,7 @@ public class Rating {
         this.open = open;
     }
 
+    @JsonIgnore
     public BigDecimal getHigh() {
         return high;
     }
@@ -145,6 +148,7 @@ public class Rating {
         this.high = high;
     }
 
+    @JsonIgnore
     public BigDecimal getLow() {
         return low;
     }
@@ -161,6 +165,7 @@ public class Rating {
         this.close = close;
     }
 
+    @JsonIgnore
     public InvestFund getInvestFund() {
         return investFund;
     }
