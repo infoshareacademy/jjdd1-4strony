@@ -34,10 +34,10 @@ import java.util.List;
                                         @ColumnResult(name = "diff", type = BigDecimal.class)
                                 }
                         )}),
-        @SqlResultSetMapping(name = "StatisticDetailsMapping",
+        @SqlResultSetMapping(name = "StatisticsDetailsMapping",
                 classes = {
                         @ConstructorResult(
-                                targetClass = StatisticDetails.class,
+                                targetClass = StatisticsDetails.class,
                                 columns = {
                                         @ColumnResult(name = "name", type = String.class),
                                         @ColumnResult(name = "id", type = String.class),
@@ -58,7 +58,7 @@ import java.util.List;
                 name = "Statistics.getAll",
                 query = "select fund.name as name, stat.investFund_id as id, count(stat.investFund_id) as clicks FROM InvestFundStatistics stat, InvestFund fund " +
                 "where stat.investFund_id = fund.id GROUP BY investFund_id",
-                resultSetMapping = "StatisticDetailsMapping")
+                resultSetMapping = "StatisticsDetailsMapping")
 })
 public class InvestFund {
 

@@ -1,15 +1,24 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class InvestFundDetails {
 
     private String name;
+
     private String id;
+
     private int priority;
+
+    @JsonSerialize(using = JsonDateSerializer.class)
     private LocalDate date;
+
     private BigDecimal close;
+
     private BigDecimal diff;
 
     public InvestFundDetails(String name,

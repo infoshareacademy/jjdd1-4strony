@@ -35,7 +35,7 @@ public class ZigzagService {
     @Interceptors(AnalysisAudit.class)
     public List<Rating> getZigZag(
             @PathParam("id") String id,
-            @QueryParam("zigZag") RestIntegerParam zigZag,
+            @QueryParam("value") RestIntegerParam zigZag,
             @QueryParam("startDate") RestDateParam start,
             @QueryParam("endDate") RestDateParam end) {
 

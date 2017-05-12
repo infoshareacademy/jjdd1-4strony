@@ -1,12 +1,12 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
-public class StatisticDetails {
+public class StatisticsDetails {
 
     private String name;
     private String id;
     private int clicks;
 
-    public StatisticDetails(String name, String id, int clicks) {
+    public StatisticsDetails(String name, String id, int clicks) {
         this.name = name;
         this.id = id;
         this.clicks = clicks;

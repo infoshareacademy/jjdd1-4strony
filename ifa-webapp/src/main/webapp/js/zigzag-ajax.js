@@ -43,7 +43,7 @@ function getZigZag() {
     $.ajax({
         url: '/resources/investfunds/' + $('#fund-id').text() + '/zigzag',
         data: {
-            "zigZag": $('#zigZag').val(),
+            "value": $('#zigZag').val(),
             "startDate": startDate,
             "endDate": endDate
         },
@@ -182,7 +182,7 @@ function getZigZagOnChange() {
     $.ajax({
         url: '/resources/investfunds/' + $('#fund-id').text() + '/zigzag',
         data: {
-            "zigZag": $('#zigZag').val(),
+            "value": $('#zigZag').val(),
             "startDate": $('.amcharts-start-date-input').val(),
             "endDate": $('.amcharts-end-date-input').val()
         },

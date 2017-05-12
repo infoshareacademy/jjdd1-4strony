@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
-import com.isacademy.jjdd1.czterystrony.model.StatisticDetails;
-import com.isacademy.jjdd1.czterystrony.repositories.StatisticDetailsRepository;
+import com.isacademy.jjdd1.czterystrony.model.StatisticsDetails;
+import com.isacademy.jjdd1.czterystrony.repositories.StatisticsDetailsRepository;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -18,16 +18,16 @@ import java.util.List;
 public class StatisticServlet extends HttpServlet {
 
     @Inject
-    StatisticDetailsRepository statisticDetailsRepository;
+    StatisticsDetailsRepository statisticDetailsRepository;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
-        List<StatisticDetails> statisticDetails = statisticDetailsRepository.getAll();
+        List<StatisticsDetails> statisticsDetails = statisticDetailsRepository.getAll();
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/statistics.jsp");
-        req.setAttribute("statisticsDetails", statisticDetails);
+        req.setAttribute("statisticsDetails", statisticsDetails);
         dispatcher.forward(req, resp);
     }
 }
