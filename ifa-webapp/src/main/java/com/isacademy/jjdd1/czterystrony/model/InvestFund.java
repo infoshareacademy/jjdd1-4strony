@@ -20,20 +20,31 @@ import java.util.List;
         name = "UX_InvestFund_id_name",
         columnList = "id,name")
 })
-@SqlResultSetMapping(name = "InvestFundDetailsMapping",
-        classes = {
-                @ConstructorResult(
-                        targetClass = InvestFundDetails.class,
-                        columns = {
-                                @ColumnResult(name = "name", type = String.class),
-                                @ColumnResult(name = "id", type = String.class),
-                                @ColumnResult(name = "priority", type = int.class),
-                                @ColumnResult(name = "date", type = LocalDate.class),
-                                @ColumnResult(name = "close", type = BigDecimal.class),
-                                @ColumnResult(name = "diff", type = BigDecimal.class)
-                        }
-                )}
-)
+@SqlResultSetMappings({
+        @SqlResultSetMapping(name = "InvestFundDetailsMapping",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = InvestFundDetails.class,
+                                columns = {
+                                        @ColumnResult(name = "name", type = String.class),
+                                        @ColumnResult(name = "id", type = String.class),
+                                        @ColumnResult(name = "priority", type = int.class),
+                                        @ColumnResult(name = "date", type = LocalDate.class),
+                                        @ColumnResult(name = "close", type = BigDecimal.class),
+                                        @ColumnResult(name = "diff", type = BigDecimal.class)
+                                }
+                        )}),
+        @SqlResultSetMapping(name = "StatisticDetailsMapping",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = StatisticDetails.class,
+                                columns = {
+                                        @ColumnResult(name = "name", type = String.class),
+                                        @ColumnResult(name = "id", type = String.class),
+                                        @ColumnResult(name = "clicks", type = int.class),
+                                }
+                        )})
+})
 @NamedNativeQueries({
         @NamedNativeQuery(
                 name = "InvestFund.getAllWithDetails",
@@ -42,7 +53,12 @@ import java.util.List;
         @NamedNativeQuery(
                 name = "InvestFund.getByIdWithDetails",
                 query = InvestFundNamedNativeQueries.byIdWithDetails,
-                resultSetMapping = "InvestFundDetailsMapping")
+                resultSetMapping = "InvestFundDetailsMapping"),
+        @NamedNativeQuery(
+                name = "Statistics.getAll",
+                query = "select fund.name as name, stat.investFund_id as id, count(stat.investFund_id) as clicks FROM InvestFundStatistics stat, InvestFund fund " +
+                "where stat.investFund_id = fund.id GROUP BY investFund_id",
+                resultSetMapping = "StatisticDetailsMapping")
 })
 public class InvestFund {
 
