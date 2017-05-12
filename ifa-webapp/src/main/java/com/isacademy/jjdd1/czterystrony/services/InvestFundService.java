@@ -12,19 +12,19 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/investfund")
-public class InvestFund2JsonService {
+@Path("/investfunds")
+public class InvestFundService {
 
-    private static Logger log = LoggerFactory.getLogger(InvestFund2JsonService.class);
+    private static Logger log = LoggerFactory.getLogger(InvestFundService.class);
 
     @Inject
-    InvestFundRepository investFundRepository;
+    InvestFundRepository repository;
 
     @GET
-    @Path("/json/{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public InvestFund getInvestFund(@PathParam("id") String id) {
+    public InvestFund getById(@PathParam("id") String id) {
         log.info("Provided info for {} fund", id);
-        return investFundRepository.getById(id);
+        return repository.getById(id);
     }
 }

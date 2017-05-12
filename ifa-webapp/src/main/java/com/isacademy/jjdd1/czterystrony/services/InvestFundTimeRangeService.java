@@ -12,7 +12,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.time.LocalDate;
 
-@Path("/investfund")
+@Path("/investfunds")
 public class InvestFundTimeRangeService {
 
     private static Logger log = LoggerFactory.getLogger(InvestFundTimeRangeService.class);
@@ -24,9 +24,9 @@ public class InvestFundTimeRangeService {
     RatingRepository ratingRepository;
 
     @GET
-    @Path("/timeRange/json/{investFundId}")
+    @Path("/{id}/timerange")
     @Produces(MediaType.APPLICATION_JSON)
-    public TimeRange getZigZagInTimeRange(@PathParam("investFundId") String id) {
+    public TimeRange getZigZagInTimeRange(@PathParam("id") String id) {
         InvestFund investFund = investFundRepository.getById(id);
         LocalDate startDate = ratingRepository.getOldestForFund(investFund).getDate();
         LocalDate endDate = ratingRepository.getNewestForFund(investFund).getDate();

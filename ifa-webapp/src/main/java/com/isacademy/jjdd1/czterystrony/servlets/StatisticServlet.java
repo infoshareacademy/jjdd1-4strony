@@ -23,12 +23,11 @@ public class StatisticServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
+
         List<StatisticDetails> statisticDetails = statisticDetailsRepository.getAll();
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/statistics.jsp");
         req.setAttribute("statisticsDetails", statisticDetails);
         dispatcher.forward(req, resp);
     }
-
-
 }

@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.ajax({
-        url: '/resources/ratings/all/json/' + $('#fund-id').text(),
+        url: '/resources/investfunds/' + $('#fund-id').text() + '/ratings',
         dataType: 'json',
         success: function (response) {
             var chart = AmCharts.makeChart("chart-container", {

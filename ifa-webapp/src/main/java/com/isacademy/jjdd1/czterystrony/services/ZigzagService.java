@@ -15,10 +15,10 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/zigzag")
-public class LocalExtrema2JsonService {
+@Path("/investfunds")
+public class ZigzagService {
 
-    private static Logger log = LoggerFactory.getLogger(Ratings2JsonService.class);
+    private static Logger log = LoggerFactory.getLogger(RatingsService.class);
 
     @Inject
     InvestFundRepository investFundRepository;
@@ -30,11 +30,11 @@ public class LocalExtrema2JsonService {
     LocalExtremaProvider localExtremaProvider;
 
     @GET
-    @Path("/all/json/{investFundId}")
+    @Path("/{id}/zigzag")
     @Produces(MediaType.APPLICATION_JSON)
     @Interceptors(AnalysisAudit.class)
     public List<Rating> getZigZag(
-            @PathParam("investFundId") String id,
+            @PathParam("id") String id,
             @QueryParam("zigZag") RestIntegerParam zigZag,
             @QueryParam("startDate") RestDateParam start,
             @QueryParam("endDate") RestDateParam end) {

@@ -6,15 +6,15 @@ var chart;
 $(document).ready(function () {
     getTimeRange();
     getRatings();
-    getAjax();
+    getZigZag();
     $('#zigZag').bind('change', function () {
-        getAjaxOnChange();
+        getZigZagOnChange();
     });
 });
 
 function getTimeRange() {
     $.ajax({
-        url: '/resources/investfund/timeRange/json/' + $('#fund-id').text(),
+        url: '/resources/investfunds/' + $('#fund-id').text() + '/timerange' ,
         dataType: 'json',
         success: function (response) {
             startDate = response.start;
@@ -28,7 +28,7 @@ function getTimeRange() {
 
 function getRatings() {
     $.ajax({
-        url: '/resources/ratings/all/json/' + $('#fund-id').text(),
+        url: '/resources/investfunds/' + $('#fund-id').text() + '/ratings',
         dataType: 'json',
         success: function (response) {
             ratings = response;
@@ -39,16 +39,16 @@ function getRatings() {
     });
 }
 
-function getAjax() {
+function getZigZag() {
     $.ajax({
-        url: '/resources/zigzag/all/json/' + $('#fund-id').text(),
+        url: '/resources/investfunds/' + $('#fund-id').text() + '/zigzag',
         data: {
             "zigZag": $('#zigZag').val(),
             "startDate": startDate,
             "endDate": endDate
         },
         dataType: 'json',
-        success: function (response) {
+        success: function (zigZag) {
             chart = AmCharts.makeChart("chart-container", {
                 type: "stock",
                 "theme": "light",
@@ -69,7 +69,7 @@ function getAjax() {
                         "toField": "close"
                     }],
                     "color": "#d23a3a",
-                    "dataProvider": response,
+                    "dataProvider": zigZag,
                     "categoryField": "date",
                     "compared": true
                 }],
@@ -178,9 +178,9 @@ function getAjax() {
     });
 }
 
-function getAjaxOnChange() {
+function getZigZagOnChange() {
     $.ajax({
-        url: '/resources/zigzag/all/json/' + $('#fund-id').text(),
+        url: '/resources/investfunds/' + $('#fund-id').text() + '/zigzag',
         data: {
             "zigZag": $('#zigZag').val(),
             "startDate": $('.amcharts-start-date-input').val(),
