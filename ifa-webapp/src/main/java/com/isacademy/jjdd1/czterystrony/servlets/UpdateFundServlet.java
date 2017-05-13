@@ -1,5 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
+import com.isacademy.jjdd1.czterystrony.dbviews.Views;
 import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundFacade;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
@@ -22,6 +23,9 @@ public class UpdateFundServlet extends HttpServlet {
     @Inject
     InvestFundFacade investFundFacade;
 
+    @Inject
+    Views views;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
@@ -39,6 +43,7 @@ public class UpdateFundServlet extends HttpServlet {
         try {
             investFundFacade.updateName(id, name);
             investFundFacade.updatePriority(id, priority);
+            views.updateViews();
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

@@ -4,7 +4,7 @@ var endDate;
 var chart;
 
 $(document).ready(function () {
-    getTimeRange();
+    // getTimeRange();
     getRatings();
     getZigZag();
     $('#zigZag').bind('change', function () {
@@ -12,19 +12,19 @@ $(document).ready(function () {
     });
 });
 
-function getTimeRange() {
-    $.ajax({
-        url: '/resources/investfunds/' + $('#fund-id').text() + '/timerange' ,
-        dataType: 'json',
-        success: function (response) {
-            startDate = response.start;
-            endDate = response.end;
-        },
-        error: function (response, status, er) {
-            alert("error: " + response + " status: " + status + " er:" + er);
-        }
-    });
-}
+// function getTimeRange() {
+//     $.ajax({
+//         url: '/resources/investfunds/' + $('#fund-id').text() + '/timerange' ,
+//         dataType: 'json',
+//         success: function (response) {
+//             startDate = response.start;
+//             endDate = response.end;
+//         },
+//         error: function (response, status, er) {
+//             alert("error: " + response + " status: " + status + " er:" + er);
+//         }
+//     });
+// }
 
 function getRatings() {
     $.ajax({
@@ -32,6 +32,8 @@ function getRatings() {
         dataType: 'json',
         success: function (response) {
             ratings = response;
+            startDate = response[1].date;
+            endDate = response[response.length - 1].date;
         },
         error: function (response, status, er) {
             alert("error: " + response + " status: " + status + " er:" + er);

@@ -2,6 +2,9 @@ package com.isacademy.jjdd1.czterystrony.dbviews;
 
 import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundDetailsRepository;
+import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.*;
@@ -17,11 +20,13 @@ public class Views {
     private List<InvestFundDetails> allFunds;
     private List<InvestFundDetails> promotedFunds;
     private List<InvestFundDetails> notPromotedFunds;
+    private static Logger log = LoggerFactory.getLogger(InvestFundRepository.class);
 
     @Inject
     InvestFundDetailsRepository repository;
 
     @PostConstruct
+    @Asynchronous
     public void updateViews() {
         this.allFunds = repository.getAll().stream()
                 .sorted(Comparator.comparing(InvestFundDetails::getName))
@@ -35,6 +40,8 @@ public class Views {
         this.notPromotedFunds = allFunds.stream()
                 .filter(f -> f.getPriority() == 0)
                 .collect(Collectors.toList());
+
+        log.info("Lists updated.");
     }
 
     public List<InvestFundDetails> getAllFunds() {
