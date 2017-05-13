@@ -38,12 +38,12 @@
                                      style="height: 34px">
                             </a>
                         </li>
-                        <li>
-                            <a style="padding-top: 10px; padding-bottom: 10px" href="http://localhost:8080/api/facebook/signin">
-                                <img src="http://readersgazette.com/images/aaa/fblogin.png"
-                                     style="height: 30px">
-                            </a>
-                        </li>
+                        <%--<li>--%>
+                            <%--<a style="padding-top: 10px; padding-bottom: 10px" href="http://localhost:8080/api/facebook/signin">--%>
+                                <%--<img src="http://readersgazette.com/images/aaa/fblogin.png"--%>
+                                     <%--style="height: 30px">--%>
+                            <%--</a>--%>
+                        <%--</li>--%>
                     </c:otherwise>
                 </c:choose>
             </ul>
