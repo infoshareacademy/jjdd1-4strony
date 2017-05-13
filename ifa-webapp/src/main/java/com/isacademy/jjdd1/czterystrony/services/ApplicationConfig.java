@@ -3,6 +3,6 @@ package com.isacademy.jjdd1.czterystrony.services;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("resources")
+@ApplicationPath("api")
 public class ApplicationConfig extends Application {
 }
