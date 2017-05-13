@@ -40,7 +40,7 @@ public class GoogleLoginService {
 
     @GET
     @Path("/signin")
-    public Response googleLogin(@HeaderParam("Referer") String referer) {
+    public Response login(@HeaderParam("Referer") String referer) {
         final Map<String, String> additionalParams = new HashMap<>();
         additionalParams.put("access_type", "offline");
         additionalParams.put("prompt", "consent");
@@ -51,7 +51,7 @@ public class GoogleLoginService {
 
     @GET
     @Path("/callback")
-    public Response googleCallback(@QueryParam("code") String code) {
+    public Response callback(@QueryParam("code") String code) {
 
         try {
             OAuth2AccessToken accessToken = service.getAccessToken(code);
@@ -60,9 +60,11 @@ public class GoogleLoginService {
             String responseBody = service.execute(request).getBody();
             GoogleUser googleUser = new ObjectMapper().readValue(responseBody, GoogleUser.class);
             sessionData.logUser(googleUser);
+            log.info("User {} logged in.", googleUser.getEmail());
             return Response.seeOther(URI.create(sessionData.getReferer())).build();
         } catch (Exception e) {
             e.printStackTrace();
+            log.info("User could not log in");
             return Response.temporaryRedirect(URI.create(INDEX_URL)).build();
         }
     }
@@ -71,6 +73,7 @@ public class GoogleLoginService {
     @Path("/signout")
     public Response logout(@HeaderParam("Referer") String referer) {
         sessionData.logout();
+        log.info("User {} logged out.", sessionData.getUser().getEmail());
         return Response.temporaryRedirect(URI.create(referer)).build();
     }
 }
