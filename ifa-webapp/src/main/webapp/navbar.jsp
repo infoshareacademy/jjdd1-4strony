@@ -23,11 +23,11 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>zalogowany jako</li>
-                                <li><strong>${sessionData.user.email}</strong></li>
+                                <li><span style="padding-left: 15px; padding-right: 15px">Jesteś zalogowany jako</span></li>
+                                <li><span style="padding-left: 15px; padding-right: 15px"><strong>${sessionData.user.email}</strong></span></li>
                                 <li role="separator" class="divider"></li>
                                 <%--<li class="dropdown-header">Nav header</li>--%>
-                                <li><a href="http://localhost:8080/api/signout">Wyloguj się</a></li>
+                                <li><a href="http://localhost:8080/api/google/signout">Wyloguj się</a></li>
                             </ul>
                         </li>
                     </c:when>
