@@ -177,3 +177,19 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:fir
 div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:last-child {
     padding-right: 0
 }
+
+table.dataTable.compact thead th,
+table.dataTable.compact thead td {
+    padding: 4px 17px 4px 4px;
+    font-size: 14px;
+}
+table.dataTable.compact tfoot th,
+table.dataTable.compact tfoot td {
+    padding: 4px;
+    font-size: 14px;
+}
+table.dataTable.compact tbody th,
+table.dataTable.compact tbody td {
+    padding: 4px;
+    font-size: 14px;
+}

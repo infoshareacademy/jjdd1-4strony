@@ -48,31 +48,31 @@
                 </c:choose>
             </ul>
 
-            <form class="navbar-form">
-                <div class="form-group" style="display:inline;">
-                    <div class="input-group" style="display:table;">
-                        <span class="input-group-btn" style="width:10%;">
-                            <button type="submit" class="btn btn-default">
-                                <span class="glyphicon glyphicon-search" style="padding-top: 3px; padding-bottom: 3px"></span>
-                            </button>
-                        </span>
-                        <input class="form-control" name="search" placeholder="znajdź fundusz" autocomplete="off"
-                               autofocus="autofocus" type="text" list="funds">
-                        <datalist id="funds">
-                            <%--<c:choose>--%>
-                            <%--<c:when test="${dataFound}">--%>
-                            <%--<c:forEach items="${allInvestFunds}" var="investFund">--%>
-                            <%--<option value="${investFund.name}"></option>--%>
-                            <%--</c:forEach>--%>
-                            <%--</c:when>--%>
-                            <%--<c:otherwise>--%>
-                            <%--<option value="brak danych"></option>--%>
-                            <%--</c:otherwise>--%>
-                            <%--</c:choose>--%>
-                        </datalist>
-                    </div>
-                </div>
-            </form>
+            <%--<form class="navbar-form">--%>
+                <%--<div class="form-group" style="display:inline;">--%>
+                    <%--<div class="input-group" style="display:table;">--%>
+                        <%--<span class="input-group-btn" style="width:10%;">--%>
+                            <%--<button type="submit" class="btn btn-default">--%>
+                                <%--<span class="glyphicon glyphicon-search" style="padding-top: 3px; padding-bottom: 3px"></span>--%>
+                            <%--</button>--%>
+                        <%--</span>--%>
+                        <%--<input id="searchInput" class="form-control" name="search" placeholder="znajdź fundusz" autocomplete="off"--%>
+                               <%--autofocus="autofocus" type="text" list="funds" onkeyup="searchFund()">--%>
+                        <%--<datalist id="funds">--%>
+                            <%--&lt;%&ndash;<c:choose>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<c:when test="${dataFound}">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<c:forEach items="${allInvestFunds}" var="investFund">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<option value="${investFund.name}"></option>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</c:forEach>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</c:when>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<c:otherwise>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<option value="brak danych"></option>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</c:otherwise>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</c:choose>&ndash;%&gt;--%>
+                        <%--</datalist>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</form>--%>
         </div>
     </div>
 </nav>

@@ -16,11 +16,11 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 main">
-            <h1 class="page-header">Notowania funduszy inwestycyjnych</h1>
+            <h3 class="page-header">NOTOWANIA FUNDUSZY</h3>
 
-            <h2 class="page-header">Polecane</h2>
-            <div class="table-responsive">
-                <table class="table table-striped table-hover-promo">
+            <h4 class="page-header">Polecane</h4>
+            <div class="table-responsive" style="display: none">
+                <table class="table table-striped table-hover-promo compact">
                     <thead>
                     <tr>
                         <th class="text-center col-md-1">
@@ -30,7 +30,6 @@
                         <th class="text-center">id</th>
                         <th class="text-center">data</th>
                         <th class="text-right">wartość j.u. netto <em>PLN</em></th>
-                        <th></th>
                         <th>zmiana</th>
                     </tr>
                     </thead>
@@ -64,22 +63,20 @@
                                     <td class="text-right">${investFund.close}</td>
                                     <c:choose>
                                         <c:when test="${investFund.diff > 0}">
-                                            <td class="text-left">
+                                            <td class="text-left green">
                                                 <span class="glyphicon glyphicon-arrow-up green"></span>
+                                                +${investFund.diff}%
                                             </td>
-                                            <td class="text-left green"> +${investFund.diff}%</td>
                                         </c:when>
                                         <c:when test="${investFund.diff < 0}">
-                                            <td class="text-left">
-                                                <span class="glyphicon glyphicon-arrow-down red"></span>
+                                            <td class="text-left red">
+                                                <span class="glyphicon glyphicon-arrow-down red"></span> ${investFund.diff}%
                                             </td>
-                                            <td class="text-left red"> ${investFund.diff}%</td>
                                         </c:when>
                                         <c:otherwise>
-                                            <td class="text-left">
-                                                <span class="glyphicon glyphicon-arrow-right grey"></span>
+                                            <td class="text-left grey">
+                                                <span class="glyphicon glyphicon-arrow-right grey"></span> 0.00%
                                             </td>
-                                            <td class="text-left grey"> 0.00%</td>
                                         </c:otherwise>
                                     </c:choose>
                                 </tr>
@@ -94,7 +91,6 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
                             </tr>
                         </c:otherwise>
                     </c:choose>
@@ -102,10 +98,10 @@
                 </table>
             </div>
 
-            <h3 class="sub-header">Pozostałe</h3>
+            <h4 class="sub-header">Pozostałe</h4>
             <%--<div class="panel-heading">Panel heading</div>--%>
-            <div class="table-responsive">
-                <table class="table table-striped table-hover-other">
+            <div class="table-responsive" style="display: none">
+                <table class="table table-striped table-hover-other compact">
                     <thead>
                     <tr>
                         <th class="text-center col-md-1">
@@ -115,7 +111,6 @@
                         <th class="text-center">id</th>
                         <th class="text-center">data</th>
                         <th class="text-right">wartość j.u. netto <em>PLN</em></th>
-                        <th></th>
                         <th>zmiana</th>
                     </tr>
                     </thead>
@@ -131,22 +126,20 @@
                                     <td class="text-right">${investFund.close}</td>
                                     <c:choose>
                                         <c:when test="${investFund.diff > 0}">
-                                            <td class="text-left">
+                                            <td class="text-left green">
                                                 <span class="glyphicon glyphicon-arrow-up green"></span>
+                                                +${investFund.diff}%
                                             </td>
-                                            <td class="text-left green"> +${investFund.diff}%</td>
                                         </c:when>
                                         <c:when test="${investFund.diff < 0}">
-                                            <td class="text-left">
-                                                <span class="glyphicon glyphicon-arrow-down red"></span>
+                                            <td class="text-left red">
+                                                <span class="glyphicon glyphicon-arrow-down red"></span> ${investFund.diff}%
                                             </td>
-                                            <td class="text-left red"> ${investFund.diff}%</td>
                                         </c:when>
                                         <c:otherwise>
-                                            <td class="text-left">
-                                                <span class="glyphicon glyphicon-arrow-right grey"></span>
+                                            <td class="text-left grey">
+                                                <span class="glyphicon glyphicon-arrow-right grey"></span> 0.00%
                                             </td>
-                                            <td class="text-left grey"> 0.00%</td>
                                         </c:otherwise>
                                     </c:choose>
                                 </tr>
@@ -156,7 +149,6 @@
                             <tr>
                                 <td></td>
                                 <td>brak danych</td>
-                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -175,12 +167,22 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
+<script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/dataTables.bootstrap.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
         $(".table").DataTable();
+
+//        {
+//            "columnDefs": [
+////                {"width": "100px", "targets": [0,2,5]},
+//            {"width": "50%", "targets": 1},
+////                {"width": "150px%", "targets": [3,4]},
+//        ]
+//        }
+
+        $(".table-responsive").show();
     });
 </script>
 </body>

@@ -17,7 +17,7 @@
     <form class="form-horizontal" role="form" action="/4analysis/statistics" method="post">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 main">
-            <h1 class="page-header">Statystyka notowań funduszy inwestycyjnych</h1>
+            <h3 class="page-header">POPULARNOŚĆ FUNDUSZY</h3>
             <div class="table-responsive">
                 <table class="table table-striped table-hover-other">
                     <thead>
