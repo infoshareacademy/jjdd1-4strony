@@ -9,7 +9,7 @@
     <title>4analysis</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
-    <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/css/dataTables.bootstrap.css" rel="stylesheet">
 </head>
 <body>
 <%@include file="navbar.jsp" %>
@@ -17,19 +17,18 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2 main">
             <h3 class="page-header">NOTOWANIA FUNDUSZY</h3>
-
-            <h4 class="page-header">Polecane</h4>
-            <div class="table-responsive" style="display: none">
-                <table class="table table-striped table-hover-promo compact">
+            <div class="panel-heading"><strong>Polecane</strong></div>
+            <div class="table-responsive">
+                <table table id="table-promoted" class="table table-striped table-hover-promo compact" style="display: none">
                     <thead>
                     <tr>
-                        <th class="text-center col-md-1">
+                        <th class="text-center col-md-1 sorting_disabled" style="width: 10%">
                             <span class="glyphicon glyphicon-tags"></span>
                         </th>
-                        <th>fundusz</th>
-                        <th class="text-center">id</th>
-                        <th class="text-center">data</th>
-                        <th class="text-right">wartość j.u. netto <em>PLN</em></th>
+                        <th style="width: 40%">fundusz</th>
+                        <th class="text-center" style="width: 10%">id</th>
+                        <th class="text-center" style="width: 15%" >data</th>
+                        <th class="text-right" style="width: 15%">wartość j.u. netto <em>PLN</em></th>
                         <th>zmiana</th>
                     </tr>
                     </thead>
@@ -98,19 +97,18 @@
                 </table>
             </div>
 
-            <h4 class="sub-header">Pozostałe</h4>
-            <%--<div class="panel-heading">Panel heading</div>--%>
-            <div class="table-responsive" style="display: none">
-                <table class="table table-striped table-hover-other compact">
+            <div class="panel-heading">Pozostałe</div>
+            <div class="table-responsive">
+                <table id="table-not-promoted" class="table table-striped table-hover-other compact" style="display: none">
                     <thead>
                     <tr>
-                        <th class="text-center col-md-1">
+                        <th class="text-center col-md-1 sorting_disabled" style="width: 10%">
                             <span class="glyphicon glyphicon-tags"></span>
                         </th>
-                        <th>fundusz</th>
-                        <th class="text-center">id</th>
-                        <th class="text-center">data</th>
-                        <th class="text-right">wartość j.u. netto <em>PLN</em></th>
+                        <th style="width: 40%">fundusz</th>
+                        <th class="text-center" style="width: 10%">id</th>
+                        <th class="text-center" style="width: 15%" >data</th>
+                        <th class="text-right" style="width: 15%">wartość j.u. netto <em>PLN</em></th>
                         <th>zmiana</th>
                     </tr>
                     </thead>
@@ -172,17 +170,17 @@
 <script src="/js/dataTables.bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
-        $(".table").DataTable();
 
-//        {
-//            "columnDefs": [
-////                {"width": "100px", "targets": [0,2,5]},
-//            {"width": "50%", "targets": 1},
-////                {"width": "150px%", "targets": [3,4]},
-//        ]
-//        }
+        var datatable = $('.table').DataTable({
+            "responsive": true,
+            "aoColumnDefs": [
+                {"bSortable": false, "aTargets": [0]}
+            ]
+        });
 
-        $(".table-responsive").show();
+        $(".table").show();
+
+        datatable.draw().columns.adjust().responsive.recalc();
     });
 </script>
 </body>
