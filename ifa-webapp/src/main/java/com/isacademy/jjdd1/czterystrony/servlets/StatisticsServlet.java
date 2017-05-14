@@ -14,8 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/4analysis/statistics")
-
-public class StatisticServlet extends HttpServlet {
+public class StatisticsServlet extends HttpServlet {
 
     @Inject
     StatisticsDetailsRepository statisticDetailsRepository;
