@@ -7,6 +7,7 @@ import com.isacademy.jjdd1.czterystrony.repositories.InvestFundStatisticsReposit
 import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;
 import com.isacademy.jjdd1.czterystrony.services.RestDateParam;
 import com.isacademy.jjdd1.czterystrony.services.RestIntegerParam;
+import com.isacademy.jjdd1.czterystrony.users.SessionData;
 
 import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
@@ -25,6 +26,9 @@ public class StatisticsUpdater {
 
     @Inject
     RatingRepository ratingRepository;
+
+    @Inject
+    SessionData sessionData;
 
     @Asynchronous
     public void update(String investFundId,
@@ -54,6 +58,7 @@ public class StatisticsUpdater {
                 .withStartDate(startDate)
                 .withEndDate(endDate)
                 .withZigZag(zigZag.getNumber())
+//                .withUser(sessionData.getUser().getEmail())
                 .build();
 
         investFundStatisticsRepository.add(investFundStatistics);

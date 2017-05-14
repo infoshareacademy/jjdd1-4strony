@@ -15,7 +15,7 @@ import java.util.List;
 @Path("investfunds")
 public class InvestFundDetailsService {
 
-    private static Logger log = LoggerFactory.getLogger(InvestFundService.class);
+    private static Logger log = LoggerFactory.getLogger(InvestFundDetailsService.class);
 
     @Inject
     Views views;

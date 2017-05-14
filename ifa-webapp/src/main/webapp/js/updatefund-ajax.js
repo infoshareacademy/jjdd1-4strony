@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#fund-id').change(function(){
         $.ajax({
-            url : '/resources/investfunds/' + $('#fund-id').text(),
+            url : '/api/investfunds/' + $('#fund-id').val(),
             dataType: 'json',
             success : function(response) {
                 $('#fund-name').val(response.name);
