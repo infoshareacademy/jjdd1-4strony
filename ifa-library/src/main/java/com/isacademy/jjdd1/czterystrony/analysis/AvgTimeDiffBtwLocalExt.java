@@ -26,19 +26,6 @@ public class AvgTimeDiffBtwLocalExt {
         return diff;
     }
 
-    public List<String> fillTheList() {
-
-        listOfDates.add("20160111");
-        listOfDates.add("20160110");
-        listOfDates.add("20160114");
-        listOfDates.add("20160113");
-        listOfDates.add("20160118");
-        listOfDates.add("20160115");
-        listOfDates.add("20160120");
-
-        return listOfDates;
-    }
-
 
     public List<Integer> calculationDiffMeanTime() {
 
@@ -59,7 +46,6 @@ public class AvgTimeDiffBtwLocalExt {
         }
         return listOfDifferenceTime;
 
-
     }
 
     public Integer calculateAvgDiffBtnTime(List<Integer> listOfDifferenceTime) {
@@ -74,20 +60,9 @@ public class AvgTimeDiffBtwLocalExt {
 
         }
 
-        System.out.println("Suma tych różnic to: " + sum);
-        System.out.println("Średnie różnice między datami " + listOfDifferenceTime.size() + " dni.");
-
         return sum / listOfDifferenceTime.size();
     }
 
-    public static void main(String[] args) {
-
-        AvgTimeDiffBtwLocalExt avgTimeDiffBtwLocalExt = new AvgTimeDiffBtwLocalExt();
-        avgTimeDiffBtwLocalExt.fillTheList();
-        System.out.println(avgTimeDiffBtwLocalExt.calculationDiffMeanTime());
-        avgTimeDiffBtwLocalExt.calculateAvgDiffBtnTime(avgTimeDiffBtwLocalExt.listOfDifferenceTime);
-
-    }
 
     public List<Integer> getListOfDifferenceTime() {
         return listOfDifferenceTime;
