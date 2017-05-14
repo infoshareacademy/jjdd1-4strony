@@ -1,82 +1,108 @@
 package com.isacademy.jjdd1.czterystrony.analysis;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 
-/**
- * Created by maciejwolodko on 11.05.17.
- */
+
 public class AvgTimeDiffBtwLocalExt {
 
+    private List<Integer> listOfDifferenceTime = new ArrayList<>();
+
+    private List<String> listOfDates = new ArrayList<>();
 
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-    //private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
-    public static long getDayCount(String start, String end) {
-        long diff = -1;
+
+    public static int getDayCount(String start, String end) {
+        int diff = -1;
         try {
             Date dateStart = simpleDateFormat.parse(start);
             Date dateEnd = simpleDateFormat.parse(end);
 
-            //time is always 00:00:00 so rounding should help to ignore the missing hour when going from winter to summer time as well as the extra hour in the other direction
-            diff = Math.round((dateEnd.getTime() - dateStart.getTime()) / (double) 86400000);
+            diff = (int) Math.round((dateEnd.getTime() - dateStart.getTime()) / (double) 86400000);
         } catch (Exception e) {
-            //handle the exception according to your own situation
+
         }
         return diff;
     }
 
+    public List<String> fillTheList() {
+
+        listOfDates.add("20160111");
+        listOfDates.add("20160110");
+        listOfDates.add("20160114");
+        listOfDates.add("20160113");
+        listOfDates.add("20160118");
+        listOfDates.add("20160115");
+        listOfDates.add("20160120");
+
+        return listOfDates;
+    }
 
 
-/*
-    List<LocalDate> listOfDifferenceTime = new ArrayList<>();
-    List<LocalDate> listOfDates = new ArrayList<>();
+    public List<Integer> calculationDiffMeanTime() {
 
-
-    public List<BigDecimal> calculationDiffMeanTime() {
-
-        ///listOfDates.add(Local);
-
-        //20090619
 
         for (int i = 0; i < listOfDates.size() - 1; i++) {
 
-            BigDecimal differenceValue;
+            Integer differenceInPositive;
+            Integer differenceValue = getDayCount(listOfDates.get(i), listOfDates.get(i + 1));
 
-            listOfDifferenceTime.add(i, differenceValue);
+            if (differenceValue < 0) {
+                differenceInPositive = differenceValue * (-1);
+                listOfDifferenceTime.add(i, differenceInPositive);
+            } else {
+
+                listOfDifferenceTime.add(i, differenceValue);
+            }
 
         }
         return listOfDifferenceTime;
 
+
     }
 
-    public LocalDate calculateAvgDiffBtnTime(List<LocalDate> listOfDifferenceTime) {
-       *//* if (listOfDifferenceTime == null || listOfDifferenceTime.isEmpty()) {
-            return BigDecimal.ZERO;
-        }*//*
+    public Integer calculateAvgDiffBtnTime(List<Integer> listOfDifferenceTime) {
 
-        BigDecimal sum = BigDecimal.valueOf(0.00);
-        for (BigDecimal mark : listOfDifferenceTime) {
-            sum = sum.add(mark) ;
+        if (listOfDifferenceTime == null || listOfDifferenceTime.isEmpty()) {
+            return 0;
+        }
+
+        int sum = 0;
+        for (long mark : listOfDifferenceTime) {
+            sum += mark;
 
         }
 
         System.out.println("Suma tych różnic to: " + sum);
-        System.out.println(BigDecimal.valueOf(listOfDifferenceTime.size()));
+        System.out.println("Średnie różnice między datami " + listOfDifferenceTime.size() + " dni.");
 
-        return sum.divide(BigDecimal.valueOf(listOfDifferenceTime.size()));
-    }*/
-
+        return sum / listOfDifferenceTime.size();
+    }
 
     public static void main(String[] args) {
-        System.out.println(getDayCount("20160231", "20160305"));
-        //System.out.println(getDayCount("22.06.2009","23.06.2009"));
-        //20090619
 
+        AvgTimeDiffBtwLocalExt avgTimeDiffBtwLocalExt = new AvgTimeDiffBtwLocalExt();
+        avgTimeDiffBtwLocalExt.fillTheList();
+        System.out.println(avgTimeDiffBtwLocalExt.calculationDiffMeanTime());
+        avgTimeDiffBtwLocalExt.calculateAvgDiffBtnTime(avgTimeDiffBtwLocalExt.listOfDifferenceTime);
 
     }
 
+    public List<Integer> getListOfDifferenceTime() {
+        return listOfDifferenceTime;
+    }
 
+    public List<String> getListOfDates() {
+        return listOfDates;
+    }
+
+    public static SimpleDateFormat getSimpleDateFormat() {
+        return simpleDateFormat;
+    }
 }
+
+
+
+
+
