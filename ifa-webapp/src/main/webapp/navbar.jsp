@@ -27,7 +27,7 @@
                                 <li><span style="padding-left: 15px; padding-right: 15px"><strong>${sessionData.user.email}</strong></span></li>
                                 <li role="separator" class="divider"></li>
                                 <%--<li class="dropdown-header">Nav header</li>--%>
-                                <li><a href="http://localhost:8080/4analysis/updatefund">Promuj fundusz</a></li>
+                                <li><a href="http://localhost:8080/4analysis/updatefund">Edytuj fundusz</a></li>
                                 <li><a href="http://localhost:8080/4analysis/statistics">Statystyki</a></li>
                                 <li><a href="http://localhost:8080/api/google/signout">Wyloguj się</a></li>
                             </ul>
