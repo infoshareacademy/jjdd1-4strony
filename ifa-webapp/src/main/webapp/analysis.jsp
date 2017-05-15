@@ -18,7 +18,7 @@
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li><a href="http://localhost:8080/4analysis/notowania/${investFund.id}">Notowania</a></li>
-                <li><a href="http://localhost:8080/4analysis/wyniki/${investFund.id}">Wyniki</a></li>
+                <%--<li><a href="http://localhost:8080/4analysis/wyniki/${investFund.id}">Wyniki</a></li>--%>
                 <li class="active"><a href="http://localhost:8080/4analysis/analiza/${investFund.id}">Analiza
                     techniczna<span
                             class="sr-only">(current)</span></a></li>
