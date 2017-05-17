@@ -6,39 +6,35 @@ import java.util.List;
 
 public class AverageValueDifferenceBetweenLocalExtrema {
 
-    private List<BigDecimal> listOfDifferencesInQuotas = new ArrayList<>();
-    private List<BigDecimal> listOfQuotas = new ArrayList<>();
+    private final int DIGITS_AFTER_COMMA = 2;
 
-    public List<BigDecimal> calculationOfTheDiffInQuotas() {
-        for (int i = 0; i < listOfQuotas.size() - 1; i++) {
-            int nextListElement = 1;
-            BigDecimal differenceInPositive;
-            BigDecimal differenceValue;
-            differenceValue = listOfQuotas.get(i).subtract(listOfQuotas.get((i) + nextListElement));
+    public BigDecimal calculate(List<BigDecimal> values) {
+        List<BigDecimal> listOfDifferences = getListOfDifferencesBetweenAdjacentValues(values);
 
-            if (differenceValue.compareTo(BigDecimal.ZERO) < 0) {
-                differenceInPositive = differenceValue.abs();
-                listOfDifferencesInQuotas.add(i, differenceInPositive);
-            } else {
-                listOfDifferencesInQuotas.add(i, differenceValue);
-            }
-        }
-        return listOfDifferencesInQuotas;
-    }
-
-    public BigDecimal calculate(List<BigDecimal> listOfDifferencesInQuotas) {
-        if (listOfDifferencesInQuotas == null || listOfDifferencesInQuotas.isEmpty()) {
+        if (listOfDifferences == null || listOfDifferences.isEmpty()) {
             return BigDecimal.ZERO;
         }
 
-        BigDecimal sum = BigDecimal.ZERO;
-        for (BigDecimal mark : listOfDifferencesInQuotas) {
-            sum = sum.add(mark);
+        BigDecimal sum = listOfDifferences.stream()
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal listSize = BigDecimal.valueOf(listOfDifferences.size());
+
+        return sum.divide(listSize, DIGITS_AFTER_COMMA, BigDecimal.ROUND_HALF_UP);
+    }
+
+    private List<BigDecimal> getListOfDifferencesBetweenAdjacentValues(List<BigDecimal> values) {
+        List<BigDecimal> listOfDifferences = new ArrayList<>();
+
+        for (int i = 1; i < values.size(); i++) {
+            BigDecimal difference = values.get(i).subtract(values.get(i - 1)).abs();
+            listOfDifferences.add(difference);
         }
 
-        return sum.divide(BigDecimal.valueOf(listOfDifferencesInQuotas.size()));
+        return listOfDifferences;
     }
 }
+
 
 
 

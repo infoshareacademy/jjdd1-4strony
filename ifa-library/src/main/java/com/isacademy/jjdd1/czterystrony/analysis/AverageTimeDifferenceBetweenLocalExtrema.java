@@ -4,37 +4,32 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-
 public class AverageTimeDifferenceBetweenLocalExtrema {
 
-    private List<Integer> listOfDifferenceTime = new ArrayList<>();
-    private List<LocalDate> listOfDates = new ArrayList<>();
+    public Integer calculate(List<LocalDate> dates) {
+        List<Integer> listOfDifferences = getListOfDifferencesInDaysBetweenAdjacentDates(dates);
 
-    public long getDaysCount(LocalDate start, LocalDate end) {
-        return Math.abs(ChronoUnit.DAYS.between(start, end));
-    }
-
-    public List<Integer> calculationDiffMeanTime() {
-        for (int i = 0; i < listOfDates.size() - 1; i++) {
-            listOfDifferenceTime.add(i, (int) getDaysCount(listOfDates.get(i), listOfDates.get(i + 1)));
-        }
-        return listOfDifferenceTime;
-    }
-
-    public Integer calculateAvgDiffBtnTime(List<Integer> listOfDifferenceTime) {
-        if (listOfDifferenceTime == null || listOfDifferenceTime.isEmpty()) {
+        if (listOfDifferences == null || listOfDifferences.isEmpty()) {
             return 0;
         }
 
-        int sum = 0;
-        for (Integer mark : listOfDifferenceTime) {
-            sum += mark;
-        }
-        return sum / listOfDifferenceTime.size();
+        Integer sum = listOfDifferences.stream()
+                .reduce(0, (a, b) -> a + b);
+
+        return sum / listOfDifferences.size();
     }
 
-    public List<Integer> getListOfDifferenceTime() {
-        return listOfDifferenceTime;
+    private List<Integer> getListOfDifferencesInDaysBetweenAdjacentDates(List<LocalDate> dates) {
+        List<Integer> listOfDifferences = new ArrayList<>();
+
+        for (int i = 1; i < dates.size(); i++) {
+            listOfDifferences.add(getDifferenceInDays(dates.get(i), dates.get(i - 1)));
+        }
+        return listOfDifferences;
+    }
+
+    private Integer getDifferenceInDays(LocalDate firstDate, LocalDate secondDate) {
+        return Math.abs((int) ChronoUnit.DAYS.between(firstDate, secondDate));
     }
 }
 
