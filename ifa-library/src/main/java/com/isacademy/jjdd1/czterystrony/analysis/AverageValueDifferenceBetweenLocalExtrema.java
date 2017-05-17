@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AvgDifferenceBtwQuotas {
+public class AverageValueDifferenceBetweenLocalExtrema {
 
     private List<BigDecimal> listOfDifferencesInQuotas = new ArrayList<>();
     private List<BigDecimal> listOfQuotas = new ArrayList<>();
@@ -26,12 +26,12 @@ public class AvgDifferenceBtwQuotas {
         return listOfDifferencesInQuotas;
     }
 
-    public BigDecimal calculateAverage(List<BigDecimal> listOfDifferencesInQuotas) {
+    public BigDecimal calculate(List<BigDecimal> listOfDifferencesInQuotas) {
         if (listOfDifferencesInQuotas == null || listOfDifferencesInQuotas.isEmpty()) {
             return BigDecimal.ZERO;
         }
 
-        BigDecimal sum = BigDecimal.valueOf(0.00);
+        BigDecimal sum = BigDecimal.ZERO;
         for (BigDecimal mark : listOfDifferencesInQuotas) {
             sum = sum.add(mark);
         }

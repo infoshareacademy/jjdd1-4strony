@@ -5,7 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 
-public class AvgTimeDiffBtwLocalExt {
+public class AverageTimeDifferenceBetweenLocalExtrema {
 
     private List<Integer> listOfDifferenceTime = new ArrayList<>();
     private List<LocalDate> listOfDates = new ArrayList<>();
