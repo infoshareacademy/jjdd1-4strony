@@ -32,8 +32,3 @@ public class AverageTimeDifferenceBetweenLocalExtrema {
         return Math.abs((int) ChronoUnit.DAYS.between(firstDate, secondDate));
     }
 }
-
-
-
-
-
