@@ -26,7 +26,7 @@ public class InvestFundStatistics {
 
     private int zigZag;
 
-    private BigDecimal averageDateDifference;
+    private int averageDateDifference;
 
     private BigDecimal averageValueDifference;
 
@@ -51,7 +51,7 @@ public class InvestFundStatistics {
         private LocalDate startDate;
         private LocalDate endDate;
         private int zigZag;
-        private BigDecimal averageDateDifference;
+        private int averageDateDifference;
         private BigDecimal averageValueDifference;
         private String user;
 
@@ -75,7 +75,7 @@ public class InvestFundStatistics {
             return this;
         }
 
-        public Builder withAverageDateDifference(BigDecimal averageDateDifference) {
+        public Builder withAverageDateDifference(int averageDateDifference) {
             this.averageDateDifference = averageDateDifference;
             return this;
         }
@@ -95,7 +95,7 @@ public class InvestFundStatistics {
         }
     }
 
-    public BigDecimal getAverageDateDifference() {
+    public int getAverageDateDifference() {
         return averageDateDifference;
     }
 

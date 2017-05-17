@@ -30,7 +30,7 @@ public class AnalysisAudit {
         RestDateParam start = (RestDateParam) ic.getParameters()[2];
         RestDateParam end = (RestDateParam) ic.getParameters()[3];
 
-        statisticsUpdater.update(investFundId, zigZag, start, end);
+        statisticsUpdater.update(investFundId, zigZag, start, end, localExtrema);
 
         log.info("User {} checked {} fund", null, investFundId);
         return returnedValue;
