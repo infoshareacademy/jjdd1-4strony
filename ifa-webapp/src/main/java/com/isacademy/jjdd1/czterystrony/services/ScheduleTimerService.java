@@ -2,6 +2,7 @@ package com.isacademy.jjdd1.czterystrony.services;
 
 import com.isacademy.jjdd1.czterystrony.dbviews.Views;
 import com.isacademy.jjdd1.czterystrony.updaters.DatabaseUpdater;
+import com.isacademy.jjdd1.czterystrony.utilities.ReportSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,15 +21,24 @@ public class ScheduleTimerService {
     @Inject
     Views views;
 
-    @Schedule(dayOfWeek = "Mon-Fri", hour = "10", minute = "30", persistent = false)
+    @Inject
+    ReportSender reportSender;
+
+    @Schedule(dayOfWeek = "Mon-Fri", hour = "18", minute = "25", persistent = false)
     void updateDatabase() {
         databaseUpdater.update();
         log.info("Database updated.");
     }
 
-    @Schedule(dayOfWeek = "Mon-Fri", hour = "10", minute = "35", persistent = false)
+    @Schedule(dayOfWeek = "Mon-Fri", hour = "18", minute = "30", persistent = false)
     void updateViews() {
         views.updateViews();
         log.info("Views updated.");
+    }
+
+    @Schedule(dayOfWeek = "Mon-Fri", hour = "21", minute = "20", persistent = false)
+    void sendReport() {
+        reportSender.send();
+        log.info("Report sent.");
     }
 }

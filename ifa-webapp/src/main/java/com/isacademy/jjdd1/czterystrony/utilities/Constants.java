@@ -13,4 +13,7 @@ public final class Constants {
     public static final Path FUNDS_RATINGS_ZIP_PATH = Paths.get(System.getProperty("java.io.tmpdir")).resolve("omegafun.zip");
     public static final String RATINGS_DATA_FILE_EXTENSION = ".txt";
     public static final int RECORDS_TO_SKIP_IN_RATINGS_FILE = 1;
+
+    public static final String COMPANY_EMAIL_ADDRESS = "4analysisteam@gmail.com";
+    public static final String COMPANY_EMAIL_PASSWORD = "4analysis";
 }
