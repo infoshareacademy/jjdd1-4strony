@@ -23,7 +23,7 @@ public class RatingsUnzipper {
             log.info("Funds ratings unzipped to: {}", TMP_PROJECT_FOLDER);
         } catch (IOException e) {
             e.printStackTrace();
-            log.error("Cannot uznip ratings file: {} to: {}", FUNDS_RATINGS_ZIP_PATH, TMP_PROJECT_FOLDER);
+            log.error("Cannot unzip ratings file: {} to: {}", FUNDS_RATINGS_ZIP_PATH, TMP_PROJECT_FOLDER);
         }
     }
 }
