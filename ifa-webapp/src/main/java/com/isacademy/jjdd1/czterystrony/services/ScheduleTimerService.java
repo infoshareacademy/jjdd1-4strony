@@ -24,19 +24,19 @@ public class ScheduleTimerService {
     @Inject
     ReportSender reportSender;
 
-    @Schedule(dayOfWeek = "Mon-Fri", hour = "18", minute = "25", persistent = false)
+    @Schedule(dayOfWeek = "Mon-Fri", hour = "10", minute = "25", persistent = false)
     void updateDatabase() {
         databaseUpdater.update();
         log.info("Database updated.");
     }
 
-    @Schedule(dayOfWeek = "Mon-Fri", hour = "18", minute = "30", persistent = false)
+    @Schedule(dayOfWeek = "Mon-Fri", hour = "10", minute = "30", persistent = false)
     void updateViews() {
         views.updateViews();
         log.info("Views updated.");
     }
 
-    @Schedule(dayOfWeek = "Mon-Fri", hour = "21", minute = "20", persistent = false)
+    @Schedule(dayOfWeek = "Mon-Fri", hour = "12", minute = "00", persistent = false)
     void sendReport() {
         reportSender.send();
         log.info("Report sent.");
