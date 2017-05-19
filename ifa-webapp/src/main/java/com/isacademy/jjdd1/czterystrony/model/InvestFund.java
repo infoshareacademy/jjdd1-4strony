@@ -80,7 +80,7 @@ public class InvestFund {
     private int priority;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "investFund", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "ofe", cascade = CascadeType.PERSIST)
     private List<Rating> ratings = new ArrayList<>();
 
     public InvestFund() {

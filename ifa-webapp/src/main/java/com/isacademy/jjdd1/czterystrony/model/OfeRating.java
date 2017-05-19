@@ -13,36 +13,36 @@ import java.time.LocalDate;
 
 @Entity
 @Table(indexes = {@Index(
-        name = "UX_Rating_id_date_investFund_id",
-        columnList = "id,date,investFund_id")
+        name = "UX_Rating_id_date_ofe_id",
+        columnList = "id,date,ofe_id")
 })
 @NamedQueries({
         @NamedQuery(
-                name = "Rating.getByFundAndDate",
-                query = "SELECT r FROM Rating r WHERE r.date = :date AND r.ofe = :investFund"
+                name = "OfeRating.getByFundAndDate",
+                query = "SELECT r FROM Rating r WHERE r.date = :date AND r.ofe = :ofe"
         ),
         @NamedQuery(
-                name = "Rating.getByFundInTimeRange",
-                query = "SELECT r FROM Rating r WHERE r.ofe = :investFund AND r.date >= :startDate AND r.date <= :endDate"
+                name = "OfeRating.getByFundInTimeRange",
+                query = "SELECT r FROM Rating r WHERE r.ofe = :ofe AND r.date >= :startDate AND r.date <= :endDate"
         ),
         @NamedQuery(
-                name = "Rating.getOldestForFund",
-                query = "SELECT r FROM Rating r WHERE r.ofe = :investFund ORDER BY r.date ASC"
+                name = "OfeRating.getOldestForFund",
+                query = "SELECT r FROM Rating r WHERE r.ofe = :ofe ORDER BY r.date ASC"
         ),
         @NamedQuery(
-                name = "Rating.getNewestForFund",
-                query = "SELECT r FROM Rating r WHERE r.ofe = :investFund ORDER BY r.date DESC"
+                name = "OfeRating.getNewestForFund",
+                query = "SELECT r FROM Rating r WHERE r.ofe = :ofe ORDER BY r.date DESC"
         ),
         @NamedQuery(
-                name = "Rating.getAllByFund",
-                query = "SELECT r FROM Rating r WHERE r.ofe = :investFund ORDER BY r.date ASC"
+                name = "OfeRating.getAllByFund",
+                query = "SELECT r FROM Rating r WHERE r.ofe = :ofe ORDER BY r.date ASC"
         )
 })
-@NamedNativeQuery(
-        name = "Rating.insertDataFromCsv",
-        query = RatingNamedNativeQueries.insertFromCsv
-)
-public class Rating {
+//@NamedNativeQuery(
+//        name = "Rating.insertDataFromCsv",
+//        query = RatingNamedNativeQueries.insertFromCsv
+//)
+public class OfeRating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,18 +65,18 @@ public class Rating {
     private BigDecimal close;
 
     @ManyToOne
-    private InvestFund ofe;
+    private Ofe ofe;
 
-    public Rating() {
+    public OfeRating() {
     }
 
-    public Rating(Builder builder) {
+    public OfeRating(Builder builder) {
         this.date = builder.date;
         this.open = builder.open;
         this.high = builder.high;
         this.low = builder.low;
         this.close = builder.close;
-        this.ofe = builder.investFund;
+        this.ofe = builder.ofe;
     }
 
     public static class Builder {
@@ -85,7 +85,7 @@ public class Rating {
         private BigDecimal high;
         private BigDecimal low;
         private BigDecimal close;
-        private InvestFund investFund;
+        private Ofe ofe;
 
         public Builder withDate(LocalDate date) {
             this.date = date;
@@ -112,13 +112,13 @@ public class Rating {
             return this;
         }
 
-        public Builder withInvestFund(InvestFund investFund) {
-            this.investFund = investFund;
+        public Builder withOfe(Ofe ofe) {
+            this.ofe = ofe;
             return this;
         }
 
-        public Rating build() {
-            return new Rating(this);
+        public OfeRating build() {
+            return new OfeRating(this);
         }
     }
 
@@ -166,12 +166,12 @@ public class Rating {
     }
 
     @JsonIgnore
-    public InvestFund getOfe() {
+    public Ofe getOfe() {
         return ofe;
     }
 
-    public void setOfe(InvestFund investFund) {
-        this.ofe = investFund;
+    public void setOfe(Ofe ofe) {
+        this.ofe = ofe;
     }
 
     @Override
@@ -183,7 +183,7 @@ public class Rating {
                 ", high=" + high +
                 ", low=" + low +
                 ", close=" + close +
-                ", investFund=" + ofe +
+                ", ofe=" + ofe +
                 '}';
     }
 }
