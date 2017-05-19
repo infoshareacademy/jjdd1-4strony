@@ -18,6 +18,7 @@
     <modules>
         <module>ifa-library</module>
         <module>ifa-webapp</module>
+        <module>ifa-reports</module>
     </modules>
 
     <dependencies>
