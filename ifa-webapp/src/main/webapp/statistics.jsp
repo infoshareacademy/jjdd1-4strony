@@ -33,6 +33,8 @@
                             <td>${statisticsDetail.name}</td>
                             <td>${statisticsDetail.id}</td>
                             <td>${statisticsDetail.clicks}</td>
+                            <td>${statisticsDetail.averageValueDifference}</td>
+                            <td>${statisticsDetail.averageDateDifference}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
