@@ -46,7 +46,7 @@ public class InvestFundsPopularityReportService implements ReportService {
                     .collect(Collectors.toList());
 
             repository.add(reportEntities);
-            String result = "Invest funds popularity report created for date " + reportDate;
+            String result = "Invest funds popularity daily report created. Report date: " + reportDate;
             log.info(result);
             return Response.created(uri).entity(result).build();
 
@@ -57,10 +57,24 @@ public class InvestFundsPopularityReportService implements ReportService {
     }
 
     @GET
-    @Path("/{year}/{month}/{day}")
+    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getDailyReport(@BeanParam DayParam day) {
-        return getPeriodicReport(day);
+    public Response getOverallReport() {
+        try {
+            List<InvestFundsPopularity> list = repository.getAll();
+            log.info("Provided popularity report.");
+            return Response.ok(list).build();
+        } catch (Throwable e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+    }
+
+    @GET
+    @Path("/{year}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getYearlyReport(@BeanParam YearParam year) {
+        return getPeriodicReport(year);
     }
 
     @GET
@@ -71,10 +85,10 @@ public class InvestFundsPopularityReportService implements ReportService {
     }
 
     @GET
-    @Path("/{year}")
+    @Path("/{year}/{month}/{day}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getYearlyReport(@BeanParam YearParam year) {
-        return getPeriodicReport(year);
+    public Response getDailyReport(@BeanParam DayParam day) {
+        return getPeriodicReport(day);
     }
 
     private Response getPeriodicReport(PeriodParam period) {

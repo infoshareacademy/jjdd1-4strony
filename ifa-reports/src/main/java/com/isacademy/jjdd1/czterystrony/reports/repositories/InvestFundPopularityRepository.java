@@ -19,6 +19,11 @@ public class InvestFundPopularityRepository {
         list.forEach(r -> entityManager.persist(r));
     }
 
+    public List<InvestFundsPopularity> getAll() {
+        Query query = entityManager.createQuery("SELECT p FROM InvestFundsPopularity p");
+        return query.getResultList();
+    }
+
     public List<InvestFundsPopularity> getInTimeRange(LocalDate from, LocalDate to) {
         Query query = entityManager.createQuery("SELECT p FROM InvestFundsPopularity p WHERE p.date >= :startDate AND p.date <= :endDate");
         query.setParameter("startDate", from);
