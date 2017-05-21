@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @MappedSuperclass
-public abstract class Popularity {
+public class Popularity {
 
     @Id
     @Column(name = "ID")
@@ -31,16 +31,32 @@ public abstract class Popularity {
         return instrumentId;
     }
 
+    public void setInstrumentId(String instrumentId) {
+        this.instrumentId = instrumentId;
+    }
+
     public String getInstrumentName() {
         return instrumentName;
+    }
+
+    public void setInstrumentName(String instrumentName) {
+        this.instrumentName = instrumentName;
     }
 
     public int getClicks() {
         return clicks;
     }
 
+    public void setClicks(int clicks) {
+        this.clicks = clicks;
+    }
+
     public LocalDate getDate() {
         return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @Override
