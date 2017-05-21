@@ -13,8 +13,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,9 +31,16 @@ public class InvestFundsPopularityReportService implements ReportService {
     @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_HTML)
-    public Response createDailyReport(PopularityReportWrapper reportWrapper) {
+    public Response createDailyReport(PopularityReportWrapper reportWrapper, @Context UriInfo uriInfo) {
         try {
             LocalDate reportDate = reportWrapper.getReportDate();
+
+            URI uri = uriInfo.getAbsolutePathBuilder()
+                    .path(String.valueOf(reportDate.getYear()))
+                    .path(String.valueOf(reportDate.getMonthValue()))
+                    .path(String.valueOf(reportDate.getDayOfMonth()))
+                    .build();
+
             List<InvestFundsPopularity> reportEntities = reportWrapper.getPopularityDTOs().stream()
                     .map(r -> PopularityFactory.create(new InvestFundsPopularity(), r, reportDate))
                     .collect(Collectors.toList());
@@ -41,7 +48,8 @@ public class InvestFundsPopularityReportService implements ReportService {
             repository.add(reportEntities);
             String result = "Invest funds popularity report created for date " + reportDate;
             log.info(result);
-            return Response.status(Response.Status.CREATED).entity(result).build();
+            return Response.created(uri).entity(result).build();
+
         } catch (Throwable e) {
             e.printStackTrace();
             return Response.status(Response.Status.NOT_FOUND).build();

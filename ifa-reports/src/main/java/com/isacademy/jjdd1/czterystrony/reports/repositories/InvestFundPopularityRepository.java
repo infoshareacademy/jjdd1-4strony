@@ -15,19 +15,14 @@ public class InvestFundPopularityRepository {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void add(InvestFundsPopularity investFundsPopularity) {
-        entityManager.persist(investFundsPopularity);
-    }
-
     public void add(List<InvestFundsPopularity> list) {
         list.forEach(r -> entityManager.persist(r));
     }
 
     public List<InvestFundsPopularity> getInTimeRange(LocalDate from, LocalDate to) {
-        Query query = entityManager.createQuery("SELECT s FROM InvestFundsPopularity s");
-//                .createNamedQuery("Popularity.getInTimeRange");
-//        query.setParameter("startDate", from);
-//        query.setParameter("endDate", to);
+        Query query = entityManager.createQuery("SELECT p FROM InvestFundsPopularity p WHERE p.date >= :startDate AND p.date <= :endDate");
+        query.setParameter("startDate", from);
+        query.setParameter("endDate", to);
         return query.getResultList();
     }
 }

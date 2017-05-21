@@ -1,9 +1,20 @@
 package com.isacademy.jjdd1.czterystrony.reports.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class PopularityDTO {
+
+    @JsonProperty("id")
     private String instrumentId;
+
+    @JsonProperty("name")
     private String instrumentName;
+
+    @JsonProperty("clicks")
     private int clicks;
+
+    public PopularityDTO() {
+    }
 
     public PopularityDTO(String instrumentId, String instrumentName, int clicks) {
         this.instrumentId = instrumentId;
