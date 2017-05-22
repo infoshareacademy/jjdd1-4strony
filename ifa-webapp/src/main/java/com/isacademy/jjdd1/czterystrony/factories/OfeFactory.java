@@ -6,7 +6,7 @@ import com.isacademy.jjdd1.czterystrony.model.Ofe;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class OfeFundFactory {
+public class OfeFactory {
     private static final int ID_BEGIN = 33;
     private static final int ID_END = 39;
     private static final int NAME_BEGIN = 51;

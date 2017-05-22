@@ -2,6 +2,8 @@ package com.isacademy.jjdd1.czterystrony.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.isacademy.jjdd1.czterystrony.queries.OfeRatingNamedNativeQueries;
+import com.isacademy.jjdd1.czterystrony.queries.RatingNamedNativeQueries;
 import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
 
 import javax.persistence.*;
@@ -17,30 +19,18 @@ import java.time.LocalDate;
 })
 @NamedQueries({
         @NamedQuery(
-                name = "OfeRating.getByFundAndDate",
+                name = "OfeRating.getByOfeAndDate",
                 query = "SELECT r FROM OfeRating r WHERE r.date = :date AND r.ofe = :ofe"
         ),
-//        @NamedQuery(
-//                name = "OfeRating.getByFundInTimeRange",
-//                query = "SELECT r FROM OfeRating r WHERE r.ofe = :ofe AND r.date >= :startDate AND r.date <= :endDate"
-//        ),
-//        @NamedQuery(
-//                name = "OfeRating.getOldestForFund",
-//                query = "SELECT r FROM OfeRating r WHERE r.ofe = :ofe ORDER BY r.date ASC"
-//        ),
-//        @NamedQuery(
-//                name = "OfeRating.getNewestForFund",
-//                query = "SELECT r FROM OfeRating r WHERE r.ofe = :ofe ORDER BY r.date DESC"
-//        ),
         @NamedQuery(
-                name = "OfeRating.getAllByFund",
+                name = "OfeRating.getAllByOfe",
                 query = "SELECT r FROM OfeRating r WHERE r.ofe = :ofe ORDER BY r.date ASC"
         )
 })
-//@NamedNativeQuery(
-//        name = "Rating.insertDataFromCsv",
-//        query = RatingNamedNativeQueries.insertFromCsv
-//)
+@NamedNativeQuery(
+        name = "OfeRating.insertDataFromCsv",
+        query = OfeRatingNamedNativeQueries.insertFromCsv
+)
 public class OfeRating {
 
     @Id

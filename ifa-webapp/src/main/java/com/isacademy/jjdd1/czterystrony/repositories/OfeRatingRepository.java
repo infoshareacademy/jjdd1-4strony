@@ -25,40 +25,14 @@ public class OfeRatingRepository {
     }
 
     public List<Rating> getByOfeAndDate(Ofe ofe, LocalDate date) {
-        Query query = entityManager.createNamedQuery("OfeRating.getByFundAndDate");
+        Query query = entityManager.createNamedQuery("OfeRating.getByOfeAndDate");
         query.setParameter("date", date);
-        query.setParameter("ofe", ofe);
-        return query.getResultList();
-    }
-//
-//    public List<Rating> getByFundInTimeRange(InvestFund investFund, TimeRange timeRange) {
-//        Query query = entityManager.createNamedQuery("Rating.getByFundInTimeRange");
-//        query.setParameter("startDate", timeRange.getStart());
-//        query.setParameter("endDate", timeRange.getEnd());
-//        query.setParameter("investFund", investFund);
-//        return query.getResultList();
-//    }
-//
-//    public Rating getOldestForFund(InvestFund investFund) {
-//        Query query = entityManager.createNamedQuery("Rating.getOldestForFund");
-//        query.setParameter("investFund", investFund);
-//        return (Rating) query.getResultList().get(0);
-//    }
-//
-//    public Rating getNewestForFund(InvestFund investFund) {
-//        Query query = entityManager.createNamedQuery("Rating.getNewestForFund");
-//        query.setParameter("investFund", investFund);
-//        return (Rating) query.getResultList().get(0);
-//    }
-
-    public List<Rating> getAllByFund(Ofe ofe) {
-        Query query = entityManager.createNamedQuery("OfeRating.getAllByFund");
         query.setParameter("ofe", ofe);
         return query.getResultList();
     }
 
     public void insertDataFromCsv(String filePath) {
-        Query query = entityManager.createNamedQuery("Rating.insertDataFromCsv");
+        Query query = entityManager.createNamedQuery("OfeRating.insertDataFromCsv");
         query.setParameter("filePath", filePath);
         query.executeUpdate();
     }

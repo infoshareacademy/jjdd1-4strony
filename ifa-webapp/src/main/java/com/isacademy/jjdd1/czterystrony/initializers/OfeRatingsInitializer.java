@@ -32,8 +32,8 @@ public class OfeRatingsInitializer {
     public void initialize() {
         ofeRepository.getAll().stream()
                 .filter(ofe -> ofe.getOfeRatings().isEmpty())
-                .peek(ofe -> log.info("Initializing ratings for: {}", ofe.getId()))
+                .peek(ofe -> log.info("Initializing ofe ratings for: {}", ofe.getId()))
                 .map(ofe -> TMP_PROJECT_FOLDER.resolve(ofe.getId() + RATINGS_DATA_FILE_EXTENSION))
                 .forEach(path -> ofeRatingRepository.insertDataFromCsv(path.toString()));
-    } //todo dodać isnertDataFromCSV
+    }
 }
