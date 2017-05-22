@@ -15,11 +15,11 @@ import java.util.List;
 
 @Entity
 @Table(indexes = {@Index(
-        name = "UX_InvestFund_id_name",
+        name = "UX_Ofe_id_name",
         columnList = "id,name")
 })
 @SqlResultSetMappings({
-        @SqlResultSetMapping(name = "InvestFundDetailsMapping",
+        @SqlResultSetMapping(name = "OfeDetailsMapping",
                 classes = {
                         @ConstructorResult(
                                 targetClass = OfeDetails.class,
