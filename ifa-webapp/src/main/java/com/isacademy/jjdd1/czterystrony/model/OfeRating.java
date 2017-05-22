@@ -2,7 +2,6 @@ package com.isacademy.jjdd1.czterystrony.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.isacademy.jjdd1.czterystrony.queries.RatingNamedNativeQueries;
 import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
 
 import javax.persistence.*;
@@ -19,23 +18,23 @@ import java.time.LocalDate;
 @NamedQueries({
         @NamedQuery(
                 name = "OfeRating.getByFundAndDate",
-                query = "SELECT r FROM Rating r WHERE r.date = :date AND r.ofe = :ofe"
+                query = "SELECT r FROM OfeRating r WHERE r.date = :date AND r.ofe = :ofe"
         ),
-        @NamedQuery(
-                name = "OfeRating.getByFundInTimeRange",
-                query = "SELECT r FROM Rating r WHERE r.ofe = :ofe AND r.date >= :startDate AND r.date <= :endDate"
-        ),
-        @NamedQuery(
-                name = "OfeRating.getOldestForFund",
-                query = "SELECT r FROM Rating r WHERE r.ofe = :ofe ORDER BY r.date ASC"
-        ),
-        @NamedQuery(
-                name = "OfeRating.getNewestForFund",
-                query = "SELECT r FROM Rating r WHERE r.ofe = :ofe ORDER BY r.date DESC"
-        ),
+//        @NamedQuery(
+//                name = "OfeRating.getByFundInTimeRange",
+//                query = "SELECT r FROM OfeRating r WHERE r.ofe = :ofe AND r.date >= :startDate AND r.date <= :endDate"
+//        ),
+//        @NamedQuery(
+//                name = "OfeRating.getOldestForFund",
+//                query = "SELECT r FROM OfeRating r WHERE r.ofe = :ofe ORDER BY r.date ASC"
+//        ),
+//        @NamedQuery(
+//                name = "OfeRating.getNewestForFund",
+//                query = "SELECT r FROM OfeRating r WHERE r.ofe = :ofe ORDER BY r.date DESC"
+//        ),
         @NamedQuery(
                 name = "OfeRating.getAllByFund",
-                query = "SELECT r FROM Rating r WHERE r.ofe = :ofe ORDER BY r.date ASC"
+                query = "SELECT r FROM OfeRating r WHERE r.ofe = :ofe ORDER BY r.date ASC"
         )
 })
 //@NamedNativeQuery(

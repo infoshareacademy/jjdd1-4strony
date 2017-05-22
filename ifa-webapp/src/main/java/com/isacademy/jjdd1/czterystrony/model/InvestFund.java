@@ -3,6 +3,7 @@ package com.isacademy.jjdd1.czterystrony.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isacademy.jjdd1.czterystrony.queries.InvestFundNamedNativeQueries;
+import com.isacademy.jjdd1.czterystrony.queries.OfeNamedNativeQueries;
 import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
 
 import javax.persistence.*;
@@ -58,7 +59,7 @@ import java.util.List;
                 name = "Statistics.getAll",
                 query = "select fund.name as name, stat.investFund_id as id, count(stat.investFund_id) as clicks FROM InvestFundStatistics stat, InvestFund fund " +
                 "where stat.investFund_id = fund.id GROUP BY investFund_id",
-                resultSetMapping = "StatisticsDetailsMapping")
+                resultSetMapping = "StatisticsDetailsMapping"),
 })
 public class InvestFund {
 
@@ -80,7 +81,7 @@ public class InvestFund {
     private int priority;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ofe", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "investFund", cascade = CascadeType.PERSIST)
     private List<Rating> ratings = new ArrayList<>();
 
     public InvestFund() {

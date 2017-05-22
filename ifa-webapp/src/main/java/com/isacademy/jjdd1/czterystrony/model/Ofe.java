@@ -3,6 +3,7 @@ package com.isacademy.jjdd1.czterystrony.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isacademy.jjdd1.czterystrony.queries.InvestFundNamedNativeQueries;
+import com.isacademy.jjdd1.czterystrony.queries.OfeNamedNativeQueries;
 import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
 
 import javax.persistence.*;
@@ -31,17 +32,13 @@ import java.util.List;
                                         @ColumnResult(name = "diff", type = BigDecimal.class)
                                 })})
 })
-//@NamedNativeQueries({
-//        @NamedNativeQuery(
-//                name = "InvestFund.getAllWithDetails",
-//                query = InvestFundNamedNativeQueries.allWithDetails,
-//                resultSetMapping = "InvestFundDetailsMapping"),
-//        @NamedNativeQuery(
-//                name = "InvestFund.getByIdWithDetails",
-//                query = InvestFundNamedNativeQueries.byIdWithDetails,
-//                resultSetMapping = "InvestFundDetailsMapping")
-//})
 
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Ofe.getAllWithDetails",
+                query = OfeNamedNativeQueries.allWithDetails,
+                resultSetMapping = "OfeDetailsMapping")
+})
 
 public class Ofe {
 
@@ -59,7 +56,7 @@ public class Ofe {
 
     @JsonIgnore
     @OneToMany(mappedBy = "ofe", cascade = CascadeType.PERSIST)
-    private List<Rating> ratings = new ArrayList<>();
+    private List<OfeRating> ofeRatings = new ArrayList<>();
 
     public Ofe() {
     }
@@ -115,8 +112,8 @@ public class Ofe {
         return lastRatingDate;
     }
 
-    public List<Rating> getRatings() {
-        return ratings;
+    public List<OfeRating> getOfeRatings() {
+        return ofeRatings;
     }
 
     @Override
@@ -125,7 +122,7 @@ public class Ofe {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", lastRatingDate=" + lastRatingDate +
-                ", ratings=" + ratings +
+                ", ratings=" + ofeRatings +
                 '}';
     }
 

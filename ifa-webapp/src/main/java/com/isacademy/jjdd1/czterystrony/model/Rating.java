@@ -19,23 +19,23 @@ import java.time.LocalDate;
 @NamedQueries({
         @NamedQuery(
                 name = "Rating.getByFundAndDate",
-                query = "SELECT r FROM Rating r WHERE r.date = :date AND r.ofe = :investFund"
+                query = "SELECT r FROM Rating r WHERE r.date = :date AND r.investFund = :investFund"
         ),
         @NamedQuery(
                 name = "Rating.getByFundInTimeRange",
-                query = "SELECT r FROM Rating r WHERE r.ofe = :investFund AND r.date >= :startDate AND r.date <= :endDate"
+                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund AND r.date >= :startDate AND r.date <= :endDate"
         ),
         @NamedQuery(
                 name = "Rating.getOldestForFund",
-                query = "SELECT r FROM Rating r WHERE r.ofe = :investFund ORDER BY r.date ASC"
+                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund ORDER BY r.date ASC"
         ),
         @NamedQuery(
                 name = "Rating.getNewestForFund",
-                query = "SELECT r FROM Rating r WHERE r.ofe = :investFund ORDER BY r.date DESC"
+                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund ORDER BY r.date DESC"
         ),
         @NamedQuery(
                 name = "Rating.getAllByFund",
-                query = "SELECT r FROM Rating r WHERE r.ofe = :investFund ORDER BY r.date ASC"
+                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund ORDER BY r.date ASC"
         )
 })
 @NamedNativeQuery(
@@ -65,7 +65,7 @@ public class Rating {
     private BigDecimal close;
 
     @ManyToOne
-    private InvestFund ofe;
+    private InvestFund investFund;
 
     public Rating() {
     }
@@ -76,7 +76,7 @@ public class Rating {
         this.high = builder.high;
         this.low = builder.low;
         this.close = builder.close;
-        this.ofe = builder.investFund;
+        this.investFund = builder.investFund;
     }
 
     public static class Builder {
@@ -166,12 +166,12 @@ public class Rating {
     }
 
     @JsonIgnore
-    public InvestFund getOfe() {
-        return ofe;
+    public InvestFund getInvestFund() {
+        return investFund;
     }
 
-    public void setOfe(InvestFund investFund) {
-        this.ofe = investFund;
+    public void setInvestFund(InvestFund investFund) {
+        this.investFund = investFund;
     }
 
     @Override
@@ -183,7 +183,7 @@ public class Rating {
                 ", high=" + high +
                 ", low=" + low +
                 ", close=" + close +
-                ", investFund=" + ofe +
+                ", investFund=" + investFund +
                 '}';
     }
 }
