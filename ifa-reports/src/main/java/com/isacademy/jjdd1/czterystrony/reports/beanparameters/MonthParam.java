@@ -4,13 +4,10 @@ import javax.ws.rs.PathParam;
 import java.time.LocalDate;
 import static java.time.temporal.TemporalAdjusters.*;
 
-public class MonthParam implements PeriodParam {
+public class MonthParam extends YearParam {
 
     @PathParam("month")
-    private int month;
-
-    @PathParam("year")
-    private int year;
+    protected int month;
 
     @Override
     public LocalDate startDate() {

@@ -7,7 +7,7 @@ import java.time.Month;
 public class YearParam implements PeriodParam {
 
     @PathParam("year")
-    private int year;
+    protected int year;
 
     @Override
     public LocalDate startDate() {
