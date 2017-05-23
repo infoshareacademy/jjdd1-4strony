@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.queries;
 
-public final class OfeNamedNativeQueries {
-    private OfeNamedNativeQueries() {
+public final class PensionFundNamedNativeQueries {
+    private PensionFundNamedNativeQueries() {
     }
 
     //language=MySQL

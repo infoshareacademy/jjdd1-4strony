@@ -1,15 +1,15 @@
 package com.isacademy.jjdd1.czterystrony.factories;
 
 
-import com.isacademy.jjdd1.czterystrony.model.Ofe;
-import com.isacademy.jjdd1.czterystrony.model.OfeRating;
+import com.isacademy.jjdd1.czterystrony.model.PensionFund;
+import com.isacademy.jjdd1.czterystrony.model.PensionFundRating;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class OfeRatingFactory {
+public class PensionFundRatingFactory {
     private static final String DELIMITER = ",";
     private static final String DATE_PATTERN = "yyyyMMdd";
     private static final int DATE_COLUMN_INDEX_IN_DATA_FILE = 1;
@@ -18,16 +18,16 @@ public class OfeRatingFactory {
     private static final int LOW_COLUMN_INDEX_IN_DATA_FILE = 4;
     private static final int CLOSE_COLUMN_INDEX_IN_DATA_FILE = 5;
 
-    public static OfeRating create(String record, Ofe ofe) {
+    public static PensionFundRating create(String record, PensionFund pensionFund) {
         String[] splittedRecord = record.split(DELIMITER);
 
-        return new OfeRating.Builder()
+        return new PensionFundRating.Builder()
                 .withDate(parseDateFrom(splittedRecord[DATE_COLUMN_INDEX_IN_DATA_FILE]))
                 .withOpen(parseValueFrom(splittedRecord[OPEN_COLUMN_INDEX_IN_DATA_FILE]))
                 .withHigh(parseValueFrom(splittedRecord[HIGH_COLUMN_INDEX_IN_DATA_FILE]))
                 .withLow(parseValueFrom(splittedRecord[LOW_COLUMN_INDEX_IN_DATA_FILE]))
                 .withClose(parseValueFrom(splittedRecord[CLOSE_COLUMN_INDEX_IN_DATA_FILE]))
-                .withOfe(ofe)
+                .withOfe(pensionFund)
                 .build();
     }
 

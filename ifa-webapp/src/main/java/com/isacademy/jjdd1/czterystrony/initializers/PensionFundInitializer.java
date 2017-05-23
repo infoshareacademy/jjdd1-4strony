@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.initializers;
 
-import com.isacademy.jjdd1.czterystrony.updaters.OfesUpdater;
+import com.isacademy.jjdd1.czterystrony.updaters.PensionFundsUpdater;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,21 +15,21 @@ import java.io.IOException;
 @Startup
 @Singleton
 @DependsOn("DatabaseInitializer")
-public class OfeInitializer {
+public class PensionFundInitializer {
 
-    private static Logger log = LoggerFactory.getLogger(OfeInitializer.class);
+    private static Logger log = LoggerFactory.getLogger(PensionFundInitializer.class);
 
     @Inject
-    OfesUpdater ofesUpdater;
+    PensionFundsUpdater pensionFundsUpdater;
 
     @PostConstruct
     void initialize() {
         try {
-            ofesUpdater.update();
-            log.info("Ofes initialized.");
+            pensionFundsUpdater.update();
+            log.info("Pension funds initialized.");
         } catch (IOException e) {
             e.printStackTrace();
-            log.error("Cannot initialize ofes.");
+            log.error("Cannot initialize pension funds.");
         }
     }
 }

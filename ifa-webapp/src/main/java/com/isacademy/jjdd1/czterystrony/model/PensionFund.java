@@ -2,13 +2,11 @@ package com.isacademy.jjdd1.czterystrony.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.isacademy.jjdd1.czterystrony.queries.InvestFundNamedNativeQueries;
-import com.isacademy.jjdd1.czterystrony.queries.OfeNamedNativeQueries;
+import com.isacademy.jjdd1.czterystrony.queries.PensionFundNamedNativeQueries;
 import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,14 +14,14 @@ import java.util.List;
 
 @Entity
 @Table(indexes = {@Index(
-        name = "UX_Ofe_id_name",
+        name = "UX_PensionFund_id_name",
         columnList = "id,name")
 })
 @SqlResultSetMappings({
-        @SqlResultSetMapping(name = "OfeDetailsMapping",
+        @SqlResultSetMapping(name = "PensionFundDetailsMapping",
                 classes = {
                         @ConstructorResult(
-                                targetClass = OfeDetails.class,
+                                targetClass = PensionFundDetails.class,
                                 columns = {
                                         @ColumnResult(name = "name", type = String.class),
                                         @ColumnResult(name = "id", type = String.class),
@@ -35,12 +33,12 @@ import java.util.List;
 
 @NamedNativeQueries({
         @NamedNativeQuery(
-                name = "Ofe.getAllWithDetails",
-                query = OfeNamedNativeQueries.allWithDetails,
-                resultSetMapping = "OfeDetailsMapping")
+                name = "PensionFund.getAllWithDetails",
+                query = PensionFundNamedNativeQueries.allWithDetails,
+                resultSetMapping = "PensionFundDetailsMapping")
 })
 
-public class Ofe {
+public class PensionFund {
 
     @Id
     @NotNull
@@ -54,13 +52,13 @@ public class Ofe {
     private LocalDate lastRatingDate;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ofe", cascade = CascadeType.PERSIST)
-    private List<OfeRating> ofeRatings = new ArrayList<>();
+    @OneToMany(mappedBy = "pensionFund", cascade = CascadeType.PERSIST)
+    private List<PensionFundRating> pensionFundRatings = new ArrayList<>();
 
-    public Ofe() {
+    public PensionFund() {
     }
 
-    public Ofe(Ofe.Builder builder) {
+    public PensionFund(PensionFund.Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.lastRatingDate = builder.lastRatingDate;
@@ -71,23 +69,23 @@ public class Ofe {
         private String name;
         private LocalDate lastRatingDate;
 
-        public Ofe.Builder withId(String id) {
+        public PensionFund.Builder withId(String id) {
             this.id = id;
             return this;
         }
 
-        public Ofe.Builder withName(String name) {
+        public PensionFund.Builder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public Ofe.Builder withLastRatingDate(LocalDate lastRatingDate) {
+        public PensionFund.Builder withLastRatingDate(LocalDate lastRatingDate) {
             this.lastRatingDate = lastRatingDate;
             return this;
         }
 
-        public Ofe build() {
-            return new Ofe(this);
+        public PensionFund build() {
+            return new PensionFund(this);
         }
     }
 
@@ -111,17 +109,17 @@ public class Ofe {
         return lastRatingDate;
     }
 
-    public List<OfeRating> getOfeRatings() {
-        return ofeRatings;
+    public List<PensionFundRating> getPensionFundRatings() {
+        return pensionFundRatings;
     }
 
     @Override
     public String toString() {
-        return "Ofe{" +
+        return "PensionFund{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", lastRatingDate=" + lastRatingDate +
-                ", ratings=" + ofeRatings +
+                ", ratings=" + pensionFundRatings +
                 '}';
     }
 

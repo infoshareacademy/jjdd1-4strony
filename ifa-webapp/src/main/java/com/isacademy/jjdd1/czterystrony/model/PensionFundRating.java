@@ -2,8 +2,7 @@ package com.isacademy.jjdd1.czterystrony.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.isacademy.jjdd1.czterystrony.queries.OfeRatingNamedNativeQueries;
-import com.isacademy.jjdd1.czterystrony.queries.RatingNamedNativeQueries;
+import com.isacademy.jjdd1.czterystrony.queries.PensionFundRatingNamedNativeQueries;
 import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
 
 import javax.persistence.*;
@@ -14,24 +13,24 @@ import java.time.LocalDate;
 
 @Entity
 @Table(indexes = {@Index(
-        name = "UX_Rating_id_date_ofe_id",
-        columnList = "id,date,ofe_id")
+        name = "UX_PensionFundRating_id_date_pensionFund_id",
+        columnList = "id,date,pensionFund_id")
 })
 @NamedQueries({
         @NamedQuery(
-                name = "OfeRating.getByOfeAndDate",
-                query = "SELECT r FROM OfeRating r WHERE r.date = :date AND r.ofe = :ofe"
+                name = "PensionFundRating.getByPensionFundAndDate",
+                query = "SELECT r FROM PensionFundRating r WHERE r.date = :date AND r.pensionFund = :ofe"
         ),
         @NamedQuery(
-                name = "OfeRating.getAllByOfe",
-                query = "SELECT r FROM OfeRating r WHERE r.ofe = :ofe ORDER BY r.date ASC"
+                name = "PensionFundRating.getAllByPensionFund",
+                query = "SELECT r FROM PensionFundRating r WHERE r.pensionFund = :pensionFund ORDER BY r.date ASC"
         )
 })
 @NamedNativeQuery(
-        name = "OfeRating.insertDataFromCsv",
-        query = OfeRatingNamedNativeQueries.insertFromCsv
+        name = "PensionFundRating.insertDataFromCsv",
+        query = PensionFundRatingNamedNativeQueries.insertFromCsv
 )
-public class OfeRating {
+public class PensionFundRating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,18 +53,18 @@ public class OfeRating {
     private BigDecimal close;
 
     @ManyToOne
-    private Ofe ofe;
+    private PensionFund pensionFund;
 
-    public OfeRating() {
+    public PensionFundRating() {
     }
 
-    public OfeRating(Builder builder) {
+    public PensionFundRating(Builder builder) {
         this.date = builder.date;
         this.open = builder.open;
         this.high = builder.high;
         this.low = builder.low;
         this.close = builder.close;
-        this.ofe = builder.ofe;
+        this.pensionFund = builder.pensionFund;
     }
 
     public static class Builder {
@@ -74,7 +73,7 @@ public class OfeRating {
         private BigDecimal high;
         private BigDecimal low;
         private BigDecimal close;
-        private Ofe ofe;
+        private PensionFund pensionFund;
 
         public Builder withDate(LocalDate date) {
             this.date = date;
@@ -101,13 +100,13 @@ public class OfeRating {
             return this;
         }
 
-        public Builder withOfe(Ofe ofe) {
-            this.ofe = ofe;
+        public Builder withOfe(PensionFund pensionFund) {
+            this.pensionFund = pensionFund;
             return this;
         }
 
-        public OfeRating build() {
-            return new OfeRating(this);
+        public PensionFundRating build() {
+            return new PensionFundRating(this);
         }
     }
 
@@ -155,12 +154,12 @@ public class OfeRating {
     }
 
     @JsonIgnore
-    public Ofe getOfe() {
-        return ofe;
+    public PensionFund getPensionFund() {
+        return pensionFund;
     }
 
-    public void setOfe(Ofe ofe) {
-        this.ofe = ofe;
+    public void setPensionFund(PensionFund pensionFund) {
+        this.pensionFund = pensionFund;
     }
 
     @Override
@@ -172,7 +171,7 @@ public class OfeRating {
                 ", high=" + high +
                 ", low=" + low +
                 ", close=" + close +
-                ", ofe=" + ofe +
+                ", pensionFund=" + pensionFund +
                 '}';
     }
 }

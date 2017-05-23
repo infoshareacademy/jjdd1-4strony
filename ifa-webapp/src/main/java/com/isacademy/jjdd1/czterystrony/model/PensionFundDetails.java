@@ -6,7 +6,7 @@ import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class OfeDetails {
+public class PensionFundDetails {
 
     private String name;
 
@@ -19,11 +19,11 @@ public class OfeDetails {
 
     private BigDecimal diff;
 
-    public OfeDetails(String name,
-                             String id,
-                             LocalDate date,
-                             BigDecimal close,
-                             BigDecimal diff) {
+    public PensionFundDetails(String name,
+                              String id,
+                              LocalDate date,
+                              BigDecimal close,
+                              BigDecimal diff) {
         this.name = name;
         this.id = id;
         this.date = date;

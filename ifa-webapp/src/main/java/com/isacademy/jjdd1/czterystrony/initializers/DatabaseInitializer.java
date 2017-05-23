@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.initializers;
 
-import com.isacademy.jjdd1.czterystrony.utilities.OfeDownloader;
-import com.isacademy.jjdd1.czterystrony.utilities.OfeUnzipper;
+import com.isacademy.jjdd1.czterystrony.utilities.PensionFundDownloader;
+import com.isacademy.jjdd1.czterystrony.utilities.PensionFundUnzipper;
 import com.isacademy.jjdd1.czterystrony.utilities.RatingsDownloader;
 import com.isacademy.jjdd1.czterystrony.utilities.RatingsUnzipper;
 
@@ -18,19 +18,19 @@ public class DatabaseInitializer {
     RatingsDownloader ratingsDownloader;
 
     @Inject
-    OfeDownloader ofeDownloader;
+    PensionFundDownloader pensionFundDownloader;
 
     @Inject
     RatingsUnzipper ratingsUnzipper;
 
     @Inject
-    OfeUnzipper ofeUnzipper;
+    PensionFundUnzipper pensionFundUnzipper;
 
     @PostConstruct
     void initialize() {
         ratingsDownloader.download();
-        ofeDownloader.download();
+        pensionFundDownloader.download();
         ratingsUnzipper.unzip();
-        ofeUnzipper.unzip();
+        pensionFundUnzipper.unzip();
     }
 }

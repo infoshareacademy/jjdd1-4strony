@@ -1,22 +1,20 @@
 package com.isacademy.jjdd1.czterystrony.factories;
 
-import com.isacademy.jjdd1.czterystrony.model.InvestFund;
-import com.isacademy.jjdd1.czterystrony.model.Ofe;
+import com.isacademy.jjdd1.czterystrony.model.PensionFund;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import static com.isacademy.jjdd1.czterystrony.utilities.Constants.RATINGS_DATA_FILE_EXTENSION;
 
-public class OfeFactory {
+public class PensionFundFactory {
     private static final int ID_BEGIN = 33;
-    private static final int ID_END = 39;
     private static final int NAME_BEGIN = 51;
     private static final int LAST_RATING_DATE_BEGIN = 0;
     private static final int LAST_RATING_DATE_END = 10;
     private static final String DATE_PATTERN = "yyyy-MM-dd";
 
-    public static Ofe create(String record) {
-        return new Ofe.Builder()
+    public static PensionFund create(String record) {
+        return new PensionFund.Builder()
                 .withId(parseIdFrom(record))
                 .withName(parseNameFrom(record))
                 .withLastRatingDate(parseLastRatingDateFrom(record))
