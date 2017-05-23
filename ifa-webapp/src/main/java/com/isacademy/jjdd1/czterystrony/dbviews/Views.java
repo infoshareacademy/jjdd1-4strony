@@ -1,8 +1,11 @@
 package com.isacademy.jjdd1.czterystrony.dbviews;
 
 import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
+import com.isacademy.jjdd1.czterystrony.model.PensionFundDetails;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundDetailsRepository;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
+import com.isacademy.jjdd1.czterystrony.repositories.PensionFundDetailsRepository;
+import com.sun.org.glassfish.gmbal.IncludeSubclass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,15 +18,20 @@ import java.util.stream.Collectors;
 
 @Startup
 @Singleton
-@DependsOn({"DatabaseInitializer", "InvestFundsInitializer", "RatingsInitializer"})
+@DependsOn({"DatabaseInitializer", "InvestFundsInitializer", "RatingsInitializer", "PensionFundsInitializer", "PensionFundRatingInitializer"})
 public class Views {
     private List<InvestFundDetails> allFunds;
     private List<InvestFundDetails> promotedFunds;
     private List<InvestFundDetails> notPromotedFunds;
+    private List<PensionFundDetails> allPensionFunds;
+
     private static Logger log = LoggerFactory.getLogger(InvestFundRepository.class);
 
     @Inject
     InvestFundDetailsRepository repository;
+
+    @Inject
+    PensionFundDetailsRepository pensionFundDetailsRepository;
 
     @PostConstruct
     @Asynchronous
@@ -54,5 +62,9 @@ public class Views {
 
     public List<InvestFundDetails> getNotPromotedFunds() {
         return notPromotedFunds;
+    }
+
+    public List<PensionFundDetails> getAllPensionFunds() {
+        return allPensionFunds;
     }
 }

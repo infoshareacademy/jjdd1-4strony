@@ -2,6 +2,7 @@ package com.isacademy.jjdd1.czterystrony.servlets;
 
 import com.isacademy.jjdd1.czterystrony.dbviews.Views;
 import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
+import com.isacademy.jjdd1.czterystrony.model.PensionFundDetails;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -31,6 +32,7 @@ public class HomePageServlet extends HttpServlet {
         List<InvestFundDetails> allInvestFunds = views.getAllFunds();
         List<InvestFundDetails> promotedInvestFunds = views.getPromotedFunds();
         List<InvestFundDetails> notPromotedInvestFunds = views.getNotPromotedFunds();
+        List<PensionFundDetails> allPensionFunds = views.getAllPensionFunds();
 
         boolean dataFound = false;
         if (!allInvestFunds.isEmpty()) {
@@ -41,6 +43,7 @@ public class HomePageServlet extends HttpServlet {
         req.setAttribute("notPromotedInvestFunds", notPromotedInvestFunds);
         req.setAttribute("allInvestFunds", allInvestFunds);
         req.setAttribute("dataFound", dataFound);
+        req.setAttribute("allPensionFunds", allPensionFunds);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
         dispatcher.forward(req, resp);
