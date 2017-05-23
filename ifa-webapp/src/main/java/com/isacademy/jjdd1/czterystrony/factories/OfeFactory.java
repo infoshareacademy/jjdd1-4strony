@@ -5,6 +5,7 @@ import com.isacademy.jjdd1.czterystrony.model.Ofe;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import static com.isacademy.jjdd1.czterystrony.utilities.Constants.RATINGS_DATA_FILE_EXTENSION;
 
 public class OfeFactory {
     private static final int ID_BEGIN = 33;
@@ -23,7 +24,7 @@ public class OfeFactory {
     }
 
     private static String parseIdFrom(String record) {
-        return record.substring(ID_BEGIN, ID_END);
+        return record.substring(ID_BEGIN, record.indexOf(RATINGS_DATA_FILE_EXTENSION));
     }
 
     private static String parseNameFrom(String record) {

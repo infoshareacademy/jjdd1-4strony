@@ -37,7 +37,8 @@ public class OfesUpdater {
     }
 
     private Boolean containsDataFileExtension(String record) {
-        return record.matches("(.*)" + RATINGS_DATA_FILE_EXTENSION + "(.*)");
+        return record.matches("(.*)" + RATINGS_DATA_FILE_EXTENSION + "(.*)")
+                && !record.regionMatches(33, ".txt", 0, 4);
     }
 
     private boolean isNew(Ofe ofe) {

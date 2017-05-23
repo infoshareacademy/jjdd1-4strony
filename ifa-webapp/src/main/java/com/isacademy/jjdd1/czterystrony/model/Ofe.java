@@ -44,7 +44,6 @@ public class Ofe {
 
     @Id
     @NotNull
-    @Size(min = 6, max = 6)
     private String id;
 
     @NotNull
