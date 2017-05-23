@@ -1,6 +1,6 @@
-package com.isacademy.jjdd1.czterystrony.repositories;
+package com.isacademy.jjdd1.czterystrony.reports.repositories;
 
-import com.isacademy.jjdd1.czterystrony.model.InvestFundStatistics;
+import com.isacademy.jjdd1.czterystrony.reports.model.statistics.InvestFundStatistics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

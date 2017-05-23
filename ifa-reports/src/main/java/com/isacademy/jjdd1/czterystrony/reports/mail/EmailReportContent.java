@@ -1,7 +1,7 @@
-package com.isacademy.jjdd1.czterystrony.utilities;
+package com.isacademy.jjdd1.czterystrony.reports.mail;
 
-import com.isacademy.jjdd1.czterystrony.model.StatisticsDetails;
-import com.isacademy.jjdd1.czterystrony.repositories.StatisticsDetailsRepository;
+import com.isacademy.jjdd1.czterystrony.reports.model.StatisticsDetails;
+import com.isacademy.jjdd1.czterystrony.reports.repositories.StatisticsDetailsRepository;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

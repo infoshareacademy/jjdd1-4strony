@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.model;
+package com.isacademy.jjdd1.czterystrony.reports.model;
 
 public class StatisticsDetails {
 

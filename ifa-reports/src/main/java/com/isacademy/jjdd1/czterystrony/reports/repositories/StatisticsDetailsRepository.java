@@ -1,6 +1,6 @@
-package com.isacademy.jjdd1.czterystrony.repositories;
+package com.isacademy.jjdd1.czterystrony.reports.repositories;
 
-import com.isacademy.jjdd1.czterystrony.model.StatisticsDetails;
+import com.isacademy.jjdd1.czterystrony.reports.model.StatisticsDetails;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,7 +15,7 @@ public class StatisticsDetailsRepository {
     EntityManager entityManager;
 
     public List<StatisticsDetails> getAll() {
-        Query query = entityManager.createNamedQuery("Statistics.getAll");
+        Query query = entityManager.createNamedQuery("StatisticsDetails.getAll");
         return query.getResultList();
     }
 }

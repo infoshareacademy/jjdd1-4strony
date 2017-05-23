@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.utilities;
+package com.isacademy.jjdd1.czterystrony.reports.mail;
 
 import java.util.List;
 

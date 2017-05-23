@@ -34,16 +34,6 @@ import java.util.List;
                                         @ColumnResult(name = "diff", type = BigDecimal.class)
                                 }
                         )}),
-        @SqlResultSetMapping(name = "StatisticsDetailsMapping",
-                classes = {
-                        @ConstructorResult(
-                                targetClass = StatisticsDetails.class,
-                                columns = {
-                                        @ColumnResult(name = "name", type = String.class),
-                                        @ColumnResult(name = "id", type = String.class),
-                                        @ColumnResult(name = "clicks", type = int.class),
-                                }
-                        )})
 })
 @NamedNativeQueries({
         @NamedNativeQuery(
@@ -54,11 +44,6 @@ import java.util.List;
                 name = "InvestFund.getByIdWithDetails",
                 query = InvestFundNamedNativeQueries.byIdWithDetails,
                 resultSetMapping = "InvestFundDetailsMapping"),
-        @NamedNativeQuery(
-                name = "Statistics.getAll",
-                query = "select fund.name as name, stat.investFund_id as id, count(stat.investFund_id) as clicks FROM InvestFundStatistics stat, InvestFund fund " +
-                "where stat.investFund_id = fund.id GROUP BY investFund_id",
-                resultSetMapping = "StatisticsDetailsMapping")
 })
 public class InvestFund {
 

@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.services;
+package com.isacademy.jjdd1.czterystrony.restparameters;
 
 import javax.ws.rs.WebApplicationException;
 

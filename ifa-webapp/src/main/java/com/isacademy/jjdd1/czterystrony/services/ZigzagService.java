@@ -4,6 +4,8 @@ import com.isacademy.jjdd1.czterystrony.model.InvestFund;
 import com.isacademy.jjdd1.czterystrony.model.Rating;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
 import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;
+import com.isacademy.jjdd1.czterystrony.restparameters.RestDateParam;
+import com.isacademy.jjdd1.czterystrony.restparameters.RestIntegerParam;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.AnalysisAudit;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.LocalExtremaProvider;
 import org.slf4j.Logger;
