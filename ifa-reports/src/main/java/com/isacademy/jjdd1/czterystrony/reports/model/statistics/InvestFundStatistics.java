@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.reports.model.statistics;
 
-import com.isacademy.jjdd1.czterystrony.reports.model.report.InvestFundPopularity;
+import com.isacademy.jjdd1.czterystrony.reports.model.reports.InvestFundPopularity;
 import com.isacademy.jjdd1.czterystrony.reports.queries.ReportQueries;
 
 import javax.persistence.*;

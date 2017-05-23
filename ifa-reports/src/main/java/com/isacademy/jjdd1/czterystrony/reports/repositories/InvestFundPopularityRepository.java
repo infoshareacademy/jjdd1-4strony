@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.reports.repositories;
 
-import com.isacademy.jjdd1.czterystrony.reports.model.report.InvestFundPopularity;
+import com.isacademy.jjdd1.czterystrony.reports.model.reports.InvestFundPopularity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
