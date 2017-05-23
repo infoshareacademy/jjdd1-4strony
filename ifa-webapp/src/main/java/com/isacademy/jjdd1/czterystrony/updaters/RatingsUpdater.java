@@ -17,7 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import static com.isacademy.jjdd1.czterystrony.utilities.Constants.*;
+import static com.isacademy.jjdd1.czterystrony.Constants.*;
 
 @Stateless
 public class RatingsUpdater {

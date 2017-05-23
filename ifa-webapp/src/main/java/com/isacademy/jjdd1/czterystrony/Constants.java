@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.utilities;
+package com.isacademy.jjdd1.czterystrony;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

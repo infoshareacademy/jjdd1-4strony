@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.services;
+package com.isacademy.jjdd1.czterystrony;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

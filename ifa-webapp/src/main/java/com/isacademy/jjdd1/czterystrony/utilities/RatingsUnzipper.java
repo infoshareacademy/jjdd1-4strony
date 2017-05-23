@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.IOException;
 
-import static com.isacademy.jjdd1.czterystrony.utilities.Constants.*;
+import static com.isacademy.jjdd1.czterystrony.Constants.*;
 
 @Stateless
 public class RatingsUnzipper {

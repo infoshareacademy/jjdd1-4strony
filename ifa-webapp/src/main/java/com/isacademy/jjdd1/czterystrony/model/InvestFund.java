@@ -3,7 +3,7 @@ package com.isacademy.jjdd1.czterystrony.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isacademy.jjdd1.czterystrony.queries.InvestFundNamedNativeQueries;
-import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
+import com.isacademy.jjdd1.czterystrony.JsonDateSerializer;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;

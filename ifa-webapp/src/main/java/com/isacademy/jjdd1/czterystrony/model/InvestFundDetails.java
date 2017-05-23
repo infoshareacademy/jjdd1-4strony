@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
+import com.isacademy.jjdd1.czterystrony.JsonDateSerializer;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

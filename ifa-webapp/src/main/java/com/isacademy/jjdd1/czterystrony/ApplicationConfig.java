@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.services;
+package com.isacademy.jjdd1.czterystrony;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

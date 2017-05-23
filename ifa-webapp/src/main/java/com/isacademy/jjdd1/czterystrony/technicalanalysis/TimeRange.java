@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.isacademy.jjdd1.czterystrony.services.JsonDateSerializer;
+import com.isacademy.jjdd1.czterystrony.JsonDateSerializer;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

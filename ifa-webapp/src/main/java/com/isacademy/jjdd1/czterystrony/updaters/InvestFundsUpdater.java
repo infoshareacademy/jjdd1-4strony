@@ -14,7 +14,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Objects;
 
-import static com.isacademy.jjdd1.czterystrony.utilities.Constants.*;
+import static com.isacademy.jjdd1.czterystrony.Constants.*;
 
 @Stateless
 public class InvestFundsUpdater {

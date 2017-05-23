@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.reports.model.statistics;
 
-import com.isacademy.jjdd1.czterystrony.reports.model.StatisticsDetails;
-import com.isacademy.jjdd1.czterystrony.reports.queries.StatisticsNamedNativeQueries;
+import com.isacademy.jjdd1.czterystrony.reports.model.report.InvestFundPopularity;
+import com.isacademy.jjdd1.czterystrony.reports.queries.ReportQueries;
 
 import javax.persistence.*;
 import javax.persistence.NamedNativeQueries;
@@ -14,10 +14,10 @@ import java.time.LocalDate;
         columnList = "ID,INSTRUMENT_ID")
 })
 @SqlResultSetMappings({
-        @SqlResultSetMapping(name = "StatisticsDetailsMapping",
+        @SqlResultSetMapping(name = "InvestFundPopularityMapping",
                 classes = {
                         @ConstructorResult(
-                                targetClass = StatisticsDetails.class,
+                                targetClass = InvestFundPopularity.class,
                                 columns = {
                                         @ColumnResult(name = "name", type = String.class),
                                         @ColumnResult(name = "id", type = String.class),
@@ -27,9 +27,9 @@ import java.time.LocalDate;
 })
 @NamedNativeQueries({
         @NamedNativeQuery(
-                name = "StatisticsDetails.getAll",
-                query = StatisticsNamedNativeQueries.getAllStatisticsDetails,
-                resultSetMapping = "StatisticsDetailsMapping")
+                name = "InvestFundPopularity.getAll",
+                query = ReportQueries.getAllInvestFundPopularity,
+                resultSetMapping = "InvestFundPopularityMapping")
 })
 public class InvestFundStatistics extends InstrumentStatistics {
 

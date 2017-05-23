@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.reports.repositories;
 
-import com.isacademy.jjdd1.czterystrony.reports.model.InvestFundsPopularity;
+import com.isacademy.jjdd1.czterystrony.reports.model.report.InvestFundPopularity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,17 +15,17 @@ public class InvestFundPopularityRepository {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void add(List<InvestFundsPopularity> list) {
+    public void add(List<InvestFundPopularity> list) {
         list.forEach(r -> entityManager.persist(r));
     }
 
-    public List<InvestFundsPopularity> getAll() {
-        Query query = entityManager.createQuery("SELECT p FROM InvestFundsPopularity p");
+    public List<InvestFundPopularity> getAll() {
+        Query query = entityManager.createQuery("SELECT p FROM InvestFundPopularity p");
         return query.getResultList();
     }
 
-    public List<InvestFundsPopularity> getInTimeRange(LocalDate from, LocalDate to) {
-        Query query = entityManager.createQuery("SELECT p FROM InvestFundsPopularity p WHERE p.date >= :startDate AND p.date <= :endDate");
+    public List<InvestFundPopularity> getInTimeRange(LocalDate from, LocalDate to) {
+        Query query = entityManager.createQuery("SELECT p FROM InvestFundPopularity p WHERE p.date >= :startDate AND p.date <= :endDate");
         query.setParameter("startDate", from);
         query.setParameter("endDate", to);
         return query.getResultList();

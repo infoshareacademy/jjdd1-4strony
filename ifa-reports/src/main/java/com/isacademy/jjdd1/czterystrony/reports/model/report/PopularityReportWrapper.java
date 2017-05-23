@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.reports.model;
+package com.isacademy.jjdd1.czterystrony.reports.model.report;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

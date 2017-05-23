@@ -4,9 +4,9 @@ import com.isacademy.jjdd1.czterystrony.reports.beanparameters.DayParam;
 import com.isacademy.jjdd1.czterystrony.reports.beanparameters.MonthParam;
 import com.isacademy.jjdd1.czterystrony.reports.beanparameters.PeriodParam;
 import com.isacademy.jjdd1.czterystrony.reports.beanparameters.YearParam;
-import com.isacademy.jjdd1.czterystrony.reports.model.InvestFundsPopularity;
-import com.isacademy.jjdd1.czterystrony.reports.model.PopularityFactory;
-import com.isacademy.jjdd1.czterystrony.reports.model.PopularityReportWrapper;
+import com.isacademy.jjdd1.czterystrony.reports.model.report.InvestFundPopularity;
+import com.isacademy.jjdd1.czterystrony.reports.model.report.PopularityFactory;
+import com.isacademy.jjdd1.czterystrony.reports.model.report.PopularityReportWrapper;
 import com.isacademy.jjdd1.czterystrony.reports.repositories.InvestFundPopularityRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,8 +41,8 @@ public class InvestFundsPopularityReportService implements ReportService {
                     .path(String.valueOf(reportDate.getDayOfMonth()))
                     .build();
 
-            List<InvestFundsPopularity> reportEntities = reportWrapper.getPopularityDTOs().stream()
-                    .map(r -> PopularityFactory.create(new InvestFundsPopularity(), r, reportDate))
+            List<InvestFundPopularity> reportEntities = reportWrapper.getPopularityDTOs().stream()
+                    .map(r -> PopularityFactory.create(new InvestFundPopularity(), r, reportDate))
                     .collect(Collectors.toList());
 
             repository.add(reportEntities);
@@ -61,7 +61,7 @@ public class InvestFundsPopularityReportService implements ReportService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOverallReport() {
         try {
-            List<InvestFundsPopularity> list = repository.getAll();
+            List<InvestFundPopularity> list = repository.getAll();
             log.info("Provided popularity report.");
             return Response.ok(list).build();
         } catch (Throwable e) {
@@ -93,7 +93,7 @@ public class InvestFundsPopularityReportService implements ReportService {
 
     private Response getPeriodicReport(PeriodParam period) {
         try {
-            List<InvestFundsPopularity> list = repository.getInTimeRange(period.startDate(), period.endDate());
+            List<InvestFundPopularity> list = repository.getInTimeRange(period.startDate(), period.endDate());
             log.info("Provided popularity report.");
             return Response.ok(list).build();
         } catch (Throwable e) {

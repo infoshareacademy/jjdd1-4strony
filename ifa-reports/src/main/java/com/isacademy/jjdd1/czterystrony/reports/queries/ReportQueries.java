@@ -1,11 +1,11 @@
 package com.isacademy.jjdd1.czterystrony.reports.queries;
 
-public final class StatisticsNamedNativeQueries {
-    private StatisticsNamedNativeQueries(){
+public final class ReportQueries {
+    private ReportQueries(){
     }
 
     //language=MySQL
-    public static final String getAllStatisticsDetails =
+    public static final String getAllInvestFundPopularity =
             "SELECT " +
                     "fund.name AS name, " +
                     "stat.investFund_id AS id, "+
