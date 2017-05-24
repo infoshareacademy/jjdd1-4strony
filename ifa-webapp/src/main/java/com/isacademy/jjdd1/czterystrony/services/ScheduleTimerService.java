@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.services;
 
-import com.isacademy.jjdd1.czterystrony.dbviews.Views;
-import com.isacademy.jjdd1.czterystrony.updaters.DatabaseUpdater;
+import isacademy.jjdd1.czterystrony.webapp.persistance.dbviews.Views;
+import isacademy.jjdd1.czterystrony.webapp.persistance.updaters.DatabaseUpdater;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

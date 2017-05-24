@@ -4,20 +4,15 @@ import com.isacademy.jjdd1.czterystrony.reports.beanparameters.DayParam;
 import com.isacademy.jjdd1.czterystrony.reports.beanparameters.MonthParam;
 import com.isacademy.jjdd1.czterystrony.reports.beanparameters.PeriodParam;
 import com.isacademy.jjdd1.czterystrony.reports.beanparameters.YearParam;
-import com.isacademy.jjdd1.czterystrony.reports.model.reports.InvestFundPopularity;
-import com.isacademy.jjdd1.czterystrony.reports.model.reports.PopularityFactory;
-import com.isacademy.jjdd1.czterystrony.reports.model.reports.PopularityWrapper;
-import com.isacademy.jjdd1.czterystrony.reports.repositories.InvestFundPopularityRepository;
+import isacademy.jjdd1.czterystrony.reports.persistance.model.InvestFundPopularity;
+import isacademy.jjdd1.czterystrony.reports.persistance.repositories.InvestFundPopularityRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import java.net.URI;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Path("reports/v1/popularity/investfunds")
 public class InvestFundsPopularityReportService implements ReportService {

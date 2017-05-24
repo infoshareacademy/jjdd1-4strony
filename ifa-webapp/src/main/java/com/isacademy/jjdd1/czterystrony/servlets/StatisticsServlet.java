@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
-//import com.isacademy.jjdd1.czterystrony.model.StatisticsDetails;
-//import com.isacademy.jjdd1.czterystrony.repositories.StatisticsDetailsRepository;
+//import isacademy.jjdd1.czterystrony.persistance.model.StatisticsDetails;
+//import isacademy.jjdd1.czterystrony.persistance.repositories.StatisticsDetailsRepository;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;

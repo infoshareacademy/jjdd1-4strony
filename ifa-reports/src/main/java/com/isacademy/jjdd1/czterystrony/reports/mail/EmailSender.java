@@ -22,8 +22,8 @@ public class EmailSender {
             message.addHeader("Content-type", "text/HTML; charset=UTF-8");
             message.addHeader("format", "flowed");
             message.addHeader("Content-Transfer-Encoding", "8bit");
-            message.setFrom(new InternetAddress(CompanyMail.EMAIL_ADDRESS, "4analysis"));
-            message.setReplyTo(InternetAddress.parse(CompanyMail.EMAIL_ADDRESS, false));
+            message.setFrom(new InternetAddress(CompanyMail.ADDRESS, "4analysis"));
+            message.setReplyTo(InternetAddress.parse(CompanyMail.ADDRESS, false));
             message.setSubject(subject, "UTF-8");
             message.setText(htmlContent, "UTF-8", "html");
             message.setSentDate(new Date());
@@ -56,7 +56,7 @@ public class EmailSender {
         return new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(CompanyMail.EMAIL_ADDRESS, CompanyMail.EMAIL_PASSWORD);
+                return new PasswordAuthentication(CompanyMail.ADDRESS, CompanyMail.PASSWORD);
             }
         };
     }

@@ -1,10 +1,17 @@
 package com.isacademy.jjdd1.czterystrony.analysis;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.isacademy.jjdd1.czterystrony.serializers.JsonDateSerializer;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class TimeRange {
+
+    @JsonSerialize(using = JsonDateSerializer.class)
     private LocalDate start;
+
+    @JsonSerialize(using = JsonDateSerializer.class)
     private LocalDate end;
 
     public TimeRange(LocalDate start, LocalDate end) {

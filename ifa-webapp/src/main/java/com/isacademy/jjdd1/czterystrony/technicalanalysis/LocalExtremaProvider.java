@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
-import com.isacademy.jjdd1.czterystrony.model.Rating;
-import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistance.model.Rating;
+import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.RatingRepository;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;

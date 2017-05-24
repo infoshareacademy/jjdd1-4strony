@@ -1,12 +1,12 @@
 package com.isacademy.jjdd1.czterystrony;
 
+import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDao;
 import com.isacademy.jjdd1.czterystrony.dao.InvestFundsDaoTxt;
 import com.isacademy.jjdd1.czterystrony.instruments.InvestFund;
 import com.isacademy.jjdd1.czterystrony.instruments.Rating;
 import com.isacademy.jjdd1.czterystrony.analysis.GlobalExtremaProvider;
 import com.isacademy.jjdd1.czterystrony.analysis.LocalExtremaProvider;
-import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;

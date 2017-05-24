@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.filters;
 
-import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.InvestFundRepository;
 
 import javax.inject.Inject;
 import javax.servlet.*;

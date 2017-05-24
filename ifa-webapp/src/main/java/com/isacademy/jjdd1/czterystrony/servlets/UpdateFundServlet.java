@@ -1,9 +1,9 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
-import com.isacademy.jjdd1.czterystrony.dbviews.Views;
-import com.isacademy.jjdd1.czterystrony.model.InvestFund;
-import com.isacademy.jjdd1.czterystrony.repositories.InvestFundFacade;
-import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistance.dbviews.Views;
+import isacademy.jjdd1.czterystrony.webapp.persistance.model.InvestFund;
+import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.InvestFundFacade;
+import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.InvestFundRepository;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;

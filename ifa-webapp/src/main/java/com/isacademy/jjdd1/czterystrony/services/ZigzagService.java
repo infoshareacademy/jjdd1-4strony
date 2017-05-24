@@ -1,9 +1,9 @@
 package com.isacademy.jjdd1.czterystrony.services;
 
-import com.isacademy.jjdd1.czterystrony.model.InvestFund;
-import com.isacademy.jjdd1.czterystrony.model.Rating;
-import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
-import com.isacademy.jjdd1.czterystrony.repositories.RatingRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistance.model.InvestFund;
+import isacademy.jjdd1.czterystrony.webapp.persistance.model.Rating;
+import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.InvestFundRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.RatingRepository;
 import com.isacademy.jjdd1.czterystrony.restparameters.RestDateParam;
 import com.isacademy.jjdd1.czterystrony.restparameters.RestIntegerParam;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.AnalysisAudit;

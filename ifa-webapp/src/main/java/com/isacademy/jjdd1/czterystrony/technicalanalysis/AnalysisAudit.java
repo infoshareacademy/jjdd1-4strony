@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
-//import com.isacademy.jjdd1.czterystrony.model.Rating;
+//import Rating;
 //import com.isacademy.jjdd1.czterystrony.restparameters.RestDateParam;
 //import com.isacademy.jjdd1.czterystrony.restparameters.RestIntegerParam;
 //import com.isacademy.jjdd1.czterystrony.updaters.StatisticsUpdater;

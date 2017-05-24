@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
-import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
-import com.isacademy.jjdd1.czterystrony.repositories.InvestFundDetailsRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistance.model.InvestFundDetails;
+import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.InvestFundDetailsRepository;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;

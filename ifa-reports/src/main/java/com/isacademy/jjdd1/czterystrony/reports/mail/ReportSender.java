@@ -15,6 +15,6 @@ public class ReportSender {
     private final String REPORT_EMAIL_SUBJECT = "4analysis - raporty dzienne";
 
     public void send() {
-        emailSender.send(CompanyMail.EMAIL_ADDRESS, REPORT_EMAIL_SUBJECT, emailReportContent.getHtmlContent());
+        emailSender.send(CompanyMail.ADDRESS, REPORT_EMAIL_SUBJECT, emailReportContent.getHtmlContent());
     }
 }

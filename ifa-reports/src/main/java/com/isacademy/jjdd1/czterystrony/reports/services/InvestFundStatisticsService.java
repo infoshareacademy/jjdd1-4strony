@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.reports.services;
 
-import com.isacademy.jjdd1.czterystrony.reports.model.statistics.InstrumentStatistics;
+import isacademy.jjdd1.czterystrony.reports.persistance.model.statistics.InvestFundStatistics;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -12,13 +12,12 @@ import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 
 @Path("statistics/v1/investfunds")
-public class InvestFundStatisticsService implements StatisticsService {
+public class InvestFundStatisticsService {
 
-    @Override
     @POST
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createStatistics(InstrumentStatistics statistics, @Context UriInfo uriInfo) {
+    public Response createStatistics(InvestFundStatistics investFundStatistics, @Context UriInfo uriInfo) {
         //TODO
         try {
             URI resourceLocation = getResourceLocation(uriInfo);
