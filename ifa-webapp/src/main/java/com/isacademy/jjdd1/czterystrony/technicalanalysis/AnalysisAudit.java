@@ -1,8 +1,8 @@
 package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
 //import Rating;
-//import com.isacademy.jjdd1.czterystrony.restparameters.RestDateParam;
-//import com.isacademy.jjdd1.czterystrony.restparameters.RestIntegerParam;
+//import com.isacademy.jjdd1.czterystrony.restparameters.DateParam;
+//import com.isacademy.jjdd1.czterystrony.restparameters.IntegerParam;
 //import com.isacademy.jjdd1.czterystrony.updaters.StatisticsUpdater;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -26,9 +26,9 @@ public class AnalysisAudit {
 //        List<Rating> localExtrema = (List<Rating>) returnedValue;
 //
 //        String investFundId = (String) ic.getParameters()[0];
-//        RestIntegerParam zigZag = (RestIntegerParam) ic.getParameters()[1];
-//        RestDateParam start = (RestDateParam) ic.getParameters()[2];
-//        RestDateParam end = (RestDateParam) ic.getParameters()[3];
+//        IntegerParam zigZag = (IntegerParam) ic.getParameters()[1];
+//        DateParam start = (DateParam) ic.getParameters()[2];
+//        DateParam end = (DateParam) ic.getParameters()[3];
 //
 //        statisticsUpdater.update(investFundId, zigZag, start, end, localExtrema);
 //

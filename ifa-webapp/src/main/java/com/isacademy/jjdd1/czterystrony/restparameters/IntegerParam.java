@@ -2,11 +2,11 @@ package com.isacademy.jjdd1.czterystrony.restparameters;
 
 import javax.ws.rs.WebApplicationException;
 
-public class RestIntegerParam {
+public class IntegerParam {
 
     private int number;
 
-    public RestIntegerParam(String number) throws WebApplicationException {
+    public IntegerParam(String number) throws WebApplicationException {
         try {
             this.number = Integer.parseInt(number);
         } catch (NumberFormatException e) {

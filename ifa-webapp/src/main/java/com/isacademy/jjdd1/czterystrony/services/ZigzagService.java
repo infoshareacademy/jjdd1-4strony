@@ -1,11 +1,11 @@
 package com.isacademy.jjdd1.czterystrony.services;
 
+import com.isacademy.jjdd1.czterystrony.restparameters.DateParam;
 import isacademy.jjdd1.czterystrony.webapp.persistance.model.InvestFund;
 import isacademy.jjdd1.czterystrony.webapp.persistance.model.Rating;
 import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.InvestFundRepository;
 import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.RatingRepository;
-import com.isacademy.jjdd1.czterystrony.restparameters.RestDateParam;
-import com.isacademy.jjdd1.czterystrony.restparameters.RestIntegerParam;
+import com.isacademy.jjdd1.czterystrony.restparameters.IntegerParam;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.AnalysisAudit;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.LocalExtremaProvider;
 import org.slf4j.Logger;
@@ -37,9 +37,9 @@ public class ZigzagService {
     @Interceptors(AnalysisAudit.class)
     public List<Rating> getZigZag(
             @PathParam("id") String id,
-            @QueryParam("value") RestIntegerParam zigZag,
-            @QueryParam("startDate") RestDateParam start,
-            @QueryParam("endDate") RestDateParam end) {
+            @QueryParam("value") IntegerParam zigZag,
+            @QueryParam("startDate") DateParam start,
+            @QueryParam("endDate") DateParam end) {
 
         List<Rating> ratings = ratingRepository.getAllByFund(getFund(id));
         log.info("Provided all local extrema for {}", id);

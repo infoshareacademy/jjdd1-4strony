@@ -4,11 +4,11 @@ import javax.ws.rs.WebApplicationException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-public class RestDateParam {
+public class DateParam {
 
     private LocalDate date;
 
-    public RestDateParam(String date) throws WebApplicationException {
+    public DateParam(String date) throws WebApplicationException {
         try {
             this.date = LocalDate.parse(date);
         } catch (DateTimeParseException e) {
@@ -22,7 +22,7 @@ public class RestDateParam {
 
     @Override
     public String toString() {
-        return "RestDateParam{" +
+        return "DateParam{" +
                 "date=" + date +
                 '}';
     }
