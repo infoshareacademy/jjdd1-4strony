@@ -6,7 +6,7 @@ import com.isacademy.jjdd1.czterystrony.reports.beanparameters.PeriodParam;
 import com.isacademy.jjdd1.czterystrony.reports.beanparameters.YearParam;
 import com.isacademy.jjdd1.czterystrony.reports.model.reports.InvestFundPopularity;
 import com.isacademy.jjdd1.czterystrony.reports.model.reports.PopularityFactory;
-import com.isacademy.jjdd1.czterystrony.reports.model.reports.PopularityReportWrapper;
+import com.isacademy.jjdd1.czterystrony.reports.model.reports.PopularityWrapper;
 import com.isacademy.jjdd1.czterystrony.reports.repositories.InvestFundPopularityRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +31,7 @@ public class InvestFundsPopularityReportService implements ReportService {
     @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_HTML)
-    public Response createDailyReport(PopularityReportWrapper reportWrapper, @Context UriInfo uriInfo) {
+    public Response createDailyReport(PopularityWrapper reportWrapper, @Context UriInfo uriInfo) {
         try {
             LocalDate reportDate = reportWrapper.getReportDate();
 
@@ -41,7 +41,7 @@ public class InvestFundsPopularityReportService implements ReportService {
                     .path(String.valueOf(reportDate.getDayOfMonth()))
                     .build();
 
-            List<InvestFundPopularity> reportEntities = reportWrapper.getPopularityDTOs().stream()
+            List<InvestFundPopularity> reportEntities = reportWrapper.getPopularities().stream()
                     .map(r -> PopularityFactory.create(new InvestFundPopularity(), r, reportDate))
                     .collect(Collectors.toList());
 
@@ -70,6 +70,7 @@ public class InvestFundsPopularityReportService implements ReportService {
         }
     }
 
+    @Override
     @GET
     @Path("/{year}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -77,6 +78,7 @@ public class InvestFundsPopularityReportService implements ReportService {
         return getPeriodicReport(year);
     }
 
+    @Override
     @GET
     @Path("/{year}/{month}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -84,6 +86,7 @@ public class InvestFundsPopularityReportService implements ReportService {
         return getPeriodicReport(month);
     }
 
+    @Override
     @GET
     @Path("/{year}/{month}/{day}")
     @Produces(MediaType.APPLICATION_JSON)

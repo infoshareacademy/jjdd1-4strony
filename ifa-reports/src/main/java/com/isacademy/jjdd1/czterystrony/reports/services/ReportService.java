@@ -11,9 +11,9 @@ import javax.ws.rs.core.Response;
 public interface ReportService {
 
     @GET
-    @Path("{instruments}/{year}/{month}/{day}")
+    @Path("/{year}")
     @Produces(MediaType.APPLICATION_JSON)
-    Response getDailyReport(@BeanParam DayParam day);
+    Response getYearlyReport(@BeanParam YearParam year);
 
     @GET
     @Path("/{year}/{month}")
@@ -21,7 +21,7 @@ public interface ReportService {
     Response getMonthlyReport(@BeanParam MonthParam month);
 
     @GET
-    @Path("/{year}")
+    @Path("/{year}/{month}/{day}")
     @Produces(MediaType.APPLICATION_JSON)
-    Response getYearlyReport(@BeanParam YearParam year);
+    Response getDailyReport(@BeanParam DayParam day);
 }
