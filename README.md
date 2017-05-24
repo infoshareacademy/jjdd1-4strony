@@ -1,7 +1,7 @@
 # 4strony team
 
 #### infoShareAcademy Junior Java Developer 
-* Project: "jjdd1-4strony" 4analysis
+* Project: 4analysis - fundusze inwestycyjne
 * Product Owner: Wòjcech Makùrôt
 
 ## Development team:
