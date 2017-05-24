@@ -31,8 +31,8 @@ public class PensionFundsUpdater {
         bufferedReader.lines()
                 .filter(record -> containsDataFileExtension(record))
                 .map(PensionFundFactory::create)
-                .filter(ofe -> isNew(ofe) || isUpdated(ofe))
-                .forEach(ofe -> addNewOrUpdateExisting(ofe));
+                .filter(pensionFund -> isNew(pensionFund) || isUpdated(pensionFund))
+                .forEach(pensionFund -> addNewOrUpdateExisting(pensionFund));
     }
 
     private Boolean containsDataFileExtension(String record) {

@@ -31,9 +31,9 @@ public class PensionFundRatingsInitializer {
     @PostConstruct
     public void initialize() {
         pensionFundRepository.getAll().stream()
-                .filter(ofe -> ofe.getPensionFundRatings().isEmpty())
-                .peek(ofe -> log.info("Initializing pension funds ratings for: {}", ofe.getId()))
-                .map(ofe -> TMP_PROJECT_FOLDER.resolve(ofe.getId() + RATINGS_DATA_FILE_EXTENSION))
+                .filter(pensionFund -> pensionFund.getPensionFundRatings().isEmpty())
+                .peek(pensionFund -> log.info("Initializing pension funds ratings for: {}", pensionFund.getId()))
+                .map(pensionFund -> TMP_PROJECT_FOLDER.resolve(pensionFund.getId() + RATINGS_DATA_FILE_EXTENSION))
                 .forEach(path -> pensionFundRatingRepository.insertDataFromCsv(path.toString()));
     }
 }
