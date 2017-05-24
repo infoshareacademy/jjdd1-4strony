@@ -23,10 +23,10 @@ public class HomePageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
-        if (!req.getRequestURI().equals("/4analysis")) {
-            resp.sendRedirect("http://localhost:8080/4analysis");
-            return;
-        }
+//        if (!req.getRequestURI().equals("/4analysis")) {
+//            resp.sendRedirect("http://localhost:8080/4analysis");
+//            return;
+//        }
 
         List<InvestFundDetails> allInvestFunds = views.getAllFunds();
         List<InvestFundDetails> promotedInvestFunds = views.getPromotedFunds();
@@ -42,7 +42,7 @@ public class HomePageServlet extends HttpServlet {
         req.setAttribute("allInvestFunds", allInvestFunds);
         req.setAttribute("dataFound", dataFound);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/main.jsp");
         dispatcher.forward(req, resp);
     }
 
