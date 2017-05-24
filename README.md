@@ -1,4 +1,4 @@
-# jjdd1-4strony
+# 4strony team
 
 #### infoShareAcademy Junior Java Developer 
 * Project: "jjdd1-4strony" 4analysis
@@ -7,5 +7,4 @@
 ## Development team:
 * Jakub Dobosz
 * Piotr Krajewski
-* Karol Sitkowski
 * Maciej Wołodko
