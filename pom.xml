@@ -19,8 +19,8 @@
         <module>ifa-library</module>
         <module>ifa-webapp</module>
         <module>ifa-reports</module>
-        <module>ifa-webapp-persistance</module>
-        <module>ifa-reports-persistance</module>
+        <module>ifa-webapp-persistence</module>
+        <module>ifa-reports-persistence</module>
     </modules>
 
     <dependencies>
