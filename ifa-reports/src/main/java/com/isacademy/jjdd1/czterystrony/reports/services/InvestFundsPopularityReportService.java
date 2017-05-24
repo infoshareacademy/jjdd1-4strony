@@ -27,34 +27,34 @@ public class InvestFundsPopularityReportService implements ReportService {
     @Inject
     InvestFundPopularityRepository repository;
 
-    @POST
-    @Path("/")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.TEXT_HTML)
-    public Response createDailyReport(PopularityWrapper reportWrapper, @Context UriInfo uriInfo) {
-        try {
-            LocalDate reportDate = reportWrapper.getReportDate();
-
-            URI uri = uriInfo.getAbsolutePathBuilder()
-                    .path(String.valueOf(reportDate.getYear()))
-                    .path(String.valueOf(reportDate.getMonthValue()))
-                    .path(String.valueOf(reportDate.getDayOfMonth()))
-                    .build();
-
-            List<InvestFundPopularity> reportEntities = reportWrapper.getPopularities().stream()
-                    .map(r -> PopularityFactory.create(new InvestFundPopularity(), r, reportDate))
-                    .collect(Collectors.toList());
-
-            repository.add(reportEntities);
-            String result = "Invest funds popularity daily report created. Report date: " + reportDate;
-            log.info(result);
-            return Response.created(uri).entity(result).build();
-
-        } catch (Throwable e) {
-            e.printStackTrace();
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-    }
+//    @POST
+//    @Path("/")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.TEXT_HTML)
+//    public Response createDailyReport(PopularityWrapper reportWrapper, @Context UriInfo uriInfo) {
+//        try {
+//            LocalDate reportDate = reportWrapper.getReportDate();
+//
+//            URI uri = uriInfo.getAbsolutePathBuilder()
+//                    .path(String.valueOf(reportDate.getYear()))
+//                    .path(String.valueOf(reportDate.getMonthValue()))
+//                    .path(String.valueOf(reportDate.getDayOfMonth()))
+//                    .build();
+//
+//            List<InvestFundPopularity> reportEntities = reportWrapper.getPopularities().stream()
+//                    .map(r -> PopularityFactory.create(new InvestFundPopularity(), r, reportDate))
+//                    .collect(Collectors.toList());
+//
+//            repository.add(reportEntities);
+//            String result = "Invest funds popularity daily report created. Report date: " + reportDate;
+//            log.info(result);
+//            return Response.created(uri).entity(result).build();
+//
+//        } catch (Throwable e) {
+//            e.printStackTrace();
+//            return Response.status(Response.Status.NOT_FOUND).build();
+//        }
+//    }
 
     @GET
     @Path("/")
