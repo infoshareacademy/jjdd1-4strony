@@ -17,16 +17,15 @@
     <div class="row">
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="http://localhost:8080/4analysis/notowania/${investFund.id}">Notowania <span
+                <li class="active"><a href="<c:url value = "/4analysis/notowania/${investFund.id}"/>">Notowania <span
                         class="sr-only">(current)</span></a></li>
-                <%--<li><a href="http://localhost:8080/4analysis/wyniki/${investFund.id}">Wyniki</a></li>--%>
-                <li><a href="http://localhost:8080/4analysis/analiza/${investFund.id}">Analiza techniczna</a></li>
+                <li><a href="<c:url value = "/4analysis/analiza/${investFund.id}"/>">Analiza techniczna</a></li>
             </ul>
         </div>
         <div class="col-md-8 col-md-offset-2 main">
             <div class="row">
                 <h3 class="page-header"><a
-                        href="http://localhost:8080/4analysis/notowania/${investFund.id}">${investFund.name}</a></h3>
+                        href="<c:url value = "/4analysis/notowania/${investFund.id}"/>">${investFund.name}</a></h3>
                 <span id="fund-id" class="text-muted">${investFund.id}</span><br>
                 <div class="col-md-4">
                     <span class="lead"><strong>${investFund.close} PLN </strong></span>
