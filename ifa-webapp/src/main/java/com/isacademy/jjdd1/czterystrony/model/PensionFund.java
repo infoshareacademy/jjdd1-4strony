@@ -36,10 +36,6 @@ import java.util.List;
                 name = "PensionFund.getAllWithDetails",
                 query = PensionFundNamedNativeQueries.allWithDetails,
                 resultSetMapping = "PensionFundDetailsMapping"),
-        @NamedNativeQuery(
-                name = "PensionFund.getByIdWithDetails",
-                query = PensionFundNamedNativeQueries.byIdWithDetails,
-                resultSetMapping = "PensionFundDetailsMapping")
         })
 
 public class PensionFund {

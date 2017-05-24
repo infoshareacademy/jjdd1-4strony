@@ -97,14 +97,14 @@
                 <%--</table>--%>
             <%--</div>--%>
 
-            <div class="panel-heading">Notowania funduszy emerytalnych</div>
+            <%--<div class="panel-heading">Notowania funduszy emerytalnych</div>--%>
             <div class="table-responsive">
                 <table id="table-pension-funds" class="table table-striped table-hover-other compact" style="display: none">
                     <thead>
                     <tr>
-                        <th class="text-center col-md-1 sorting_disabled" style="width: 10%">
-                            <span class="glyphicon glyphicon-tags"></span>
-                        </th>
+                        <%--<th class="text-center col-md-1 sorting_disabled" style="width: 10%">--%>
+                            <%--<span class="glyphicon glyphicon-tags"></span>--%>
+                        <%--</th>--%>
                         <th style="width: 40%">fundusz</th>
                         <th class="text-center" style="width: 10%">id</th>
                         <th class="text-center" style="width: 15%" >data</th>
@@ -117,7 +117,7 @@
                         <c:when test="${dataFound}">
                             <c:forEach items="${allPensionFunds}" var="pensionFund">
                                 <tr onclick="window.document.location='/4analysis/pensionfunds/notowania/${pensionFund.id}';">
-                                    <td class="text-center"></td>
+                                    <%--<td class="text-center"></td>--%>
                                     <td>${pensionFund.name}</td>
                                     <td class="text-center">${pensionFund.id}</td>
                                     <td class="text-center">${pensionFund.date}</td>
@@ -145,7 +145,7 @@
                         </c:when>
                         <c:otherwise>
                             <tr>
-                                <td></td>
+                                <%--<td></td>--%>
                                 <td>brak danych</td>
                                 <td></td>
                                 <td></td>

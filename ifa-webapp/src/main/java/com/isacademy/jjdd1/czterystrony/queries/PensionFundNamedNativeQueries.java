@@ -29,21 +29,4 @@ public final class PensionFundNamedNativeQueries {
                     "WHERE r1.row_number = 1 AND r2.row_number = 2) tab2 " +
                     "ON p.id = tab2.pensionFund_id";
 
-    //language=MySQL
-    public static final String byIdWithDetails =
-            "SELECT " +
-                    "p.name AS name, " +
-                    "p.id AS id, " +
-                    "tab2.date AS date, " +
-                    "tab2.close AS close, " +
-                    "tab2.diff AS diff " +
-                    "FROM PensionFund AS p JOIN (SELECT r1.pensionFund_id, r1.date, r1.close, " +
-                    "ROUND((r1.close - r2.close)/r2.close*100, 2) AS diff " +
-                    "FROM (SELECT r.pensionFund_id, r.date, r.close " +
-                    "FROM PensionFundRating AS r WHERE r.pensionFund_id = :id " +
-                    "ORDER BY r.date DESC LIMIT 1) AS r1 " +
-                    "JOIN (SELECT r.pensionFund_id, r.date, r.close " +
-                    "FROM PensionFundRating r WHERE r.pensionFund_id = :id " +
-                    "ORDER BY r.date DESC LIMIT 1,1) AS r2 ON r1.pensionFund_id = r2.pensionFund_id) tab2 " +
-                    "ON p.id = tab2.pensionFund_id";
 }
