@@ -2,9 +2,9 @@ package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
 import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 import com.isacademy.jjdd1.czterystrony.analysis.MovingAverage;
-import isacademy.jjdd1.czterystrony.webapp.persistance.model.InvestFund;
-import isacademy.jjdd1.czterystrony.webapp.persistance.model.Rating;
-import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.RatingRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.Rating;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.RatingRepository;
 
 import javax.inject.Inject;
 import java.util.List;

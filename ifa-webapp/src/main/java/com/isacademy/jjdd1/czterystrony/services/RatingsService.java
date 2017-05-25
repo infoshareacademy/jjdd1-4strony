@@ -1,9 +1,9 @@
 package com.isacademy.jjdd1.czterystrony.services;
 
-import isacademy.jjdd1.czterystrony.webapp.persistance.model.InvestFund;
-import isacademy.jjdd1.czterystrony.webapp.persistance.model.Rating;
-import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.InvestFundRepository;
-import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.RatingRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.Rating;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.RatingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

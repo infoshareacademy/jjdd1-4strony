@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.services;
 
-import isacademy.jjdd1.czterystrony.webapp.persistance.dbviews.Views;
-import isacademy.jjdd1.czterystrony.webapp.persistance.model.InvestFundDetails;
+import isacademy.jjdd1.czterystrony.webapp.persistence.dbviews.Views;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

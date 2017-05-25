@@ -1,8 +1,8 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
-import isacademy.jjdd1.czterystrony.webapp.persistance.dbviews.Views;
-import isacademy.jjdd1.czterystrony.webapp.persistance.model.PensionFundDetails;
-import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.PensionFundDetailsRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.dbviews.Views;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.PensionFundDetails;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.PensionFundDetailsRepository;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;

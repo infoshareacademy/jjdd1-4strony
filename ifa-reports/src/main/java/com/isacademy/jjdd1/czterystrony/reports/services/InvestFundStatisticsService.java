@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.reports.services;
 
-import isacademy.jjdd1.czterystrony.reports.persistance.model.statistics.InvestFundStatistics;
+import isacademy.jjdd1.czterystrony.reports.persistence.model.statistics.InvestFundStatistics;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;

@@ -1,10 +1,10 @@
 package com.isacademy.jjdd1.czterystrony.services;
 
 import com.isacademy.jjdd1.czterystrony.restparameters.DateParam;
-import isacademy.jjdd1.czterystrony.webapp.persistance.model.InvestFund;
-import isacademy.jjdd1.czterystrony.webapp.persistance.model.Rating;
-import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.InvestFundRepository;
-import isacademy.jjdd1.czterystrony.webapp.persistance.repositories.RatingRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.Rating;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.RatingRepository;
 import com.isacademy.jjdd1.czterystrony.restparameters.IntegerParam;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.AnalysisAudit;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.LocalExtremaProvider;

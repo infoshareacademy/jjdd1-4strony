@@ -4,8 +4,8 @@ import com.isacademy.jjdd1.czterystrony.reports.beanparameters.DayParam;
 import com.isacademy.jjdd1.czterystrony.reports.beanparameters.MonthParam;
 import com.isacademy.jjdd1.czterystrony.reports.beanparameters.PeriodParam;
 import com.isacademy.jjdd1.czterystrony.reports.beanparameters.YearParam;
-import isacademy.jjdd1.czterystrony.reports.persistance.model.InvestFundPopularity;
-import isacademy.jjdd1.czterystrony.reports.persistance.repositories.InvestFundPopularityRepository;
+import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundPopularity;
+import isacademy.jjdd1.czterystrony.reports.persistence.repositories.InvestFundPopularityRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
