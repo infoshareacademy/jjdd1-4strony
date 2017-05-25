@@ -25,7 +25,7 @@ public class InvestFundIdFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 
         if (!fundIdIsValid(httpServletRequest)) {
-            httpServletResponse.sendRedirect("http://localhost:8080/4analysis");
+            httpServletResponse.sendRedirect(getContextRoot(httpServletRequest));
             return;
         }
 
@@ -40,6 +40,12 @@ public class InvestFundIdFilter implements Filter {
             return Objects.nonNull(repository.getById(investFundId));
         }
         return false;
+    }
+
+    private String getContextRoot(HttpServletRequest request) {
+        return request.getScheme() + "://" +
+                request.getServerName() + ":" +
+                request.getServerPort() + "/4analysis";
     }
 
     @Override

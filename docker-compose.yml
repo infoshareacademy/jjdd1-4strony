@@ -9,7 +9,7 @@ services:
       - MYSQL_PASSWORD=mysql
       - MYSQL_ROOT_PASSWORD=pass
     ports:
-      - 4444:3306
+      - 8732:3306
   4strony-webapp:
     container_name: "4strony-webapp"
     build: ./ifa-webapp
@@ -20,8 +20,8 @@ services:
       - MYSQL_PASSWORD=mysql
       - MYSQL_ROOT_PASSWORD=pass
     ports:
-      - 8080:8080
-      - 9990:9990
+      - 8730:8080
+      - 8731:9990
     depends_on:
       - 4strony-db
   4strony-reports-db:
@@ -33,7 +33,7 @@ services:
       - MYSQL_PASSWORD=mysql
       - MYSQL_ROOT_PASSWORD=pass
     ports:
-      - 4445:3306
+      - 8737:3306
   4strony-reports-api:
     container_name: "4strony-reports-api"
     build: ./ifa-reports
@@ -44,7 +44,7 @@ services:
       - MYSQL_PASSWORD=mysql
       - MYSQL_ROOT_PASSWORD=pass
     ports:
-      - 8081:8080
-      - 9991:9990
+      - 8735:8080
+      - 8736:9990
     depends_on:
       - 4strony-reports-db

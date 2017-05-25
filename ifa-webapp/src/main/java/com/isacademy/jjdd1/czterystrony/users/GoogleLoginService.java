@@ -24,8 +24,8 @@ public class GoogleLoginService {
     private static final String GOOGLE_CLIENT_ID = "280540127427-i5fcabv2i9poto8co2niio2hf4m2cg7k.apps.googleusercontent.com";
     private static final String GOOGLE_CLIENT_SECRET = "2jPDzoqCSw74HOvUpLMipB3w";
     private static final String PROTECTED_RESOURCE_URL = "https://www.googleapis.com/oauth2/v2/userinfo";
-    private static final String CALLBACK_URL = "http://localhost:8080/api/google/callback";
-    private static final String INDEX_URL = "http://localhost:8080/4analysis";
+    private static final String CALLBACK_URL = "http://localhost:8730/api/google/callback";
+    private static final String INDEX_URL = "http://localhost:8730/4analysis";
 
     private OAuth20Service service = new ServiceBuilder()
             .apiKey(GOOGLE_CLIENT_ID)
