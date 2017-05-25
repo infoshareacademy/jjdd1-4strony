@@ -44,8 +44,9 @@ public class PensionFundRating extends Rating {
             return null;
         }
 
-        public Builder withPensionFund(PensionFund pensionFund) {
-            rating.pensionFund = pensionFund;
+        @Override
+        public Builder withInstrument(FinancialInstrument instrument) {
+            rating.pensionFund = (PensionFund) instrument;
             return builder;
         }
     }

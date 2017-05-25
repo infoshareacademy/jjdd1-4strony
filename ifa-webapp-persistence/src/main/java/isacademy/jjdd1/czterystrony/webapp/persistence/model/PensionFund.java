@@ -37,7 +37,7 @@ public class PensionFund extends FinancialInstrument {
 
     @JsonIgnore
     @OneToMany(mappedBy = "pensionFund", cascade = CascadeType.PERSIST)
-    private List<PensionFundRating> pensionFundRatings = new ArrayList<>();
+    private List<PensionFundRating> ratings = new ArrayList<>();
 
     public PensionFund() {
     }
@@ -55,8 +55,9 @@ public class PensionFund extends FinancialInstrument {
         }
     }
 
-    public List<PensionFundRating> getPensionFundRatings() {
-        return pensionFundRatings;
+    @Override
+    public List<PensionFundRating> getRatings() {
+        return ratings;
     }
 
     @Override
@@ -65,7 +66,7 @@ public class PensionFund extends FinancialInstrument {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", lastRatingDate=" + lastRatingDate +
-                ", ratings=" + pensionFundRatings +
+                ", ratings=" + ratings +
                 '}';
     }
 }

@@ -36,7 +36,7 @@ public abstract class Rating {
     protected Rating() {
     }
 
-    protected static abstract class Builder<T extends Rating, B extends Builder<T, B>> {
+    public static abstract class Builder<T extends Rating, B extends Builder<T, B>> {
 
         T rating;
         B builder;
@@ -73,6 +73,8 @@ public abstract class Rating {
             rating.close = close;
             return builder;
         }
+
+        public abstract B withInstrument(FinancialInstrument instrument);
 
         public T build() {
             return rating;

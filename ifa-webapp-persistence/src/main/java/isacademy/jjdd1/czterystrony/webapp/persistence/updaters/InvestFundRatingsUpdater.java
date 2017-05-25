@@ -1,9 +1,9 @@
 package isacademy.jjdd1.czterystrony.webapp.persistence.updaters;
 
-import isacademy.jjdd1.czterystrony.webapp.persistence.factories.RatingFactory;
+import isacademy.jjdd1.czterystrony.webapp.persistence.factories.InvestFundRatingFactory;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
-import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.RatingRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRatingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +20,7 @@ import java.util.List;
 import static com.isacademy.jjdd1.czterystrony.Constants.*;
 
 @Stateless
-public class RatingsUpdater {
+public class InvestFundRatingsUpdater {
 
     private static Logger log = LoggerFactory.getLogger(InvestFundRepository.class);
 
@@ -28,7 +28,7 @@ public class RatingsUpdater {
     InvestFundRepository investFundRepository;
 
     @Inject
-    RatingRepository ratingRepository;
+    InvestFundRatingRepository ratingRepository;
 
     public void update() throws IOException {
         List<InvestFund> investFunds = investFundRepository.getAll();
@@ -44,7 +44,7 @@ public class RatingsUpdater {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
         bufferedReader.lines()
                 .skip(RECORDS_TO_SKIP_IN_RATINGS_FILE)
-                .map(record -> RatingFactory.create(record, investFund))
+                .map(record -> InvestFundRatingFactory.create(record, investFund))
                 .filter(rating -> rating.getDate().isAfter(investFund.getLastRatingDate()))
                 .filter(rating -> ratingRepository.getByFundAndDate(investFund, rating.getDate()).isEmpty())
                 .peek(rating -> log.info("New rating for: {} with date: {}", investFund.getId(), rating.getDate()))

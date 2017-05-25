@@ -16,8 +16,9 @@ import static com.isacademy.jjdd1.czterystrony.Constants.TMP_PROJECT_FOLDER;
 
 @Startup
 @Singleton
-@DependsOn({"DatabaseInitializer", "PensionFundInitializer"})
+@DependsOn({"DatabaseInitializer", "PensionFundsInitializer"})
 public class PensionFundRatingsInitializer {
+
     private static Logger log = LoggerFactory.getLogger(PensionFundRatingsInitializer.class);
 
     @Inject
@@ -29,9 +30,9 @@ public class PensionFundRatingsInitializer {
     @PostConstruct
     public void initialize() {
         pensionFundRepository.getAll().stream()
-                .filter(pensionFund -> pensionFund.getPensionFundRatings().isEmpty())
-                .peek(pensionFund -> log.info("Initializing pension funds ratings for: {}", pensionFund.getId()))
-                .map(pensionFund -> TMP_PROJECT_FOLDER.resolve(pensionFund.getId() + RATINGS_DATA_FILE_EXTENSION))
+                .filter(fund -> fund.getRatings().isEmpty())
+                .peek(fund -> log.info("Initializing pension fund ratings for: {}", fund.getId()))
+                .map(fund -> TMP_PROJECT_FOLDER.resolve(fund.getId() + RATINGS_DATA_FILE_EXTENSION))
                 .forEach(path -> pensionFundRatingRepository.insertDataFromCsv(path.toString()));
     }
 }

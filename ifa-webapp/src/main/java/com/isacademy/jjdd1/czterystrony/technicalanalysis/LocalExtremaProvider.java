@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundRating;
-import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.RatingRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRatingRepository;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
@@ -16,7 +16,7 @@ public class LocalExtremaProvider {
     private List<InvestFundRating> ratings;
 
     @Inject
-    RatingRepository ratingRepository;
+    InvestFundRatingRepository ratingRepository;
 
     public List<InvestFundRating> findExtrema(List<InvestFundRating> ratings, int minSwingLimitInPct) {
         this.ratings = ratings;

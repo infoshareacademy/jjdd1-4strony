@@ -4,7 +4,7 @@ import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 import com.isacademy.jjdd1.czterystrony.analysis.MovingAverage;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundRating;
-import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.RatingRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRatingRepository;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -14,7 +14,7 @@ public class MovingAverageProvider {
     private MovingAverage movingAverage;
 
     @Inject
-    RatingRepository ratingRepository;
+    InvestFundRatingRepository ratingRepository;
 
     public List<InvestFundRating> getMovingAverageRatings(InvestFund investFund, TimeRange timeRange, MovingAverage movingAverage) {
         this.movingAverage = movingAverage;

@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @Stateless
 public class DatabaseUpdater {
-    private static Logger log = LoggerFactory.getLogger(DatabaseUpdater.class);
+    private static Logger LOG = LoggerFactory.getLogger(DatabaseUpdater.class);
 
     @Inject
     RatingsDownloader ratingsDownloader;
@@ -23,32 +23,41 @@ public class DatabaseUpdater {
     InvestFundsUpdater investFundsUpdater;
 
     @Inject
-    RatingsUpdater ratingsUpdater;
+    InvestFundRatingsUpdater investFundRatingsUpdater;
+
+    @Inject
+    PensionFundsUpdater pensionFundsUpdater;
+
+    @Inject
+    PensionFundRatingsUpdater pensionFundRatingsUpdater;
 
     public void update() {
         ratingsDownloader.download();
         ratingsUnzipper.unzip();
-        updateInvestFunds();
+        updateInstruments();
         updateRatings();
     }
 
-    private void updateInvestFunds() {
+    private void updateInstruments() {
         try {
             investFundsUpdater.update();
-            log.info("Invest funds updated.");
+            LOG.info("Invest funds updated.");
+            pensionFundsUpdater.update();
+            LOG.info("Pension funds updated.");
         } catch (IOException e) {
             e.printStackTrace();
-            log.error("Cannot update invest funds.");
+            LOG.error("Cannot update instruments.");
         }
     }
 
     private void updateRatings() {
         try {
-            ratingsUpdater.update();
-            log.info("All ratings updated.");
+            investFundRatingsUpdater.update();
+            pensionFundRatingsUpdater.update();
+            LOG.info("All ratings updated.");
         } catch (IOException e) {
             e.printStackTrace();
-            log.error("Cannot update ratings.");
+            LOG.error("Cannot update ratings.");
         }
     }
 }

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Startup
 @Singleton
-@DependsOn({"DatabaseInitializer", "InvestFundsInitializer", "RatingsInitializer"})
+@DependsOn({"DatabaseInitializer", "InvestFundsInitializer", "InvestFundRatingsInitializer"})
 public class Views {
     private List<InvestFundDetails> allFunds;
     private List<InvestFundDetails> promotedFunds;

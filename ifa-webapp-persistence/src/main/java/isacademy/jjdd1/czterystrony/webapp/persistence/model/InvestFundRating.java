@@ -1,7 +1,7 @@
 package isacademy.jjdd1.czterystrony.webapp.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import isacademy.jjdd1.czterystrony.webapp.persistence.queries.RatingNamedNativeQueries;
+import isacademy.jjdd1.czterystrony.webapp.persistence.queries.InvestFundRatingNamedNativeQueries;
 
 import javax.persistence.*;
 
@@ -34,7 +34,7 @@ import javax.persistence.*;
 })
 @NamedNativeQuery(
         name = "Rating.insertDataFromCsv",
-        query = RatingNamedNativeQueries.insertFromCsv
+        query = InvestFundRatingNamedNativeQueries.insertFromCsv
 )
 public class InvestFundRating extends Rating {
 
@@ -56,8 +56,9 @@ public class InvestFundRating extends Rating {
             return this;
         }
 
-        public Builder withInvestFund(InvestFund investFund) {
-            rating.investFund = investFund;
+        @Override
+        public Builder withInstrument(FinancialInstrument instrument) {
+            rating.investFund = (InvestFund) instrument;
             return builder;
         }
     }

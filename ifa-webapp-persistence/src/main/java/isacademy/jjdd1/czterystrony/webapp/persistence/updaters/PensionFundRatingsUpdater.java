@@ -46,7 +46,7 @@ public class PensionFundRatingsUpdater {
                 .skip(RECORDS_TO_SKIP_IN_RATINGS_FILE)
                 .map(record -> PensionFundRatingFactory.create(record, pensionFund))
                 .filter(ofeRating -> ofeRating.getDate().isAfter(pensionFund.getLastRatingDate()))
-                .filter(ofeRating -> pensionFundRatingRepository.getByOfeAndDate(pensionFund, ofeRating.getDate()).isEmpty())
+                .filter(ofeRating -> pensionFundRatingRepository.getByFundAndDate(pensionFund, ofeRating.getDate()).isEmpty())
                 .peek(ofeRating -> log.info("New rating for: {} with date: {}", pensionFund.getId(), ofeRating.getDate()))
                 .forEach(ofeRating -> pensionFundRatingRepository.add(ofeRating, pensionFund.getId()));
     }

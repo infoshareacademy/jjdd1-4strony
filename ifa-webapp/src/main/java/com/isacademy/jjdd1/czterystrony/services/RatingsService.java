@@ -3,7 +3,7 @@ package com.isacademy.jjdd1.czterystrony.services;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundRating;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
-import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.RatingRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRatingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +21,7 @@ public class RatingsService {
     InvestFundRepository investFundRepository;
 
     @Inject
-    RatingRepository ratingRepository;
+    InvestFundRatingRepository ratingRepository;
 
     @GET
     @Path("/{id}/ratings")

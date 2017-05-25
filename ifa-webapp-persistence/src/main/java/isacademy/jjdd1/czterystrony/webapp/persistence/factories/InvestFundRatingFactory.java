@@ -8,7 +8,7 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class RatingFactory {
+public class InvestFundRatingFactory {
     private static final String DELIMITER = ",";
     private static final String DATE_PATTERN = "yyyyMMdd";
     private static final int DATE_COLUMN_INDEX_IN_DATA_FILE = 1;
@@ -26,7 +26,7 @@ public class RatingFactory {
                 .withHigh(parseValueFrom(splittedRecord[HIGH_COLUMN_INDEX_IN_DATA_FILE]))
                 .withLow(parseValueFrom(splittedRecord[LOW_COLUMN_INDEX_IN_DATA_FILE]))
                 .withClose(parseValueFrom(splittedRecord[CLOSE_COLUMN_INDEX_IN_DATA_FILE]))
-                .withInvestFund(investFund)
+                .withInstrument(investFund)
                 .build();
     }
 

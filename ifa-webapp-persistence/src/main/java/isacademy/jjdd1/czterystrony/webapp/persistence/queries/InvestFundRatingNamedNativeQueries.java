@@ -1,7 +1,7 @@
 package isacademy.jjdd1.czterystrony.webapp.persistence.queries;
 
-public final class RatingNamedNativeQueries {
-    private RatingNamedNativeQueries() {
+public final class InvestFundRatingNamedNativeQueries {
+    private InvestFundRatingNamedNativeQueries() {
     }
 
     //language=MySQL

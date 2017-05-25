@@ -18,10 +18,10 @@ public class PensionFundRatingRepository {
 
     public void add(PensionFundRating pensionFundRating, String ofeId) {
         PensionFund pensionFund = entityManager.find(PensionFund.class, ofeId);
-        pensionFund.getPensionFundRatings().add(pensionFundRating);
+        pensionFund.getRatings().add(pensionFundRating);
     }
 
-    public List<PensionFundRating> getByOfeAndDate(PensionFund pensionFund, LocalDate date) {
+    public List<PensionFundRating> getByFundAndDate(PensionFund pensionFund, LocalDate date) {
         Query query = entityManager.createNamedQuery("PensionFundRating.getByPensionFundAndDate");
         query.setParameter("date", date);
         query.setParameter("pensionFund", pensionFund);

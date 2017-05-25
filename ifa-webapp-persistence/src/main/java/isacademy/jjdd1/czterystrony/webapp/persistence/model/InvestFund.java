@@ -77,6 +77,7 @@ public class InvestFund extends FinancialInstrument {
         return priority;
     }
 
+    @Override
     public List<InvestFundRating> getRatings() {
         return ratings;
     }

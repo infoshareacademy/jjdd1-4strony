@@ -4,7 +4,7 @@ import com.isacademy.jjdd1.czterystrony.restparameters.DateParam;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundRating;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
-import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.RatingRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRatingRepository;
 import com.isacademy.jjdd1.czterystrony.restparameters.IntegerParam;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.AnalysisAudit;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.LocalExtremaProvider;
@@ -26,7 +26,7 @@ public class ZigzagService {
     InvestFundRepository investFundRepository;
 
     @Inject
-    RatingRepository ratingRepository;
+    InvestFundRatingRepository ratingRepository;
 
     @Inject
     LocalExtremaProvider localExtremaProvider;

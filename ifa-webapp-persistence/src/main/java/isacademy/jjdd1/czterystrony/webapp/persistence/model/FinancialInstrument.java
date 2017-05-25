@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @MappedSuperclass
 public abstract class FinancialInstrument {
@@ -77,4 +78,6 @@ public abstract class FinancialInstrument {
     public LocalDate getLastRatingDate() {
         return lastRatingDate;
     }
+
+    public abstract List<? extends Rating> getRatings();
 }

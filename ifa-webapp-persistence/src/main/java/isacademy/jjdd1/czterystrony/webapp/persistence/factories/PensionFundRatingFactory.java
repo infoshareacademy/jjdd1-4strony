@@ -27,7 +27,7 @@ public class PensionFundRatingFactory {
                 .withHigh(parseValueFrom(splittedRecord[HIGH_COLUMN_INDEX_IN_DATA_FILE]))
                 .withLow(parseValueFrom(splittedRecord[LOW_COLUMN_INDEX_IN_DATA_FILE]))
                 .withClose(parseValueFrom(splittedRecord[CLOSE_COLUMN_INDEX_IN_DATA_FILE]))
-                .withPensionFund(pensionFund)
+                .withInstrument(pensionFund)
                 .build();
     }
 

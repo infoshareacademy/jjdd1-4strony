@@ -1,5 +1,7 @@
 package isacademy.jjdd1.czterystrony.reports.persistence.model;
 
+import com.isacademy.jjdd1.czterystrony.instruments.Instrument;
+
 public abstract class Popularity {
 
     protected String instrumentId;

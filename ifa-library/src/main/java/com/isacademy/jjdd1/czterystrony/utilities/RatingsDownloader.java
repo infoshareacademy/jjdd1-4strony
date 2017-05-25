@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import static com.isacademy.jjdd1.czterystrony.Constants.*;
 
@@ -18,12 +19,17 @@ public class RatingsDownloader {
     FileDownloader downloader;
 
     public void download() {
+        download(INVEST_FUNDS_RATINGS_ZIP_SOURCE, INVEST_FUNDS_RATINGS_ZIP_PATH);
+        download(PENSION_FUNDS_RATINGS_ZIP_SOURCE, PENSION_FUNDS_RATINGS_ZIP_PATH);
+    }
+
+    private void download(String source, Path destination) {
         try {
-            downloader.download(INVEST_FUNDS_RATINGS_ZIP_SOURCE, INVEST_FUNDS_RATINGS_ZIP_PATH);
-            log.info("Funds ratings zip downloaded from: {} to {}", INVEST_FUNDS_RATINGS_ZIP_SOURCE, INVEST_FUNDS_RATINGS_ZIP_PATH);
+            downloader.download(source, destination);
+            log.info("Funds ratings zip downloaded from: {} to {}", source, destination);
         } catch (IOException e) {
             e.printStackTrace();
-            log.error("Cannot download ratings source from: {}", INVEST_FUNDS_RATINGS_ZIP_SOURCE);
+            log.error("Cannot download ratings source from: {}", source);
         }
     }
 }
