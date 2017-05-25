@@ -1,15 +1,9 @@
 package isacademy.jjdd1.czterystrony.webapp.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import isacademy.jjdd1.czterystrony.webapp.persistence.queries.RatingNamedNativeQueries;
-import com.isacademy.jjdd1.czterystrony.serializers.JsonDateSerializer;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Entity
 @Table(indexes = {@Index(
@@ -42,27 +36,7 @@ import java.time.LocalDate;
         name = "Rating.insertDataFromCsv",
         query = RatingNamedNativeQueries.insertFromCsv
 )
-public class InvestFundRating {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @JsonSerialize(using = JsonDateSerializer.class)
-    @NotNull
-    private LocalDate date;
-
-    @Digits(integer = 6, fraction = 2)
-    private BigDecimal open;
-
-    @Digits(integer = 6, fraction = 2)
-    private BigDecimal high;
-
-    @Digits(integer = 6, fraction = 2)
-    private BigDecimal low;
-
-    @Digits(integer = 6, fraction = 2)
-    private BigDecimal close;
+public class InvestFundRating extends Rating {
 
     @ManyToOne
     private InvestFund investFund;
@@ -70,99 +44,22 @@ public class InvestFundRating {
     public InvestFundRating() {
     }
 
-    public InvestFundRating(Builder builder) {
-        this.date = builder.date;
-        this.open = builder.open;
-        this.high = builder.high;
-        this.low = builder.low;
-        this.close = builder.close;
-        this.investFund = builder.investFund;
-    }
+    public static class Builder extends Rating.Builder<InvestFundRating, Builder> {
 
-    public static class Builder {
-        private LocalDate date;
-        private BigDecimal open;
-        private BigDecimal high;
-        private BigDecimal low;
-        private BigDecimal close;
-        private InvestFund investFund;
-
-        public Builder withDate(LocalDate date) {
-            this.date = date;
-            return this;
+        @Override
+        InvestFundRating createRating() {
+            return new InvestFundRating();
         }
 
-        public Builder withOpen(BigDecimal open) {
-            this.open = open;
-            return this;
-        }
-
-        public Builder withHigh(BigDecimal high) {
-            this.high = high;
-            return this;
-        }
-
-        public Builder withLow(BigDecimal low) {
-            this.low = low;
-            return this;
-        }
-
-        public Builder withClose(BigDecimal close) {
-            this.close = close;
+        @Override
+        Builder createBuilder() {
             return this;
         }
 
         public Builder withInvestFund(InvestFund investFund) {
-            this.investFund = investFund;
-            return this;
+            rating.investFund = investFund;
+            return builder;
         }
-
-        public InvestFundRating build() {
-            return new InvestFundRating(this);
-        }
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    @JsonIgnore
-    public BigDecimal getOpen() {
-        return open;
-    }
-
-    public void setOpen(BigDecimal open) {
-        this.open = open;
-    }
-
-    @JsonIgnore
-    public BigDecimal getHigh() {
-        return high;
-    }
-
-    public void setHigh(BigDecimal high) {
-        this.high = high;
-    }
-
-    @JsonIgnore
-    public BigDecimal getLow() {
-        return low;
-    }
-
-    public void setLow(BigDecimal low) {
-        this.low = low;
-    }
-
-    public BigDecimal getClose() {
-        return close;
-    }
-
-    public void setClose(BigDecimal close) {
-        this.close = close;
     }
 
     @JsonIgnore

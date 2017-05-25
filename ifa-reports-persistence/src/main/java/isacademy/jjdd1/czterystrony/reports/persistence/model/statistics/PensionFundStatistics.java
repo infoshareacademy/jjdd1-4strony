@@ -10,4 +10,27 @@ import javax.persistence.Table;
         columnList = "ID,INSTRUMENT_ID")
 })
 public class PensionFundStatistics extends InstrumentStatistics {
+    public static class Builder extends InstrumentStatistics.Builder<PensionFundStatistics, Builder> {
+
+        @Override
+        PensionFundStatistics createInstrumentStatistics() {
+            return null;
+        }
+
+        @Override
+        Builder createBuilder() {
+            return null;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "PensionFundStatistics{" +
+                "id=" + id +
+                ", instrumentId='" + instrumentId + '\'' +
+                ", instrumentName='" + instrumentName + '\'' +
+                ", dateTime=" + dateTime +
+                ", user='" + user + '\'' +
+                '}';
+    }
 }

@@ -1,12 +1,9 @@
 package isacademy.jjdd1.czterystrony.webapp.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.isacademy.jjdd1.czterystrony.serializers.JsonDateSerializer;
 import isacademy.jjdd1.czterystrony.webapp.persistence.queries.PensionFundNamedNativeQueries;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -48,12 +45,12 @@ public class PensionFund extends FinancialInstrument {
     public static class Builder extends FinancialInstrument.Builder<PensionFund, Builder> {
 
         @Override
-        protected PensionFund createInstrument() {
+        PensionFund createInstrument() {
             return new PensionFund();
         }
 
         @Override
-        protected Builder createBuilder() {
+        Builder createBuilder() {
             return this;
         }
     }

@@ -54,12 +54,12 @@ public class InvestFundStatistics extends InstrumentStatistics {
     public static class Builder extends InstrumentStatistics.Builder<InvestFundStatistics, Builder> {
 
         @Override
-        protected InvestFundStatistics createInstrumentStatistics() {
+        InvestFundStatistics createInstrumentStatistics() {
             return new InvestFundStatistics();
         }
 
         @Override
-        protected Builder createBuilder() {
+        Builder createBuilder() {
             return this;
         }
 

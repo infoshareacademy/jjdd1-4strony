@@ -30,13 +30,13 @@ public abstract class FinancialInstrument {
         T instrument;
         B builder;
 
-        protected Builder() {
+        Builder() {
             instrument = createInstrument();
             builder = createBuilder();
         }
 
-        protected abstract T createInstrument();
-        protected abstract B createBuilder();
+        abstract T createInstrument();
+        abstract B createBuilder();
 
         public B withId(String id) {
             instrument.id = id;

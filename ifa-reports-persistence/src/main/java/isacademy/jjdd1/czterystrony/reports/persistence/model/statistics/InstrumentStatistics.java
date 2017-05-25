@@ -31,13 +31,13 @@ public abstract class InstrumentStatistics {
         T instrumentStatistics;
         B builder;
 
-        protected Builder() {
+        Builder() {
             instrumentStatistics = createInstrumentStatistics();
             builder = createBuilder();
         }
 
-        protected abstract T createInstrumentStatistics();
-        protected abstract B createBuilder();
+        abstract T createInstrumentStatistics();
+        abstract B createBuilder();
 
         public B withInstrumentId(String instrumentId) {
             instrumentStatistics.instrumentId = instrumentId;

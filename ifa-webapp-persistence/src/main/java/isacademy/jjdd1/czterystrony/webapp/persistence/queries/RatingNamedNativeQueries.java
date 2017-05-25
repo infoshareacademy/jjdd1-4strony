@@ -7,7 +7,7 @@ public final class RatingNamedNativeQueries {
     //language=MySQL
     public static final String insertFromCsv =
             "LOAD DATA LOCAL INFILE :filePath " +
-                    "INTO TABLE Rating " +
+                    "INTO TABLE InvestFundRating " +
                     "FIELDS TERMINATED BY ',' " +
                     "LINES TERMINATED BY '\r\n' " +
                     "IGNORE 1 LINES " +
