@@ -1,6 +1,5 @@
 package isacademy.jjdd1.czterystrony.webapp.persistance.repositories;
 
-
 import isacademy.jjdd1.czterystrony.webapp.persistance.model.PensionFund;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

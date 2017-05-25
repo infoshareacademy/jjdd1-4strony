@@ -26,7 +26,7 @@ public class InvestFundFacade {
 
     public void updatePriority(String id, int priority) {
         getInvestFundById(id).setPriority(priority);
-        log.info("Updated priority: {} for {} fund.",priority, id);
+        log.info("Updated priority: {} for {} fund.", priority, id);
     }
 
     public void updateLastRatingDate(String id, LocalDate date) {

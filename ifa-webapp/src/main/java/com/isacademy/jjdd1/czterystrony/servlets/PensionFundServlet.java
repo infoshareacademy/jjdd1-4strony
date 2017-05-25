@@ -27,11 +27,6 @@ public class PensionFundServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
-        if (!req.getRequestURI().equals("/4analysis/pensionfunds")) {
-            resp.sendRedirect("http://localhost:8080/4analysis/pensionfunds");
-            return;
-        }
-
         List<PensionFundDetails> allPensionFunds = views.getAllPensionFunds();
 
         boolean dataFound = false;
@@ -45,5 +40,4 @@ public class PensionFundServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/pensionfund.jsp");
         dispatcher.forward(req, resp);
     }
-
 }

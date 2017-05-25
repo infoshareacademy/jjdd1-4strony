@@ -3,6 +3,7 @@ package isacademy.jjdd1.czterystrony.webapp.persistance.queries;
 public final class InvestFundNamedNativeQueries {
     private InvestFundNamedNativeQueries() {
     }
+
     //language=MySQL
     public static final String allWithDetails =
             "SELECT " +
