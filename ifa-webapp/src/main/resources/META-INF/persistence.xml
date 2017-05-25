@@ -4,7 +4,7 @@
              version="2.0">
     <persistence-unit name="webapp-persistance" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/MySQLDS</jta-data-source>
-        <jar-file>lib/ifa-webapp-persistance-1.0-SNAPSHOT.jar</jar-file>
+        <jar-file>lib/ifa-webapp-persistence-1.0-SNAPSHOT.jar</jar-file>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
