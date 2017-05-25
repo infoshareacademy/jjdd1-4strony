@@ -164,7 +164,7 @@ public class PensionFundRating {
 
     @Override
     public String toString() {
-        return "Rating{" +
+        return "InvestFundRating{" +
                 "id=" + id +
                 ", date=" + date +
                 ", open=" + open +

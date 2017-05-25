@@ -51,7 +51,7 @@ public class InvestFund extends FinancialInstrument {
 
     @JsonIgnore
     @OneToMany(mappedBy = "investFund", cascade = CascadeType.PERSIST)
-    private List<Rating> ratings = new ArrayList<>();
+    private List<InvestFundRating> ratings = new ArrayList<>();
 
     public InvestFund() {
     }
@@ -77,7 +77,7 @@ public class InvestFund extends FinancialInstrument {
         return priority;
     }
 
-    public List<Rating> getRatings() {
+    public List<InvestFundRating> getRatings() {
         return ratings;
     }
 

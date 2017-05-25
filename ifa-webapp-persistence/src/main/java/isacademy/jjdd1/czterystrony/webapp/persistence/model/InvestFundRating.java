@@ -19,30 +19,30 @@ import java.time.LocalDate;
 @NamedQueries({
         @NamedQuery(
                 name = "Rating.getByFundAndDate",
-                query = "SELECT r FROM Rating r WHERE r.date = :date AND r.investFund = :investFund"
+                query = "SELECT r FROM InvestFundRating r WHERE r.date = :date AND r.investFund = :investFund"
         ),
         @NamedQuery(
                 name = "Rating.getByFundInTimeRange",
-                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund AND r.date >= :startDate AND r.date <= :endDate"
+                query = "SELECT r FROM InvestFundRating r WHERE r.investFund = :investFund AND r.date >= :startDate AND r.date <= :endDate"
         ),
         @NamedQuery(
                 name = "Rating.getOldestForFund",
-                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund ORDER BY r.date ASC"
+                query = "SELECT r FROM InvestFundRating r WHERE r.investFund = :investFund ORDER BY r.date ASC"
         ),
         @NamedQuery(
                 name = "Rating.getNewestForFund",
-                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund ORDER BY r.date DESC"
+                query = "SELECT r FROM InvestFundRating r WHERE r.investFund = :investFund ORDER BY r.date DESC"
         ),
         @NamedQuery(
                 name = "Rating.getAllByFund",
-                query = "SELECT r FROM Rating r WHERE r.investFund = :investFund ORDER BY r.date ASC"
+                query = "SELECT r FROM InvestFundRating r WHERE r.investFund = :investFund ORDER BY r.date ASC"
         )
 })
 @NamedNativeQuery(
         name = "Rating.insertDataFromCsv",
         query = RatingNamedNativeQueries.insertFromCsv
 )
-public class Rating {
+public class InvestFundRating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,10 +67,10 @@ public class Rating {
     @ManyToOne
     private InvestFund investFund;
 
-    public Rating() {
+    public InvestFundRating() {
     }
 
-    public Rating(Builder builder) {
+    public InvestFundRating(Builder builder) {
         this.date = builder.date;
         this.open = builder.open;
         this.high = builder.high;
@@ -117,8 +117,8 @@ public class Rating {
             return this;
         }
 
-        public Rating build() {
-            return new Rating(this);
+        public InvestFundRating build() {
+            return new InvestFundRating(this);
         }
     }
 
@@ -176,7 +176,7 @@ public class Rating {
 
     @Override
     public String toString() {
-        return "Rating{" +
+        return "InvestFundRating{" +
                 "id=" + id +
                 ", date=" + date +
                 ", open=" + open +

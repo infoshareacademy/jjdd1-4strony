@@ -1,7 +1,7 @@
 package isacademy.jjdd1.czterystrony.webapp.persistence.factories;
 
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
-import isacademy.jjdd1.czterystrony.webapp.persistence.model.Rating;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundRating;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -17,10 +17,10 @@ public class RatingFactory {
     private static final int LOW_COLUMN_INDEX_IN_DATA_FILE = 4;
     private static final int CLOSE_COLUMN_INDEX_IN_DATA_FILE = 5;
 
-    public static Rating create(String record, InvestFund investFund) {
+    public static InvestFundRating create(String record, InvestFund investFund) {
         String[] splittedRecord = record.split(DELIMITER);
 
-        return new Rating.Builder()
+        return new InvestFundRating.Builder()
                 .withDate(parseDateFrom(splittedRecord[DATE_COLUMN_INDEX_IN_DATA_FILE]))
                 .withOpen(parseValueFrom(splittedRecord[OPEN_COLUMN_INDEX_IN_DATA_FILE]))
                 .withHigh(parseValueFrom(splittedRecord[HIGH_COLUMN_INDEX_IN_DATA_FILE]))

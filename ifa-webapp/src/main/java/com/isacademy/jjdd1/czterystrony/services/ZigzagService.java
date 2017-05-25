@@ -2,7 +2,7 @@ package com.isacademy.jjdd1.czterystrony.services;
 
 import com.isacademy.jjdd1.czterystrony.restparameters.DateParam;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
-import isacademy.jjdd1.czterystrony.webapp.persistence.model.Rating;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundRating;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.RatingRepository;
 import com.isacademy.jjdd1.czterystrony.restparameters.IntegerParam;
@@ -35,13 +35,13 @@ public class ZigzagService {
     @Path("/{id}/zigzag")
     @Produces(MediaType.APPLICATION_JSON)
     @Interceptors(AnalysisAudit.class)
-    public List<Rating> getZigZag(
+    public List<InvestFundRating> getZigZag(
             @PathParam("id") String id,
             @QueryParam("value") IntegerParam zigZag,
             @QueryParam("startDate") DateParam start,
             @QueryParam("endDate") DateParam end) {
 
-        List<Rating> ratings = ratingRepository.getAllByFund(getFund(id));
+        List<InvestFundRating> ratings = ratingRepository.getAllByFund(getFund(id));
         log.info("Provided all local extrema for {}", id);
         return localExtremaProvider.findExtrema(ratings, zigZag.getNumber());
     }

@@ -2,7 +2,7 @@ package isacademy.jjdd1.czterystrony.webapp.persistence.repositories;
 
 import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
-import isacademy.jjdd1.czterystrony.webapp.persistence.model.Rating;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundRating;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,19 +17,19 @@ public class RatingRepository {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void add(Rating rating, String investFundId) {
+    public void add(InvestFundRating rating, String investFundId) {
         InvestFund investFund = entityManager.find(InvestFund.class, investFundId);
         investFund.getRatings().add(rating);
     }
 
-    public List<Rating> getByFundAndDate(InvestFund investFund, LocalDate date) {
+    public List<InvestFundRating> getByFundAndDate(InvestFund investFund, LocalDate date) {
         Query query = entityManager.createNamedQuery("Rating.getByFundAndDate");
         query.setParameter("date", date);
         query.setParameter("investFund", investFund);
         return query.getResultList();
     }
 
-    public List<Rating> getByFundInTimeRange(InvestFund investFund, TimeRange timeRange) {
+    public List<InvestFundRating> getByFundInTimeRange(InvestFund investFund, TimeRange timeRange) {
         Query query = entityManager.createNamedQuery("Rating.getByFundInTimeRange");
         query.setParameter("startDate", timeRange.getStart());
         query.setParameter("endDate", timeRange.getEnd());
@@ -37,19 +37,19 @@ public class RatingRepository {
         return query.getResultList();
     }
 
-    public Rating getOldestForFund(InvestFund investFund) {
+    public InvestFundRating getOldestForFund(InvestFund investFund) {
         Query query = entityManager.createNamedQuery("Rating.getOldestForFund");
         query.setParameter("investFund", investFund);
-        return (Rating) query.getResultList().get(0);
+        return (InvestFundRating) query.getResultList().get(0);
     }
 
-    public Rating getNewestForFund(InvestFund investFund) {
+    public InvestFundRating getNewestForFund(InvestFund investFund) {
         Query query = entityManager.createNamedQuery("Rating.getNewestForFund");
         query.setParameter("investFund", investFund);
-        return (Rating) query.getResultList().get(0);
+        return (InvestFundRating) query.getResultList().get(0);
     }
 
-    public List<Rating> getAllByFund(InvestFund investFund) {
+    public List<InvestFundRating> getAllByFund(InvestFund investFund) {
         Query query = entityManager.createNamedQuery("Rating.getAllByFund");
         query.setParameter("investFund", investFund);
         return query.getResultList();

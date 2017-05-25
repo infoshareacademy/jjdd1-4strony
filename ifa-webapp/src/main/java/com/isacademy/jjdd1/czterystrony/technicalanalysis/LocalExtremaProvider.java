@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
-import isacademy.jjdd1.czterystrony.webapp.persistence.model.Rating;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundRating;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.RatingRepository;
 
 import javax.inject.Inject;
@@ -13,12 +13,12 @@ public class LocalExtremaProvider {
     private final int DIGITS_AFTER_COMMA = 2;
     private final int DEFAULT_START_INDEX = 0;
     private int minSwingLimitInPct;
-    private List<Rating> ratings;
+    private List<InvestFundRating> ratings;
 
     @Inject
     RatingRepository ratingRepository;
 
-    public List<Rating> findExtrema(List<Rating> ratings, int minSwingLimitInPct) {
+    public List<InvestFundRating> findExtrema(List<InvestFundRating> ratings, int minSwingLimitInPct) {
         this.ratings = ratings;
         this.minSwingLimitInPct = minSwingLimitInPct;
         boolean swingHigh = false;
@@ -28,7 +28,7 @@ public class LocalExtremaProvider {
         int lowIndex = startIndex;
         int highIndex = startIndex;
 
-        List<Rating> extrema = new ArrayList<>();
+        List<InvestFundRating> extrema = new ArrayList<>();
 
         for (int i = startIndex; i < endIndex; i++) {
             if (currentValueIsGreaterThenLastHighValue(i, highIndex)) {

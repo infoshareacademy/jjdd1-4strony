@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.technicalanalysis;
 
-//import Rating;
+//import InvestFundRating;
 //import com.isacademy.jjdd1.czterystrony.restparameters.DateParam;
 //import com.isacademy.jjdd1.czterystrony.restparameters.IntegerParam;
 //import com.isacademy.jjdd1.czterystrony.updaters.StatisticsUpdater;
@@ -23,7 +23,7 @@ public class AnalysisAudit {
 //    public Object addToStatistics(InvocationContext ic) throws Throwable {
 //        Object returnedValue = ic.proceed();
 //
-//        List<Rating> localExtrema = (List<Rating>) returnedValue;
+//        List<InvestFundRating> localExtrema = (List<InvestFundRating>) returnedValue;
 //
 //        String investFundId = (String) ic.getParameters()[0];
 //        IntegerParam zigZag = (IntegerParam) ic.getParameters()[1];
