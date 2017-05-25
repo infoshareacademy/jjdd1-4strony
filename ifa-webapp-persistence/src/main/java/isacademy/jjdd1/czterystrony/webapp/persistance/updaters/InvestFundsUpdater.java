@@ -23,7 +23,7 @@ public class InvestFundsUpdater {
     InvestFundRepository investFundRepository;
 
     public void update() throws IOException {
-        URL url = new URL(FUNDS_LIST_SOURCE);
+        URL url = new URL(INVEST_FUNDS_LIST_SOURCE);
         URLConnection urlConnection = url.openConnection();
         InputStream stream = urlConnection.getInputStream();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));

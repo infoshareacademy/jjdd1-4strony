@@ -18,7 +18,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 main">
-            <h3 class="page-header">NOTOWANIA FUNDUSZY</h3>
+            <a class="btn btn-default" href="/4analysis" role="button">NOTOWANIA FUNDUSZY INWESTYCYJNYCH</a>
+            <a class="btn btn-default" href="/4analysis/pensionfunds" role="button">NOTOWANIA FUNDUSZY EMERYTALNYCH</a>
             <div class="panel-heading"><strong>Polecane</strong></div>
             <div class="table-responsive">
                 <table table id="table-promoted" class="table table-striped table-hover-promo compact" style="display: none">
