@@ -1,8 +1,9 @@
 package com.isacademy.jjdd1.czterystrony.dbviews;
 
 import com.isacademy.jjdd1.czterystrony.model.InvestFundDetails;
+import com.isacademy.jjdd1.czterystrony.model.PensionFundDetails;
 import com.isacademy.jjdd1.czterystrony.repositories.InvestFundDetailsRepository;
-import com.isacademy.jjdd1.czterystrony.repositories.InvestFundRepository;
+import com.isacademy.jjdd1.czterystrony.repositories.PensionFundDetailsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,10 +21,15 @@ public class Views {
     private List<InvestFundDetails> allFunds;
     private List<InvestFundDetails> promotedFunds;
     private List<InvestFundDetails> notPromotedFunds;
-    private static Logger log = LoggerFactory.getLogger(InvestFundRepository.class);
+    private List<PensionFundDetails> allPensionFunds;
+
+    private static Logger log = LoggerFactory.getLogger(Views.class);
 
     @Inject
     InvestFundDetailsRepository repository;
+
+    @Inject
+    PensionFundDetailsRepository pensionFundDetailsRepository;
 
     @PostConstruct
     @Asynchronous
@@ -41,6 +47,10 @@ public class Views {
                 .filter(f -> f.getPriority() == 0)
                 .collect(Collectors.toList());
 
+        this.allPensionFunds = pensionFundDetailsRepository.getAll().stream()
+                .sorted(Comparator.comparing(PensionFundDetails::getName))
+                .collect(Collectors.toList());
+
         log.info("Lists updated.");
     }
 
@@ -54,5 +64,9 @@ public class Views {
 
     public List<InvestFundDetails> getNotPromotedFunds() {
         return notPromotedFunds;
+    }
+
+    public List<PensionFundDetails> getAllPensionFunds() {
+        return allPensionFunds;
     }
 }
