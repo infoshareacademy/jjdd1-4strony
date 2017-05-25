@@ -36,18 +36,7 @@ import java.util.List;
                 query = PensionFundNamedNativeQueries.allWithDetails,
                 resultSetMapping = "PensionFundDetailsMapping"),
 })
-public class PensionFund {
-
-    @Id
-    @NotNull
-    private String id;
-
-    @NotNull
-    private String name;
-
-    @JsonSerialize(using = JsonDateSerializer.class)
-    @NotNull
-    private LocalDate lastRatingDate;
+public class PensionFund extends FinancialInstrument {
 
     @JsonIgnore
     @OneToMany(mappedBy = "pensionFund", cascade = CascadeType.PERSIST)
@@ -56,55 +45,17 @@ public class PensionFund {
     public PensionFund() {
     }
 
-    public PensionFund(PensionFund.Builder builder) {
-        this.id = builder.id;
-        this.name = builder.name;
-        this.lastRatingDate = builder.lastRatingDate;
-    }
+    public static class Builder extends FinancialInstrument.Builder<PensionFund, Builder> {
 
-    public static class Builder {
-        private String id;
-        private String name;
-        private LocalDate lastRatingDate;
+        @Override
+        protected PensionFund createInstrument() {
+            return new PensionFund();
+        }
 
-        public PensionFund.Builder withId(String id) {
-            this.id = id;
+        @Override
+        protected Builder createBuilder() {
             return this;
         }
-
-        public PensionFund.Builder withName(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public PensionFund.Builder withLastRatingDate(LocalDate lastRatingDate) {
-            this.lastRatingDate = lastRatingDate;
-            return this;
-        }
-
-        public PensionFund build() {
-            return new PensionFund(this);
-        }
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setLastRatingDate(LocalDate lastRatingDate) {
-        this.lastRatingDate = lastRatingDate;
-    }
-
-    public LocalDate getLastRatingDate() {
-        return lastRatingDate;
     }
 
     public List<PensionFundRating> getPensionFundRatings() {

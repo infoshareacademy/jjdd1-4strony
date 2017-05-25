@@ -28,34 +28,34 @@ public abstract class InstrumentStatistics {
 
     protected static abstract class Builder<T extends InstrumentStatistics, B extends Builder<T, B>> {
 
-        T instrument;
+        T instrumentStatistics;
         B builder;
 
         protected Builder() {
-            instrument = createInstrument();
+            instrumentStatistics = createInstrumentStatistics();
             builder = createBuilder();
         }
 
-        protected abstract T createInstrument();
+        protected abstract T createInstrumentStatistics();
         protected abstract B createBuilder();
 
         public B withInstrumentId(String instrumentId) {
-            instrument.instrumentId = instrumentId;
+            instrumentStatistics.instrumentId = instrumentId;
             return builder;
         }
 
         public B withInstrumentName(String instrumentName) {
-            instrument.instrumentName = instrumentName;
+            instrumentStatistics.instrumentName = instrumentName;
             return builder;
         }
 
         public B withUser(String user) {
-            instrument.user = user;
+            instrumentStatistics.user = user;
             return builder;
         }
 
         public T build() {
-            return instrument;
+            return instrumentStatistics;
         }
     }
 

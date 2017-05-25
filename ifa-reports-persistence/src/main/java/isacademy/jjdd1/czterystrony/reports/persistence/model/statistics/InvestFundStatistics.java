@@ -54,7 +54,7 @@ public class InvestFundStatistics extends InstrumentStatistics {
     public static class Builder extends InstrumentStatistics.Builder<InvestFundStatistics, Builder> {
 
         @Override
-        protected InvestFundStatistics createInstrument() {
+        protected InvestFundStatistics createInstrumentStatistics() {
             return new InvestFundStatistics();
         }
 
@@ -64,27 +64,27 @@ public class InvestFundStatistics extends InstrumentStatistics {
         }
 
         public Builder withStartDate(LocalDate date) {
-            instrument.startDate = date;
+            instrumentStatistics.startDate = date;
             return builder;
         }
 
         public Builder withEndDate(LocalDate date) {
-            instrument.endDate = date;
+            instrumentStatistics.endDate = date;
             return builder;
         }
 
         public Builder withZigZag(int zigZag) {
-            instrument.zigZag = zigZag;
+            instrumentStatistics.zigZag = zigZag;
             return builder;
         }
 
         public Builder withAverageDateDifference(int averageDateDifference) {
-            instrument.averageDateDifference = averageDateDifference;
+            instrumentStatistics.averageDateDifference = averageDateDifference;
             return builder;
         }
 
         public Builder withAverageValueDifference(BigDecimal averageValueDifference) {
-            instrument.averageValueDifference = averageValueDifference;
+            instrumentStatistics.averageValueDifference = averageValueDifference;
             return builder;
         }
     }

@@ -1,15 +1,12 @@
 package isacademy.jjdd1.czterystrony.webapp.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import isacademy.jjdd1.czterystrony.webapp.persistence.queries.InvestFundNamedNativeQueries;
-import com.isacademy.jjdd1.czterystrony.serializers.JsonDateSerializer;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -45,19 +42,7 @@ import java.util.List;
                 query = InvestFundNamedNativeQueries.byIdWithDetails,
                 resultSetMapping = "InvestFundDetailsMapping"),
 })
-public class InvestFund {
-
-    @Id
-    @NotNull
-    @Size(min = 6, max = 6)
-    private String id;
-
-    @NotNull
-    private String name;
-
-    @JsonSerialize(using = JsonDateSerializer.class)
-    @NotNull
-    private LocalDate lastRatingDate;
+public class InvestFund extends FinancialInstrument {
 
     @Min(0)
     @Max(100)
@@ -71,55 +56,17 @@ public class InvestFund {
     public InvestFund() {
     }
 
-    public InvestFund(Builder builder) {
-        this.id = builder.id;
-        this.name = builder.name;
-        this.lastRatingDate = builder.lastRatingDate;
-    }
+    public static class Builder extends FinancialInstrument.Builder<InvestFund, Builder> {
 
-    public static class Builder {
-        private String id;
-        private String name;
-        private LocalDate lastRatingDate;
+        @Override
+        protected InvestFund createInstrument() {
+            return new InvestFund();
+        }
 
-        public InvestFund.Builder withId(String id) {
-            this.id = id;
+        @Override
+        protected Builder createBuilder() {
             return this;
         }
-
-        public InvestFund.Builder withName(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public InvestFund.Builder withLastRatingDate(LocalDate lastRatingDate) {
-            this.lastRatingDate = lastRatingDate;
-            return this;
-        }
-
-        public InvestFund build() {
-            return new InvestFund(this);
-        }
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setLastRatingDate(LocalDate lastRatingDate) {
-        this.lastRatingDate = lastRatingDate;
-    }
-
-    public LocalDate getLastRatingDate() {
-        return lastRatingDate;
     }
 
     public void setPriority(int priority) {
