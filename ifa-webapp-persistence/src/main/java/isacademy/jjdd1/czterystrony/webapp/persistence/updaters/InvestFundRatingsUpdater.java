@@ -25,13 +25,13 @@ public class InvestFundRatingsUpdater {
     private static Logger log = LoggerFactory.getLogger(InvestFundRepository.class);
 
     @Inject
-    InvestFundRepository investFundRepository;
+    InvestFundRepository instrumentRepository;
 
     @Inject
     InvestFundRatingRepository ratingRepository;
 
     public void update() throws IOException {
-        List<InvestFund> investFunds = investFundRepository.getAll();
+        List<InvestFund> investFunds = instrumentRepository.getAll();
 
         for (InvestFund investFund : investFunds) {
             updateRatingsFor(investFund);

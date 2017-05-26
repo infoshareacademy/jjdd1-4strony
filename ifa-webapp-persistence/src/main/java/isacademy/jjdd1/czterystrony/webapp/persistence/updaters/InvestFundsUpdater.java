@@ -20,7 +20,7 @@ import static com.isacademy.jjdd1.czterystrony.Constants.*;
 public class InvestFundsUpdater {
 
     @Inject
-    InvestFundRepository investFundRepository;
+    InvestFundRepository repository;
 
     public void update() throws IOException {
         URL url = new URL(INVEST_FUNDS_LIST_SOURCE);
@@ -39,19 +39,19 @@ public class InvestFundsUpdater {
     }
 
     private boolean isNew(InvestFund investFund) {
-        return Objects.isNull(investFundRepository.getById(investFund.getId()));
+        return Objects.isNull(repository.getById(investFund.getId()));
     }
 
     private boolean isUpdated(InvestFund investFund) {
-        InvestFund retrievedInvestFund = investFundRepository.getById(investFund.getId());
+        InvestFund retrievedInvestFund = repository.getById(investFund.getId());
         return investFund.getLastRatingDate().isAfter(retrievedInvestFund.getLastRatingDate());
     }
 
     private void addNewOrUpdateExisting(InvestFund investFund) {
         if (isNew(investFund)) {
-            investFundRepository.add(investFund);
+            repository.add(investFund);
         } else {
-            InvestFund updatedInvestFund = investFundRepository.getById(investFund.getId());
+            InvestFund updatedInvestFund = repository.getById(investFund.getId());
             updatedInvestFund.setName(investFund.getName());
             updatedInvestFund.setLastRatingDate(investFund.getLastRatingDate());
         }

@@ -2,8 +2,8 @@ package com.isacademy.jjdd1.czterystrony.services;
 
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundRating;
-import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRatingRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +18,7 @@ public class RatingsService {
     private static Logger log = LoggerFactory.getLogger(RatingsService.class);
 
     @Inject
-    InvestFundRepository investFundRepository;
+    InvestFundRepository instrumentRepository;
 
     @Inject
     InvestFundRatingRepository ratingRepository;
@@ -32,6 +32,6 @@ public class RatingsService {
     }
 
     private InvestFund getFund(String id) {
-        return investFundRepository.getById(id);
+        return instrumentRepository.getById(id);
     }
 }

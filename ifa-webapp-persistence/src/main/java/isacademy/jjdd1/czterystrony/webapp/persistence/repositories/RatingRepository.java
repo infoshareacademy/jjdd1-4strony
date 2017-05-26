@@ -6,19 +6,19 @@ import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.lang.reflect.ParameterizedType;
 
-public class RatingRepository<T extends Rating> {
+public abstract class RatingRepository<T extends Rating> {
 
-    private static Logger LOG = LoggerFactory.getLogger(RatingRepository.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RatingRepository.class);
 
     @PersistenceContext
     EntityManager entityManager;
 
     private Class<T> entityClass;
 
-    public RatingRepository() {
-        ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
-        this.entityClass = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
+    RatingRepository(Class<T> entityClass) {
+        this.entityClass = entityClass;
     }
+
+
 }

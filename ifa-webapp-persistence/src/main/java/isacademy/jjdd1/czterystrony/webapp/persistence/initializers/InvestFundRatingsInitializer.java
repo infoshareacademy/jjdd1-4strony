@@ -1,7 +1,7 @@
 package isacademy.jjdd1.czterystrony.webapp.persistence.initializers;
 
-import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRatingRepository;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,14 +22,14 @@ public class InvestFundRatingsInitializer {
     private static Logger log = LoggerFactory.getLogger(InvestFundRatingsInitializer.class);
 
     @Inject
-    InvestFundRepository investFundRepository;
+    InvestFundRepository instrumentRepository;
 
     @Inject
     InvestFundRatingRepository ratingRepository;
 
     @PostConstruct
     public void initialize() {
-        investFundRepository.getAll().stream()
+        instrumentRepository.getAll().stream()
                 .filter(fund -> fund.getRatings().isEmpty())
                 .peek(fund -> log.info("Initializing ratings for: {}", fund.getId()))
                 .map(fund -> TMP_PROJECT_FOLDER.resolve(fund.getId() + RATINGS_DATA_FILE_EXTENSION))

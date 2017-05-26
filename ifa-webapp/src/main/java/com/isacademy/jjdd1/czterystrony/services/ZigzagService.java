@@ -3,11 +3,11 @@ package com.isacademy.jjdd1.czterystrony.services;
 import com.isacademy.jjdd1.czterystrony.restparameters.DateParam;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundRating;
-import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRatingRepository;
 import com.isacademy.jjdd1.czterystrony.restparameters.IntegerParam;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.AnalysisAudit;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.LocalExtremaProvider;
+import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +23,7 @@ public class ZigzagService {
     private static Logger log = LoggerFactory.getLogger(RatingsService.class);
 
     @Inject
-    InvestFundRepository investFundRepository;
+    InvestFundRepository instrumentRepository;
 
     @Inject
     InvestFundRatingRepository ratingRepository;
@@ -47,6 +47,6 @@ public class ZigzagService {
     }
 
     private InvestFund getFund(String id) {
-        return investFundRepository.getById(id);
+        return instrumentRepository.getById(id);
     }
 }

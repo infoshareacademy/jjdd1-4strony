@@ -18,7 +18,7 @@ import java.util.List;
 public class UpdateFundServlet extends HttpServlet {
 
     @Inject
-    InvestFundRepository investFundRepository;
+    InvestFundRepository instrumentRepository;
 
     @Inject
     InvestFundFacade investFundFacade;
@@ -29,7 +29,7 @@ public class UpdateFundServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        List<InvestFund> investFunds = investFundRepository.getAll();
+        List<InvestFund> investFunds = instrumentRepository.getAll();
         req.setAttribute("investFunds", investFunds);
         req.getRequestDispatcher("/updatefund.jsp").forward(req,resp);
     }
