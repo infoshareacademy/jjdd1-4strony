@@ -12,7 +12,7 @@ import javax.inject.Inject;
 @Singleton
 public class ScheduleTimerService {
 
-    private static Logger log = LoggerFactory.getLogger(ScheduleTimerService.class);
+    private static final Logger log = LoggerFactory.getLogger(ScheduleTimerService.class);
 
     @Inject
     DatabaseUpdater databaseUpdater;

@@ -18,4 +18,8 @@ public class StatisticsCache {
     public List<InstrumentStatistics> get() {
         return statisticsList;
     }
+
+    public boolean isEmpty() {
+        return statisticsList.isEmpty();
+    }
 }

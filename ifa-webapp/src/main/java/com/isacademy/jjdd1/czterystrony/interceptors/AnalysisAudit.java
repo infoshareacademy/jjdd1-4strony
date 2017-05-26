@@ -1,20 +1,18 @@
-package com.isacademy.jjdd1.czterystrony.technicalanalysis;
+package com.isacademy.jjdd1.czterystrony.interceptors;
 
-//import InvestFundRating;
-//import com.isacademy.jjdd1.czterystrony.restparameters.DateParam;
-//import com.isacademy.jjdd1.czterystrony.restparameters.IntegerParam;
-//import com.isacademy.jjdd1.czterystrony.updaters.StatisticsUpdater;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//
-//import javax.inject.Inject;
-//import javax.interceptor.AroundInvoke;
-//import javax.interceptor.InvocationContext;
-//import java.util.List;
+import com.isacademy.jjdd1.czterystrony.restparameters.DateParam;
+import com.isacademy.jjdd1.czterystrony.restparameters.IntegerParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
+import javax.interceptor.AroundInvoke;
+import javax.interceptor.InvocationContext;
+import java.util.List;
 
 public class AnalysisAudit {
 
-//    private static Logger log = LoggerFactory.getLogger(AnalysisAudit.class);
+//    private static final Logger log = LoggerFactory.getLogger(AnalysisAudit.class);
 //
 //    @Inject
 //    StatisticsUpdater statisticsUpdater;

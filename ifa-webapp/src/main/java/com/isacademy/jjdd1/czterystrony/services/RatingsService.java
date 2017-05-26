@@ -10,12 +10,13 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/investfunds")
 public class RatingsService {
 
-    private static Logger log = LoggerFactory.getLogger(RatingsService.class);
+    private static final Logger log = LoggerFactory.getLogger(RatingsService.class);
 
     @Inject
     InvestFundRepository instrumentRepository;
@@ -26,9 +27,9 @@ public class RatingsService {
     @GET
     @Path("/{id}/ratings")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<InvestFundRating> getAll(@PathParam("id") String id) {
+    public Response getAll(@PathParam("id") String id) {
         log.info("Provided all ratings for {}", id);
-        return ratingRepository.getAllByFund(getFund(id));
+        return Response.ok(ratingRepository.getAllByFund(getFund(id))).build();
     }
 
     private InvestFund getFund(String id) {
