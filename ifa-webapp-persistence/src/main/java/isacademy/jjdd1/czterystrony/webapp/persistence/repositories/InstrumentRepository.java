@@ -32,7 +32,7 @@ public abstract class InstrumentRepository<T extends FinancialInstrument> {
 
     public List<T> getAll() {
         return entityManager
-                .createQuery("SELECT i FROM " + entityClass.getName() + " i", entityClass)
+                .createQuery("SELECT i FROM " + entityClass.getSimpleName() + " i", entityClass)
                 .getResultList();
     }
 }
