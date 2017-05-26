@@ -17,4 +17,8 @@ public class ReportSender {
     public void send() {
         emailSender.send(CompanyMail.ADDRESS, REPORT_EMAIL_SUBJECT, emailReportContent.getHtmlContent());
     }
+
+    public void send(String address) {
+        emailSender.send(address, REPORT_EMAIL_SUBJECT, emailReportContent.getHtmlContent());
+    }
 }
