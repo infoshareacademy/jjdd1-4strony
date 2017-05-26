@@ -17,7 +17,7 @@ public abstract class Popularity {
     @JsonProperty("clicks")
     private int clicks;
 
-    protected Popularity(String instrumentId, String instrumentName, int clicks) {
+    Popularity(String instrumentId, String instrumentName, int clicks) {
         this.instrumentId = instrumentId;
         this.instrumentName = instrumentName;
         this.clicks = clicks;
