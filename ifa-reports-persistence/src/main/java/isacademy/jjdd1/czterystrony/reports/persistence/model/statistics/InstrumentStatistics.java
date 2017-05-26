@@ -1,5 +1,11 @@
 package isacademy.jjdd1.czterystrony.reports.persistence.model.statistics;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -9,6 +15,7 @@ public abstract class InstrumentStatistics {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     Long id;
 
     @Column(name = "INSTRUMENT_ID")
@@ -18,6 +25,8 @@ public abstract class InstrumentStatistics {
     String instrumentName;
 
     @Column(name = "DATE_TIME")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     LocalDateTime dateTime;
 
     @Column(name = "USER")

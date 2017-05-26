@@ -1,7 +1,7 @@
 package isacademy.jjdd1.czterystrony.webapp.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import isacademy.jjdd1.czterystrony.webapp.persistence.queries.InvestFundNamedNativeQueries;
+import isacademy.jjdd1.czterystrony.webapp.persistence.queries.InvestFundQueries;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -35,11 +35,11 @@ import java.util.List;
 @NamedNativeQueries({
         @NamedNativeQuery(
                 name = "InvestFund.getAllWithDetails",
-                query = InvestFundNamedNativeQueries.allWithDetails,
+                query = InvestFundQueries.allWithDetails,
                 resultSetMapping = "InvestFundDetailsMapping"),
         @NamedNativeQuery(
                 name = "InvestFund.getByIdWithDetails",
-                query = InvestFundNamedNativeQueries.byIdWithDetails,
+                query = InvestFundQueries.byIdWithDetails,
                 resultSetMapping = "InvestFundDetailsMapping"),
 })
 public class InvestFund extends FinancialInstrument {

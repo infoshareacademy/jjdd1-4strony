@@ -17,7 +17,7 @@ import java.io.IOException;
 @DependsOn("DatabaseInitializer")
 public class PensionFundsInitializer {
 
-    private static Logger log = LoggerFactory.getLogger(PensionFundsInitializer.class);
+    private static final Logger log = LoggerFactory.getLogger(PensionFundsInitializer.class);
 
     @Inject
     PensionFundsUpdater pensionFundsUpdater;

@@ -14,24 +14,24 @@ import java.time.LocalDate;
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class InvestFundFacade {
 
-    private static final Logger LOG = LoggerFactory.getLogger(InvestFundRepository.class);
+    private static final Logger log = LoggerFactory.getLogger(InvestFundRepository.class);
 
     @Inject
     InvestFundRepository instrumentRepository;
 
     public void updateName(String id, String name) {
         getInvestFundById(id).setName(name);
-        LOG.info("Updated name: {} for {} fund.", name, id);
+        log.info("Updated name: {} for {} fund.", name, id);
     }
 
     public void updatePriority(String id, int priority) {
         getInvestFundById(id).setPriority(priority);
-        LOG.info("Updated priority: {} for {} fund.", priority, id);
+        log.info("Updated priority: {} for {} fund.", priority, id);
     }
 
     public void updateLastRatingDate(String id, LocalDate date) {
         getInvestFundById(id).setLastRatingDate(date);
-        LOG.info("Updated last rating date: {} for {} fund.", date, id);
+        log.info("Updated last rating date: {} for {} fund.", date, id);
     }
 
     private InvestFund getInvestFundById(String id) {

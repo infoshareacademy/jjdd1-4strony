@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class InstrumentRepository<T extends FinancialInstrument> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(InstrumentRepository.class);
+    private static final Logger log = LoggerFactory.getLogger(InstrumentRepository.class);
 
     @PersistenceContext
     EntityManager entityManager;
@@ -23,7 +23,7 @@ public abstract class InstrumentRepository<T extends FinancialInstrument> {
 
     public void add(T instrument) {
         entityManager.persist(instrument);
-        LOG.info("Added new {}: {}", entityClass.getName(), instrument.getId());
+        log.info("Added new {}: {}", entityClass.getName(), instrument.getId());
     }
 
     public T getById(String id) {

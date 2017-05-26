@@ -1,7 +1,7 @@
 package isacademy.jjdd1.czterystrony.webapp.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import isacademy.jjdd1.czterystrony.webapp.persistence.queries.PensionFundNamedNativeQueries;
+import isacademy.jjdd1.czterystrony.webapp.persistence.queries.PensionFundQueries;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -30,7 +30,7 @@ import java.util.List;
 @NamedNativeQueries({
         @NamedNativeQuery(
                 name = "PensionFund.getAllWithDetails",
-                query = PensionFundNamedNativeQueries.allWithDetails,
+                query = PensionFundQueries.allWithDetails,
                 resultSetMapping = "PensionFundDetailsMapping"),
 })
 public class PensionFund extends FinancialInstrument {

@@ -1,13 +1,21 @@
 package isacademy.jjdd1.czterystrony.reports.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.isacademy.jjdd1.czterystrony.instruments.Instrument;
 
 public abstract class Popularity {
 
-    protected String instrumentId;
-    protected String instrumentName;
-    protected Instrument instrument;
-    protected int clicks;
+    @JsonProperty("id")
+    private String instrumentId;
+
+    @JsonProperty("name")
+    private String instrumentName;
+
+    @JsonProperty("type")
+    Instrument instrument;
+
+    @JsonProperty("clicks")
+    private int clicks;
 
     protected Popularity(String instrumentId, String instrumentName, int clicks) {
         this.instrumentId = instrumentId;
@@ -22,7 +30,6 @@ public abstract class Popularity {
     public String getInstrumentName() {
         return instrumentName;
     }
-
 
     public Instrument getInstrument() {
         return instrument;

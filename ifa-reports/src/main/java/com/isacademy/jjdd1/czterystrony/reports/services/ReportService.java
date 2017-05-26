@@ -1,8 +1,8 @@
 package com.isacademy.jjdd1.czterystrony.reports.services;
 
-import com.isacademy.jjdd1.czterystrony.reports.beanparameters.DayParam;
-import com.isacademy.jjdd1.czterystrony.reports.beanparameters.MonthParam;
-import com.isacademy.jjdd1.czterystrony.reports.beanparameters.YearParam;
+import com.isacademy.jjdd1.czterystrony.beanparameters.DayParam;
+import com.isacademy.jjdd1.czterystrony.beanparameters.MonthParam;
+import com.isacademy.jjdd1.czterystrony.beanparameters.YearParam;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

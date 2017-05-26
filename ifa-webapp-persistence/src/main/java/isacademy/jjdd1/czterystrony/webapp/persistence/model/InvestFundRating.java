@@ -1,7 +1,7 @@
 package isacademy.jjdd1.czterystrony.webapp.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import isacademy.jjdd1.czterystrony.webapp.persistence.queries.InvestFundRatingNamedNativeQueries;
+import isacademy.jjdd1.czterystrony.webapp.persistence.queries.InvestFundRatingQueries;
 
 import javax.persistence.*;
 
@@ -34,7 +34,7 @@ import javax.persistence.*;
 })
 @NamedNativeQuery(
         name = "Rating.insertDataFromCsv",
-        query = InvestFundRatingNamedNativeQueries.insertFromCsv
+        query = InvestFundRatingQueries.insertFromCsv
 )
 public class InvestFundRating extends Rating {
 

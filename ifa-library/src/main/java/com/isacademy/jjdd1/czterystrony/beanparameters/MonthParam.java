@@ -1,4 +1,4 @@
-package com.isacademy.jjdd1.czterystrony.reports.beanparameters;
+package com.isacademy.jjdd1.czterystrony.beanparameters;
 
 import javax.ws.rs.PathParam;
 import java.time.LocalDate;

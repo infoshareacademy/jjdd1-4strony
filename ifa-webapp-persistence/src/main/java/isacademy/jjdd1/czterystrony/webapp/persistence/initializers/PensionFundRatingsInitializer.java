@@ -19,7 +19,7 @@ import static com.isacademy.jjdd1.czterystrony.Constants.TMP_PROJECT_FOLDER;
 @DependsOn({"DatabaseInitializer", "PensionFundsInitializer"})
 public class PensionFundRatingsInitializer {
 
-    private static Logger log = LoggerFactory.getLogger(PensionFundRatingsInitializer.class);
+    private static final Logger log = LoggerFactory.getLogger(PensionFundRatingsInitializer.class);
 
     @Inject
     PensionFundRepository pensionFundRepository;

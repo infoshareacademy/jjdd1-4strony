@@ -1,5 +1,9 @@
 package isacademy.jjdd1.czterystrony.reports.persistence.model.statistics;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundPopularity;
 import isacademy.jjdd1.czterystrony.reports.persistence.queries.ReportQueries;
 
@@ -29,14 +33,22 @@ import java.time.LocalDate;
         @NamedNativeQuery(
                 name = "InvestFundPopularity.getAll",
                 query = ReportQueries.getAllInvestFundPopularity,
+                resultSetMapping = "InvestFundPopularityMapping"),
+        @NamedNativeQuery(
+                name = "InvestFundPopularity.getInTimeRange",
+                query = ReportQueries.getAllInvestFundPopularityInTimeRange,
                 resultSetMapping = "InvestFundPopularityMapping")
 })
 public class InvestFundStatistics extends InstrumentStatistics {
 
     @Column(name = "START_DATE")
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate startDate;
 
     @Column(name = "END_DATE")
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate endDate;
 
     @Column(name = "ZIGZAG_VALUE")

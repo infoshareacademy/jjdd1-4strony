@@ -20,14 +20,14 @@ public class InvestFundPopularityRepository {
     }
 
     public List<InvestFundPopularity> getAll() {
-        Query query = entityManager.createQuery("SELECT p FROM InvestFundPopularity p");
+        Query query = entityManager.createNamedQuery("InvestFundPopularity.getAll");
         return query.getResultList();
     }
 
     public List<InvestFundPopularity> getInTimeRange(LocalDate from, LocalDate to) {
-        Query query = entityManager.createQuery("SELECT p FROM InvestFundPopularity p WHERE p.date >= :startDate AND p.date <= :endDate");
-        query.setParameter("startDate", from);
-        query.setParameter("endDate", to);
+        Query query = entityManager.createNamedQuery("InvestFundPopularity.getInTimeRange");
+        query.setParameter("startDateTime", from.atStartOfDay());
+        query.setParameter("endDateTime", to.plusDays(1).atStartOfDay());
         return query.getResultList();
     }
 }

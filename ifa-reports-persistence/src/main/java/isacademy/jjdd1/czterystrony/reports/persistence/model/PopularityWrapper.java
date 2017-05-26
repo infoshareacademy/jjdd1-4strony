@@ -1,26 +1,28 @@
 package isacademy.jjdd1.czterystrony.reports.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.isacademy.jjdd1.czterystrony.serializers.JsonDateSerializer;
+import com.isacademy.jjdd1.czterystrony.beanparameters.PeriodParam;
 
-import java.time.LocalDate;
 import java.util.List;
 
-public class PopularityWrapper {
+public class PopularityWrapper<T extends  Popularity> {
 
     @JsonProperty("popularity")
-    private List<Popularity> popularities;
+    private List<T> popularities;
 
-    @JsonProperty("date")
-    @JsonSerialize(using = JsonDateSerializer.class)
-    private LocalDate reportDate;
+    @JsonProperty("period")
+    private PeriodParam period;
 
-    public List<Popularity> getPopularities() {
+    public PopularityWrapper(List<T> popularities, PeriodParam period) {
+        this.popularities = popularities;
+        this.period = period;
+    }
+
+    public List<T> getPopularities() {
         return popularities;
     }
 
-    public LocalDate getReportDate() {
-        return reportDate;
+    public PeriodParam getPeriod() {
+        return period;
     }
 }

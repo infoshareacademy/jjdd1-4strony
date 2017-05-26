@@ -1,7 +1,7 @@
 package isacademy.jjdd1.czterystrony.webapp.persistence.queries;
 
-public final class PensionFundNamedNativeQueries {
-    private PensionFundNamedNativeQueries() {
+public final class PensionFundQueries {
+    private PensionFundQueries() {
     }
 
     //language=MySQL

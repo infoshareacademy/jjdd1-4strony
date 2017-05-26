@@ -1,7 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.reports.mail;
 
-import isacademy.jjdd1.czterystrony.reports.persistence.model.StatisticsDetails;
-import isacademy.jjdd1.czterystrony.reports.persistence.repositories.StatisticsDetailsRepository;
+import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundPopularity;
+import isacademy.jjdd1.czterystrony.reports.persistence.repositories.InvestFundPopularityRepository;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -15,12 +15,12 @@ public class EmailReportContent {
     HtmlTableBuilder htmlTableBuilder;
 
     @Inject
-    StatisticsDetailsRepository repository;
+    InvestFundPopularityRepository repository;
 
     public String getHtmlContent() {
-        List<StatisticsDetails> statisticsDetails = repository.getAll();
+        List<InvestFundPopularity> fundPopularities = repository.getAll();
         HtmlTableBuilder builder = htmlTableBuilder.setHeaders(Arrays.asList("fundusz", "id", "liczba kliknięć"));
-        statisticsDetails.forEach(s -> builder.setRow(Arrays.asList(s.getName(), s.getId(), "" + s.getClicks())));
+        fundPopularities.forEach(s -> builder.setRow(Arrays.asList(s.getInstrumentName(), s.getInstrumentId(), "" + s.getClicks())));
         return builder.build();
     }
 }

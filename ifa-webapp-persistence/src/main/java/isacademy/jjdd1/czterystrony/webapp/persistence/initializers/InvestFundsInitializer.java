@@ -16,7 +16,7 @@ import java.io.IOException;
 @DependsOn("DatabaseInitializer")
 public class InvestFundsInitializer {
 
-    private static Logger log = LoggerFactory.getLogger(InvestFundsInitializer.class);
+    private static final Logger log = LoggerFactory.getLogger(InvestFundsInitializer.class);
 
     @Inject
     InvestFundsUpdater investFundsUpdater;
