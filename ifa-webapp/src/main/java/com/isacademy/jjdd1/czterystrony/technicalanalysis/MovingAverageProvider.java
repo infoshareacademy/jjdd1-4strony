@@ -18,7 +18,7 @@ public class MovingAverageProvider {
 
     public List<InvestFundRating> getMovingAverageRatings(InvestFund investFund, TimeRange timeRange, MovingAverage movingAverage) {
         this.movingAverage = movingAverage;
-        List<InvestFundRating> ratings = ratingRepository.getByFundInTimeRange(investFund, timeRange);
+        List<InvestFundRating> ratings = ratingRepository.getByFundInTimeRange(investFund.getId(), timeRange);
         return ratings.stream()
                 .map(t -> mapRatingToAverage(t))
                 .collect(Collectors.toList());

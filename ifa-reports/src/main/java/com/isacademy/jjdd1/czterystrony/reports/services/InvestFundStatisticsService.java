@@ -21,11 +21,14 @@ public class InvestFundStatisticsService {
     @Inject
     InvestFundStatisticsRepository repository;
 
+    @Context
+    UriInfo uriInfo;
+
     @POST
     @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_HTML)
-    public Response createStatistics(InvestFundStatistics investFundStatistics, @Context UriInfo uriInfo) {
+    public Response createStatistics(InvestFundStatistics investFundStatistics) {
         try {
             Long id = repository.add(investFundStatistics);
 

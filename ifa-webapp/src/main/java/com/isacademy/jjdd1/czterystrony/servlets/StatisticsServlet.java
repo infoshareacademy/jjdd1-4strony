@@ -1,8 +1,5 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
-import com.isacademy.jjdd1.czterystrony.clients.StatisticsClient;
-
-import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,9 +10,6 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/4analysis/statistics")
 public class StatisticsServlet extends HttpServlet {
-
-    @Inject
-    StatisticsClient client;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

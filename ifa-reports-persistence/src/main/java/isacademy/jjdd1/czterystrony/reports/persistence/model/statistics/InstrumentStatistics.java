@@ -43,6 +43,7 @@ public abstract class InstrumentStatistics {
         Builder() {
             instrumentStatistics = createInstrumentStatistics();
             builder = createBuilder();
+            instrumentStatistics.dateTime = LocalDateTime.now();
         }
 
         abstract T createInstrumentStatistics();
