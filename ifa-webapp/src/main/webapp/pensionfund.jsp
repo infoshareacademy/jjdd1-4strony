@@ -91,7 +91,9 @@
             "responsive": true,
             "aoColumnDefs": [
                 {"bSortable": false, "aTargets": [0]}
-            ]
+            ],
+            "bPaginate": false,
+            "bLengthChange": false
         });
 
         $(".table").show();
