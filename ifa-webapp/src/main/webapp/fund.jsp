@@ -26,9 +26,13 @@
         </div>
         <div class="col-md-8 col-md-offset-2 main">
             <div class="row">
-                <h3 class="page-header"><a
-                        href="<c:url value = "/4analysis/notowania/${investFund.id}"/>">${investFund.name}</a></h3>
-                <span id="fund-id" class="text-muted">${investFund.id}</span><br>
+                <div>
+                    <h3 class="page-header">
+                        <a href="<c:url value = "/4analysis/notowania/${investFund.id}"/>">${investFund.name}
+                            <span style="font-size:14px" id="fund-id" class="text-muted">${investFund.id}</span>
+                        </a>
+                    </h3>
+                </div>
                 <div class="col-md-4">
                     <span class="lead"><strong>${investFund.close} PLN </strong></span>
                     <c:choose>
