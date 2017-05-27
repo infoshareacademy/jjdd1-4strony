@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/4analysis/updatefund")
-public class UpdateFundServlet extends HttpServlet {
+public class FundsPromoterServlet extends HttpServlet {
 
     @Inject
     InvestFundRepository instrumentRepository;

@@ -19,9 +19,10 @@
     <div class="row">
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="<c:url value = "/4analysis/notowania/${investFund.id}"/>">Notowania <span
-                        class="sr-only">(current)</span></a></li>
-                <li><a href="<c:url value = "/4analysis/analiza/zigzag/${investFund.id}"/>">Analiza techniczna</a></li>
+                <li><a href="<c:url value = "/4analysis/notowania/${investFund.id}"/>">Notowania</a></li>
+                <li class="active"><a href="<c:url value = "/4analysis/analiza/zigzag/${investFund.id}"/>">Analiza
+                    techniczna<span
+                            class="sr-only">(current)</span></a></li>
             </ul>
         </div>
         <div class="col-md-8 col-md-offset-2 main">
@@ -52,6 +53,19 @@
                 </div>
             </div>
             <span class="text-info">wycena na dzień ${investFund.date}</span>
+            <div>
+                <p>
+                <ul class="nav nav-pills">
+                    <li role="presentation"><a href="/4analysis/analiza/zigzag/${investFund.id}">Wskaźnik
+                        Zig-Zag</a></li>
+                    <li role="presentation" class="active"><a href="/4analysis/analiza/srednie/${investFund.id}">Średnie kroczące</a>
+                    </li>
+                </ul>
+                </p>
+                <span class="text-info">okres:</span>
+                <input id="period" type="number" min="1" value="${period}" required>
+                <span class="text-info">dni</span><br>
+            </div>
             <div id="chart-container"></div>
         </div>
     </div>
@@ -65,6 +79,6 @@
 <script src="https://www.amcharts.com/lib/3/serial.js"></script>
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 <script src="https://www.amcharts.com/lib/3/amstock.js"></script>
-<script src="/js/ratings-ajax.js"></script>
+<script src="/js/averages-ajax.js"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/4analysis/pensionfunds")
-public class PensionFundServlet extends HttpServlet {
+public class PensionFundsServlet extends HttpServlet {
 
     @Inject
     Views views;

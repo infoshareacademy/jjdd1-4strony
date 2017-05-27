@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Objects;
 
-@WebFilter(urlPatterns = {"/4analysis/notowania/*", "/4analysis/analiza/*"})
+@WebFilter(urlPatterns = {
+        "/4analysis/notowania/*",
+        "/4analysis/analiza/zigzag/*",
+        "/4analysis/analiza/srednie/*"
+})
 public class InvestFundIdFilter implements Filter {
 
     @Inject

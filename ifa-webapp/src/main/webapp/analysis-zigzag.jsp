@@ -20,7 +20,7 @@
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li><a href="<c:url value = "/4analysis/notowania/${investFund.id}"/>">Notowania</a></li>
-                <li class="active"><a href="<c:url value = "/4analysis/analiza/${investFund.id}"/>">Analiza
+                <li class="active"><a href="<c:url value = "/4analysis/analiza/zigzag/${investFund.id}"/>">Analiza
                     techniczna<span
                             class="sr-only">(current)</span></a></li>
             </ul>
@@ -56,7 +56,7 @@
             <div>
                 <p>
                 <ul class="nav nav-pills">
-                    <li role="presentation" class="active"><a href="/4analysis/analiza/${investFund.id}">Wskaźnik
+                    <li role="presentation" class="active"><a href="/4analysis/analiza/zigzag/${investFund.id}">Wskaźnik
                         Zig-Zag</a></li>
                     <li role="presentation"><a href="/4analysis/analiza/srednie/${investFund.id}">Średnie kroczące</a>
                     </li>

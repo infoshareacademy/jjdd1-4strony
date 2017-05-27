@@ -5,12 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class MovingAverage {
-    protected final int DIGITS_AFTER_COMMA = 2;
-    protected List<BigDecimal> window = new LinkedList<>();
-    protected int period;
-    protected BigDecimal sum = BigDecimal.ZERO;
+    final int DIGITS_AFTER_COMMA = 2;
+    List<BigDecimal> window = new LinkedList<>();
+    int period;
+    BigDecimal sum = BigDecimal.ZERO;
 
-    public MovingAverage(int period) {
+    MovingAverage(int period) {
         if (period <= 0) {
             throw new IllegalArgumentException("Period must be a positive integer");
         }

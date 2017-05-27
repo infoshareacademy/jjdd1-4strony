@@ -4,7 +4,6 @@ import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundDetails;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundDetailsRepository;
 
 import javax.inject.Inject;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = {"/4analysis/notowania/*", "/4analysis/analiza/*"})
-public class InvestFundServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/4analysis/analiza/srednie/*")
+public class FundAveragesServlet extends HttpServlet {
 
     @Inject
     InvestFundDetailsRepository investFundDetailsRepository;
@@ -23,16 +22,8 @@ public class InvestFundServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         String investFundId = req.getPathInfo().substring(1);
         InvestFundDetails investFundDetails = investFundDetailsRepository.getById(investFundId);
-
-        RequestDispatcher dispatcher;
-        if (req.getRequestURI().contains("analiza")) {
-            req.setAttribute("zigZag", 0);
-            dispatcher = req.getRequestDispatcher("/analysis.jsp");
-        } else {
-            dispatcher = req.getRequestDispatcher("/fund.jsp");
-        }
-
+        req.setAttribute("period", 1);
         req.setAttribute("investFund", investFundDetails);
-        dispatcher.forward(req, resp);
+        req.getRequestDispatcher("/analysis-averages.jsp").forward(req, resp);
     }
 }

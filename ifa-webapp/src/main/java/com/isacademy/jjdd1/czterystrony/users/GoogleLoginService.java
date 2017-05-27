@@ -52,7 +52,6 @@ public class GoogleLoginService {
     @GET
     @Path("/callback")
     public Response callback(@QueryParam("code") String code) {
-
         try {
             OAuth2AccessToken accessToken = service.getAccessToken(code);
             OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
