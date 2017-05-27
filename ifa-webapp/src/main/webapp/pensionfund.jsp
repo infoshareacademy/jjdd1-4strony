@@ -32,7 +32,8 @@
                     <c:choose>
                         <c:when test="${dataFound}">
                             <c:forEach items="${allPensionFunds}" var="pensionFund">
-                                <tr onclick="window.document.location='/4analysis/pensionfunds';">
+                                <tr>
+                                <%--<tr onclick="window.document.location='/4analysis/pensionfunds';">--%>
                                         <%--<td class="text-center"></td>--%>
                                     <td>${pensionFund.name}</td>
                                     <td class="text-center">${pensionFund.id}</td>
