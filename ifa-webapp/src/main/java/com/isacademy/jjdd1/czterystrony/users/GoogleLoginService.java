@@ -75,9 +75,9 @@ public class GoogleLoginService {
 
     @GET
     @Path("/signout")
-    public Response logout(@HeaderParam("Referer") String referer) {
+    public Response logout() {
         sessionData.logout();
         log.info("User {} logged out.", sessionData.getUser().getEmail());
-        return Response.temporaryRedirect(URI.create(referer)).build();
+        return Response.temporaryRedirect(URI.create(INDEX_URL)).build();
     }
 }
