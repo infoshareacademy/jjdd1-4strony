@@ -53,7 +53,12 @@
             </div>
 
             <div>
-                <h5 class="sub-header"><strong>Wskaźnik ZigZag</strong></h5>
+                <p>
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="active"><a href="/4analysis/analiza/${investFund.id}">Wskaźnik Zig-Zag</a></li>
+                    <li role="presentation"><a href="/4analysis/analiza/srednie/${investFund.id}">Średnie kroczące</a></li>
+                </ul>
+                </p>
                 <span class="text-info">parametr filtrujący w [%]:</span>
                 <input id="zigZag" type="number" min="0" max="100" value="${zigZag}" required><br>
             </div>
