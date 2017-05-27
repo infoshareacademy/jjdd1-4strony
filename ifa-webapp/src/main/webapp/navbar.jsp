@@ -22,24 +22,35 @@
                 <c:choose>
                     <c:when test="${sessionData.logged}">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
                                 <img src="${sessionData.user.picture}" style="height: 20px">
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><span style="padding-left: 15px; padding-right: 15px">Jesteś zalogowany jako</span></li>
-                                <li><span style="padding-left: 15px; padding-right: 15px"><strong>${sessionData.user.email}</strong></span></li>
+                                <li><span style="padding-left: 15px; padding-right: 15px">Jesteś zalogowany jako</span>
+                                </li>
+                                <li><span
+                                        style="padding-left: 15px; padding-right: 15px"><strong>${sessionData.user.email}</strong></span>
+                                </li>
                                 <li role="separator" class="divider"></li>
-                                <%--<li class="dropdown-header">Nav header</li>--%>
-                                <li><a href="<c:url value = "/4analysis/updatefund"/>">Promuj fundusz</a></li>
-                                <li><a href="<c:url value = "/4analysis/statistics"/>">Statystyki</a></li>
+                                    <%--<li class="dropdown-header">Nav header</li>--%>
+                                <c:if test="${sessionData.admin}">
+                                    <%--<c:choose>--%>
+                                    <%--<c:when test="${sessionData.isadmin}">--%>
+                                    <li><a href="<c:url value = "/4analysis/updatefund"/>">Promuj fundusz</a></li>
+                                    <li><a href="<c:url value = "/4analysis/statistics"/>">Statystyki</a></li>
+                                    <%--</c:when>--%>
+                                    <%--</c:choose>--%>
+                                </c:if>
                                 <li><a href="<c:url value = "/api/google/signout"/>">Wyloguj się</a></li>
                             </ul>
                         </li>
                     </c:when>
                     <c:otherwise>
                         <li>
-                            <a style="padding-top: 8px; padding-bottom: 8px"  href="<c:url value = "/api/google/signin"/>">
+                            <a style="padding-top: 8px; padding-bottom: 8px"
+                               href="<c:url value = "/api/google/signin"/>">
                                 <img src="http://3.bp.blogspot.com/-Ep_sMHCGb-M/Vl9h5smpeaI/AAAAAAAACak/MQF7WdfmBgI/s640/image00.png"
                                      style="height: 34px">
                             </a>
@@ -49,29 +60,29 @@
             </ul>
 
             <%--<form class="navbar-form">--%>
-                <%--<div class="form-group" style="display:inline;">--%>
-                    <%--<div class="input-group" style="display:table;">--%>
-                        <%--<span class="input-group-btn" style="width:10%;">--%>
-                            <%--<button type="submit" class="btn btn-default">--%>
-                                <%--<span class="glyphicon glyphicon-search" style="padding-top: 3px; padding-bottom: 3px"></span>--%>
-                            <%--</button>--%>
-                        <%--</span>--%>
-                        <%--<input id="searchInput" class="form-control" name="search" placeholder="znajdź fundusz" autocomplete="off"--%>
-                               <%--autofocus="autofocus" type="text" list="funds" onkeyup="searchFund()">--%>
-                        <%--<datalist id="funds">--%>
-                            <%--&lt;%&ndash;<c:choose>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<c:when test="${dataFound}">&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<c:forEach items="${allInvestFunds}" var="investFund">&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<option value="${investFund.name}"></option>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</c:forEach>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</c:when>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<c:otherwise>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<option value="brak danych"></option>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</c:otherwise>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</c:choose>&ndash;%&gt;--%>
-                        <%--</datalist>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
+            <%--<div class="form-group" style="display:inline;">--%>
+            <%--<div class="input-group" style="display:table;">--%>
+            <%--<span class="input-group-btn" style="width:10%;">--%>
+            <%--<button type="submit" class="btn btn-default">--%>
+            <%--<span class="glyphicon glyphicon-search" style="padding-top: 3px; padding-bottom: 3px"></span>--%>
+            <%--</button>--%>
+            <%--</span>--%>
+            <%--<input id="searchInput" class="form-control" name="search" placeholder="znajdź fundusz" autocomplete="off"--%>
+            <%--autofocus="autofocus" type="text" list="funds" onkeyup="searchFund()">--%>
+            <%--<datalist id="funds">--%>
+            <%--&lt;%&ndash;<c:choose>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<c:when test="${dataFound}">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<c:forEach items="${allInvestFunds}" var="investFund">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<option value="${investFund.name}"></option>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</c:forEach>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</c:when>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<c:otherwise>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<option value="brak danych"></option>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</c:otherwise>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</c:choose>&ndash;%&gt;--%>
+            <%--</datalist>--%>
+            <%--</div>--%>
+            <%--</div>--%>
             <%--</form>--%>
         </div>
     </div>

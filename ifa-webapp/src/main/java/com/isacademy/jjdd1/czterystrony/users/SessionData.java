@@ -11,10 +11,25 @@ public class SessionData implements Serializable {
     private boolean logged = false;
     private GoogleUser user;
     private String referer;
+    private UserType userType;
+    private boolean admin = false;
 
     public void logUser(GoogleUser user) {
         this.user = user;
         this.logged = true;
+        setUserType();
+    }
+
+    private void setUserType() {
+        String userEmail = user.getEmail();
+
+        if (UserType.ADMIN.getEmailPattern().equals(userEmail)) {
+            userType = UserType.ADMIN;
+            admin = true;
+            return;
+        }
+
+        userType = UserType.GOOGLE_USER;
     }
 
     public void logout() {
@@ -35,5 +50,13 @@ public class SessionData implements Serializable {
 
     public void setReferer(String referer) {
         this.referer = referer;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public boolean isAdmin() {
+        return admin;
     }
 }

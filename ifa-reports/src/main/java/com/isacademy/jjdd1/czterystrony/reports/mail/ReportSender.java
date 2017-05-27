@@ -1,5 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.reports.mail;
 
+import com.isacademy.jjdd1.czterystrony.CompanyMail;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 

@@ -8,6 +8,8 @@ public class GoogleUser {
     private String given_name;
     private String family_name;
     private String picture;
+    private String link;
+    private String gender;
 
     public String getId() {
         return id;
@@ -63,6 +65,22 @@ public class GoogleUser {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     @Override

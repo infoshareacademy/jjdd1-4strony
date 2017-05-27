@@ -11,7 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.HashMap;
@@ -37,6 +39,9 @@ public class GoogleLoginService {
 
     @Inject
     SessionData sessionData;
+
+    @Context
+    HttpServletRequest request;
 
     @GET
     @Path("/signin")
