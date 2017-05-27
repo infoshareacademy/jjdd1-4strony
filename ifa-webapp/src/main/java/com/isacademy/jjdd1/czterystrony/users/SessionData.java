@@ -1,5 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.users;
 
+import com.github.scribejava.core.oauth.OAuth20Service;
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -8,11 +10,14 @@ import java.io.Serializable;
 @SessionScoped
 public class SessionData implements Serializable {
 
-    private boolean logged = false;
+    private boolean logged;
     private GoogleUser user;
     private String referer;
     private UserType userType;
-    private boolean admin = false;
+    private boolean admin;
+    private OAuth20Service service;
+    private String callbackUrl;
+    private String indexUrl;
 
     public void logUser(GoogleUser user) {
         this.user = user;
@@ -28,8 +33,8 @@ public class SessionData implements Serializable {
             admin = true;
             return;
         }
-
         userType = UserType.GOOGLE_USER;
+        admin = false;
     }
 
     public void logout() {
@@ -58,5 +63,29 @@ public class SessionData implements Serializable {
 
     public boolean isAdmin() {
         return admin;
+    }
+
+    public OAuth20Service getOAuth20Service() {
+        return service;
+    }
+
+    public void setOAuth20Service(OAuth20Service service) {
+        this.service = service;
+    }
+
+    public String getCallbackUrl() {
+        return callbackUrl;
+    }
+
+    public void setCallbackUrl(String callbackUrl) {
+        this.callbackUrl = callbackUrl;
+    }
+
+    public String getIndexUrl() {
+        return indexUrl;
+    }
+
+    public void setIndexUrl(String indexUrl) {
+        this.indexUrl = indexUrl;
     }
 }

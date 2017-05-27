@@ -22,42 +22,40 @@ import java.util.Map;
 @Path("/google")
 public class GoogleLoginService {
 
+    @Inject
+    SessionData sessionData;
+
     private static Logger log = LoggerFactory.getLogger(GoogleLoginService.class);
     private static final String GOOGLE_CLIENT_ID = "280540127427-i5fcabv2i9poto8co2niio2hf4m2cg7k.apps.googleusercontent.com";
     private static final String GOOGLE_CLIENT_SECRET = "2jPDzoqCSw74HOvUpLMipB3w";
     private static final String PROTECTED_RESOURCE_URL = "https://www.googleapis.com/oauth2/v2/userinfo";
-    private static final String CALLBACK_URL = "http://localhost:8730/api/google/callback";
-    private static final String INDEX_URL = "http://localhost:8730/4analysis";
-
-    private OAuth20Service service = new ServiceBuilder()
-            .apiKey(GOOGLE_CLIENT_ID)
-            .apiSecret(GOOGLE_CLIENT_SECRET)
-            .scope("profile")
-            .scope("email")
-            .callback(CALLBACK_URL)
-            .build(GoogleApi20.instance());
-
-    @Inject
-    SessionData sessionData;
-
-    @Context
-    HttpServletRequest request;
 
     @GET
     @Path("/signin")
-    public Response login(@HeaderParam("Referer") String referer) {
+    public Response login(@HeaderParam("Referer") String referer,
+                          @Context HttpServletRequest request) {
+
+        String contextRoot = getContextRoot(request);
+        String callbackUrl = contextRoot + "/api/google/callback";
+        String indexUrl = contextRoot + "/4analysis";
+        OAuth20Service service = getOAuth20Service(callbackUrl);
         final Map<String, String> additionalParams = new HashMap<>();
         additionalParams.put("access_type", "offline");
         additionalParams.put("prompt", "consent");
-        sessionData.setReferer(referer);
         String authorizationUrl = service.getAuthorizationUrl(additionalParams);
+        sessionData.setReferer(referer);
+        sessionData.setCallbackUrl(callbackUrl);
+        sessionData.setIndexUrl(indexUrl);
+        sessionData.setOAuth20Service(service);
         return Response.seeOther(URI.create(authorizationUrl)).header("MyReferer", referer).build();
     }
 
     @GET
     @Path("/callback")
     public Response callback(@QueryParam("code") String code) {
+        String indexUrl = sessionData.getIndexUrl();
         try {
+            OAuth20Service service = sessionData.getOAuth20Service();
             OAuth2AccessToken accessToken = service.getAccessToken(code);
             OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
             service.signRequest(accessToken, request);
@@ -69,7 +67,7 @@ public class GoogleLoginService {
         } catch (Exception e) {
             e.printStackTrace();
             log.info("User could not log in");
-            return Response.temporaryRedirect(URI.create(INDEX_URL)).build();
+            return Response.temporaryRedirect(URI.create(indexUrl)).build();
         }
     }
 
@@ -78,6 +76,22 @@ public class GoogleLoginService {
     public Response logout() {
         sessionData.logout();
         log.info("User {} logged out.", sessionData.getUser().getEmail());
-        return Response.temporaryRedirect(URI.create(INDEX_URL)).build();
+        return Response.temporaryRedirect(URI.create(sessionData.getIndexUrl())).build();
+    }
+
+    private String getContextRoot(HttpServletRequest request) {
+        return request.getScheme() + "://" +
+                request.getServerName() + ":" +
+                request.getServerPort();
+    }
+
+    private OAuth20Service getOAuth20Service(String callbackUrl) {
+        return new ServiceBuilder()
+                .apiKey(GOOGLE_CLIENT_ID)
+                .apiSecret(GOOGLE_CLIENT_SECRET)
+                .scope("profile")
+                .scope("email")
+                .callback(callbackUrl)
+                .build(GoogleApi20.instance());
     }
 }
