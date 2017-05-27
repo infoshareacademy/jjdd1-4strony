@@ -16,8 +16,6 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 main">
-            <a class="btn btn-default" href="/4analysis" role="button">NOTOWANIA FUNDUSZY INWESTYCYJNYCH</a>
-            <a class="btn btn-default" href="/4analysis/pensionfunds" role="button">NOTOWANIA FUNDUSZY EMERYTALNYCH</a>
             <div class="table-responsive">
                 <table id="table-pension-funds" class="table table-striped table-hover-other compact"
                        style="display: none">

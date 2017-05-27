@@ -14,6 +14,10 @@
             <a class="navbar-brand" href="<c:url value = "/4analysis"/>"><strong>4</strong><em>analysis</em></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/4analysis">Fundusze inwestycyjne</a></li>
+                <li><a href="/4analysis/pensionfunds">Fundusze emerytalne</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <c:choose>
                     <c:when test="${sessionData.logged}">
