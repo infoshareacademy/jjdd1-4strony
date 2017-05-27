@@ -4,8 +4,7 @@ var endDate;
 var chart;
 
 $(document).ready(function () {
-    getRatings();
-    getZigZag();
+    $.when(getRatings()).done(getZigZag());
     $('#zigZag').bind('change', function () {
         getZigZagOnChange();
     });
