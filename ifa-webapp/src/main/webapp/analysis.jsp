@@ -52,10 +52,7 @@
                     </c:choose>
                 </div>
             </div>
-            <%--<div class="row">--%>
             <span class="text-info">wycena na dzień ${investFund.date}</span>
-            <%--</div>--%>
-
             <div>
                 <p>
                 <ul class="nav nav-pills">
@@ -68,9 +65,7 @@
                 <span class="text-info">parametr filtrujący w [%]:</span>
                 <input id="zigZag" type="number" min="0" max="100" value="${zigZag}" required><br>
             </div>
-
             <div id="chart-container"></div>
-
         </div>
     </div>
 </div>

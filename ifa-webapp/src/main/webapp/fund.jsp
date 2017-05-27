@@ -51,12 +51,8 @@
                     </c:choose>
                 </div>
             </div>
-            <div class="row">
-                <span class="text-info">wycena na dzień ${investFund.date}</span>
-            </div>
-
+            <span class="text-info">wycena na dzień ${investFund.date}</span>
             <div id="chart-container"></div>
-
         </div>
     </div>
 </div>
