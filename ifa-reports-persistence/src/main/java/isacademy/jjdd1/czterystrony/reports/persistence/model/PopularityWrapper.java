@@ -1,8 +1,10 @@
 package isacademy.jjdd1.czterystrony.reports.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 import com.isacademy.jjdd1.czterystrony.beanparameters.PeriodParam;
 
+import java.sql.Time;
 import java.util.List;
 
 public class PopularityWrapper<T extends Popularity> {
@@ -11,26 +13,21 @@ public class PopularityWrapper<T extends Popularity> {
     private List<T> popularities;
 
     @JsonProperty("period")
-    private PeriodParam period;
+    private TimeRange timeRange;
 
     public PopularityWrapper() {
     }
 
-    public PopularityWrapper(List<T> popularities) {
+    public PopularityWrapper(List<T> popularities, TimeRange timeRange) {
         this.popularities = popularities;
-        this.period = period;
-    }
-
-    public PopularityWrapper(List<T> popularities, PeriodParam period) {
-        this.popularities = popularities;
-        this.period = period;
+        this.timeRange = timeRange;
     }
 
     public List<T> getPopularities() {
         return popularities;
     }
 
-    public PeriodParam getPeriod() {
-        return period;
+    public TimeRange getPeriod() {
+        return timeRange;
     }
 }

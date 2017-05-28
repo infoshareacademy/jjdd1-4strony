@@ -1,6 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.beanparameters;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.isacademy.jjdd1.czterystrony.serializers.JsonDateSerializer;
 

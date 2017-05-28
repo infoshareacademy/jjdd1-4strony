@@ -1,5 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.reports.services;
 
+import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
 import com.isacademy.jjdd1.czterystrony.beanparameters.*;
 import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundPopularity;
 import isacademy.jjdd1.czterystrony.reports.persistence.model.PopularityWrapper;
@@ -27,8 +28,8 @@ public class InvestFundsPopularityReportService implements ReportService {
     public Response getOverallReport() {
         try {
             List<InvestFundPopularity> list = repository.getAll();
-            PeriodParam period = new CustomPeriod(LocalDate.now(), LocalDate.now());
-            PopularityWrapper wrapper = new PopularityWrapper(list, period);
+            TimeRange timeRange = new TimeRange(LocalDate.now(), LocalDate.now());
+            PopularityWrapper wrapper = new PopularityWrapper(list, timeRange);
             log.info("Provided popularity report.");
             return Response.ok(wrapper).build();
         } catch (Throwable e) {
@@ -63,8 +64,10 @@ public class InvestFundsPopularityReportService implements ReportService {
 
     private Response getPeriodicReport(PeriodParam period) {
         try {
-            List<InvestFundPopularity> list = repository.getInTimeRange(period.startDate(), period.endDate());
-            PopularityWrapper<InvestFundPopularity> wrapper = new PopularityWrapper(list, period);
+            LocalDate start = period.startDate();
+            LocalDate end = period.endDate();
+            List<InvestFundPopularity> list = repository.getInTimeRange(start, end);
+            PopularityWrapper<InvestFundPopularity> wrapper = new PopularityWrapper(list, new TimeRange(start, end));
             log.info("Provided popularity report.");
             return Response.ok(wrapper).build();
         } catch (Throwable e) {
