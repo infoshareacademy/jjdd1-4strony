@@ -23,11 +23,13 @@
                     <a href="<c:url value = "/4analysis/promocje"/>">Promocja funduszy</a>
                 </li>
                 <li>
-                    <a href="<c:url value = "/4analysis/raporty/popularnosc"/>">Raport popularności
-                    </a>
+                    <a href="<c:url value = "/4analysis/raporty/popularnosc"/>">Raport popularności</a>
+                </li>
+                <li>
+                    <a href="<c:url value = "/4analysis/raporty/zigzag"/>">Raport wartości Zig-Zag</a>
                 </li>
                 <li class="active">
-                    <a href="<c:url value = "/4analysis/raporty/zigzag"/>">Raport wartości Zig-Zag
+                    <a href="<c:url value = "/4analysis/raporty/uzytkownicy"/>">Raport wartości Zig-Zag
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -35,26 +37,26 @@
         </div>
 
         <div class="col-md-10 col-md-offset-2 main">
-            <h4 class="page-header">RAPORT WARTOŚCI ZIG-ZAG</h4>
+            <h4 class="page-header">RAPORT AKTYWNOŚCI UŻYTKOWNIKÓW</h4>
             <div class="table-responsive">
                 <table class="table table-striped table-hover-other compact">
                     <thead>
                     <tr>
-                        <th>fundusz</th>
-                        <th class="text-center">id</th>
-                        <th class="text-center">wartość Zig-Zag [%]</th>
-                        <th class="text-center">średnia różnica w [dniach] pomiędzy wierzchołkami Zig-Zag</th>
-                        <th class="text-center">średnia różnica w cenie j.u. [PLN] </th>
+                        <th class="text-center">Imię i nazwisko</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Data</th>
+                        <th class="text-center">Liczba logowań</th>
+                        <th class="text-center">Data ostatniego logowania</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${zigzagReports}" var="zigzagReport">
+                    <c:forEach items="${userActivities}" var="userActivity">
                         <tr>
-                            <td>${zigzagReport.instrumentName}</td>
-                            <td>${zigzagReport.instrumentId}</td>
-                            <td>${zigzagReport.zigzagValue}</td>
-                            <td>${zigzagReport.averageDayDifference}</td>
-                            <td>${zigzagReport.averageValueDifference}</td>
+                            <td>${userActivity.name}</td>
+                            <td>${userActivity.email}</td>
+                            <td>${userActivity.date}</td>
+                            <td>${userActivity.loginCount}</td>
+                            <td>${userActivity.lastLoginDateTime}</td>
                         </tr>
                     </c:forEach>
                     </tbody>

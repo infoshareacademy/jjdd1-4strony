@@ -33,7 +33,7 @@ public class Views {
     PensionFundDetailsRepository pensionFundDetailsRepository;
 
     @PostConstruct
-    @Asynchronous
+//    @Asynchronous
     public void updateViews() {
         this.allFunds = repository.getAll().stream()
                 .sorted(Comparator.comparing(InvestFundDetails::getName))

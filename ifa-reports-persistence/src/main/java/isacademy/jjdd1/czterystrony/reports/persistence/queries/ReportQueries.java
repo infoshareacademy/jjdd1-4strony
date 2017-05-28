@@ -51,4 +51,15 @@ public final class ReportQueries {
                     "DATE_TIME <= :endDateTime " +
                     "GROUP BY INSTRUMENT_ID, INSTRUMENT_NAME, ZIGZAG_VALUE " +
                     "ORDER BY name";
+
+    //language=MySQL
+    public static final String getUserActivityReport =
+            "SELECT " +
+                    "NAME AS name, " +
+                    "EMAIL AS email, " +
+                    "LOGIN_DATE AS date, " +
+                    "COUNT(LOGIN_DATE) AS loginCount " +
+                    "FROM UserStatistics " +
+                    "GROUP BY NAME, EMAIL, LOGIN_DATE " +
+                    "ORDER BY name";
 }
