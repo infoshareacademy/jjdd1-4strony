@@ -31,7 +31,7 @@ public class InvestFundStatisticsRepository {
 
     public List<InvestFundStatistics> getInTimeRange(LocalDate from, LocalDate to) {
         //language=MySQL
-        String sql = "SELECT p FROM InvestFundStatistics p WHERE p.dateTime >= :startDateTime AND p.dateTime <= :endDateTime";
+        String sql = "SELECT p FROM InvestFundStatistics p WHERE p.DATE_TIME >= :startDateTime AND p.DATE_TIME <= :endDateTime";
         Query query = entityManager.createQuery(sql);
         query.setParameter("startDateTime", from.atStartOfDay());
         query.setParameter("endDateTime", to.plusDays(1).atStartOfDay());
