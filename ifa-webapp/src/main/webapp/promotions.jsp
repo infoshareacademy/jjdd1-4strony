@@ -11,7 +11,7 @@
     <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
-    <link href="/css/updatefund.css" rel="stylesheet">
+    <link href="/css/promotions.css" rel="stylesheet">
     <link href="/css/dataTables.bootstrap.css" rel="stylesheet">
 </head>
 <body>
@@ -97,7 +97,7 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/updatefund-ajax.js"></script>
+<script src="/js/promotions.js"></script>
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/dataTables.bootstrap.min.js"></script>
 <script>

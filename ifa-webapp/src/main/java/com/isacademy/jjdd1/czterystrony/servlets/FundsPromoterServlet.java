@@ -36,7 +36,7 @@ public class FundsPromoterServlet extends HttpServlet {
         req.setAttribute("investFunds", investFunds);
         req.setAttribute("promotedInvestFunds", promotedInvestFunds);
 
-        req.getRequestDispatcher("/updatefund.jsp").forward(req,resp);
+        req.getRequestDispatcher("/promotions.jsp").forward(req,resp);
     }
 
     @Override
