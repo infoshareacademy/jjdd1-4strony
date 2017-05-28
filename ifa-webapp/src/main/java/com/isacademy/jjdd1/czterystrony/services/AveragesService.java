@@ -39,7 +39,7 @@ public class AveragesService {
             @QueryParam("endDate") DateParam end) {
 
         int periodValue = period.getNumber();
-        periodValue = periodValue == 0 ? 1 : periodValue;
+        periodValue = periodValue <= 0 ? 1 : periodValue;
         List<InvestFundRating> simpleAverage = averageProvider.get(getRatings(id), new SimpleMovingAverage(periodValue));
         List<InvestFundRating> weightedAverage = averageProvider.get(getRatings(id), new WeightedMovingAverage(periodValue));
         List<InvestFundRating> exponentialAverage = averageProvider.get(getRatings(id), new ExponentialMovingAverage(periodValue));
