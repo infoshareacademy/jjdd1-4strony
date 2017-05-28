@@ -13,7 +13,7 @@ public class InvestFundZigzagReport {
     private String instrumentName;
 
     @JsonProperty("zigzagValue")
-    private int zizagValue;
+    private int zigzagValue;
 
     @JsonProperty("averageDayDifference")
     private int averageDayDifference;
@@ -32,7 +32,7 @@ public class InvestFundZigzagReport {
 
         this.instrumentName = instrumentName;
         this.instrumentId = instrumentId;
-        this.zizagValue = zigzagValue;
+        this.zigzagValue = zigzagValue;
         this.averageDayDifference = averageDayDifference;
         this.averageValueDifference = averageValueDifference;
     }
@@ -46,7 +46,7 @@ public class InvestFundZigzagReport {
     }
 
     public int getZizagValue() {
-        return zizagValue;
+        return zigzagValue;
     }
 
     public int getAverageDayDifference() {
