@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/4analysis/raportyekstremalokalne")
+@WebServlet(urlPatterns = "/4analysis/raporty/zigzag")
 public class LocalExtremeDiffsReportsServlet extends HttpServlet {
 
 

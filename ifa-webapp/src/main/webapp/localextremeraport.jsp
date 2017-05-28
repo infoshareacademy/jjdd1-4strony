@@ -22,8 +22,13 @@
                 <li>
                     <a href="<c:url value = "/4analysis/promocje"/>">Promocja funduszy</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="<c:url value = "/4analysis/raporty"/>">Raporty
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="<c:url value = "/4analysis/raporty/zigzag"/>">Raporty średnich
+                        różnic czasowych i kwotowych
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -47,8 +52,8 @@
                     <tbody>
                     <c:forEach items="${zigzagReports}" var="zigzagReport">
                         <tr>
-                            <td>${zigzagReport.instrumentName}</td>
-                            <td>${zigzagReport.instrumentId}</td>
+                            <td>${zigzagReport.name}</td>
+                            <td>${zigzagReport.id}</td>
                             <td>${zigzagReport.zigzagValue}</td>
                             <td>${zigzagReport.averageDayDifference}</td>
                             <td>${zigzagReport.averageValueDifference}</td>
