@@ -39,6 +39,7 @@ public class SessionData implements Serializable {
 
     public void logout() {
         this.logged = false;
+        this.admin = false;
     }
 
     public boolean isLogged() {

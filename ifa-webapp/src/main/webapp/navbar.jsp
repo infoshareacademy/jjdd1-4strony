@@ -19,11 +19,11 @@
                 <li><a href="/4analysis/pensionfunds">Fundusze emerytalne</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <c:if test="${sessionData.admin}">
-                    <li><a href="/4analysis/promocje">Panel administracyjny</a></li>
-                </c:if>
                 <c:choose>
                     <c:when test="${sessionData.logged}">
+                        <c:if test="${sessionData.admin}">
+                            <li><a href="/4analysis/promocje">Panel administracyjny</a></li>
+                        </c:if>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">
