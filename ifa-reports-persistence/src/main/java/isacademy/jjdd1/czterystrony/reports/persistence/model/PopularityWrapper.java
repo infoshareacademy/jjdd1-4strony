@@ -5,13 +5,16 @@ import com.isacademy.jjdd1.czterystrony.beanparameters.PeriodParam;
 
 import java.util.List;
 
-public class PopularityWrapper<T extends  Popularity> {
+public class PopularityWrapper<T extends Popularity> {
 
     @JsonProperty("popularity")
     private List<T> popularities;
 
     @JsonProperty("period")
     private PeriodParam period;
+
+    public PopularityWrapper() {
+    }
 
     public PopularityWrapper(List<T> popularities) {
         this.popularities = popularities;
