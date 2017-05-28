@@ -45,7 +45,6 @@
                                     <li><a href="<c:url value = "/4analysis/raporty"/>">Raporty</a></li>
                                     <li><a href="<c:url value = "/4analysis/raporty/zigzag"/>">Raporty średnich
                                         różnic czasowych i kwotowych</a></li>
-
                                     <%--</c:when>--%>
                                     <%--</c:choose>--%>
                                 </c:if>

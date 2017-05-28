@@ -32,7 +32,6 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                a
             </ul>
         </div>
 
@@ -52,8 +51,8 @@
                     <tbody>
                     <c:forEach items="${zigzagReports}" var="zigzagReport">
                         <tr>
-                            <td>${zigzagReport.name}</td>
-                            <td>${zigzagReport.id}</td>
+                            <td>${zigzagReport.instrumentName}</td>
+                            <td>${zigzagReport.instrumentId}</td>
                             <td>${zigzagReport.zigzagValue}</td>
                             <td>${zigzagReport.averageDayDifference}</td>
                             <td>${zigzagReport.averageValueDifference}</td>
