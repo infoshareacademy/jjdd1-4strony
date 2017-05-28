@@ -42,9 +42,9 @@
                     <tr>
                         <th>fundusz</th>
                         <th class="text-center">id</th>
-                        <th class="text-center">wartość Zig-Zag</th>
-                        <th class="text-center">średnia różnica czasowa</th>
-                        <th class="text-center">średnia różnica w cenie j.u.</th>
+                        <th class="text-center">wartość Zig-Zag [%]</th>
+                        <th class="text-center">średnia różnica czasowa pomiędzu wierzchołkami Zig-Zag [dni]</th>
+                        <th class="text-center">średnia różnica w cenie j.u. [PLN] </th>
                     </tr>
                     </thead>
                     <tbody>
