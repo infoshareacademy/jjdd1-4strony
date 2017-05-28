@@ -32,7 +32,7 @@
 
         <%--<form class="form-horizontal" role="form" action="/4analysis/raporty" method="post">--%>
         <div class="col-md-10 col-md-offset-2 main">
-            <h3 class="page-header">POPULARNOŚĆ FUNDUSZY</h3>
+            <h4 class="page-header">RAPORT POPULARNOŚCI FUNDUSZY</h4>
             <div class="table-responsive">
                 <table class="table table-striped table-hover-other compact">
                     <thead>

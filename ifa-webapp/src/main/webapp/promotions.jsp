@@ -29,7 +29,7 @@
 
         <div class="col-md-10 col-md-offset-2 main">
             <form class="form-horizontal" role="form" action="/4analysis/promocje" method="post">
-                <h2>Promocja funduszy</h2>
+                <h4>Promocja funduszy</h4>
                 <div class="form-group">
                     <label for="fund-id" class="col-sm-4 control-label">wybierz wg ID</label>
                     <div class="col-sm-4">
