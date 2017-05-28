@@ -1,6 +1,5 @@
 package com.isacademy.jjdd1.czterystrony.clients;
 
-import com.isacademy.jjdd1.czterystrony.interceptors.ZigzagInterceptor;
 import isacademy.jjdd1.czterystrony.reports.persistence.model.statistics.InstrumentStatistics;
 import isacademy.jjdd1.czterystrony.reports.persistence.model.statistics.InvestFundStatistics;
 import isacademy.jjdd1.czterystrony.reports.persistence.model.statistics.PensionFundStatistics;

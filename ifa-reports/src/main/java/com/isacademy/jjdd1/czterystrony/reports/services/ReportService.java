@@ -11,6 +11,11 @@ import javax.ws.rs.core.Response;
 public interface ReportService {
 
     @GET
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    Response getOverallReport();
+
+    @GET
     @Path("/{year}")
     @Produces(MediaType.APPLICATION_JSON)
     Response getYearlyReport(@BeanParam YearParam year);

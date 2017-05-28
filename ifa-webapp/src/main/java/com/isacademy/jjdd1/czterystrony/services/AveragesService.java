@@ -3,7 +3,6 @@ package com.isacademy.jjdd1.czterystrony.services;
 import com.isacademy.jjdd1.czterystrony.analysis.ExponentialMovingAverage;
 import com.isacademy.jjdd1.czterystrony.analysis.SimpleMovingAverage;
 import com.isacademy.jjdd1.czterystrony.analysis.WeightedMovingAverage;
-import com.isacademy.jjdd1.czterystrony.interceptors.ZigzagInterceptor;
 import com.isacademy.jjdd1.czterystrony.restparameters.DateParam;
 import com.isacademy.jjdd1.czterystrony.restparameters.IntegerParam;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.MovingAverageProvider;
@@ -13,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
-import javax.interceptor.Interceptors;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -34,7 +32,6 @@ public class AveragesService {
     @GET
     @Path("/{id}/average")
     @Produces(MediaType.APPLICATION_JSON)
-//    @Interceptors(ZigzagInterceptor.class)
     public Response getZigZag(
             @PathParam("id") String id,
             @QueryParam("period") IntegerParam period,
@@ -42,7 +39,7 @@ public class AveragesService {
             @QueryParam("endDate") DateParam end) {
 
         int periodValue = period.getNumber();
-
+        periodValue = periodValue <= 0 ? 1 : periodValue;
         List<InvestFundRating> simpleAverage = averageProvider.get(getRatings(id), new SimpleMovingAverage(periodValue));
         List<InvestFundRating> weightedAverage = averageProvider.get(getRatings(id), new WeightedMovingAverage(periodValue));
         List<InvestFundRating> exponentialAverage = averageProvider.get(getRatings(id), new ExponentialMovingAverage(periodValue));

@@ -14,6 +14,7 @@ function getRatings() {
     $.ajax({
         url: '/api/investfunds/' + $('#fund-id').text() + '/ratings',
         dataType: 'json',
+        async: false,
         success: function (response) {
             ratings = response;
             startDate = response[1].date;
@@ -34,6 +35,7 @@ function getZigZag() {
             "endDate": endDate
         },
         dataType: 'json',
+        async: false,
         success: function (zigZag) {
             chart = AmCharts.makeChart("chart-container", {
                 type: "stock",

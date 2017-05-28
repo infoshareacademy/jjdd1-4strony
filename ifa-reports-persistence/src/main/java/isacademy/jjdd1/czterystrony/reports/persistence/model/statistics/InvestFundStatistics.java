@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundPopularity;
+import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundZigzagReport;
 import isacademy.jjdd1.czterystrony.reports.persistence.queries.ReportQueries;
 
 import javax.persistence.*;
@@ -27,17 +28,37 @@ import java.time.LocalDate;
                                         @ColumnResult(name = "id", type = String.class),
                                         @ColumnResult(name = "clicks", type = int.class),
                                 }
+                        )}),
+        @SqlResultSetMapping(name = "ZigzagReportMapping",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = InvestFundZigzagReport.class,
+                                columns = {
+                                        @ColumnResult(name = "name", type = String.class),
+                                        @ColumnResult(name = "id", type = String.class),
+                                        @ColumnResult(name = "zigzagValue", type = int.class),
+                                        @ColumnResult(name = "averageDayDifference", type = int.class),
+                                        @ColumnResult(name = "averageValueDifference", type = BigDecimal.class),
+                                }
                         )})
 })
 @NamedNativeQueries({
         @NamedNativeQuery(
                 name = "InvestFundPopularity.getAll",
-                query = ReportQueries.getAllInvestFundPopularity,
+                query = ReportQueries.getInvestFundPopularity,
                 resultSetMapping = "InvestFundPopularityMapping"),
         @NamedNativeQuery(
                 name = "InvestFundPopularity.getInTimeRange",
-                query = ReportQueries.getAllInvestFundPopularityInTimeRange,
-                resultSetMapping = "InvestFundPopularityMapping")
+                query = ReportQueries.getInvestFundPopularityInTimeRange,
+                resultSetMapping = "InvestFundPopularityMapping"),
+        @NamedNativeQuery(
+                name = "ZigzagReport.getAll",
+                query = ReportQueries.getZigzagReport,
+                resultSetMapping = "ZigzagReportMapping"),
+        @NamedNativeQuery(
+                name = "ZigzagReport.getInTimeRange",
+                query = ReportQueries.getZigzagReportInTimeRange,
+                resultSetMapping = "ZigzagReportMapping")
 })
 public class InvestFundStatistics extends InstrumentStatistics {
 

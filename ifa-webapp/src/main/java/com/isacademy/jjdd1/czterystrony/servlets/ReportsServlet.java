@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
-import com.isacademy.jjdd1.czterystrony.clients.ReportsClient;
+import com.isacademy.jjdd1.czterystrony.clients.InvestFundPopularityReportClient;
 import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundPopularity;
 
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ import java.util.List;
 public class ReportsServlet extends HttpServlet {
 
     @Inject
-    ReportsClient client;
+    InvestFundPopularityReportClient client;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

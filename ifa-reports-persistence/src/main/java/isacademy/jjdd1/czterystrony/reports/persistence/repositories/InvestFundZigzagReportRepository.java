@@ -1,6 +1,6 @@
 package isacademy.jjdd1.czterystrony.reports.persistence.repositories;
 
-import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundPopularity;
+import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundZigzagReport;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -10,18 +10,18 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Stateless
-public class InvestFundPopularityRepository {
+public class InvestFundZigzagReportRepository {
 
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<InvestFundPopularity> getAll() {
-        Query query = entityManager.createNamedQuery("InvestFundPopularity.getAll");
+    public List<InvestFundZigzagReport> getAll() {
+        Query query = entityManager.createNamedQuery("ZigzagReport.getAll");
         return query.getResultList();
     }
 
-    public List<InvestFundPopularity> getInTimeRange(LocalDate from, LocalDate to) {
-        Query query = entityManager.createNamedQuery("InvestFundPopularity.getInTimeRange");
+    public List<InvestFundZigzagReport> getInTimeRange(LocalDate from, LocalDate to) {
+        Query query = entityManager.createNamedQuery("ZigzagReport.getInTimeRange");
         query.setParameter("startDateTime", from.atStartOfDay());
         query.setParameter("endDateTime", to.plusDays(1).atStartOfDay());
         return query.getResultList();
