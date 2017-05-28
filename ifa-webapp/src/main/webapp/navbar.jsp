@@ -19,6 +19,9 @@
                 <li><a href="/4analysis/pensionfunds">Fundusze emerytalne</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <c:if test="${sessionData.admin}">
+                    <li><a href="/4analysis/updatefund">Panel administracyjny</a></li>
+                </c:if>
                 <c:choose>
                     <c:when test="${sessionData.logged}">
                         <li class="dropdown">
@@ -38,7 +41,7 @@
                                 <c:if test="${sessionData.admin}">
                                     <%--<c:choose>--%>
                                     <%--<c:when test="${sessionData.isadmin}">--%>
-                                    <li><a href="<c:url value = "/4analysis/updatefund"/>">Promuj fundusz</a></li>
+                                    <li><a href="<c:url value = "/4analysis/updatefund"/>">Promocja funduszy</a></li>
                                     <li><a href="<c:url value = "/4analysis/statistics"/>">Statystyki</a></li>
                                     <%--</c:when>--%>
                                     <%--</c:choose>--%>

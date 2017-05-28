@@ -12,44 +12,85 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
     <link href="/css/updatefund.css" rel="stylesheet">
+    <link href="/css/dataTables.bootstrap.css" rel="stylesheet">
 </head>
 <body>
 <%@include file="navbar.jsp" %>
-<div class="container-fluid main">
-    <form class="form-horizontal" role="form" action="/4analysis/updatefund" method="post">
-        <h2>Zmień dane funduszu</h2>
-        <div class="form-group">
-            <label for="fund-id" class="col-sm-4 control-label">wybierz wg ID</label>
-            <div class="col-sm-4">
-                <select name="id" id="fund-id" class="form-control">
-                    <option>-</option>
-                    <c:forEach items="${investFunds}" var="investFund">
-                        <option value="${investFund.id}">${investFund.id}</option>
-                    </c:forEach>
-                </select>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="<c:url value = "/4analysis/updatefund"/>">Promocja funduszy<span
+                        class="sr-only">(current)</span></a></li>
+                <li><a href="<c:url value = "/4analysis/statistics"/>">Statystyki</a></li>
+            </ul>
+        </div>
+
+        <div class="col-md-10 col-md-offset-2 main">
+            <form class="form-horizontal" role="form" action="/4analysis/updatefund" method="post">
+                <h2>Promocja funduszy</h2>
+                <div class="form-group">
+                    <label for="fund-id" class="col-sm-4 control-label">wybierz wg ID</label>
+                    <div class="col-sm-4">
+                        <select name="id" id="fund-id" class="form-control">
+                            <option>-</option>
+                            <c:forEach items="${investFunds}" var="investFund">
+                                <option value="${investFund.id}">${investFund.id}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fund-name" class="col-sm-4 control-label">nazwa</label>
+                    <div class="col-sm-4">
+                        <input id="fund-name" type=text" name="name" placeholder="pełna nazwa funduszu"
+                               class="form-control"
+                               required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fund-priority" class="col-sm-4 control-label">promocja</label>
+                    <div class="col-sm-4">
+                        <input id="fund-priority" type="number" name="priority" min="0" max="100"
+                               placeholder="liczby od 0 do 100"
+                               class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <button type="submit" class="btn btn-primary btn-block">Uaktualnij bazę danych</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="table-responsive">
+                        <table table id="table-promoted" class="table table-striped table-hover-promo compact"
+                               style="display: none">
+                            <thead>
+                            <tr>
+                                <th style="width: 40%">fundusz</th>
+                                <th class="text-center" style="width: 10%">id</th>
+                                <th class="text-right" style="width: 15%">priorytet</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-promo">
+                            <c:forEach items="${promotedInvestFunds}" var="investFund">
+                                <tr onclick="window.document.location='/4analysis/notowania/${investFund.id}';">
+                                    <td>${investFund.name}</td>
+                                    <td class="text-center">${investFund.id}</td>
+                                    <td class="text-right">${investFund.priority}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="fund-name" class="col-sm-4 control-label">nazwa</label>
-            <div class="col-sm-4">
-                <input id="fund-name" type=text" name="name" placeholder="pełna nazwa funduszu" class="form-control"
-                       required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="fund-priority" class="col-sm-4 control-label">promocja</label>
-            <div class="col-sm-4">
-                <input id="fund-priority" type="number" name="priority" min="0" max="100"
-                       placeholder="liczby od 0 do 100"
-                       class="form-control" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-4 col-sm-offset-4">
-                <button type="submit" class="btn btn-primary btn-block">Uaktualnij bazę danych</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 <%@include file="footer.jsp" %>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -57,5 +98,24 @@
         crossorigin="anonymous"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/updatefund-ajax.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/dataTables.bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        var datatable = $('.table').DataTable({
+            "responsive": true,
+            "aoColumnDefs": [
+                {"bSortable": false, "aTargets": [0]}
+            ],
+            "bPaginate": false,
+            "bLengthChange": false
+        });
+
+        $(".table").show();
+
+        datatable.draw().columns.adjust().responsive.recalc();
+    });
+</script>
 </body>
 </html>

@@ -16,12 +16,25 @@
 <body>
 <%@include file="navbar.jsp" %>
 <div class="container-fluid">
-    <form class="form-horizontal" role="form" action="/4analysis/statistics" method="post">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2 main">
+        <div class="col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li>
+                    <a href="<c:url value = "/4analysis/updatefund"/>">Promocja funduszy</a>
+                </li>
+                <li class="active">
+                    <a href="<c:url value = "/4analysis/statistics"/>">Statystyki
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <%--<form class="form-horizontal" role="form" action="/4analysis/statistics" method="post">--%>
+        <div class="col-md-10 col-md-offset-2 main">
             <h3 class="page-header">POPULARNOŚĆ FUNDUSZY</h3>
             <div class="table-responsive">
-                <table class="table table-striped table-hover-other">
+                <table class="table table-striped table-hover-other compact">
                     <thead>
                     <tr>
                         <th>fundusz</th>
