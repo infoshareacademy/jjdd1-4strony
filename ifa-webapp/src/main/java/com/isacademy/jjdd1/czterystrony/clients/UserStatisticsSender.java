@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Stateless
 public class UserStatisticsSender {
@@ -21,10 +23,11 @@ public class UserStatisticsSender {
         UserStatistics statistics = new UserStatistics.Builder()
                 .withName(name)
                 .withEmail(email)
-                .withLoginDateTime(LocalDateTime.now())
+                .withLoginDate(LocalDate.now())
+                .withLoginTime(LocalTime.now())
                 .build();
 
         client.post(statistics);
-        log.info("User {} logged in. Statistics sent to report module");
+        log.info("User {} logged in. Statistics sent to report module", email);
     }
 }

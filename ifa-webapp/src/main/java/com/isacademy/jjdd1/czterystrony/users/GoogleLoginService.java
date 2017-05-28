@@ -7,6 +7,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import com.isacademy.jjdd1.czterystrony.clients.UserStatisticsSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,13 +23,16 @@ import java.util.Map;
 @Path("/google")
 public class GoogleLoginService {
 
-    @Inject
-    SessionData sessionData;
-
     private static Logger log = LoggerFactory.getLogger(GoogleLoginService.class);
     private static final String GOOGLE_CLIENT_ID = "280540127427-i5fcabv2i9poto8co2niio2hf4m2cg7k.apps.googleusercontent.com";
     private static final String GOOGLE_CLIENT_SECRET = "2jPDzoqCSw74HOvUpLMipB3w";
     private static final String PROTECTED_RESOURCE_URL = "https://www.googleapis.com/oauth2/v2/userinfo";
+
+    @Inject
+    SessionData sessionData;
+
+    @Inject
+    UserStatisticsSender statisticsSender;
 
     @GET
     @Path("/signin")
@@ -62,6 +66,7 @@ public class GoogleLoginService {
             String responseBody = service.execute(request).getBody();
             GoogleUser googleUser = new ObjectMapper().readValue(responseBody, GoogleUser.class);
             sessionData.logUser(googleUser);
+            statisticsSender.send(googleUser.getName(), googleUser.getEmail());
             log.info("User {} logged in.", googleUser.getEmail());
             return Response.seeOther(URI.create(sessionData.getReferer())).build();
         } catch (Exception e) {
