@@ -16,14 +16,14 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 @Stateless
-public class StatisticsClient {
+public class InstrumentStatisticsClient {
 
-    private static final Logger log = LoggerFactory.getLogger(StatisticsClient.class);
+    private static final Logger log = LoggerFactory.getLogger(InstrumentStatisticsClient.class);
     private static final String INVEST_FUND_STATISTICS_API_URL = "http://4strony-reports-api:8080/api/statistics/v1/investfunds";
     private static final String PENSION_FUND_STATISTICS_API_URL = "http://4strony-reports-api:8080/api/statistics/v1/pensionfunds";
 
     @Inject
-    StatisticsCache cache;
+    InstrumentStatisticsCache cache;
 
     public void post(InstrumentStatistics statistics) {
         WebTarget target = getWebTarget(statistics.getClass());
@@ -56,9 +56,9 @@ public class StatisticsClient {
     void postCachedData() {
         if (!cache.isEmpty()) {
             cache.get().forEach(s -> post(s));
-            log.info("StatisticsCache emptied and sent to reports module.");
+            log.info("InstrumentStatisticsCache emptied and sent to reports module.");
             return;
         }
-        log.info("StatisticsCache is empty.");
+        log.info("InstrumentStatisticsCache is empty.");
     }
 }

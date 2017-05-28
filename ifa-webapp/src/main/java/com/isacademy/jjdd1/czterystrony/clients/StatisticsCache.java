@@ -1,25 +1,22 @@
 package com.isacademy.jjdd1.czterystrony.clients;
 
-import isacademy.jjdd1.czterystrony.reports.persistence.model.statistics.InstrumentStatistics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Singleton;
 import java.util.HashSet;
 import java.util.Set;
 
-@Singleton
-public class StatisticsCache {
+public abstract class StatisticsCache<T> {
 
-    private static final Logger log = LoggerFactory.getLogger(StatisticsCache.class);
-    private Set<InstrumentStatistics> statistics = new HashSet<>();
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private Set<T> statistics = new HashSet<>();
 
-    public void insert(InstrumentStatistics statistics) {
-        this.statistics.add(statistics);
-        log.info("Added new statistics to cache.");
+    public void insert(T object) {
+        this.statistics.add(object);
+        log.info("Added new statistics to {}", this.getClass().getSimpleName());
     }
 
-    public Set<InstrumentStatistics> get() {
+    public Set<T> get() {
         return statistics;
     }
 

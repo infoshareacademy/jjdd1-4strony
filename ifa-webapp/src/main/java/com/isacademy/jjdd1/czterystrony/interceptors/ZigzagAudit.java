@@ -1,6 +1,6 @@
 package com.isacademy.jjdd1.czterystrony.interceptors;
 
-import com.isacademy.jjdd1.czterystrony.clients.StatisticsSender;
+import com.isacademy.jjdd1.czterystrony.clients.InstrumentStatisticsSender;
 import com.isacademy.jjdd1.czterystrony.restparameters.DateParam;
 import com.isacademy.jjdd1.czterystrony.restparameters.IntegerParam;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundRating;
@@ -11,10 +11,10 @@ import javax.interceptor.InvocationContext;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-public class ZigzagInterceptor {
+public class ZigzagAudit {
 
     @Inject
-    StatisticsSender sender;
+    InstrumentStatisticsSender sender;
 
     @AroundInvoke
     public Object createStatistics(InvocationContext ic) throws Throwable {

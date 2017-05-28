@@ -4,7 +4,7 @@ import com.isacademy.jjdd1.czterystrony.restparameters.DateParam;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundRating;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRatingRepository;
 import com.isacademy.jjdd1.czterystrony.restparameters.IntegerParam;
-import com.isacademy.jjdd1.czterystrony.interceptors.ZigzagInterceptor;
+import com.isacademy.jjdd1.czterystrony.interceptors.ZigzagAudit;
 import com.isacademy.jjdd1.czterystrony.technicalanalysis.LocalExtremaProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +30,7 @@ public class ZigzagService {
     @GET
     @Path("/{id}/zigzag")
     @Produces(MediaType.APPLICATION_JSON)
-    @Interceptors(ZigzagInterceptor.class)
+    @Interceptors(ZigzagAudit.class)
     public Response getZigZag(
             @PathParam("id") String id,
             @QueryParam("value") IntegerParam zigZag,

@@ -22,12 +22,12 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Stateless
-public class StatisticsSender {
+public class InstrumentStatisticsSender {
 
-    private static final Logger log = LoggerFactory.getLogger(StatisticsSender.class);
+    private static final Logger log = LoggerFactory.getLogger(InstrumentStatisticsSender.class);
 
     @Inject
-    StatisticsClient client;
+    InstrumentStatisticsClient client;
 
     @Inject
     InvestFundRepository investFundRepository;
