@@ -14,7 +14,7 @@ import java.util.List;
 @Stateless
 public class InvestFundStatisticsRepository {
 
-    private static Logger log = LoggerFactory.getLogger(InvestFundStatistics.class);
+    private static Logger log = LoggerFactory.getLogger(InvestFundStatisticsRepository.class);
 
     @PersistenceContext
     EntityManager entityManager;

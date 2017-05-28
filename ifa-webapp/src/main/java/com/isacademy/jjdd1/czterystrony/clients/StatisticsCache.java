@@ -23,4 +23,8 @@ public abstract class StatisticsCache<T> {
     public boolean isEmpty() {
         return statistics.isEmpty();
     }
+
+    public void clear() {
+        statistics.clear();
+    }
 }

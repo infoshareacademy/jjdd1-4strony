@@ -19,7 +19,7 @@ import java.util.List;
 @Path("/investfunds")
 public class ZigzagService {
 
-    private static Logger log = LoggerFactory.getLogger(RatingsService.class);
+    private static Logger log = LoggerFactory.getLogger(ZigzagService.class);
 
     @Inject
     InvestFundRatingRepository ratingRepository;

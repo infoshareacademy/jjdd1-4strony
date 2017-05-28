@@ -21,6 +21,7 @@ public class InstrumentStatisticsClient {
     private static final Logger log = LoggerFactory.getLogger(InstrumentStatisticsClient.class);
     private static final String INVEST_FUND_STATISTICS_API_URL = "http://4strony-reports-api:8080/api/statistics/v1/investfunds";
     private static final String PENSION_FUND_STATISTICS_API_URL = "http://4strony-reports-api:8080/api/statistics/v1/pensionfunds";
+    private static final String API_TEST_URL = "http://4strony-reports-api:8080/api/test";
 
     @Inject
     InstrumentStatisticsCache cache;
@@ -55,10 +56,28 @@ public class InstrumentStatisticsClient {
     @Schedule(hour = "*", minute = "*/2", persistent = false)
     void postCachedData() {
         if (!cache.isEmpty()) {
-            cache.get().forEach(s -> post(s));
-            log.info("InstrumentStatisticsCache emptied and sent to reports module.");
+            if (apiIsAvailable()) {
+                cache.get().forEach(s -> post(s));
+                cache.clear();
+                log.info("InstrumentStatisticsCache emptied and sent to reports module.");
+                return;
+            }
+            log.info("REPORTS API is still unavailable.");
             return;
         }
         log.info("InstrumentStatisticsCache is empty.");
+    }
+
+    private boolean apiIsAvailable() {
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(API_TEST_URL);
+
+        try {
+            Response response = target.request().get();
+            response.close();
+            return response.getStatus() == 200;
+        } catch (Throwable e) {
+            return false;
+        }
     }
 }
