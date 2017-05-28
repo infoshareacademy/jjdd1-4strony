@@ -28,7 +28,7 @@
                 </li>
                 <li class="active">
                     <a href="<c:url value = "/4analysis/raporty/zigzag"/>">Raporty średnich
-                        różnic czasowych i kwotowych
+                        różnic czasowych i kwotowych między sąsiednimi ekstremami
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -36,7 +36,8 @@
         </div>
 
         <div class="col-md-10 col-md-offset-2 main">
-            <h4 class="page-header">RAPORT ŚREDNICH RÓŻNIC KWOTOWYCH I CZASOWYCH</h4>
+            <h4 class="page-header">RAPORT ŚREDNICH RÓŻNIC CZASOWYCH I KWOTOWYCH MIĘDZY SĄSIEDNIMI EKSTREMAMI
+                LOKALNYMI</h4>
             <div class="table-responsive">
                 <table class="table table-striped table-hover-other compact">
                     <thead>

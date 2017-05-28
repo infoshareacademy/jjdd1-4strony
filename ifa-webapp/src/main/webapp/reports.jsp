@@ -27,6 +27,12 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<c:url value = "/4analysis/raporty/zigzag"/>">Raporty średnich
+                        różnic czasowych i kwotowych między sąsiednimi ekstremami
+
+                    </a>
+                </li>
             </ul>
         </div>
 
