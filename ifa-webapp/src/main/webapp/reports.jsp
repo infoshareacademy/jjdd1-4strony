@@ -20,17 +20,17 @@
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li>
-                    <a href="<c:url value = "/4analysis/updatefund"/>">Promocja funduszy</a>
+                    <a href="<c:url value = "/4analysis/promocje"/>">Promocja funduszy</a>
                 </li>
                 <li class="active">
-                    <a href="<c:url value = "/4analysis/statistics"/>">Statystyki
+                    <a href="<c:url value = "/4analysis/raporty"/>">Raporty
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
             </ul>
         </div>
 
-        <%--<form class="form-horizontal" role="form" action="/4analysis/statistics" method="post">--%>
+        <%--<form class="form-horizontal" role="form" action="/4analysis/raporty" method="post">--%>
         <div class="col-md-10 col-md-offset-2 main">
             <h3 class="page-header">POPULARNOŚĆ FUNDUSZY</h3>
             <div class="table-responsive">

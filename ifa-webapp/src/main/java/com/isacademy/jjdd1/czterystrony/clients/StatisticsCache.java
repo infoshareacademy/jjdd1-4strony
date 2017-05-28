@@ -12,7 +12,7 @@ import java.util.Set;
 @Singleton
 public class StatisticsCache {
 
-    private static final Logger log = LoggerFactory.getLogger(ZigzagInterceptor.class);
+    private static final Logger log = LoggerFactory.getLogger(StatisticsCache.class);
     private Set<InstrumentStatistics> statistics = new HashSet<>();
 
     public void insert(InstrumentStatistics statistics) {

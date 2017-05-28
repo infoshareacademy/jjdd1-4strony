@@ -20,7 +20,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <c:if test="${sessionData.admin}">
-                    <li><a href="/4analysis/updatefund">Panel administracyjny</a></li>
+                    <li><a href="/4analysis/promocje">Panel administracyjny</a></li>
                 </c:if>
                 <c:choose>
                     <c:when test="${sessionData.logged}">
@@ -41,8 +41,8 @@
                                 <c:if test="${sessionData.admin}">
                                     <%--<c:choose>--%>
                                     <%--<c:when test="${sessionData.isadmin}">--%>
-                                    <li><a href="<c:url value = "/4analysis/updatefund"/>">Promocja funduszy</a></li>
-                                    <li><a href="<c:url value = "/4analysis/statistics"/>">Statystyki</a></li>
+                                    <li><a href="<c:url value = "/4analysis/promocje"/>">Promocja funduszy</a></li>
+                                    <li><a href="<c:url value = "/4analysis/raporty"/>">Raporty</a></li>
                                     <%--</c:when>--%>
                                     <%--</c:choose>--%>
                                 </c:if>

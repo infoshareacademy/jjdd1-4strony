@@ -19,7 +19,7 @@ import javax.ws.rs.core.Response;
 @Stateless
 public class StatisticsClient {
 
-    private static final Logger log = LoggerFactory.getLogger(ZigzagInterceptor.class);
+    private static final Logger log = LoggerFactory.getLogger(StatisticsClient.class);
     private static final String INVEST_FUND_STATISTICS_API_URL = "http://4strony-reports-api:8080/api/statistics/v1/investfunds";
     private static final String PENSION_FUND_STATISTICS_API_URL = "http://4strony-reports-api:8080/api/statistics/v1/pensionfunds";
 

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/4analysis/updatefund")
+@WebServlet(urlPatterns = "/4analysis/promocje")
 public class FundsPromoterServlet extends HttpServlet {
 
     @Inject

@@ -21,14 +21,14 @@
 
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="<c:url value = "/4analysis/updatefund"/>">Promocja funduszy<span
+                <li class="active"><a href="<c:url value = "/4analysis/promocje"/>">Promocja funduszy<span
                         class="sr-only">(current)</span></a></li>
-                <li><a href="<c:url value = "/4analysis/statistics"/>">Statystyki</a></li>
+                <li><a href="<c:url value = "/4analysis/raporty"/>">Raporty</a></li>
             </ul>
         </div>
 
         <div class="col-md-10 col-md-offset-2 main">
-            <form class="form-horizontal" role="form" action="/4analysis/updatefund" method="post">
+            <form class="form-horizontal" role="form" action="/4analysis/promocje" method="post">
                 <h2>Promocja funduszy</h2>
                 <div class="form-group">
                     <label for="fund-id" class="col-sm-4 control-label">wybierz wg ID</label>
