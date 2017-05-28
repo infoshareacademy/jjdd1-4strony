@@ -13,6 +13,11 @@ public class PopularityWrapper<T extends  Popularity> {
     @JsonProperty("period")
     private PeriodParam period;
 
+    public PopularityWrapper(List<T> popularities) {
+        this.popularities = popularities;
+        this.period = period;
+    }
+
     public PopularityWrapper(List<T> popularities, PeriodParam period) {
         this.popularities = popularities;
         this.period = period;

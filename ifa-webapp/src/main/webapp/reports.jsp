@@ -43,11 +43,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${statisticsDetails}" var="statisticsDetail">
+                    <c:forEach items="${popularities}" var="popularity">
                         <tr>
-                            <td>${statisticsDetail.name}</td>
-                            <td>${statisticsDetail.id}</td>
-                            <td>${statisticsDetail.clicks}</td>
+                            <td>${popularity.instrumentName}</td>
+                            <td>${popularity.instrumentId}</td>
+                            <td>${popularity.clicks}</td>
                         </tr>
                     </c:forEach>
                     </tbody>

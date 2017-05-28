@@ -62,9 +62,9 @@
                     </li>
                 </ul>
                 </p>
-                <span class="text-info">okres:</span>
-                <input id="period" type="number" min="1" value="${period}" required>
-                <span class="text-info">dni</span><br>
+                <span class="text-info">okres w dniach (min. 1 dzień):</span>
+                <input id="period" type="number" min="1" max="1000" value="${period}" required>
+                <%--<span class="text-info">dni</span><br>--%>
             </div>
             <div id="chart-container"></div>
         </div>
