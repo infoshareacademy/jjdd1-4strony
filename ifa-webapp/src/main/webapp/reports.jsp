@@ -16,12 +16,25 @@
 <body>
 <%@include file="navbar.jsp" %>
 <div class="container-fluid">
-    <form class="form-horizontal" role="form" action="/4analysis/statistics" method="post">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2 main">
-            <h3 class="page-header">POPULARNOŚĆ FUNDUSZY</h3>
+        <div class="col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li>
+                    <a href="<c:url value = "/4analysis/promocje"/>">Promocja funduszy</a>
+                </li>
+                <li class="active">
+                    <a href="<c:url value = "/4analysis/raporty"/>">Raporty
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <%--<form class="form-horizontal" role="form" action="/4analysis/raporty" method="post">--%>
+        <div class="col-md-10 col-md-offset-2 main">
+            <h4 class="page-header">RAPORT POPULARNOŚCI FUNDUSZY</h4>
             <div class="table-responsive">
-                <table class="table table-striped table-hover-other">
+                <table class="table table-striped table-hover-other compact">
                     <thead>
                     <tr>
                         <th>fundusz</th>
@@ -30,11 +43,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${statisticsDetails}" var="statisticsDetail">
+                    <c:forEach items="${popularities}" var="popularity">
                         <tr>
-                            <td>${statisticsDetail.name}</td>
-                            <td>${statisticsDetail.id}</td>
-                            <td>${statisticsDetail.clicks}</td>
+                            <td>${popularity.instrumentName}</td>
+                            <td>${popularity.instrumentId}</td>
+                            <td>${popularity.clicks}</td>
                         </tr>
                     </c:forEach>
                     </tbody>

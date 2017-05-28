@@ -3,7 +3,7 @@ package isacademy.jjdd1.czterystrony.reports.persistence.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.isacademy.jjdd1.czterystrony.instruments.Instrument;
 
-public abstract class Popularity {
+public class Popularity {
 
     @JsonProperty("id")
     private String instrumentId;
@@ -17,7 +17,10 @@ public abstract class Popularity {
     @JsonProperty("clicks")
     private int clicks;
 
-    Popularity(String instrumentId, String instrumentName, int clicks) {
+    public Popularity() {
+    }
+
+    public Popularity(String instrumentId, String instrumentName, int clicks) {
         this.instrumentId = instrumentId;
         this.instrumentName = instrumentName;
         this.clicks = clicks;

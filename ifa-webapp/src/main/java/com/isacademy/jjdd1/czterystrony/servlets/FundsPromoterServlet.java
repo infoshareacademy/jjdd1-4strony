@@ -2,6 +2,7 @@ package com.isacademy.jjdd1.czterystrony.servlets;
 
 import isacademy.jjdd1.czterystrony.webapp.persistence.dbviews.Views;
 import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFund;
+import isacademy.jjdd1.czterystrony.webapp.persistence.model.InvestFundDetails;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundFacade;
 import isacademy.jjdd1.czterystrony.webapp.persistence.repositories.InvestFundRepository;
 
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/4analysis/updatefund")
+@WebServlet(urlPatterns = "/4analysis/promocje")
 public class FundsPromoterServlet extends HttpServlet {
 
     @Inject
@@ -30,8 +31,12 @@ public class FundsPromoterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
         List<InvestFund> investFunds = instrumentRepository.getAll();
+        List<InvestFundDetails> promotedInvestFunds = views.getPromotedFunds();
+
         req.setAttribute("investFunds", investFunds);
-        req.getRequestDispatcher("/updatefund.jsp").forward(req,resp);
+        req.setAttribute("promotedInvestFunds", promotedInvestFunds);
+
+        req.getRequestDispatcher("/promotions.jsp").forward(req,resp);
     }
 
     @Override
