@@ -27,6 +27,7 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                a
             </ul>
         </div>
 
@@ -44,13 +45,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${zigZagPopularities}" var="zigZagPopularity">
+                    <c:forEach items="${zigzagReports}" var="zigzagReport">
                         <tr>
-                            <td>${zigZagPopularity.instrumentName}</td>
-                            <td>${zigZagPopularity.instrumentId}</td>
-                            <td>${zigZagPopularity.zigzagValue}</td>
-                            <td>${zigZagPopularity.averageDayDifference}</td>
-                            <td>${zigZagPopularity.averageValueDifference}</td>
+                            <td>${zigzagReport.instrumentName}</td>
+                            <td>${zigzagReport.instrumentId}</td>
+                            <td>${zigzagReport.zigzagValue}</td>
+                            <td>${zigzagReport.averageDayDifference}</td>
+                            <td>${zigzagReport.averageValueDifference}</td>
 
                         </tr>
                     </c:forEach>

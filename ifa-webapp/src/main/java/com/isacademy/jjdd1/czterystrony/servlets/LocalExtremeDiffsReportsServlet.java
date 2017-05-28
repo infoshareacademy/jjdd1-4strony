@@ -1,10 +1,7 @@
 package com.isacademy.jjdd1.czterystrony.servlets;
 
-import com.isacademy.jjdd1.czterystrony.clients.InvestFundPopularityReportClient;
 import com.isacademy.jjdd1.czterystrony.clients.InvestFundZigzagReportClient;
-import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundPopularity;
 import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundZigzagReport;
-
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,7 +26,7 @@ public class LocalExtremeDiffsReportsServlet extends HttpServlet {
 
         List<InvestFundZigzagReport> zigzagReports = zigZagClient.getAll();
         RequestDispatcher dispatcher = req.getRequestDispatcher("/localextremeraport.jsp");
-        req.setAttribute("zigZagPopularities", zigzagReports);
+        req.setAttribute("zigzagReports", zigzagReports);
         dispatcher.forward(req, resp);
     }
 }

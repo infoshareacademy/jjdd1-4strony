@@ -43,6 +43,10 @@
                                     <%--<c:when test="${sessionData.isadmin}">--%>
                                     <li><a href="<c:url value = "/4analysis/promocje"/>">Promocja funduszy</a></li>
                                     <li><a href="<c:url value = "/4analysis/raporty"/>">Raporty</a></li>
+                                    <li><a href="<c:url value = "/4analysis/raportyekstremalokalne"/>">Raporty średnich
+                                        różnic kwotowych</a></li>
+                                    <li><a href="<c:url value = "/4analysis/raportyekstremalokalne"/>">Raporty średnich
+                                        różnic czasowych</a></li>
                                     <%--</c:when>--%>
                                     <%--</c:choose>--%>
                                 </c:if>
