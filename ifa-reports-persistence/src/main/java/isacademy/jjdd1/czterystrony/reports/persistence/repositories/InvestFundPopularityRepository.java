@@ -15,10 +15,6 @@ public class InvestFundPopularityRepository {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void add(List<InvestFundPopularity> list) {
-        list.forEach(r -> entityManager.persist(r));
-    }
-
     public List<InvestFundPopularity> getAll() {
         Query query = entityManager.createNamedQuery("InvestFundPopularity.getAll");
         return query.getResultList();

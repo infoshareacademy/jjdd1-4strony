@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundPopularity;
+import isacademy.jjdd1.czterystrony.reports.persistence.model.ZigzagReport;
 import isacademy.jjdd1.czterystrony.reports.persistence.queries.ReportQueries;
 
 import javax.persistence.*;
@@ -27,6 +28,18 @@ import java.time.LocalDate;
                                         @ColumnResult(name = "id", type = String.class),
                                         @ColumnResult(name = "clicks", type = int.class),
                                 }
+                        )}),
+        @SqlResultSetMapping(name = "ZigzagReportMapping",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = ZigzagReport.class,
+                                columns = {
+                                        @ColumnResult(name = "name", type = String.class),
+                                        @ColumnResult(name = "id", type = String.class),
+                                        @ColumnResult(name = "zigzagValue", type = int.class),
+                                        @ColumnResult(name = "averageDayDifference", type = int.class),
+                                        @ColumnResult(name = "averageValueDifference", type = BigDecimal.class),
+                                }
                         )})
 })
 @NamedNativeQueries({
@@ -37,7 +50,11 @@ import java.time.LocalDate;
         @NamedNativeQuery(
                 name = "InvestFundPopularity.getInTimeRange",
                 query = ReportQueries.getAllInvestFundPopularityInTimeRange,
-                resultSetMapping = "InvestFundPopularityMapping")
+                resultSetMapping = "InvestFundPopularityMapping"),
+        @NamedNativeQuery(
+                name = "ZigzagReport",
+                query = ReportQueries.getZigzagReport,
+                resultSetMapping = "ZigzagReportMapping")
 })
 public class InvestFundStatistics extends InstrumentStatistics {
 
