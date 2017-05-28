@@ -1,6 +1,5 @@
 package com.isacademy.jjdd1.czterystrony.clients;
 
-import com.isacademy.jjdd1.czterystrony.interceptors.ZigzagInterceptor;
 import isacademy.jjdd1.czterystrony.reports.persistence.model.statistics.InstrumentStatistics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

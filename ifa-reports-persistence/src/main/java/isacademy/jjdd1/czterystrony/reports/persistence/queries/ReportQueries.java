@@ -5,7 +5,7 @@ public final class ReportQueries {
     }
 
     //language=MySQL
-    public static final String getAllInvestFundPopularity =
+    public static final String getInvestFundPopularity =
             "SELECT " +
                     "stat.INSTRUMENT_NAME AS name, " +
                     "stat.INSTRUMENT_ID AS id, " +
@@ -15,7 +15,7 @@ public final class ReportQueries {
                     "ORDER BY clicks DESC";
 
     //language=MySQL
-    public static final String getAllInvestFundPopularityInTimeRange =
+    public static final String getInvestFundPopularityInTimeRange =
             "SELECT " +
                     "stat.INSTRUMENT_NAME AS name, " +
                     "stat.INSTRUMENT_ID AS id, " +
@@ -35,5 +35,20 @@ public final class ReportQueries {
                     "ROUND(AVG(AVERAGE_DATE_DIFFERENCE),0) AS averageDayDifference, " +
                     "ROUND(AVG(AVERAGE_VALUE_DIFFERENCE),2) AS averageValueDifference " +
                     "FROM InvestFundStatistics " +
-                    "GROUP BY INSTRUMENT_ID, INSTRUMENT_NAME, ZIGZAG_VALUE";
+                    "GROUP BY INSTRUMENT_ID, INSTRUMENT_NAME, ZIGZAG_VALUE " +
+                    "ORDER BY name";
+
+    //language=MySQL
+    public static final String getZigzagReportInTimeRange =
+            "SELECT " +
+                    "INSTRUMENT_NAME AS name, " +
+                    "INSTRUMENT_ID AS id, " +
+                    "ZIGZAG_VALUE AS zigzagValue, " +
+                    "ROUND(AVG(AVERAGE_DATE_DIFFERENCE),0) AS averageDayDifference, " +
+                    "ROUND(AVG(AVERAGE_VALUE_DIFFERENCE),2) AS averageValueDifference " +
+                    "FROM InvestFundStatistics " +
+                    "WHERE DATE_TIME >= :startDateTime AND " +
+                    "DATE_TIME <= :endDateTime " +
+                    "GROUP BY INSTRUMENT_ID, INSTRUMENT_NAME, ZIGZAG_VALUE " +
+                    "ORDER BY name";
 }

@@ -2,9 +2,7 @@ package isacademy.jjdd1.czterystrony.reports.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
-import com.isacademy.jjdd1.czterystrony.beanparameters.PeriodParam;
 
-import java.sql.Time;
 import java.util.List;
 
 public class PopularityWrapper<T extends Popularity> {

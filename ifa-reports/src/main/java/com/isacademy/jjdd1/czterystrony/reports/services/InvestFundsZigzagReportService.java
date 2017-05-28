@@ -1,37 +1,43 @@
 package com.isacademy.jjdd1.czterystrony.reports.services;
 
 import com.isacademy.jjdd1.czterystrony.analysis.TimeRange;
-import com.isacademy.jjdd1.czterystrony.beanparameters.*;
-import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundPopularity;
-import isacademy.jjdd1.czterystrony.reports.persistence.model.PopularityWrapper;
-import isacademy.jjdd1.czterystrony.reports.persistence.repositories.InvestFundPopularityRepository;
+import com.isacademy.jjdd1.czterystrony.beanparameters.DayParam;
+import com.isacademy.jjdd1.czterystrony.beanparameters.MonthParam;
+import com.isacademy.jjdd1.czterystrony.beanparameters.PeriodParam;
+import com.isacademy.jjdd1.czterystrony.beanparameters.YearParam;
+import isacademy.jjdd1.czterystrony.reports.persistence.model.InvestFundZigzagReport;
+import isacademy.jjdd1.czterystrony.reports.persistence.model.ZigzagReportWrapper;
+import isacademy.jjdd1.czterystrony.reports.persistence.repositories.InvestFundZigzagReportRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
+import javax.ws.rs.BeanParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.time.LocalDate;
 import java.util.List;
 
-@Path("reports/v1/popularity/investfunds")
-public class InvestFundsPopularityReportService implements ReportService {
+@Path("reports/v1/zigzag/investfunds")
+public class InvestFundsZigzagReportService implements ReportService {
 
-    private static final Logger log = LoggerFactory.getLogger(InvestFundsPopularityReportService.class);
+    private static final Logger log = LoggerFactory.getLogger(InvestFundsZigzagReportService.class);
 
     @Inject
-    InvestFundPopularityRepository repository;
+    InvestFundZigzagReportRepository repository;
 
-    @Override
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOverallReport() {
         try {
-            List<InvestFundPopularity> list = repository.getAll();
+            List<InvestFundZigzagReport> list = repository.getAll();
             TimeRange timeRange = new TimeRange(LocalDate.now(), LocalDate.now());
-            PopularityWrapper wrapper = new PopularityWrapper(list, timeRange);
-            log.info("Provided popularity report.");
+            ZigzagReportWrapper wrapper = new ZigzagReportWrapper(list, timeRange);
+            log.info("Provided ZigZag report.");
             return Response.ok(wrapper).build();
         } catch (Throwable e) {
             e.printStackTrace();
@@ -67,8 +73,8 @@ public class InvestFundsPopularityReportService implements ReportService {
         try {
             LocalDate start = period.startDate();
             LocalDate end = period.endDate();
-            List<InvestFundPopularity> list = repository.getInTimeRange(start, end);
-            PopularityWrapper<InvestFundPopularity> wrapper = new PopularityWrapper(list, new TimeRange(start, end));
+            List<InvestFundZigzagReport> list = repository.getInTimeRange(start, end);
+            ZigzagReportWrapper wrapper = new ZigzagReportWrapper(list, new TimeRange(start, end));
             log.info("Provided popularity report.");
             return Response.ok(wrapper).build();
         } catch (Throwable e) {

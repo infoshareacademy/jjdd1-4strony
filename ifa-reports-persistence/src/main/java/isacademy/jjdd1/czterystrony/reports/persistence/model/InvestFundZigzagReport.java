@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 
-public class ZigzagReport {
+public class InvestFundZigzagReport {
 
     @JsonProperty("id")
     private String instrumentId;
@@ -21,14 +21,14 @@ public class ZigzagReport {
     @JsonProperty("averageValueDifference")
     private BigDecimal averageValueDifference;
 
-    public ZigzagReport() {
+    public InvestFundZigzagReport() {
     }
 
-    public ZigzagReport(String instrumentName,
-                        String instrumentId,
-                        int zigzagValue,
-                        int averageDayDifference,
-                        BigDecimal averageValueDifference) {
+    public InvestFundZigzagReport(String instrumentName,
+                                  String instrumentId,
+                                  int zigzagValue,
+                                  int averageDayDifference,
+                                  BigDecimal averageValueDifference) {
 
         this.instrumentName = instrumentName;
         this.instrumentId = instrumentId;

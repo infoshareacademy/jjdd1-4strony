@@ -14,10 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
-public class ReportsClient {
+public class InvestFundPopularityReportClient {
 
-    private static final Logger log = LoggerFactory.getLogger(ReportsClient.class);
-    private static final String INVEST_FUND_STATISTICS_API_URL = "http://4strony-reports-api:8080/api/reports/v1/popularity/investfunds";
+    private static final Logger log = LoggerFactory.getLogger(InvestFundPopularityReportClient.class);
+    private static final String REPORTS_API_URL =
+            "http://4strony-reports-api:8080/api/reports/v1/popularity/investfunds";
 
     public List<InvestFundPopularity> getAll() {
         return getPopularities(getWebTarget());
@@ -48,19 +49,19 @@ public class ReportsClient {
     }
 
     private WebTarget getWebTarget() {
-        return getWebTarget(INVEST_FUND_STATISTICS_API_URL);
+        return getWebTarget(REPORTS_API_URL);
     }
 
     private WebTarget getWebTarget(int year) {
-        return getWebTarget(INVEST_FUND_STATISTICS_API_URL + "/" + year);
+        return getWebTarget(REPORTS_API_URL + "/" + year);
     }
 
     private WebTarget getWebTarget(int year, int month) {
-        return getWebTarget(INVEST_FUND_STATISTICS_API_URL + "/" + year + "/" + month);
+        return getWebTarget(REPORTS_API_URL + "/" + year + "/" + month);
     }
 
     private WebTarget getWebTarget(int year, int month, int day) {
-        return getWebTarget(INVEST_FUND_STATISTICS_API_URL + "/" + year + "/" + month + "/" + day);
+        return getWebTarget(REPORTS_API_URL + "/" + year + "/" + month + "/" + day);
     }
 
     private WebTarget getWebTarget(String url) {
