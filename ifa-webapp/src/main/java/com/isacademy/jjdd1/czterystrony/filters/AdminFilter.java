@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/4analysis/raporty", "/4analysis/promocje"})
+@WebFilter(urlPatterns = {"/4analysis/raporty/*", "/4analysis/promocje"})
 public class AdminFilter implements Filter {
 
     private static final Logger log = LoggerFactory.getLogger(AdminFilter.class);

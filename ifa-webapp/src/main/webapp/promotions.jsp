@@ -23,10 +23,9 @@
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="<c:url value = "/4analysis/promocje"/>">Promocja funduszy<span
                         class="sr-only">(current)</span></a></li>
-                <li><a href="<c:url value = "/4analysis/raporty"/>">Raporty</a></li>
+                <li><a href="<c:url value = "/4analysis/raporty/popularnosc"/>">Raport popularności</a></li>
                 <li>
-                    <a href="<c:url value = "/4analysis/raporty/zigzag"/>">Raporty średnich
-                        różnic czasowych i kwotowych między sąsiednimi ekstremami
+                    <a href="<c:url value = "/4analysis/raporty/zigzag"/>">Raport wartości Zig-Zag
                     </a>
                 </li>
             </ul>

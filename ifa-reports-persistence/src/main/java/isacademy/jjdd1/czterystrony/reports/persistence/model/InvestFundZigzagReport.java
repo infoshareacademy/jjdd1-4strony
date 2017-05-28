@@ -45,7 +45,7 @@ public class InvestFundZigzagReport {
         return instrumentName;
     }
 
-    public int getZizagValue() {
+    public int getZigzagValue() {
         return zigzagValue;
     }
 

@@ -22,42 +22,35 @@
                 <li>
                     <a href="<c:url value = "/4analysis/promocje"/>">Promocja funduszy</a>
                 </li>
-                <li>
-                    <a href="<c:url value = "/4analysis/raporty"/>">Raporty
+                <li class="active">
+                    <a href="<c:url value = "/4analysis/raporty/popularnosc"/>">Raport popularności
+                        <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="<c:url value = "/4analysis/raporty/zigzag"/>">Raporty średnich
-                        różnic czasowych i kwotowych między sąsiednimi ekstremami
-                        <span class="sr-only">(current)</span>
+                <li>
+                    <a href="<c:url value = "/4analysis/raporty/zigzag"/>">Raport wartości Zig-Zag
                     </a>
                 </li>
             </ul>
         </div>
 
         <div class="col-md-10 col-md-offset-2 main">
-            <h4 class="page-header">RAPORT ŚREDNICH RÓŻNIC CZASOWYCH I KWOTOWYCH MIĘDZY SĄSIEDNIMI EKSTREMAMI
-                LOKALNYMI</h4>
+            <h4 class="page-header">RAPORT POPULARNOŚCI FUNDUSZY</h4>
             <div class="table-responsive">
                 <table class="table table-striped table-hover-other compact">
                     <thead>
                     <tr>
                         <th>fundusz</th>
                         <th class="text-center">id</th>
-                        <th class="text-center">zigZag</th>
-                        <th class="text-center">średnia różnica czasowa</th>
-                        <th class="text-center">średnia różnica kwotowa</th>
+                        <th class="text-center">liczba kliknięć</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${zigzagReports}" var="zigzagReport">
+                    <c:forEach items="${popularities}" var="popularity">
                         <tr>
-                            <td>${zigzagReport.instrumentName}</td>
-                            <td>${zigzagReport.instrumentId}</td>
-                            <td>${zigzagReport.zigzagValue}</td>
-                            <td>${zigzagReport.averageDayDifference}</td>
-                            <td>${zigzagReport.averageValueDifference}</td>
-
+                            <td>${popularity.instrumentName}</td>
+                            <td>${popularity.instrumentId}</td>
+                            <td>${popularity.clicks}</td>
                         </tr>
                     </c:forEach>
                     </tbody>

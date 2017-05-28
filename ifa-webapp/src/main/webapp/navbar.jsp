@@ -39,14 +39,8 @@
                                 <li role="separator" class="divider"></li>
                                     <%--<li class="dropdown-header">Nav header</li>--%>
                                 <c:if test="${sessionData.admin}">
-                                    <%--<c:choose>--%>
-                                    <%--<c:when test="${sessionData.isadmin}">--%>
                                     <li><a href="<c:url value = "/4analysis/promocje"/>">Promocja funduszy</a></li>
-                                    <li><a href="<c:url value = "/4analysis/raporty"/>">Raporty</a></li>
-                                    <li><a href="<c:url value = "/4analysis/raporty/zigzag"/>">Raporty średnich
-                                        różnic czasowych i kwotowych</a></li>
-                                    <%--</c:when>--%>
-                                    <%--</c:choose>--%>
+                                    <li><a href="<c:url value = "/4analysis/raporty/popularnosc"/>">Raporty</a></li>
                                 </c:if>
                                 <li><a href="<c:url value = "/api/google/signout"/>">Wyloguj się</a></li>
                             </ul>
