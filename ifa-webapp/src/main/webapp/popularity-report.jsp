@@ -40,7 +40,7 @@
                 <table class="table table-striped table-hover-other compact">
                     <thead>
                     <tr>
-                        <th>fundusz</th>
+                        <th class="text-center">fundusz</th>
                         <th class="text-center">id</th>
                         <th class="text-center">liczba kliknięć</th>
                     </tr>
@@ -48,9 +48,9 @@
                     <tbody>
                     <c:forEach items="${popularities}" var="popularity">
                         <tr>
-                            <td>${popularity.instrumentName}</td>
-                            <td>${popularity.instrumentId}</td>
-                            <td>${popularity.clicks}</td>
+                            <td class="text-center">${popularity.instrumentName}</td>
+                            <td class="text-center">${popularity.instrumentId}</td>
+                            <td class="text-center">${popularity.clicks}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
