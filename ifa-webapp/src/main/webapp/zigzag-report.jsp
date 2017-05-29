@@ -52,9 +52,9 @@
                         <tr>
                             <td>${zigzagReport.instrumentName}</td>
                             <td>${zigzagReport.instrumentId}</td>
-                            <td>${zigzagReport.zigzagValue}</td>
-                            <td>${zigzagReport.averageDayDifference}</td>
-                            <td>${zigzagReport.averageValueDifference}</td>
+                            <td class="text-center">${zigzagReport.zigzagValue}</td>
+                            <td class="text-center">${zigzagReport.averageDayDifference}</td>
+                            <td class="text-center">${zigzagReport.averageValueDifference}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
