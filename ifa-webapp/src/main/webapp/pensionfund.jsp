@@ -38,7 +38,7 @@
                                     <td>${pensionFund.name}</td>
                                     <td class="text-center">${pensionFund.id}</td>
                                     <td class="text-center">${pensionFund.date}</td>
-                                    <td class="text-right">${pensionFund.close}</td>
+                                    <td class="text-center">${pensionFund.close}</td>
                                     <c:choose>
                                         <c:when test="${pensionFund.diff > 0}">
                                             <td class="text-left green">
