@@ -4,7 +4,7 @@ import com.isacademy.jjdd1.czterystrony.CompanyMail;
 
 public enum UserType {
     ADMIN(CompanyMail.ADDRESS),
-    ADMINiSA("isaloginjava"),
+    ADMINiSA("isaloginjava@gmail.com"),
     GOOGLE_USER("@gmail.com");
 
     private final String email;

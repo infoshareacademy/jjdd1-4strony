@@ -29,7 +29,7 @@ public class SessionData implements Serializable {
         String userEmail = user.getEmail();
 
         if (UserType.ADMIN.getEmailPattern().equals(userEmail) ||
-                UserType.ADMINiSA.getEmailPattern().matches(userEmail)) {
+                UserType.ADMINiSA.getEmailPattern().equals(userEmail)) {
             userType = UserType.ADMIN;
             admin = true;
             return;
